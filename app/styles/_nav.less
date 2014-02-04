@@ -1,0 +1,45 @@
+.nav-main {
+
+}
+
+.btn-menu {
+	display: inline-block;
+	vertical-align: middle;
+	width: 20px;
+	height: 21px;
+	margin-left: 5px;
+
+	&:hover span,
+	&:hover span:before,
+	&:hover span:after {
+		background: lighten(black, 40%);
+	}
+
+	span {
+		position: relative;
+		display: block;
+		height: 2px;
+		width: 15px;
+		background: black;
+		top: 10px;
+		.transition(all 300ms);
+
+		&:before,
+		&:after {
+			position: absolute;
+			content: "";
+			background: black;
+			height: 2px;
+			width: 15px;
+			.transition(all 300ms);
+		}
+
+		&:before {
+			top: -4px;
+		}
+
+		&:after {
+			bottom: -4px;
+		}
+	}
+}

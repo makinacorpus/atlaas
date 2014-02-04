@@ -1,14 +1,22 @@
 /*global app, $*/
 
 
-window.app = {
+window.atlaas = {
     Models: {},
     Collections: {},
     Views: {},
     Routers: {},
     init: function () {
         'use strict';
-        console.log('Hello from Backbone!');
+
+        var home = new this.Models.PageModel({ name: 'Accueil' });
+        var news = new this.Models.PageModel({ name: 'Actualité' });
+
+        var pages = [home, news];
+        
+        new this.Views.NavView({
+            collection: new this.Collections.PagesCollection(pages)
+        });
 
         var map = L.map('map').setView([51.505, -0.09], 13);
 
@@ -21,5 +29,5 @@ window.app = {
 
 $(document).ready(function () {
     'use strict';
-    app.init();
+    atlaas.init();
 });

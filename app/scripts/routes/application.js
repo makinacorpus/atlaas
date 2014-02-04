@@ -1,11 +1,11 @@
 /*global app, Backbone*/
 
-app.Routers = app.Routers || {};
+atlaas.Routers = atlaas.Routers || {};
 
 (function () {
     'use strict';
 
-    app.Routers.ApplicationRouter = Backbone.Router.extend({
+    atlaas.Routers.ApplicationRouter = Backbone.Router.extend({
 
     });
 

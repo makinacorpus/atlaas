@@ -1,11 +1,11 @@
 /*global app, Backbone*/
 
-app.Models = app.Models || {};
+atlaas.Models = atlaas.Models || {};
 
 (function () {
     'use strict';
 
-    app.Models.ApplicationModel = Backbone.Model.extend({
+    atlaas.Models.PageModel = Backbone.Model.extend({
 
         url: '',
 
@@ -13,6 +13,7 @@ app.Models = app.Models || {};
         },
 
         defaults: {
+            name: 'New Page'
         },
 
         validate: function(attrs, options) {
