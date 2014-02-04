@@ -10,7 +10,7 @@ This project is generated using Yeoman (http://yeoman.io/)
 - grunt (`npm install -g grunt-cli`)
 
 ## Install
-- `npm install`
-- `bower install`
-- `grunt serve`
+- `$ npm install`
+- `$ bower install`
+- `$ grunt serve`
 - look your browser
