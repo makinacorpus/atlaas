@@ -33,7 +33,7 @@ module.exports = function (grunt) {
                 livereload: true
             },
             less: {
-                files: ['<%= yeoman.app %>/styles/main.less'],
+                files: ['<%= yeoman.app %>/styles/*.less'],
                 tasks: ['less:dist']
             },
             livereload: {
