@@ -11,5 +11,6 @@ This project is generated using Yeoman (http://yeoman.io/)
 
 ## Install
 - `npm install`
+- `bower install`
 - `grunt serve`
 - look your browser
