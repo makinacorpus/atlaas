@@ -13,11 +13,11 @@ window.atlaas = {
         var appView = new this.Views.AppView();
 
         router.on('route:home', function () {
-            appView.showMap();
+            appView.renderMap();
         });
 
         router.on('route:news', function () {
-            appView.showNews();
+            appView.renderNews();
         });
 
         Backbone.history.start();

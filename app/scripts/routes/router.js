@@ -8,6 +8,7 @@ atlaas.Routers = atlaas.Routers || {};
     atlaas.Routers.AppRouter = Backbone.Router.extend({
     	routes: {
     		"": "home",
+    		"#": "home",
     		"news": "news"
     	}
     });

@@ -26,23 +26,23 @@
         <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <aside class="aside-main">
+        <aside id="aside-main" class="aside-main" data-visible="false">
             <nav class="nav-main">
                 <ul>
-                    <li><a href="#map">Accueil</a></li>
-                    <li><a href="#news">Actualité</a></li>
+                    <li><a class="nav-main__item" href="#">Accueil</a></li>
+                    <li><a class="nav-main__item" href="#news">Actualité</a></li>
                 </ul>
             </nav>
         </aside>
         
-        <div id="container-main" class="container">
+        <div id="container-main" class="container" data-visible="true">
             <header>
                 <div class="logo">
                     <span class="baseline">Annuaire Territorial de Liaison des Acteurs, Actions et Services numériques</span>
                     Atlaas
                     <!-- <img src="" alt="Atlaas"> -->
                 </div>
-                <a href="#menu" class="btn-menu">
+                <a href="#menu" id="toggle-sidebar" class="btn-menu">
                     <span></span>
                 </a>
             </header>
