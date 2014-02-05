@@ -28,6 +28,10 @@
         <![endif]-->
         <aside class="aside-main">
             <nav class="nav-main">
+                <ul>
+                    <li><a href="#map">Accueil</a></li>
+                    <li><a href="#news">Actualité</a></li>
+                </ul>
             </nav>
         </aside>
         
@@ -43,7 +47,7 @@
                 </a>
             </header>
 
-            <div id="map" class="container">
+            <div id="pages-container" class="container">
             </div>
         </div>
 
@@ -69,10 +73,10 @@
         <!-- build:js({.tmp,app}) scripts/main.js -->
         <script src="scripts/main.js"></script>
         <script src="scripts/templates.js"></script>
-        <script src="scripts/routes/application.js"></script>
-        <script src="scripts/views/nav-view.js"></script>
-        <script src="scripts/models/page-model.js"></script>
-        <script src="scripts/collections/pages-collection.js"></script>
+        <script src="scripts/routes/router.js"></script>
+        <script src="scripts/views/map-view.js"></script>
+        <script src="scripts/views/app-view.js"></script>
+        <script src="scripts/models/poi-model.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -9,21 +9,15 @@ window.atlaas = {
     init: function () {
         'use strict';
 
-        var home = new this.Models.PageModel({ name: 'Accueil' });
-        var news = new this.Models.PageModel({ name: 'Actualité' });
+        var router = new atlaas.Routers.AppRouter();
+        var appView = new this.Views.AppView();
 
-        var pages = [home, news];
-        
-        new this.Views.NavView({
-            collection: new this.Collections.PagesCollection(pages)
+        router.on('route:home', function () {
+            appView.showMap();
         });
 
-        var map = L.map('map').setView([51.505, -0.09], 13);
 
-        // add an OpenStreetMap tile layer
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+        Backbone.history.start();
     }
 };
 
