@@ -16,6 +16,9 @@ window.atlaas = {
             appView.showMap();
         });
 
+        router.on('route:news', function () {
+            appView.showNews();
+        });
 
         Backbone.history.start();
     }
