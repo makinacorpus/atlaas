@@ -1,14 +1,34 @@
 @import '../bower_components/lesshat/build/lesshat';
 
+// Reset the box-sizing (web app magic!)
+* {
+  .box-sizing(border-box);
+}
+
+*:before,
+*:after {
+  .box-sizing(border-box);
+}
+
 html,
 body {
 	width: 100%;
 	height: 100%;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	
+}
+
+h2 {
+	font-weight: 300;
 }
 
 .container {
 	width: 100%;
 	height: 100%;
+	background: white;
 }
 
 #container-main {
@@ -46,6 +66,10 @@ header {
 			display: none;
 		}
 	}
+}
+
+#news {
+	padding: 10px;
 }
 
 // objects
