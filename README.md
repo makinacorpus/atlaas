@@ -9,7 +9,9 @@ This project is generated using Yeoman (http://yeoman.io/)
 - npm (version > 1.2.10)
 - grunt (`npm install -g grunt-cli`)
 
-## Install
+####Note : You should name your project folder 'atlaas' to let Yeoman generator CLI be able to automatically generate Backbone views/models/collections... (`yo backbone:view myview`)
+
+### Install
 - `$ npm install`
 - `$ bower install`
 - `$ grunt serve`
