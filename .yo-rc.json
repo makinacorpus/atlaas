@@ -1,6 +1,6 @@
 {
   "generator-backbone": {
-    "appPath": "app",
+    "appPath": "atlaas",
     "coffee": false,
     "testFramework": "mocha",
     "templateFramework": "lodash",
