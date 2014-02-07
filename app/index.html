@@ -26,16 +26,16 @@
         <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <aside id="aside-main" class="aside-main" data-visible="hidden">
-            <nav class="nav-main">
+        <aside id="main-aside" class="main-aside" data-visible="hidden">
+            <nav class="main-nav">
                 <ul>
-                    <li><a class="nav-main__item" href="#">Accueil</a></li>
-                    <li><a class="nav-main__item" href="#news">Actualité</a></li>
+                    <li><a class="main-nav__item" href="#">Accueil</a></li>
+                    <li><a class="main-nav__item" href="#news">Actualité</a></li>
                 </ul>
             </nav>
         </aside>
         
-        <div id="container-main" class="container" data-visible="visible">
+        <div id="main-container" class="container" data-visible="visible">
             <header>
                 <div class="logo">
                     <span class="baseline">Annuaire Territorial de Liaison des Acteurs, Actions et Services numériques</span>
@@ -81,8 +81,11 @@
         <script src="scripts/views/map-view.js"></script>
         <script src="scripts/views/app-view.js"></script>
         <script src="scripts/models/poi-model.js"></script>
+        <script src="scripts/models/category-model.js"></script>
+        <script src="scripts/collections/pois-collection.js"></script>
         <script src="scripts/views/news-view.js"></script>
         <script src="scripts/views/sidebar-view.js"></script>
+        <script src="scripts/collections/categories-collection.js"></script>
         <!-- endbuild -->
 </body>
 </html>

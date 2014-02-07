@@ -1,5 +1,6 @@
 // Variables
 @orange : #E34622;
+@text-color : black;
 
 @import '../bower_components/lesshat/build/lesshat';
 
@@ -35,7 +36,7 @@ h2 {
 	background: white;
 }
 
-#container-main {
+#main-container {
 	position: absolute;
 	z-index: 1;
 	.transform-style(preserve-3d);
@@ -44,6 +45,7 @@ h2 {
 		position: absolute;
 		top: 0;
 		left: 0;
+		z-index: 2;
 		width: 0;
 		height: 0;
 		opacity: 0;
@@ -60,7 +62,7 @@ h2 {
 	}
 }
 
-.aside-main {
+.main-aside {
 	position: absolute;
 	z-index: 0;
 	right: 0;
@@ -72,7 +74,7 @@ h2 {
 
 header {
 	position: absolute;
-	z-index: 1;
+	z-index: 100;
 	top: 10px;
 	right: 10px;
 
