@@ -1,11 +1,11 @@
-/*global atlaas, Backbone*/
+/*global app, Backbone*/
 
 atlaas.Models = atlaas.Models || {};
 
 (function () {
     'use strict';
 
-    atlaas.Models.PoiModel = Backbone.Model.extend({
+    atlaas.Models.CategoryModel = Backbone.Model.extend({
 
         url: '',
 
@@ -15,6 +15,7 @@ atlaas.Models = atlaas.Models || {};
         },
 
         defaults: {
+            title: ''
         },
 
         validate: function(attrs, options) {
