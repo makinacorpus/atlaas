@@ -14,7 +14,7 @@ atlaas.Views = atlaas.Views || {};
         },
 
         initialize: function () {
-            this.$mainContainer = $('#container-main');
+            this.$mainContainer = $('#main-container');
             this.$pageContainer = $('#pages-container');
             this.$toggleSidebarBt = $('#toggle-sidebar');
 
@@ -29,12 +29,12 @@ atlaas.Views = atlaas.Views || {};
 
         renderMap: function () {
             this.render();
+            var mapView = new atlaas.Views.MapView();
 
-            var mapView = new atlaas.Views.MapView({id: 'map'});
             // Prepare DOM before initializing mapView cause Leaflet needs an existing element on init.
-            this.$pageContainer.append(mapView.template({id: mapView.id}));
+            this.$pageContainer.append(mapView.render('map').el);
 
-            mapView.render().initMap();
+            mapView.initMap();
         },
 
         renderNews: function () {
@@ -63,6 +63,7 @@ atlaas.Views = atlaas.Views || {};
             
             this.$mainContainer.one('click.sidebar', _.bind(function (e) {
                 e.stopPropagation();
+                e.preventDefault();
 
                 this.hideSidebar();
             }, this));
