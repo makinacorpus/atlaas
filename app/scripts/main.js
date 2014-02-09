@@ -21,15 +21,6 @@ window.atlaas = {
         });
 
         Backbone.history.start();
-
-        // sample tests models for categories
-        var catA = new this.Models.CategoryModel({ title: 'Efficacité des Services publics' });
-        var catB = new this.Models.CategoryModel({ title: 'Renforcement de la Cohésion sociale' });
-
-        var categories = new atlaas.Collections.CategoriesCollection([catA, catB]);
-
-        console.log('Collection size: '+ categories.length);
-        console.log(categories.get(catA.cid).toJSON());
     }
 };
 

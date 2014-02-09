@@ -7,20 +7,26 @@ atlaas.Views = atlaas.Views || {};
 
     atlaas.Views.MapView = Backbone.View.extend({
         events: {
-            'click .submenu .submenu__item'        : 'toggleMenu'
+            'click .submenu__item'        : 'toggleMenu'
         },
 
         template: JST['app/scripts/templates/map-view.ejs'],
 
         attributes: { id: 'map-container', class: 'container' },
 
-        initialize: function () {
-            this.$menuNavBt = $('.submenu > a');
-        },
-
         render: function (mapId) {
             this.mapId = mapId;
+
             this.$el.html(this.template({ id:this.mapId }));
+
+            // sample tests models for categories
+            var catA = new atlaas.Models.CategoryModel({ url: '#services-publics', title: 'Efficacité des Services publics' });
+            var catB = new atlaas.Models.CategoryModel({ url: '#cohesion-sociale', title: 'Renforcement de la Cohésion sociale' });
+
+            var categories = new atlaas.Collections.CategoriesCollection([catA, catB]);
+
+            var categoriesView = new atlaas.Views.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: categories });
+            this.$el.append(categoriesView);
 
             return this;
         },
