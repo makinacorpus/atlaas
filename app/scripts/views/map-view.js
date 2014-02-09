@@ -35,18 +35,37 @@ atlaas.Views = atlaas.Views || {};
         },
 
         toggleMenu: function(e) {
+            var $item = $(e.currentTarget);
+            var $currentSubmenu = $item.parents('ul');
+            var $newSubmenu = $item.siblings('ul');
+            
+            if ($newSubmenu.length == 0) return;
+
             e.preventDefault();
 
-            var $item = $(e.currentTarget);
-            var $currentSubmenu = $item.parents('.submenu');
-            var $newSubmenu = $item.siblings('.submenu');
-
-            $currentSubmenu.clone().css('opacity', 0).insertAfter($currentSubmenu);
+            var $menuAnim = $newSubmenu.clone().addClass('in').insertAfter($currentSubmenu);
             
-            var tween = TweenLite.to($currentSubmenu, 0.6,
+            var tweenOut = TweenLite.to($currentSubmenu, 0.6,
                 { 'x': '-220px',
                 'opacity': '0',
-                ease: Power2.easeInOut });
+                ease: Power2.easeInOut,
+                onComplete: function () {
+                    $currentSubmenu.attr('style', '');
+                } });
+
+            var tweenIn = TweenLite.fromTo($menuAnim, 0.6,
+                { 'x': '220px',
+                'opacity': '0'},
+                { 'x': '0px',
+                'opacity': '1',
+                ease: Power2.easeInOut,
+                onComplete: function () {
+                    $currentSubmenu.addClass('subview');
+                    $item.parent().addClass('subviewopen');
+                    $menuAnim.remove();
+                },
+                onCompleteScope: this
+                });
         }
 
     });
