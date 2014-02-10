@@ -2,6 +2,7 @@
 	position: absolute;
 	right: 0;
 	top: 30%;
+	bottom: 0;
 	z-index: 2;
 	width: 260px;
 	.transform-style(preserve-3d);
@@ -9,6 +10,8 @@
 	ul {
 		padding: 0;
 		margin: 0;
+		height: 100%;
+		.transform(translateZ(0));
 	}
 
 	li {
@@ -68,6 +71,19 @@
 	}
 }
 
+.results-menu__list {
+	background: white;
+	position: absolute;
+	bottom: 0;
+	top: 52px;
+	width: 100%;
+
+	span {
+		display: block;
+		padding: 1em;
+	}
+}
+
 .results-menu__search {
 	.search-input {
 		border: none;
@@ -85,8 +101,13 @@
 }
 
 .results-menu__categories {
-	position: relative;
+	position: absolute;
 	border-top: 1px solid #EEE;
+	width: 100%;
+	bottom: 0;
+	top: 53px;
+	overflow-y: auto;
+	overflow-x: hidden;
 
 	a {
 		display: block;
