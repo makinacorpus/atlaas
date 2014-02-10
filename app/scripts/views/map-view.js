@@ -20,10 +20,20 @@ atlaas.Views = atlaas.Views || {};
             this.$el.html(this.template({ id:this.mapId }));
 
             // sample tests models for categories
-            var catA = new atlaas.Models.CategoryModel({ url: '#services-publics', title: 'Efficacité des Services publics' });
-            var catB = new atlaas.Models.CategoryModel({ url: '#cohesion-sociale', title: 'Renforcement de la Cohésion sociale' });
+            var cat1 = new atlaas.Models.CategoryModel({ url: '#services-publics', title: 'Efficacité des Services publics' });
+            var cat2 = new atlaas.Models.CategoryModel({ url: '#cohesion-sociale', title: 'Vitalité de la démocratie locale' });
+            var cat3 = new atlaas.Models.CategoryModel({ url: '#cohesion-sociale', title: 'Protection de la vie privée' });
+            var cat4 = new atlaas.Models.CategoryModel({ url: '#cohesion-sociale', title: 'Renforcement de la cohésion sociale' });
+            var cat5 = new atlaas.Models.CategoryModel({ url: '#cohesion-sociale', title: 'Développement des solidarités' });
+            var cat6 = new atlaas.Models.CategoryModel({ url: '#cohesion-sociale', title: 'Qualité de la vie quotidienne' });
+            var cat7 = new atlaas.Models.CategoryModel({ url: '#cohesion-sociale', title: 'Diffusion et partage des ressources éducatives' });
+            var cat8 = new atlaas.Models.CategoryModel({ url: '#cohesion-sociale', title: 'Développement des pratiques culturelles' });
+            var cat9 = new atlaas.Models.CategoryModel({ url: '#cohesion-sociale', title: 'Protection et valorisation du patrimoine' });
+            var cat10 = new atlaas.Models.CategoryModel({ url: '#cohesion-sociale', title: 'Création d’emplois et employabilité'});
+            var cat11 = new atlaas.Models.CategoryModel({ url: '#cohesion-sociale', title: 'Développement économique et durable'});
+            var cat12 = new atlaas.Models.CategoryModel({ url: '#cohesion-sociale', title: 'Attractivité du territoire'});
 
-            var categories = new atlaas.Collections.CategoriesCollection([catA, catB]);
+            var categories = new atlaas.Collections.CategoriesCollection([cat1, cat2, cat3, cat4, cat5, cat6, cat7, cat8, cat9, cat10, cat11, cat12]);
 
             var categoriesView = new atlaas.Views.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: categories });
             this.$el.append(categoriesView);
