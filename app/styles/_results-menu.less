@@ -4,7 +4,7 @@
 	top: 30%;
 	bottom: 0;
 	z-index: 2;
-	width: 260px;
+	width: 340px;
 	.transform-style(preserve-3d);
 
 	ul {
@@ -29,6 +29,10 @@
 			text-overflow: ellipsis;
 			white-space: nowrap;
 		}
+
+		.submenu__item--back {
+			padding-left: 2em;
+		}
 	}
 
 	.submenu {
@@ -43,11 +47,12 @@
 		}
 	}
 
-	.submenu.in {
+	ul.in {
 		display: block;
 		position: absolute;
 		width: 100%;
 		top: 0;
+		pointer-events: none;
 	}
 
 	.subview li {
@@ -106,8 +111,6 @@
 	width: 100%;
 	bottom: 0;
 	top: 53px;
-	overflow-y: auto;
-	overflow-x: hidden;
 
 	a {
 		display: block;
@@ -141,9 +144,5 @@
 			margin-top: -6px;
 			left: 9px;
 		}
-	}
-
-	.back {
-		padding-left: 2em;
 	}
 }
