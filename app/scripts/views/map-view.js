@@ -46,7 +46,7 @@ atlaas.Views = atlaas.Views || {};
         },
 
         initMap: function () {
-            var map = L.map(this.mapId).setView([51.505, -0.09], 13);
+            var map = L.map(this.mapId).setView([46.883, 2.872], 6);
 
             // add an OpenStreetMap tile layer
             L.tileLayer('http://{s}.tile.cloudmade.com/6f15a6651c8849349feea8b81a207bc1/997/256/{z}/{x}/{y}.png', {
