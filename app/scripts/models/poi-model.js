@@ -11,10 +11,20 @@ atlaas.Models = atlaas.Models || {};
 
         title: '',
 
+        lat: '',
+
+        lng: '',
+
+        content: '',
+
         initialize: function() {
         },
 
         defaults: {
+            lat: '46.883',
+            lng: '2.872',
+            title: '',
+            content: ''
         },
 
         validate: function(attrs, options) {

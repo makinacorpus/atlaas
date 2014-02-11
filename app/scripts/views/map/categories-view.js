@@ -1,11 +1,11 @@
 /*global atlaas, Backbone, JST*/
 
-atlaas.Views = atlaas.Views || {};
+atlaas.Views.Map = atlaas.Views.Map || {};
 
 (function () {
     'use strict';
 
-    atlaas.Views.CategoriesView = Backbone.View.extend({
+    atlaas.Views.Map.CategoriesView = Backbone.View.extend({
 
         initialize: function () {
         	this.render();

@@ -29,7 +29,7 @@ atlaas.Views = atlaas.Views || {};
 
         renderMap: function () {
             this.render();
-            var mapView = new atlaas.Views.MapView();
+            var mapView = new atlaas.Views.Map.MapView();
 
             // Prepare DOM before initializing mapView cause Leaflet needs an existing element on init.
             this.$pageContainer.append(mapView.render('map').el);

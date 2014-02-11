@@ -1,11 +1,11 @@
 /*global app, Backbone, JST*/
 
-atlaas.Views = atlaas.Views || {};
+atlaas.Views.Map = atlaas.Views.Map || {};
 
 (function () {
     'use strict';
 
-    atlaas.Views.MapView = Backbone.View.extend({
+    atlaas.Views.Map.MapView = Backbone.View.extend({
         events: {
             'click .submenu__item'        : 'toggleMenu',
             'click .submenu__item--back'  : 'backMenu'
@@ -36,7 +36,7 @@ atlaas.Views = atlaas.Views || {};
 
             var categories = new atlaas.Collections.CategoriesCollection([cat1, cat2, cat3, cat4, cat5, cat6, cat7, cat8, cat9, cat10, cat11, cat12]);
 
-            var categoriesView = new atlaas.Views.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: categories });
+            var categoriesView = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: categories });
             this.$el.append(categoriesView);
 
             this.$categoriesContainer = this.$el.find('.results-menu__categories');
