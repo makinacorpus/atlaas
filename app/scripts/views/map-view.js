@@ -7,7 +7,8 @@ atlaas.Views = atlaas.Views || {};
 
     atlaas.Views.MapView = Backbone.View.extend({
         events: {
-            'click .submenu__item'        : 'toggleMenu'
+            'click .submenu__item'        : 'toggleMenu',
+            'click .submenu__item--back'  : 'backMenu'
         },
 
         template: JST['app/scripts/templates/map-view.ejs'],
@@ -38,6 +39,9 @@ atlaas.Views = atlaas.Views || {};
             var categoriesView = new atlaas.Views.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: categories });
             this.$el.append(categoriesView);
 
+            this.$categoriesContainer = this.$el.find('.results-menu__categories');
+            this.$menuWrapper = this.$categoriesContainer.find('.menu-wrapper');
+
             return this;
         },
 
@@ -50,26 +54,31 @@ atlaas.Views = atlaas.Views || {};
             }).addTo(map);
         },
 
-        toggleMenu: function(e) {
-            var $item = $(e.currentTarget);
-            var $currentSubmenu = $item.parents('ul');
-            var $newSubmenu = $item.siblings('ul');
+        toggleMenu: function (e) {
+            var $item = $(e.currentTarget),
+            $currentSubmenu = $item.parents('ul'),
+            $newSubmenu = $item.siblings('ul');
             
             if ($newSubmenu.length == 0) return;
 
             e.preventDefault();
 
-            var $menuAnim = $newSubmenu.clone().addClass('in').insertAfter($currentSubmenu);
+            if (TweenLite.getTweensOf(this.$menuWrapper).length != 0) return;
+
+            var $menuIn = $newSubmenu.clone().addClass('in').appendTo(this.$categoriesContainer);
             
-            var tweenOut = TweenLite.to($currentSubmenu, 0.6,
+            var tweenOut = TweenLite.to(this.$menuWrapper, 0.4,
                 { 'x': '-220px',
+                'z': '10px',
                 'opacity': '0',
                 ease: Power2.easeInOut,
                 onComplete: function () {
-                    $currentSubmenu.attr('style', '');
+                    tweenOut.seek(0);
+                    tweenOut.pause();
+                    tweenOut.kill();
                 } });
 
-            var tweenIn = TweenLite.fromTo($menuAnim, 0.6,
+            TweenLite.fromTo($menuIn, 0.4,
                 { 'x': '220px',
                 'opacity': '0'},
                 { 'x': '0px',
@@ -78,9 +87,43 @@ atlaas.Views = atlaas.Views || {};
                 onComplete: function () {
                     $currentSubmenu.addClass('subview');
                     $item.parent().addClass('subviewopen');
-                    $menuAnim.remove();
-                },
-                onCompleteScope: this
+                    $menuIn.remove();
+                }
+                });
+        },
+
+        backMenu: function (e) {
+            var $item = $(e.currentTarget),
+            $currentSubmenu = $item.closest('ul'),
+            $parentMenu = $currentSubmenu.parent().closest('ul');
+
+            e.preventDefault();
+
+            if (TweenLite.getTweensOf(this.$menuWrapper).length != 0) return;
+
+            var $menuIn = $parentMenu.clone().addClass('in').removeClass('subview').addClass('subviewopen').appendTo(this.$categoriesContainer);
+            
+            var tweenOut = TweenLite.to(this.$menuWrapper, 0.4,
+                { 'x': '220px',
+                'opacity': '0',
+                ease: Power2.easeInOut,
+                onComplete: function () {
+                    tweenOut.seek(0);
+                    tweenOut.pause();
+                    tweenOut.kill();
+                } });
+
+            TweenLite.fromTo($menuIn, 0.4,
+                { 'x': '-220px',
+                'opacity': '0'},
+                { 'x': '0px',
+                'opacity': '1',
+                ease: Power2.easeInOut,
+                onComplete: function () {
+                    $parentMenu.removeClass('subview');
+                    $('.subviewopen').removeClass('subviewopen');
+                    $menuIn.remove();
+                }
                 });
         }
 
