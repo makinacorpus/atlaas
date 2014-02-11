@@ -12,8 +12,9 @@ window.atlaas = {
         var router = new this.Routers.AppRouter();
         var appView = new this.Views.AppView();
 
-        router.on('route:home', function () {
+        router.on('route:home', function (category) {
             appView.renderMap();
+            console.log('category: '+category);
         });
 
         router.on('route:news', function () {

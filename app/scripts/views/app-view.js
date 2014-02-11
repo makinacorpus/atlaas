@@ -25,6 +25,8 @@ atlaas.Views = atlaas.Views || {};
             this.$pageContainer.empty();
 
             if (this.sidebarView.isVisible()) this.hideSidebar();
+
+            return this;
         },
 
         renderMap: function () {
@@ -35,6 +37,8 @@ atlaas.Views = atlaas.Views || {};
             this.$pageContainer.append(mapView.render('map').el);
 
             mapView.initMap();
+
+            return this;
         },
 
         renderNews: function () {
@@ -44,6 +48,8 @@ atlaas.Views = atlaas.Views || {};
             this.$pageContainer.append(newsView.template());
 
             newsView.render();
+
+            return this;
         },
 
         toggleSidebar: function (e) {

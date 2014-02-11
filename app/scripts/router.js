@@ -9,7 +9,8 @@ atlaas.Routers = atlaas.Routers || {};
     	routes: {
     		"": "home",
     		"#": "home",
-    		"news": "news"
+    		"news": "news",
+    		"enjeu/:category": "home"
     	}
     });
 
