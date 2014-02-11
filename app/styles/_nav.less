@@ -14,9 +14,9 @@
 	span {
 		position: relative;
 		display: block;
-		height: 2px;
-		width: 15px;
-		background: black;
+		height: 4px;
+		width: 18px;
+		background: @orange;
 		top: 10px;
 		.transition(all 300ms);
 
@@ -24,18 +24,18 @@
 		&:after {
 			position: absolute;
 			content: "";
-			background: black;
-			height: 2px;
-			width: 15px;
+			background: @orange;
+			height: 4px;
+			width: 18px;
 			.transition(all 300ms);
 		}
 
 		&:before {
-			top: -4px;
+			top: -6px;
 		}
 
 		&:after {
-			bottom: -4px;
+			bottom: -6px;
 		}
 	}
 }
@@ -63,5 +63,11 @@
 		background: rgba(0,0,0,0.2);
 		color: white;
 		border-color: rgba(0,0,0,0.3);
+	}
+
+	&.icon-target-blank:before {
+		float: right;
+		margin-top: 3px;
+		font-size: 15px;
 	}
 }
