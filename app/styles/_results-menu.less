@@ -29,6 +29,10 @@
 			overflow: hidden;
 			text-overflow: ellipsis;
 			white-space: nowrap;
+
+			&:hover {
+				background: @grayLight;
+			}
 		}
 
 		.submenu__item--back {
@@ -91,9 +95,12 @@
 }
 
 .results-menu__search {
+	position: relative;
+
 	.search-input {
 		border: none;
 		padding: 1em;
+		padding-right: 3em;
 		border-top: 1px solid transparent;
 		width: 100%;
 		.transition(border-top 400ms);
@@ -103,6 +110,14 @@
 			outline: none;
 			border-top: 1px solid @orange;
 		}
+	}
+
+	.icon-search {
+		position: absolute;
+		top: 50%;
+		right: 1em;
+		margin-top: -8px;
+		pointer-events: none;
 	}
 }
 
@@ -126,11 +141,10 @@
 		position: relative;
 
 		&:before {
-			float: right;
 			font-size: 24px;
 			position: absolute;
 			top: 50%;
-			margin-top: -6px;
+			margin-top: -11px;
 			right: 10px;
 		}
 	}
@@ -142,7 +156,7 @@
 			font-size: 24px;
 			position: absolute;
 			top: 50%;
-			margin-top: -6px;
+			margin-top: -11px;
 			left: 9px;
 		}
 	}

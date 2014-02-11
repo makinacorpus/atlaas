@@ -1,5 +1,6 @@
 // Variables
-@orange : #E34622;
+@orange : #E94F35;
+@grayLight : #EEE;
 @text-color : black;
 
 @import '../bower_components/lesshat/build/lesshat';
@@ -28,6 +29,10 @@ h1, h2, h3, h4, h5, h6 {
 
 h2 {
 	font-weight: 300;
+}
+
+a {
+	.transition(250ms all);
 }
 
 .container {
@@ -60,6 +65,10 @@ h2 {
 		.transition(opacity, 0.5s);
 		opacity: 1;
 	}
+}
+
+#pages-container {
+	.box-shadow(5px 0px 0px rgba(0, 0, 0, 0.2));
 }
 
 .main-aside {
