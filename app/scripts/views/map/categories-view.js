@@ -13,7 +13,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         render: function () {
         	this.categories = _.map(this.collection.models, function (model) {
-        		return new atlaas.Views.CategorieView({ model: model });
+        		return new atlaas.Views.Map.CategorieView({ model: model });
         	});
 
         	this.$el.append(_.map(this.categories, function (categorie) {
@@ -23,7 +23,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
     });
 
-    atlaas.Views.CategorieView = Backbone.View.extend({
+    atlaas.Views.Map.CategorieView = Backbone.View.extend({
         
         tagName: 'li',
 

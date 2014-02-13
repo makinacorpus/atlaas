@@ -7,7 +7,9 @@ atlaas.Collections = atlaas.Collections || {};
 
     atlaas.Collections.PoisCollection = Backbone.Collection.extend({
 
-        model: atlaas.Models.PoiModel
+        model: atlaas.Models.PoiModel,
+
+        url: 'http://elastic.makina-corpus.net/atlaas/actions/_search'
 
     });
 

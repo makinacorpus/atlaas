@@ -15,11 +15,33 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         attributes: { id: 'map-container', class: 'container' },
 
-        render: function (mapId) {
-            this.mapId = mapId;
+        initialize: function () {
+        },
 
-            this.$el.html(this.template({ id:this.mapId }));
+        render: function () {
+            this.$el.html(this.template({ id:this.options.map }));
 
+            return this;
+        },
+
+        renderPois: function () {
+            this.pois = new atlaas.Collections.PoisCollection();
+            this.poisView = new atlaas.Views.Map.PoisView({ collection: this.pois });
+        },
+
+        // called only when template is rendered cause Leaflet needs a DOM element
+        initMap: function () {
+            this.map = L.map(this.options.map).setView([46.883, 2.872], 6);
+
+            // add an OpenStreetMap tile layer
+            L.tileLayer('http://{s}.tile.cloudmade.com/6f15a6651c8849349feea8b81a207bc1/997/256/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(this.map);
+
+            this.renderPois();
+        },
+
+        initResultsMenu: function () {
             // sample tests models for categories
             var cat1 = new atlaas.Models.CategoryModel({ url: '#enjeu/services-publics', title: 'Efficacité des Services publics' });
             var cat2 = new atlaas.Models.CategoryModel({ url: '#enjeu/cohesion-sociale', title: 'Vitalité de la démocratie locale' });
@@ -41,17 +63,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             this.$categoriesContainer = this.$el.find('.results-menu__categories');
             this.$menuWrapper = this.$categoriesContainer.find('.menu-wrapper');
-
-            return this;
-        },
-
-        initMap: function () {
-            var map = L.map(this.mapId).setView([46.883, 2.872], 6);
-
-            // add an OpenStreetMap tile layer
-            L.tileLayer('http://{s}.tile.cloudmade.com/6f15a6651c8849349feea8b81a207bc1/997/256/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
         },
 
         toggleMenu: function (e) {
