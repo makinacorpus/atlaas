@@ -7,10 +7,10 @@ atlaas.Routers = atlaas.Routers || {};
 
     atlaas.Routers.AppRouter = Backbone.Router.extend({
     	routes: {
-    		"": "home",
-    		"#": "home",
-    		"news": "news",
-    		"enjeu/:category": "home"
+    		""					: "home",
+    		"map"				: "home",
+    		"map/*subroute"		: "category",
+    		"news"				: "news",
     	}
     });
 
