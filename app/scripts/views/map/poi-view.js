@@ -9,9 +9,16 @@ atlaas.Views = atlaas.Views || {};
 
         template: JST['app/scripts/templates/poi-view.ejs'],
 
+        // Index where to look for the marker location in the model
+        locationIndex: 0,
+
         initialize: function () {
         	console.log(this.model.toJSON());
-        	this.marker = L.marker([this.model.get('lat'), this.model.get('lng')]);
+        	
+        	var latitude 	= this.model.get('lieux')[this.locationIndex].latitude,
+        		longitude 	= this.model.get('lieux')[this.locationIndex].longitude;
+        	
+        	this.marker = L.marker([latitude, longitude]);
 
         	// Create the marker popup
         	// var popup = document.createElement('a');

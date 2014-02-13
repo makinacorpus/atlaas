@@ -24,12 +24,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             return this;
         },
 
-        renderPois: function () {
-            this.pois = new atlaas.Collections.PoisCollection();
-
-            this.poisView = new atlaas.Views.Map.PoisView({ collection: this.pois });
-        },
-
         // called only when template is rendered cause Leaflet needs a DOM element
         initMap: function () {
             this.map = L.map(this.options.map).setView([46.883, 2.872], 6);
@@ -40,6 +34,18 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             }).addTo(this.map);
 
             this.renderPois();
+        },
+
+        renderPois: function () {
+            this.pois = new atlaas.Collections.PoisCollection();
+
+            this.poisView = new atlaas.Views.Map.PoisView({ collection: this.pois });
+
+            this.listenToOnce(this.poisView.collection, "sync", function() {
+                _.each(this.poisView.collectionView, function (poiView) {
+                    poiView.marker.addTo(this.map);
+                }, this);
+            });
         },
 
         initResultsMenu: function () {

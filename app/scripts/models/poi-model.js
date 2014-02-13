@@ -17,6 +17,10 @@ atlaas.Models = atlaas.Models || {};
 
         lieux: [],
 
+        lat: '',
+
+        lng: '',
+
         personnes: [],
 
         services: [],
@@ -34,7 +38,7 @@ atlaas.Models = atlaas.Models || {};
         parse: function(response, options)  {
             response = response._source;
             response.id = response.id_action;
-            
+
             delete response.id_action;
 
             return response;
