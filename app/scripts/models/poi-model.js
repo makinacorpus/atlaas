@@ -9,22 +9,6 @@ atlaas.Models = atlaas.Models || {};
 
         urlRoot: 'http://elastic.makina-corpus.net/atlaas/actions',
 
-        titre: '',
-        
-        sous_titre: '',
-
-        date: '',
-
-        lieux: [],
-
-        lat: '',
-
-        lng: '',
-
-        personnes: [],
-
-        services: [],
-
         initialize: function() {
         },
 

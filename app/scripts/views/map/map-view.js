@@ -42,8 +42,11 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.poisView = new atlaas.Views.Map.PoisView({ collection: this.pois });
 
             this.listenToOnce(this.poisView.collection, "sync", function() {
+                // add markers on map for each poiView
                 _.each(this.poisView.collectionView, function (poiView) {
-                    poiView.marker.addTo(this.map);
+                    _.each(poiView.markers, function (marker) {
+                        marker.addTo(this.map);
+                    }, this);
                 }, this);
             });
         },
@@ -69,6 +72,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.$el.append(categoriesView);
 
             this.$categoriesContainer = this.$el.find('.results-menu__categories');
+            this.$resultsContainer = this.$categoriesContainer.find('.results-menu__list');
             this.$menuWrapper = this.$categoriesContainer.find('.menu-wrapper');
         },
 
