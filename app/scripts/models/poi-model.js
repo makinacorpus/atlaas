@@ -7,30 +7,36 @@ atlaas.Models = atlaas.Models || {};
 
     atlaas.Models.PoiModel = Backbone.Model.extend({
 
-        url: '',
+        urlRoot: 'http://elastic.makina-corpus.net/atlaas/actions',
 
-        title: '',
+        titre: '',
+        
+        sous_titre: '',
 
-        lat: '',
+        date: '',
 
-        lng: '',
+        lieux: [],
 
-        content: '',
+        personnes: [],
+
+        services: [],
 
         initialize: function() {
         },
 
         defaults: {
-            lat: '46.883',
-            lng: '2.872',
-            title: '',
-            content: ''
+            actions: ''
         },
 
         validate: function(attrs, options) {
         },
 
         parse: function(response, options)  {
+            response = response._source;
+            response.id = response.id_action;
+            
+            delete response.id_action;
+
             return response;
         }
     });

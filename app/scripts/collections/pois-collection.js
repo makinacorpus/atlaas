@@ -9,7 +9,11 @@ atlaas.Collections = atlaas.Collections || {};
 
         model: atlaas.Models.PoiModel,
 
-        url: 'http://elastic.makina-corpus.net/atlaas/actions/_search'
+        url: 'http://elastic.makina-corpus.net/atlaas/actions/_search',
+
+        parse: function(response, options)  {
+            return response.hits.hits;
+        }
 
     });
 

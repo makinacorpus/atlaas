@@ -26,6 +26,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         renderPois: function () {
             this.pois = new atlaas.Collections.PoisCollection();
+
             this.poisView = new atlaas.Views.Map.PoisView({ collection: this.pois });
         },
 
