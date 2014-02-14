@@ -7,7 +7,13 @@ atlaas.Collections = atlaas.Collections || {};
 
     atlaas.Collections.CategoriesCollection = Backbone.Collection.extend({
 
-        model: atlaas.Models.CategoriesModel
+        model: atlaas.Models.CategoryModel,
+
+        url: 'http://elastic.makina-corpus.net/atlaas/services/_search',
+
+        parse: function(response, options)  {
+            return response.hits.hits;
+        }
 
     });
 
