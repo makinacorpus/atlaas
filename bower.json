@@ -6,7 +6,8 @@
     "underscore": "~1.4.3",
     "backbone": "~1.0.0",
     "modernizr": "~2.6.2",
-    "normalize-css": "~3.0.0"
+    "normalize-css": "~3.0.0",
+    "leaflet.markercluster": "~0.4.0"
   },
   "devDependencies": {
     "lesshat": "~2.0.15"

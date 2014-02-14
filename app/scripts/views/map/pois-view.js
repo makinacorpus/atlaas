@@ -15,7 +15,7 @@ atlaas.Views = atlaas.Views || {};
             // Initialy, display a poi summary
             var query = {
                 source: JSON.stringify({
-                    size: 5,
+                    size: 50,
                     query: {
                         match_all: {}
                     }

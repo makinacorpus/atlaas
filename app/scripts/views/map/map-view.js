@@ -43,12 +43,16 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.poisView = new atlaas.Views.Map.PoisView({ collection: this.pois });
 
             this.listenToOnce(this.poisView.collection, "sync", function() {
+                var markers = L.markerClusterGroup({ chunkedLoading: true });
+
                 // add markers on map for each poiView
                 _.each(this.poisView.collectionView, function (poiView) {
                     _.each(poiView.markers, function (marker) {
-                        marker.addTo(this.map);
+                        markers.addLayer(marker);
                     }, this);
                 }, this);
+
+                this.map.addLayer(markers);
             });
         },
 
