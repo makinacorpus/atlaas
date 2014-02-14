@@ -8,7 +8,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
     atlaas.Views.Map.MapView = Backbone.View.extend({
         events: {
             'click .submenu__item'        : 'openMenu',
-            'click .submenu__item--back'  : 'closeMenu'
+            'click .submenu__item--back'  : 'closeMenu',
+            'click .results-menu__item'   : 'clickResultHandler',
         },
 
         template: JST['app/scripts/templates/map-view.ejs'],
@@ -152,6 +153,18 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         showMarkers: function () {
             console.log('showMarkers');
         },
+
+        clickResultHandler: function (e) {
+            e.preventDefault();
+
+            var poiId = $(e.target).attr('href');
+
+            var poi = _.find(this.poisView.collectionView, function(poiView){
+                return poiView.model.id == poiId;
+            });
+
+            this.map.panTo(poi.markers[0].getLatLng());
+        }
 
     });
 
