@@ -7,8 +7,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
     atlaas.Views.Map.MapView = Backbone.View.extend({
         events: {
-            'click .submenu__item'        : 'toggleMenu',
-            'click .submenu__item--back'  : 'backMenu'
+            'click .submenu__item'        : 'openMenu',
+            'click .submenu__item--back'  : 'closeMenu'
         },
 
         template: JST['app/scripts/templates/map-view.ejs'],
@@ -26,7 +26,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         // called only when template is rendered cause Leaflet needs a DOM element
         initMap: function () {
-            this.map = L.map(this.options.map).setView([46.883, 2.872], 6);
+            this.map = L.map(this.options.map, { maxZoom: 14, minZoom: 3 }).setView([46.883, 2.872], 6);
 
             // add an OpenStreetMap tile layer
             L.tileLayer('http://{s}.livembtiles.makina-corpus.net/makina/osmlight-france/{z}/{x}/{y}.png', {
@@ -76,7 +76,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.$menuWrapper = this.$categoriesContainer.find('.menu-wrapper');
         },
 
-        toggleMenu: function (e) {
+        openMenu: function (e) {
             var $item = $(e.currentTarget),
             $currentSubmenu = $item.parents('ul'),
             $newSubmenu = $item.siblings('ul');
@@ -114,7 +114,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 });
         },
 
-        backMenu: function (e) {
+        closeMenu: function (e) {
             var $item = $(e.currentTarget),
             $currentSubmenu = $item.closest('ul'),
             $parentMenu = $currentSubmenu.parent().closest('ul');
