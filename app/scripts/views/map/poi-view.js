@@ -9,6 +9,8 @@ atlaas.Views = atlaas.Views || {};
 
         template: JST['app/scripts/templates/poi-detail-view.ejs'],
 
+        customIcon: L.divIcon({className:'custom-icon', iconSize:null}),
+
         initialize: function () {
             console.log(this.model.toJSON());
 
@@ -16,22 +18,24 @@ atlaas.Views = atlaas.Views || {};
             this.markers = [],
 
             _.each(this.model.get('lieux'), function (lieu, index) {
-                this.markers[index] = L.marker([lieu.latitude, lieu.longitude]);
+                this.markers[index] = L.marker([lieu.latitude, lieu.longitude], {icon: this.customIcon});
             }, this);
-
-            // Create the marker popup
-            // var popup = document.createElement('a');
-            // popup.href = App.Config.mapUrl + this.model.get('slug') + '/';
-            // popup.innerHTML = this.model.get('name');
-
-            // this.marker.bindPopup(popup);
         },
 
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));
 
             return this;
-        }
+        },
+
+        // setPopup: function (content) { 
+        //     // Create the marker popup
+        //     var popup = document.createElement('a');
+        //     popup.href = App.Config.mapUrl + this.model.get('slug') + '/';
+        //     popup.innerHTML = this.model.get('name');
+
+        //     this.marker.bindPopup(popup);
+        // }
     });
 
     atlaas.Views.Map.PoiResultView = atlaas.Views.Map.PoiView.extend({
