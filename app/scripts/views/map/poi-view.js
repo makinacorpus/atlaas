@@ -17,8 +17,8 @@ atlaas.Views = atlaas.Views || {};
             // this can have multiples markers/location for the same poi
             this.markers = [],
 
-            _.each(this.model.get('lieux'), function (lieu, index) {
-                this.markers[index] = L.marker([lieu.latitude, lieu.longitude], {icon: this.customIcon});
+            _.each(this.model.get('lieux'), function (location, index) {
+                this.markers[index] = new CustomMarker([location.latitude, location.longitude], {icon: this.customIcon, id: this.model.id});
             }, this);
         },
 

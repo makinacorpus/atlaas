@@ -9,9 +9,10 @@ atlaas.Views = atlaas.Views || {};
 
         el: '.results-menu__wrapper',
 
-        collectionView: [],
-
         initialize: function () {
+            this.collectionPoiView          = [],
+            this.collectionPoiResultsView   = [];
+
             // Initialy, display a poi summary
             var query = {
                 source: JSON.stringify({
@@ -27,15 +28,15 @@ atlaas.Views = atlaas.Views || {};
         },
 
         render: function () {
-            this.collectionView = _.map(this.collection.models, function (_model) {
+            this.collectionPoiView = _.map(this.collection.models, function (_model) {
                 return new atlaas.Views.Map.PoiView({ model: _model });
             });
 
-            this.poisResults = _.map(this.collection.models, function (_model) {
+            this.collectionPoiResultsView = _.map(this.collection.models, function (_model) {
                 return new atlaas.Views.Map.PoiResultView({ model: _model });
             });
 
-            this.$el.html(_.map(this.poisResults, function (_result) {
+            this.$el.html(_.map(this.collectionPoiResultsView, function (_result) {
                 return _result.render().el;
             }));
 
@@ -48,7 +49,7 @@ atlaas.Views = atlaas.Views || {};
 
         addOne: function(_model, _locationIndex) {
             var poi = new atlaas.Views.Map.PoiView({ model: _model });
-            this.collectionView.push(poi);
+            this.collectionPoiView.push(poi);
         }
 
     });

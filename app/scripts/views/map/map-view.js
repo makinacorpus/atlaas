@@ -10,6 +10,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             'click .submenu__item'        : 'openMenu',
             'click .submenu__item--back'  : 'closeMenu',
             'click .results-menu__item'   : 'clickResultHandler',
+            'click .leaflet-marker-icon'  : ''
         },
 
         template: JST['app/scripts/templates/map-view.ejs'],
@@ -46,11 +47,21 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 var markers = L.markerClusterGroup({ chunkedLoading: true });
 
                 // add markers on map for each poiView
-                _.each(this.poisView.collectionView, function (poiView) {
+                _.each(this.poisView.collectionPoiView, function (poiView) {
                     _.each(poiView.markers, function (marker) {
+                        // marker.bindPopup();
                         markers.addLayer(marker);
                     }, this);
                 }, this);
+
+                markers.on('click', _.bind(function (e) {
+                    var poiId = e.layer.options.id;
+                    var poi = _.find(this.poisView.collectionPoiResultsView, function(poiResultView){
+                        return poiResultView.model.id == poiId;
+                    });
+
+                    this.$resultsContainer.scrollTop(this.$resultsContainer.scrollTop() + poi.$el.position().top);
+                }, this));
 
                 this.map.addLayer(markers);
             });
@@ -77,7 +88,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.$el.append(categoriesView);
 
             this.$categoriesContainer = this.$el.find('.results-menu__categories');
-            this.$resultsContainer = this.$categoriesContainer.find('.results-menu__list');
+            this.$resultsContainer = this.$categoriesContainer.find('.results-menu__wrapper');
             this.$menuWrapper = this.$categoriesContainer.find('.menu-wrapper');
         },
 
@@ -163,7 +174,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             var poiId = $(e.target).attr('href');
 
-            var poi = _.find(this.poisView.collectionView, function(poiView){
+            var poi = _.find(this.poisView.collectionPoiView, function(poiView){
                 return poiView.model.id == poiId;
             });
 
