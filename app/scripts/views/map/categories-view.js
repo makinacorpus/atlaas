@@ -41,12 +41,10 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             var categoryName = $(e.target).text();
 
             var selectedCategory = this.collection.find(function (_category) {
-                return _category.get("enjeu_de_developpement") == categoryName;
+                return _category.get('enjeu_de_developpement') == categoryName;
             });
 
             selectedCategory.set('selected', !selectedCategory.get('selected'));
-
-            // this.trigger('');
         }
 
     });

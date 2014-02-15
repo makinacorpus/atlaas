@@ -34,36 +34,41 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(this.map);
 
-            this.renderPois();
+            this.initPois();
         },
 
-        renderPois: function () {
+        initPois: function () {
             this.pois = new atlaas.Collections.PoisCollection();
 
             this.poisView = new atlaas.Views.Map.PoisView({ collection: this.pois });
 
-            this.listenToOnce(this.poisView.collection, "sync", function() {
-                var markers = L.markerClusterGroup({ chunkedLoading: true });
+            this.listenTo(this.poisView.collection, "sync", function() {
+                this.poisView.markers = L.markerClusterGroup({ chunkedLoading: true });
 
-                // add markers on map for each poiView
-                _.each(this.poisView.poiViewCollection, function (poiView) {
-                    _.each(poiView.markers, function (marker) {
-                        // marker.bindPopup();
-                        markers.addLayer(marker);
-                    }, this);
-                }, this);
+                this.renderPois();
 
-                markers.on('click', _.bind(function (e) {
-                    var poiId = e.layer.options.id;
-                    var poi = _.find(this.poisView.poiResultsViewCollection, function(poiResultView){
-                        return poiResultView.model.id == poiId;
-                    });
-
-                    this.$resultsContainer.scrollTop(this.$resultsContainer.scrollTop() + poi.$el.position().top);
-                }, this));
-
-                this.map.addLayer(markers);
+                this.map.addLayer(this.poisView.markers);
             });
+            
+        },
+
+        renderPois: function () {
+            // add markers on map for each poiView
+            _.each(this.poisView.poiViewCollection, function (poiView) {
+                _.each(poiView.markers, function (marker) {
+                    // marker.bindPopup();
+                    this.poisView.markers.addLayer(marker);
+                }, this);
+            }, this);
+
+            this.poisView.markers.on('click', _.bind(function (e) {
+                var poiId = e.layer.options.id;
+                var poi = _.find(this.poisView.poiResultsViewCollection, function(poiResultView){
+                    return poiResultView.model.id == poiId;
+                });
+
+                this.$resultsContainer.scrollTop(this.$resultsContainer.scrollTop() + poi.$el.position().top);
+            }, this));
         },
 
         initResultsMenu: function () {
@@ -71,10 +76,24 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             var categoriesView = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: categories });
             // this.$el.append(categoriesView);
+            this.listenTo(categories, 'change:selected', this.selectedHandler);
 
             this.$categoriesContainer = this.$el.find('.results-menu__categories');
             this.$resultsContainer = this.$categoriesContainer.find('.results-menu__wrapper');
             this.$menuWrapper = this.$categoriesContainer.find('.menu-wrapper');
+        },
+
+        selectedHandler: function (category) {
+            this.filteredPois = this.pois.filterBy(category.get('enjeu_de_developpement'));
+            
+            var newPoisCollection = new atlaas.Collections.PoisCollection(this.filteredPois);
+            this.poisView.collection = newPoisCollection;
+            this.poisView.render();
+
+            this.poisView.markers.off('click');
+            this.poisView.markers.clearLayers();
+
+            this.renderPois();
         },
 
         openMenu: function (e) {

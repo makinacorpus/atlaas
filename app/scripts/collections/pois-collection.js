@@ -11,8 +11,17 @@ atlaas.Collections = atlaas.Collections || {};
 
         url: 'http://elastic.makina-corpus.net/atlaas/actions/_search',
 
-        parse: function(response, options)  {
+        parse: function (response, options) {
             return response.hits.hits;
+        },
+
+        filterBy: function (category) {
+        	return this.filter(function (poi) {
+        		var poi = _.any(poi.get('services'), function (service) {
+        			return service.enjeu_de_developpement == category;
+        		});
+        		return poi;
+        	});
         }
 
     });
