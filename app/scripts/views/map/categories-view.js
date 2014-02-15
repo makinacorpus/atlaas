@@ -6,6 +6,9 @@ atlaas.Views.Map = atlaas.Views.Map || {};
     'use strict';
 
     atlaas.Views.Map.CategoriesView = Backbone.View.extend({
+        events: {
+            'click .submenu__item'        : 'clickCategoryHandler'
+        },
 
         initialize: function () {
             this.categorieViewCollection = [];
@@ -32,6 +35,20 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         	}));
         },
 
+        clickCategoryHandler: function (e) {
+            e.preventDefault();
+
+            var categoryName = $(e.target).text();
+
+            var selectedCategory = this.collection.find(function (_category) {
+                return _category.get("enjeu_de_developpement") == categoryName;
+            });
+
+            selectedCategory.set('selected', !selectedCategory.get('selected'));
+
+            // this.trigger('');
+        }
+
     });
 
     atlaas.Views.Map.CategorieView = Backbone.View.extend({
@@ -40,11 +57,19 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         template: JST['app/scripts/templates/categorie-view.ejs'],
 
+        initialize: function () {
+            this.listenTo(this.model, 'change:selected', this.selectedHandler);
+        },
+
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));
 
             return this;
         },
+
+        selectedHandler: function () {
+            this.$el.toggleClass('active');
+        }
     });
 
 })();

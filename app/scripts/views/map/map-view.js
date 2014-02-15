@@ -9,8 +9,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         events: {
             'click .submenu__item'        : 'openMenu',
             'click .submenu__item--back'  : 'closeMenu',
-            'click .results-menu__item'   : 'clickResultHandler',
-            'click .leaflet-marker-icon'  : ''
+            'click .results-menu__item'   : 'clickResultHandler'
         },
 
         template: JST['app/scripts/templates/map-view.ejs'],

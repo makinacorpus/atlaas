@@ -11,7 +11,8 @@ atlaas.Models = atlaas.Models || {};
         },
 
         defaults: {
-            title: ''
+            title: '',
+            selected: false
         },
 
         validate: function(attrs, options) {
@@ -19,9 +20,7 @@ atlaas.Models = atlaas.Models || {};
 
         parse: function(response, options)  {
             response = response._source;
-            response.category = response.enjeu_de_developpement;
             response.id = response.id_service;
-            delete response.enjeu_de_developpement;
             delete response.id_service;
 
             return response;

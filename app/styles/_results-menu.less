@@ -128,13 +128,17 @@
 	bottom: 0;
 	top: 53px;
 
-	a {
+	li a {
 		display: block;
 		padding: 1em;
 		text-decoration: none;
 		color: @text-color;
 		outline: none;
 		background: white;
+
+		&:active {
+			background: lighten(@orange, 10%);
+		}
 	}
 
 	.icon-right-dir {
@@ -158,6 +162,16 @@
 			top: 50%;
 			margin-top: -11px;
 			left: 9px;
+		}
+	}
+
+	.active a {
+		background: @orange;
+		color: white;
+
+		&:hover {
+			background: @orange;
+			color: white;
 		}
 	}
 }
