@@ -7,20 +7,19 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
     atlaas.Views.Map.MapView = Backbone.View.extend({
         events: {
-            'click .submenu__item'        : 'openMenu',
-            'click .submenu__item--back'  : 'closeMenu',
-            'click .results-menu__item'   : 'clickResultHandler'
+            'click .submenu__item'          : 'openMenu',
+            'click .submenu__item--back'    : 'closeMenu',
+            'click .results-menu__item'     : 'clickResultHandler',
         },
 
         template: JST['app/scripts/templates/map-view.ejs'],
 
         attributes: { id: 'map-container', class: 'container' },
 
-        initialize: function () {
-        },
-
         render: function () {
             this.$el.html(this.template({ id:this.options.map }));
+
+            this.initMenu();
 
             return this;
         },
@@ -71,19 +70,20 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             }, this));
         },
 
-        initResultsMenu: function () {
+        initMenu: function () {
             var categories = new atlaas.Collections.CategoriesCollection();
 
             var categoriesView = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: categories });
-            // this.$el.append(categoriesView);
-            this.listenTo(categories, 'change:selected', this.selectedHandler);
+
+
+            this.listenTo(categories, 'change:selected', this.selectedCategoryHandler);
 
             this.$categoriesContainer = this.$el.find('.results-menu__categories');
             this.$resultsContainer = this.$categoriesContainer.find('.results-menu__wrapper');
             this.$menuWrapper = this.$categoriesContainer.find('.menu-wrapper');
         },
 
-        selectedHandler: function (category) {
+        selectedCategoryHandler: function (category) {
             this.filteredPois = this.pois.filterBy(category.get('selected') ? category.get('enjeu_de_developpement') : null);
 
             var newPoisCollection = new atlaas.Collections.PoisCollection(this.filteredPois);

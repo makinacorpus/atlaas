@@ -40,8 +40,6 @@ atlaas.Views = atlaas.Views || {};
             // Once appended to DOM, init Leaflet map
             this.mapView.initMap();
 
-            this.mapView.initResultsMenu();
-
             return this;
         },
 
