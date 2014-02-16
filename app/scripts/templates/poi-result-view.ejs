@@ -1,5 +1,6 @@
 <% if (typeof id === undefined) { %>
 	<span>pas de résultat</span>
 <% } else { %>
+	<a class="results-menu__bt" href="<%= id %>">En savoir plus</a>
 	<a class="results-menu__item" href="<%= id %>"><%= titre %></a>
 <% } %>

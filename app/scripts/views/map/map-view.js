@@ -9,7 +9,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         events: {
             'click .submenu__item'          : 'openMenu',
             'click .submenu__item--back'    : 'closeMenu',
-            'click .results-menu__item'     : 'clickResultHandler',
+            'click .results-menu__item'     : 'clickResultHandler'
         },
 
         template: JST['app/scripts/templates/map-view.ejs'],
@@ -21,6 +21,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         initialize: function () {
             this.pois           = [],
             this.filteredPois   = []
+            this.$activeResult  = $()
         },
 
         render: function () {
@@ -48,7 +49,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             this.poisView = new atlaas.Views.Map.PoisView({ collection: this.pois });
 
-            this.listenTo(this.poisView.collection, "sync", function() {
+            this.listenTo(this.poisView.collection, 'sync', function () {
                 this.poisView.markers = L.markerClusterGroup({ chunkedLoading: true });
 
                 this.renderPois();
@@ -56,6 +57,10 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 this.map.addLayer(this.poisView.markers);
             });
             
+            this.listenTo(this.poisView, 'openResult', function (poi) {
+                this.poiDetailView = new atlaas.Views.Map.PoiDetailView({ model: poi.model });
+                this.$el.append(this.poiDetailView.render().el);
+            });
         },
 
         renderPois: function () {
@@ -130,7 +135,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                     tweenOut.seek(0);
                     tweenOut.pause();
                     tweenOut.kill();
-                } });
+                } 
+            });
 
             TweenLite.fromTo($menuIn, 0.4,
                 { 'x': '220px',
@@ -185,11 +191,18 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         clickResultHandler: function (e) {
             e.preventDefault();
 
-            var poiId = $(e.target).attr('href');
+            var $result = $(e.target);
+
+            this.$activeResult.removeClass('active');
+            this.$activeResult = $result;
+
+            var poiId = $result.attr('href');
 
             var poi = _.find(this.poisView.poiViewCollection, function(poiView){
                 return poiView.model.id == poiId;
             });
+
+            $result.addClass('active');
 
             this.map.panTo(poi.markers[0].getLatLng());
         }

@@ -13,6 +13,7 @@
 		height: 100%;
 		.transform(translateZ(0));
 		overflow-y: auto;
+		overflow-x: hidden;
 	}
 
 	li {
@@ -91,6 +92,30 @@
 	span {
 		display: block;
 		padding: 1em;
+	}
+
+	li {
+		position: relative;
+		height: 53px;
+	}
+
+	a {
+		position: absolute;
+		left: 0;
+		.transition(all 400ms);
+	}
+
+	.results-menu__item {
+		width: 100%;
+	}
+
+	.results-menu__bt {
+		position: absolute;
+		left: 0;
+	}
+
+	.active {
+		left: 120px;
 	}
 }
 

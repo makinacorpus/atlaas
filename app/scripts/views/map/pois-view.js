@@ -6,6 +6,9 @@ atlaas.Views = atlaas.Views || {};
     'use strict';
 
     atlaas.Views.Map.PoisView = Backbone.View.extend({
+        events: {
+            'click .results-menu__bt'       : 'clickOpenResultHandler',
+        },
 
         el: '.results-menu__wrapper',
 
@@ -43,13 +46,21 @@ atlaas.Views = atlaas.Views || {};
             return this;
         },
 
-        renderResults: function () {
-
-        },
-
         addOne: function(_model, _locationIndex) {
             var poi = new atlaas.Views.Map.PoiView({ model: _model });
             this.poiViewCollection.push(poi);
+        },
+
+        clickOpenResultHandler: function (e) {
+            e.preventDefault();
+
+            var poiId = $(e.target).attr('href');
+
+            var poiResultView = _.find(this.poiResultsViewCollection, function(poiResultView){
+                return poiResultView.model.id == poiId;
+            });
+
+            this.trigger('openResult', poiResultView);
         }
 
     });
