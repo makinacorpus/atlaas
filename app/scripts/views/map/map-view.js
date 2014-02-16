@@ -1,4 +1,4 @@
-/*global app, Backbone, JST*/
+/*global atlaas, Backbone, JST*/
 
 atlaas.Views.Map = atlaas.Views.Map || {};
 
@@ -15,6 +15,13 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         template: JST['app/scripts/templates/map-view.ejs'],
 
         attributes: { id: 'map-container', class: 'container' },
+
+        state: { categories: [], bounds: [] },
+
+        initialize: function () {
+            this.pois           = [],
+            this.filteredPois   = []
+        },
 
         render: function () {
             this.$el.html(this.template({ id:this.options.map }));
@@ -62,7 +69,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             this.poisView.markers.on('click', _.bind(function (e) {
                 var poiId = e.layer.options.id;
-                var poi = _.find(this.poisView.poiResultsViewCollection, function(poiResultView){
+                var poi = _.find(this.poisView.poiResultsViewCollection, function (poiResultView) {
                     return poiResultView.model.id == poiId;
                 });
 
@@ -73,8 +80,9 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         initMenu: function () {
             var categories = new atlaas.Collections.CategoriesCollection();
 
-            var categoriesView = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: categories });
+            var categoriesView = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: categories, mapState: this.state });
 
+            this.search = new atlaas.Views.Map.SearchView({ el: this.$el.find('.results-menu__search'), mapState: this.state });
 
             this.listenTo(categories, 'change:selected', this.selectedCategoryHandler);
 
@@ -83,10 +91,14 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.$menuWrapper = this.$categoriesContainer.find('.menu-wrapper');
         },
 
-        selectedCategoryHandler: function (category) {
-            this.filteredPois = this.pois.filterBy(category.get('selected') ? category.get('enjeu_de_developpement') : null);
+        selectedCategoryHandler: function (services) {
+            var category = services.get('enjeu_de_developpement');
+            this.state.categories = category;
+            this.filteredPois = this.pois.filterBy(services.get('selected') ? this.state.categories : null);
 
+            // Create a new collection of poi based on filtered pois
             var newPoisCollection = new atlaas.Collections.PoisCollection(this.filteredPois);
+            // Apply this new collection to our currents pois
             this.poisView.collection = newPoisCollection;
             this.poisView.render();
 
@@ -131,7 +143,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                     $item.parent().addClass('subviewopen');
                     $menuIn.remove();
                 }
-                });
+            });
         },
 
         closeMenu: function (e) {
@@ -153,7 +165,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                     tweenOut.seek(0);
                     tweenOut.pause();
                     tweenOut.kill();
-                } });
+                }
+            });
 
             TweenLite.fromTo($menuIn, 0.4,
                 { 'x': '-220px',
@@ -166,7 +179,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                     $('.subviewopen').removeClass('subviewopen');
                     $menuIn.remove();
                 }
-                });
+            });
         },
 
         clickResultHandler: function (e) {
@@ -180,7 +193,5 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             this.map.panTo(poi.markers[0].getLatLng());
         }
-
     });
-
 })();

@@ -10,8 +10,11 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             'click .submenu__item'        : 'clickCategoryHandler'
         },
 
-        initialize: function () {
+        initialize: function (options) {
+            this.options = options || {};
+            
             this.categorieViewCollection = [];
+            
             var query = {
                 source: JSON.stringify({
                     size: 50,
