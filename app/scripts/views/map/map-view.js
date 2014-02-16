@@ -84,8 +84,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         selectedHandler: function (category) {
-            this.filteredPois = this.pois.filterBy(category.get('enjeu_de_developpement'));
-            
+            this.filteredPois = this.pois.filterBy(category.get('selected') ? category.get('enjeu_de_developpement') : null);
+
             var newPoisCollection = new atlaas.Collections.PoisCollection(this.filteredPois);
             this.poisView.collection = newPoisCollection;
             this.poisView.render();
@@ -167,10 +167,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                     $menuIn.remove();
                 }
                 });
-        },
-
-        showMarkers: function () {
-            console.log('showMarkers');
         },
 
         clickResultHandler: function (e) {
