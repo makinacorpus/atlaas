@@ -97,7 +97,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         selectedCategoryHandler: function (services) {
-            var category = services.get('enjeu_de_developpement');
+            console.log(services);
+            var category = services.get('enjeu');
             this.state.categories = category;
             this.filteredPois = this.pois.filterBy(services.get('selected') ? this.state.categories : null);
 

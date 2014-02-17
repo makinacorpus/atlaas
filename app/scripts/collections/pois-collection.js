@@ -17,9 +17,9 @@ atlaas.Collections = atlaas.Collections || {};
 
         filterBy: function (category) {
         	return category == null ? this.models : this.filter(function (poi) {
-        		var poi = _.any(poi.get('services'), function (service) {
-        			return service.enjeu_de_developpement == category;
-        		});
+
+                var poi = _.where(poi.get('services'), category);
+
         		return poi;
         	});
         }

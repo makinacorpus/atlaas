@@ -12,9 +12,9 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         initialize: function (options) {
             this.options = options || {};
-            
+
             this.categorieViewCollection = [];
-            
+            // console.log(this.model.toJSON());
             var query = {
                 source: JSON.stringify({
                     size: 50,
@@ -44,7 +44,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             var categoryName = $(e.target).text();
 
             var selectedCategory = this.collection.find(function (_category) {
-                return _category.get('enjeu_de_developpement') == categoryName;
+                return _category.get('enjeu') == categoryName;
             });
 
             selectedCategory.set('selected', !selectedCategory.get('selected'));

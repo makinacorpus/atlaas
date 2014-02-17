@@ -91,3 +91,5 @@ atlaas.Views = atlaas.Views || {};
     });
 
 })();
+// Nombre de POI par départements
+// http://elastic.makina-corpus.net/atlaas/actions/_search?source={%22size%22:0,%22facets%22:%20{%22test%22:%20{%22terms%22:%20{%22size%22:100,%22script%22:%20%22doc[%27lieux.departement%27].value%22},%22global%22:%20false}}}

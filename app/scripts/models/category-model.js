@@ -20,6 +20,7 @@ atlaas.Models = atlaas.Models || {};
 
         parse: function(response, options)  {
             response = response._source;
+            console.log(response);
             response.id = response.id_enjeu;
             delete response.id_enjeu;
 
