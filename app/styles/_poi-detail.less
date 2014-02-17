@@ -6,3 +6,112 @@
 	z-index: 1000; // on top of Leaflet map
 	background: white;
 }
+
+.detail__heading {
+	padding: 1em 45px;
+	background: @orange;
+	color: white;
+}
+
+.detail__title {
+	margin: 0;
+	margin-right: 1em;
+	margin-left: -34px;
+	display: inline-block;
+
+	&.icon-actions:before {
+		margin-right: 10px;
+		position: relative;
+		bottom: -3px;
+	}
+}
+
+.detail__subtitle {
+	margin: 0;
+	display: inline-block;
+	font-size: 2em;
+}
+
+.detail__location {
+	margin: 0;
+	font-size: 1.5em;
+	font-weight: 300;
+	display: inline-block;
+	vertical-align: middle;
+
+	&.icon-location:before {
+		margin-right: 10px;
+		position: relative;
+		bottom: -3px;
+	}
+}
+
+.detail__meta {
+	padding: 0.4em 50px;
+	background: @grayLight;
+	color: darken(@grayLight, 30%);
+
+	.detail__bt {
+		vertical-align: middle;
+	}
+
+	.detail__bt--location {
+		margin-left: 10px;
+		font-size: 0.9em;
+	}
+}
+
+.detail__bt {
+	background: darken(@grayLight, 30%);
+	padding: 0.2em 0.5em;
+	color: white;
+	text-decoration: none;
+
+	&:hover {
+		background: @orange;
+	}
+}
+
+.detail__date {
+	float: right;
+	color: white;
+	line-height: 2.7em;
+}
+
+.detail__action {
+	padding: 20px 54px;
+	overflow: auto;
+	position: absolute;
+	top: 120px;
+	bottom: 0;
+
+	h3 {
+		color: @orange;
+		margin-top: 0;
+	}
+
+	.icon-acteurs:before {
+		font-size: 22px;
+		margin-right: 5px;
+		position: relative;
+		bottom: -5px;
+		left: -4px;
+	}
+}
+
+.detail__related {
+	ul {
+		padding: 0;
+		list-style: none;
+	}
+
+	li {
+
+	}
+}
+
+.actor {
+	.actor__name {
+		font-weight: bold;
+	}
+}

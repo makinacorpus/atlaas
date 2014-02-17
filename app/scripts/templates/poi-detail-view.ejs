@@ -1,4 +1,28 @@
-<h1 class="detail__title"><%= titre %></h1>
-<% if (typeof sous_titre != undefined) { %> <h2 class="detail__sous-title"><%= sous_titre %></h2><% } %>
-<div class="detail__date"><%= date %></div>
-<div class="detail__action"><%= actions %></div>
+<div class="detail__heading">
+	<div class="detail__date"><%= date %></div>
+	<h1 class="detail__title icon-actions"><%= titre %></h1>
+	<% if (typeof sous_titre != undefined) { %> <h2 class="detail__subtitle"><%= sous_titre %></h2><% } %>
+</div>
+<div class="detail__meta">
+	<h3 class="detail__location icon-location"><%= lieux[0].nom %></h3>
+	<a href="#location/<%= lieux[0].id_lieu %>" class="detail__bt detail__bt--location">+ Toutes les actions</a>
+</div>
+<div class="detail__action">
+	<div class="row">
+		<div class="detail__content col-8"><%= actions %></div>
+		<div class="detail__related col-4">
+			<% if (personnes.length) { %>
+			<h3 class="icon-acteurs">Les acteurs</h3>
+			<ul>
+				<% _.each(personnes, function(personne) { %>
+				<li class="actor">
+					<span class="actor__name"><%= personne.nom %></span><br/>
+					<span class="actor__title"><%= personne.titre %></span>
+					<a class="actor__email" href="mailto:<%= personne.courriel %>"><%= personne.courriel %></a>
+				</li>
+				<% }); %>
+			</ul>
+			<% } %>
+		</div>
+	</div>
+</div>

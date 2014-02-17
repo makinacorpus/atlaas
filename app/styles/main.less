@@ -138,6 +138,38 @@ header {
 
 // Utils
 
+// Bootstrap 3 awesome mixin
+.clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// homemade grid system
+[class*="col-"] {
+	padding: 0 2em;
+	float: left;
+	.clearfix();
+}
+
+.row {
+	margin: 0 -2em;
+	.clearfix();
+}
+
+.col-8 {
+	width: 70%;
+}
+
+.col-4 {
+	width: 30%;
+}
+
 @charset "UTF-8";
 
 @font-face {
@@ -211,4 +243,12 @@ header {
 .icon-search:before {
   content: "k";
 }
-
+.icon-acteurs:before {
+  content: "l";
+}
+.icon-actions:before {
+  content: "m";
+}
+.icon-location:before {
+  content: "n";
+}
