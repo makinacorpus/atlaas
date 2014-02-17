@@ -145,6 +145,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 'opacity': '1',
                 ease: Power2.easeInOut,
                 onComplete: function () {
+                    $currentSubmenu.parent('li').removeClass('subviewopen').addClass('subview');
                     $currentSubmenu.addClass('subview');
                     $item.parent().addClass('subviewopen');
                     $menuIn.remove();
@@ -183,6 +184,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 onComplete: function () {
                     $parentMenu.removeClass('subview');
                     $('.subviewopen').removeClass('subviewopen');
+                    $parentMenu.parent('li').removeClass('subview').addClass('subviewopen');
                     $menuIn.remove();
                 }
             });

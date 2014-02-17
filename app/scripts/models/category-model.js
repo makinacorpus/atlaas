@@ -20,8 +20,8 @@ atlaas.Models = atlaas.Models || {};
 
         parse: function(response, options)  {
             response = response._source;
-            response.id = response.id_service;
-            delete response.id_service;
+            response.id = response.id_enjeu;
+            delete response.id_enjeu;
 
             return response;
         }

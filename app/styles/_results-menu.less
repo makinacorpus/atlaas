@@ -39,6 +39,10 @@
 		.submenu__item--back {
 			padding-left: 2em;
 		}
+
+		&.subview {
+			border-top: none;
+		}
 	}
 
 	.submenu {
@@ -63,10 +67,27 @@
 
 	.subview li {
 		display: none;
+
+		&.subview.submenu {
+			display: block;
+		}
+
+		&.subview {
+			display: block;
+
+			> a {
+				display: none;
+			}
+
+			.submenu {
+				display: block;
+			}
+		}
 	}
 
 	.subview li.subviewopen {
 		display: block;
+		border-top: none;
 
 		> a {
 			display: none;
@@ -77,6 +98,10 @@
 
 			li {
 				display: block;
+			}
+
+			.submenu {
+				display: none;
 			}
 		}
 	}

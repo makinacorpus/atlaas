@@ -1,1 +1,15 @@
-<a class="submenu__item" href="<%= id %>"><%= enjeu_de_developpement %></a>
+<a class="submenu__item icon-right-dir" href="<%= id %>"><%= enjeu %></a>
+<ul class="submenu">
+	<li><a href="#back" class="submenu__item--back icon-left-dir">Retour</a></li>
+	<% _.each(usages, function(usage) { %>
+	<li>
+		<a class="submenu__item icon-right-dir" href="<%= usage.id_usage %>"><%= usage.usage %></a>
+		<ul class="submenu">
+			<li><a href="#back" class="submenu__item--back icon-left-dir">Retour</a></li>
+			<% _.each(usage.services, function(service) { %>
+			<li><a class="submenu__item" href="<%= service.id_service %>"><%= service.service %></a></li>
+			<% }); %>
+		</ul>
+	</li>
+	<% }); %>
+</ul>
