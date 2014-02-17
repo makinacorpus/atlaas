@@ -1,15 +1,25 @@
 <div class="detail__heading">
-	<div class="detail__date"><%= date %></div>
 	<h1 class="detail__title icon-actions"><%= titre %></h1>
-	<% if (typeof sous_titre != undefined) { %> <h2 class="detail__subtitle"><%= sous_titre %></h2><% } %>
+	<% if (sous_titre.length) { %> <h2 class="detail__subtitle"><%= sous_titre %></h2><% } %>
+	<button class="detail__bt--close icon-cross">close</button>
 </div>
 <div class="detail__meta">
 	<h3 class="detail__location icon-location"><%= lieux[0].nom %></h3>
 	<a href="#location/<%= lieux[0].id_lieu %>" class="detail__bt detail__bt--location">+ Toutes les actions</a>
+	<div class="detail__date">Publié le <%= date %></div>
 </div>
 <div class="detail__action">
 	<div class="row">
-		<div class="detail__content col-8"><%= actions %></div>
+		<div class="detail__content col-8">
+			<h3>Synthèse</h3>
+			<p><%= synthese %></p>
+
+			<h3>Actions</h3>
+			<p><%= actions %></p>
+
+			<h3>Résultats</h3>
+			<p><%= resultats %></p>
+		</div>
 		<div class="detail__related col-4">
 			<% if (personnes.length) { %>
 			<h3 class="icon-acteurs">Les acteurs</h3>
@@ -22,6 +32,10 @@
 				</li>
 				<% }); %>
 			</ul>
+			<% } %>
+			<% if (liens.length) { %>
+			<h3>Liens utiles</h3>
+			<%= liens %>
 			<% } %>
 		</div>
 	</div>

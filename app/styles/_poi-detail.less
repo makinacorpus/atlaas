@@ -74,15 +74,14 @@
 
 .detail__date {
 	float: right;
-	color: white;
-	line-height: 2.7em;
+	line-height: 2.2em;
 }
 
 .detail__action {
 	padding: 20px 54px;
 	overflow: auto;
 	position: absolute;
-	top: 120px;
+	top: 117px;
 	bottom: 0;
 
 	h3 {
@@ -96,6 +95,22 @@
 		position: relative;
 		bottom: -5px;
 		left: -4px;
+	}
+
+	a {
+		color: @orangeDark;
+	}
+}
+
+.detail__content {
+	h3 {
+		margin-bottom: 0.3em;
+		line-height: 1.45em;
+	}
+
+	p {
+		margin-top: 0;
+		margin-bottom: 1.4em;
 	}
 }
 
@@ -113,5 +128,29 @@
 .actor {
 	.actor__name {
 		font-weight: bold;
+	}
+}
+
+.detail__bt--close {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	background: none;
+	border: none;
+	width: 70px;
+	height: 73px;
+	padding: 0;
+	outline: none;
+	font-size: 28px;
+	.transition(300ms all);
+
+	&.icon-cross:before {
+		font-size: 73px;
+		background: @orangeDark;
+	}
+
+	&:hover,
+	&:focus {
+		color: @orange;
 	}
 }
