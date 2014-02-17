@@ -23,6 +23,12 @@ atlaas.Models = atlaas.Models || {};
             response = response._source;
             response.id = response.id_action;
 
+            // TODO : clean it server side
+            _.each(response.services, function (service) {
+                service.enjeu_de_developpement = service.enjeu_de_developpement.substring(3);
+                service.usage = service.usage.substring(3);
+            });
+
             delete response.id_action;
 
             return response;

@@ -15,12 +15,12 @@ atlaas.Collections = atlaas.Collections || {};
             return response.hits.hits;
         },
 
-        filterBy: function (category) {
-        	return category == null ? this.models : this.filter(function (poi) {
+        filterBy: function (mapState) {
+        	return mapState.categories == null ? this.models : this.filter(function (poi) {
+        		console.log(poi.get('services'));
+                var poi = _.where(poi.get('services'), mapState.categories);
 
-                var poi = _.where(poi.get('services'), category);
-
-        		return poi;
+        		return poi.length;
         	});
         }
 

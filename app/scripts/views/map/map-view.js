@@ -16,7 +16,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         attributes: { id: 'map-container', class: 'container' },
 
-        state: { categories: [], bounds: [] },
+        state: { categories: {}, bounds: [] },
 
         initialize: function () {
             this.pois           = [],
@@ -89,18 +89,19 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             this.search = new atlaas.Views.Map.SearchView({ el: this.$el.find('.results-menu__search'), mapState: this.state });
 
-            this.listenTo(categories, 'change:selected', this.selectedCategoryHandler);
+            this.listenTo(categoriesView, 'selected', function () {
+                this.selectedCategoryHandler(categoriesView.selectedCategories);
+            });
 
-            this.$categoriesContainer = this.$el.find('.results-menu__categories');
+            this.$categoriesContainer = this.$el.find('.results-menu__container');
             this.$resultsContainer = this.$categoriesContainer.find('.results-menu__wrapper');
             this.$menuWrapper = this.$categoriesContainer.find('.menu-wrapper');
         },
 
-        selectedCategoryHandler: function (services) {
-            console.log(services);
-            var category = services.get('enjeu');
-            this.state.categories = category;
-            this.filteredPois = this.pois.filterBy(services.get('selected') ? this.state.categories : null);
+        selectedCategoryHandler: function (categories) {
+            this.state.categories = categories;
+            console.log(this.state.categories);
+            this.filteredPois = this.pois.filterBy(this.state);
 
             // Create a new collection of poi based on filtered pois
             var newPoisCollection = new atlaas.Collections.PoisCollection(this.filteredPois);
