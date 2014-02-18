@@ -65,6 +65,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.listenTo(this.poisView, 'openResult', function (poi) {
                 this.poiDetailView = new atlaas.Views.Map.PoiDetailView({ model: poi.model });
                 this.$el.append(this.poiDetailView.render().el);
+                this.poiDetailView.open();
             });
         },
 

@@ -9,6 +9,14 @@ window.atlaas = {
     init: function () {
         'use strict';
 
+        this.height              = document.documentElement.clientHeight;
+        this.width               = document.documentElement.clientWidth;
+
+        $(window).on('resize', function () {
+            this.height              = document.documentElement.clientHeight;
+            this.width               = document.documentElement.clientWidth;
+        });
+
         var router = new this.Routers.AppRouter();
         var appView = new this.Views.AppView();
 
