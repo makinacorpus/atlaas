@@ -36,7 +36,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         initMap: function () {
             this.map = L.map(this.options.map, { maxZoom: 14, minZoom: 3 }).setView([46.883, 2.872], 6);
 
-            // add an OpenStreetMap tile layer
             L.tileLayer('http://{s}.livembtiles.makina-corpus.net/makina/osmlight-france/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(this.map);
@@ -49,14 +48,16 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             this.poisView = new atlaas.Views.Map.PoisView({ collection: this.pois });
 
-            this.listenTo(this.poisView.collection, 'sync', function () {
-                this.poisView.markers = L.markerClusterGroup({ chunkedLoading: true });
+            // this.listenTo(this.poisView.collection, 'sync', function () {
+            //     this.poisView.markers = L.markerClusterGroup({ chunkedLoading: true });
 
-                this.renderPois();
+            //     this.renderPois();
 
-                this.map.addLayer(this.poisView.markers);
-            });
+            //     this.map.addLayer(this.poisView.markers);
+            // });
             
+            L.poiLayer().addTo(this.map);
+
             this.listenTo(this.poisView, 'openResult', function (poi) {
                 this.poiDetailView = new atlaas.Views.Map.PoiDetailView({ model: poi.model });
                 this.$el.append(this.poiDetailView.render().el);
@@ -100,7 +101,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         selectedCategoryHandler: function (categories) {
             this.state.categories = categories;
-            console.log(this.state.categories);
+
             this.filteredPois = this.pois.filterBy(this.state);
 
             // Create a new collection of poi based on filtered pois
