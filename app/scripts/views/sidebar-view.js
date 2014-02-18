@@ -14,6 +14,11 @@ atlaas.Views = atlaas.Views || {};
 
     	isVisible: function () {
     		return $(this.el).attr('data-visible') == 'visible' ? true : false;
+    	},
+
+    	updateNavigation: function (route) {
+    		$('.main-nav__item').removeClass('active');
+    		$('.main-nav__item.'+route).addClass('active');
     	}
 
     });

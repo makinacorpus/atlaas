@@ -9,12 +9,12 @@ window.atlaas = {
     init: function () {
         'use strict';
 
-        this.height              = document.documentElement.clientHeight;
-        this.width               = document.documentElement.clientWidth;
+        this.height = document.documentElement.clientHeight;
+        this.width  = document.documentElement.clientWidth;
 
         $(window).on('resize', function () {
-            this.height              = document.documentElement.clientHeight;
-            this.width               = document.documentElement.clientWidth;
+            this.height = document.documentElement.clientHeight;
+            this.width  = document.documentElement.clientWidth;
         });
 
         var router = new this.Routers.AppRouter();
@@ -32,6 +32,11 @@ window.atlaas = {
             if (!appView.mapView) appView.renderMap();     
 
             console.log('category: '+category);
+        });
+
+        router.on('route', function (route) {
+            appView.sidebarView.updateNavigation(route);
+            appView.hideSidebar();
         });
 
         Backbone.history.start();
