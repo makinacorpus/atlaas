@@ -21,179 +21,179 @@
 
 html,
 body {
-	width: 100%;
-	height: 100%;
-	background: #333;
-	font-family: 'Source Sans Pro', sans-serif;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	
+    
 }
 
 h2 {
-	font-weight: 300;
+    font-weight: 300;
 }
 
 a {
-	.transition(250ms all);
+    .transition(250ms all);
 
-	&:hover {
-		text-decoration: none;
-	}
+    &:hover {
+        text-decoration: none;
+    }
 }
 
 .container {
-	width: 100%;
-	height: 100%;
-	background: white;
+    width: 100%;
+    height: 100%;
+    background: white;
 }
 
 #main-container {
-	position: absolute;
-	z-index: 1;
-	.transform-style(preserve-3d);
+    position: absolute;
+    z-index: 1;
+    .transform-style(preserve-3d);
 
-	&:after {
-		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: 1001;
-		width: 0;
-		height: 0;
-		opacity: 0;
-		content: "";
-		background: rgba(0,0,0,0.2);
-		.transition(opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s);
-	}
+    &:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1001;
+        width: 0;
+        height: 0;
+        opacity: 0;
+        content: "";
+        background: rgba(0,0,0,0.2);
+        .transition(opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s);
+    }
 
-	&[data-visible="hidden"]:after {
-		width: 100%;
-		height: 100%;
-		.transition(opacity, 0.5s);
-		opacity: 1;
-	}
+    &[data-visible="hidden"]:after {
+        width: 100%;
+        height: 100%;
+        .transition(opacity, 0.5s);
+        opacity: 1;
+    }
 }
 
 #pages-container {
-	.box-shadow(5px 0px 0px rgba(0, 0, 0, 0.2));
+    .box-shadow(5px 0px 0px rgba(0, 0, 0, 0.2));
 }
 
 .main-aside {
-	position: absolute;
-	z-index: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	background: @orange;
-	width: 250px;
-	
-	.logos {
-		position: absolute;
-		bottom: 0;
-		width: 100%;
-		text-align: right;
-		border-top: 1px solid rgba(0, 0, 0, 0.3);
-		padding-top: 7px;
-	}
+    position: absolute;
+    z-index: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: @orange;
+    width: 250px;
+    
+    .logos {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: right;
+        border-top: 1px solid rgba(0, 0, 0, 0.3);
+        padding-top: 7px;
+    }
 
-	.internet-logo {
-		display: inline-block;
-	}
+    .internet-logo {
+        display: inline-block;
+    }
 
-	.atar-logo {
-		display: inline-block;
-		margin: 0 5px;
-	}
+    .atar-logo {
+        display: inline-block;
+        margin: 0 5px;
+    }
 
-	.social {
-		text-align: center;
-		font-size: 1.5em;
-		padding-left: 35px;
-		position: absolute;
-		bottom: 100px;
-		left: 0;
-		width: 100%;
+    .social {
+        text-align: center;
+        font-size: 1.5em;
+        padding-left: 35px;
+        position: absolute;
+        bottom: 100px;
+        left: 0;
+        width: 100%;
 
-		a {
-			text-decoration: none;
-			color: #F3EFE0;
-			margin: 0 5px;
+        a {
+            text-decoration: none;
+            color: #F3EFE0;
+            margin: 0 5px;
 
-			&:hover {
-				color: white;
-			}
-		}
-	}
+            &:hover {
+                color: white;
+            }
+        }
+    }
 }
 
 header {
-	position: absolute;
-	z-index: 2;
-	top: 0;
-	right: 0;
-	height: 30%;
-	width: 340px;
-	background: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    height: 30%;
+    width: 340px;
+    background: rgba(255, 255, 255, 0.8);
 
-	.logo {
-		position: absolute;
-		top: 50%;
-		margin-top: -65px;
-		left: 50%;
-		margin-left: -110px;
-		text-transform: uppercase;
-		font-weight: bold;
-		vertical-align: middle;
-		font-family: 'Source Sans Pro', sans-serif;
-		font-weight: bold;
-		font-size: 19px;
-	}
+    .logo {
+        position: absolute;
+        top: 50%;
+        margin-top: -65px;
+        left: 50%;
+        margin-left: -110px;
+        text-transform: uppercase;
+        font-weight: bold;
+        vertical-align: middle;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: bold;
+        font-size: 19px;
+    }
 
-	.baseline {
-		font-weight: 300;
-		position: absolute;
-		top: 50%;
-		margin-top: 5px;
-		left: 41px;
-		font-size: 1.1em;
-	}
+    .baseline {
+        font-weight: 300;
+        position: absolute;
+        top: 50%;
+        margin-top: 5px;
+        left: 41px;
+        font-size: 1.1em;
+    }
 
-	hr {
-		position: absolute;
-		bottom: 0;
-		width: 100%;
-		background: @orange;
-		height: 5px;
-		border: none;
-		margin-bottom: 30px;
-	}
+    hr {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: @orange;
+        height: 5px;
+        border: none;
+        margin-bottom: 30px;
+    }
 }
 
 #news {
-	padding: 10px;
-	overflow: auto;
+    padding: 10px;
+    overflow: auto;
 
-	.content {
-		width: 690px;
-		margin: 0 auto;
-	}
+    .content {
+        width: 690px;
+        margin: 0 auto;
+    }
 
-	article {
-		border-left: 5px solid @orange;
-		padding-left: 20px;
-		margin-left: -10px;
+    article {
+        border-left: 5px solid @orange;
+        padding-left: 20px;
+        margin-left: -10px;
 
-		img {
-			display: block;
-			margin: 0 auto;
-		}
-	}
+        img {
+            display: block;
+            margin: 0 auto;
+        }
+    }
 }
 
 #map-container {
-	overflow: hidden;
-	position: relative;
+    overflow: hidden;
+    position: relative;
 }
 
 // objects
@@ -205,17 +205,29 @@ header {
 
 // Leaflet custom icon
 .custom-icon {
-	background-image: url(../images/icon.svg);
-	width: 33px;
-	height: 42px;
-	margin-left: -15px;
-	margin-top: -40px;
+    background-image: url(../images/icon.svg);
+    width: 33px;
+    height: 42px;
+    margin-left: -15px;
+    margin-top: -40px;
+}
+
+.regions-cluster-icon {
+    background-color: fade(@orange, 60%);
+    margin-left: -20px;
+    margin-top: -20px;
+    width: 40px;
+    height: 40px;
+
+    div {
+        background-color: fade(@orange, 60%);
+    }
 }
 
 .makina-logo {
-	position: absolute;
-	bottom: 15px;
-	left: 3px;
+    position: absolute;
+    bottom: 15px;
+    left: 3px;
 }
 
 
@@ -237,22 +249,22 @@ header {
 
 // homemade grid system
 [class*="col-"] {
-	padding: 0 2em;
-	float: left;
-	.clearfix();
+    padding: 0 2em;
+    float: left;
+    .clearfix();
 }
 
 .row {
-	margin: 0 -2em;
-	.clearfix();
+    margin: 0 -2em;
+    .clearfix();
 }
 
 .col-8 {
-	width: 70%;
+    width: 70%;
 }
 
 .col-4 {
-	width: 30%;
+    width: 30%;
 }
 
 @charset "UTF-8";
@@ -346,3 +358,69 @@ header {
 .icon-edit:before {
   content: "q";
 }
+
+
+// Custom clusters
+.marker-cluster-small {
+    background-color: fade(@orange, 60%);
+}
+.marker-cluster-small div {
+    background-color: fade(@orange, 60%);
+}
+
+.marker-cluster-medium {
+    background-color: fade(@orange, 60%);
+}
+.marker-cluster-medium div {
+    background-color: fade(@orange, 60%);
+}
+
+.marker-cluster-large {
+    background-color: fade(@orange, 60%);
+}
+.marker-cluster-large div {
+    background-color: fade(@orange, 60%);
+}
+
+    /* IE 6-8 fallback colors */
+.leaflet-oldie .marker-cluster-small {
+    background-color: rgb(181, 226, 140);
+    }
+.leaflet-oldie .marker-cluster-small div {
+    background-color: rgb(110, 204, 57);
+    }
+
+.leaflet-oldie .marker-cluster-medium {
+    background-color: rgb(241, 211, 87);
+    }
+.leaflet-oldie .marker-cluster-medium div {
+    background-color: rgb(240, 194, 12);
+    }
+
+.leaflet-oldie .marker-cluster-large {
+    background-color: rgb(253, 156, 115);
+    }
+.leaflet-oldie .marker-cluster-large div {
+    background-color: rgb(241, 128, 23);
+}
+
+.marker-cluster,
+.regions-cluster-icon {
+    background-clip: padding-box;
+    border-radius: 20px;
+    }
+.marker-cluster div,
+.regions-cluster-icon div {
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
+    margin-top: 5px;
+
+    text-align: center;
+    border-radius: 15px;
+    font: 12px "Helvetica Neue", Arial, Helvetica, sans-serif;
+    }
+.marker-cluster span,
+.regions-cluster-icon span {
+    line-height: 30px;
+    }

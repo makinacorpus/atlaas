@@ -15,7 +15,7 @@ L.POILayer = L.LayerGroup.extend({
         L.LayerGroup.prototype.initialize.apply(this, arguments);
         this._onMap = {};
         this._clustered = true;
-        this._clusterLayer = new L.LayerGroup();
+        this._clusterLayer = L.markerClusterGroup({ chunkedLoading: true, showCoverageOnHover: false, disableClusteringAtZoom: 5 });
     },
 
     onAdd: function (map) {
@@ -34,7 +34,7 @@ L.POILayer = L.LayerGroup.extend({
 
     loadDepartments: function () {
     	var poiPerDepartment 	= 'http://elastic.makina-corpus.net/atlaas/actions/_search?source={%22size%22:0,%22facets%22:%20{%22test%22:%20{%22terms%22:%20{%22size%22:100,%22script%22:%20%22doc[%27lieux.departement%27].value%22},%22global%22:%20false}}}',
-    		departments 		= 'scripts/helpers/departements.geojson';
+    		departments 		= 'scripts/helpers/regions.geojson';
     	
     	
     	$.when($.getJSON(poiPerDepartment), $.getJSON(departments))
@@ -49,11 +49,11 @@ L.POILayer = L.LayerGroup.extend({
     		_.each(departments[0].features, function (department) {
     			var lat 	= department.geometry.coordinates[0],
     				lng 	= department.geometry.coordinates[1],
-    				id 		= department.properties.CODE_DEPT,
-    				myIcon 	= L.divIcon({className: 'my-div-icon'});
+    				id 		= department.properties.CODE_REG,
+    				myIcon 	= L.divIcon({className: 'regions-cluster-icon', iconSize:null});
 
-    			if(terms[department.properties.CODE_DEPT]) {
-    				myIcon.options.html = terms[department.properties.CODE_DEPT];
+    			if(terms[department.properties.CODE_REG]) {
+    				myIcon.options.html = '<div><span>'+terms[department.properties.CODE_REG]+'</span></div>';
     				var marker = L.marker([lng, lat], {icon: myIcon});
     				this._clusterLayer.addLayer(marker);
     			}
