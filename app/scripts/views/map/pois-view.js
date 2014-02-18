@@ -15,6 +15,7 @@ atlaas.Views = atlaas.Views || {};
         initialize: function () {
             this.poiViewCollection          = [],
             this.poiResultsViewCollection   = [];
+            this.poiLayer                   = new L.POILayer();
 
             // Initialy, display a poi summary
             var query = {
@@ -44,11 +45,6 @@ atlaas.Views = atlaas.Views || {};
             }));
 
             return this;
-        },
-
-        addOne: function(_model, _locationIndex) {
-            var poi = new atlaas.Views.Map.PoiView({ model: _model });
-            this.poiViewCollection.push(poi);
         },
 
         clickOpenResultHandler: function (e) {

@@ -16,7 +16,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         attributes: { id: 'map-container', class: 'container' },
 
-        state: { categories: {}, bounds: [] },
+        state: { categories: null, bounds: [] },
 
         initialize: function () {
             this.pois           = [],
@@ -40,6 +40,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(this.map);
 
+            this.map.on('moveend', this.onMapViewChanged, this);
+
             this.initPois();
         },
 
@@ -48,15 +50,17 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             this.poisView = new atlaas.Views.Map.PoisView({ collection: this.pois });
 
-            // this.listenTo(this.poisView.collection, 'sync', function () {
-            //     this.poisView.markers = L.markerClusterGroup({ chunkedLoading: true });
-
-            //     this.renderPois();
-
-            //     this.map.addLayer(this.poisView.markers);
-            // });
+            this.poisView.poiLayer.addTo(this.map);
             
-            L.poiLayer().addTo(this.map);
+            this.listenTo(this.poisView.collection, 'sync', function () {
+                // this.poisView.markers = L.markerClusterGroup({ chunkedLoading: true });
+                this.poisView.markers = {};
+
+                this.renderPois();
+
+                // this.map.addLayer(this.poisView.markers);
+            });
+            
 
             this.listenTo(this.poisView, 'openResult', function (poi) {
                 this.poiDetailView = new atlaas.Views.Map.PoiDetailView({ model: poi.model });
@@ -66,21 +70,42 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         renderPois: function () {
             // add markers on map for each poiView
-            _.each(this.poisView.poiViewCollection, function (poiView) {
-                _.each(poiView.markers, function (marker) {
-                    // marker.bindPopup();
-                    this.poisView.markers.addLayer(marker);
+            _.each(this.poisView.poiViewCollection, function (poiView, indexA) {
+                _.each(poiView.markers, function (marker, indexB) {
+                    // this.poisView.markers.addLayer(marker);
+                    this.poisView.markers[indexA+indexB] = marker;
                 }, this);
             }, this);
 
-            this.poisView.markers.on('click', _.bind(function (e) {
-                var poiId = e.layer.options.id;
-                var poi = _.find(this.poisView.poiResultsViewCollection, function (poiResultView) {
-                    return poiResultView.model.id == poiId;
-                });
+            // this.poisView.markers.on('click', _.bind(function (e) {
+            //     var poiId = e.layer.options.id;
+            //     var poi = _.find(this.poisView.poiResultsViewCollection, function (poiResultView) {
+            //         return poiResultView.model.id == poiId;
+            //     });
 
-                this.$resultsContainer.scrollTop(this.$resultsContainer.scrollTop() + poi.$el.position().top);
-            }, this));
+            //     this.$resultsContainer.scrollTop(this.$resultsContainer.scrollTop() + poi.$el.position().top);
+            // }, this));
+
+            this.poisView.poiLayer.updatePois(this.poisView.markers);
+        },
+
+        onMapViewChanged: function () {
+            if (this.poisView.poiLayer._clustered === false) {
+                this.state.bounds = this.map.getBounds();
+
+                this.filteredPois = this.pois.filterBy(this.state);
+
+                // Create a new collection of poi based on filtered pois
+                var newPoisCollection = new atlaas.Collections.PoisCollection(this.filteredPois);
+                // Apply this new collection to our currents pois
+                this.poisView.collection = newPoisCollection;
+                this.poisView.render();
+
+                // this.poisView.markers.off('click');
+                // this.poisView.markers.clearLayers();
+
+                this.renderPois();
+            }
         },
 
         initMenu: function () {
@@ -210,6 +235,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             $result.addClass('active');
 
             this.map.panTo(poi.markers[0].getLatLng());
-        }
+        },
     });
 })();
