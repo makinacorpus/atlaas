@@ -91,23 +91,44 @@ a {
 
 header {
 	position: absolute;
-	z-index: 100;
-	top: 10px;
-	right: 10px;
+	z-index: 2;
+	top: 0;
+	right: 0;
+	height: 30%;
+	width: 340px;
+	background: rgba(255, 255, 255, 0.8);
 
 	.logo {
-		display: inline-block;
+		position: absolute;
+		top: 50%;
+		margin-top: -50px;
+		left: 50%;
+		margin-left: -110px;
 		text-transform: uppercase;
 		font-weight: bold;
 		vertical-align: middle;
 		font-family: 'Source Sans Pro', sans-serif;
 		font-weight: bold;
 		font-size: 19px;
+	}
 
-		.baseline {
-			font-weight: 300;
-			display: none;
-		}
+	.baseline {
+		font-weight: 300;
+		position: absolute;
+		top: 50%;
+		margin-top: 20px;
+		left: 41px;
+		font-size: 1.1em;
+	}
+
+	hr {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		background: @orange;
+		height: 5px;
+		border: none;
+		margin-bottom: 30px;
 	}
 }
 
