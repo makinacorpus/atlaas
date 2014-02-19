@@ -97,9 +97,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
                 $(popup.getPopup().getContent()).find('a').one('click', L.Util.bind(function (e) {
                     e.preventDefault();
-                    this.poiDetailView = new atlaas.Views.Map.PoiDetailView({ model: currentMarker });
-                    this.$el.append(this.poiDetailView.render().el);
-                    this.poiDetailView.open();
+
+                    this.showPoiDetail(currentMarker);
 
                     popup.closePopup();
                 }, this));
@@ -113,6 +112,18 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                     this.$resultsContainer.scrollTop(this.$resultsContainer.scrollTop() + poi.$el.position().top);
                 };                  
             }, this));
+        },
+
+        showPoiDetail: function (model) {
+            if (this.poiDetailView.model == model) return;
+
+            if (typeof this.poiDetailView != 'undefined') {
+                this.poiDetailView.close();
+            };
+
+            this.poiDetailView = new atlaas.Views.Map.PoiDetailView({ model: model });
+            this.$el.append(this.poiDetailView.render().el);
+            this.poiDetailView.open();
         },
 
         initMenu: function () {
@@ -224,7 +235,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             if (TweenLite.getTweensOf(this.$menuWrapper).length != 0) return;
 
             var $menuIn = $parentMenu.clone().addClass('in').removeClass('subview').addClass('subviewopen').appendTo(this.$categoriesContainer);
-            
+
             var tweenOut = TweenLite.to(this.$menuWrapper, 0.4,
                 { 'x': '220px',
                 'opacity': '0',
