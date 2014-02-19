@@ -267,7 +267,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             $result.addClass('active');
 
-            this.map.setView(poi.markers[0].getLatLng(), 8);
+            var zoom = this.map.getZoom() > 8 ? this.map.getZoom() : 8;
+            this.map.setView(poi.markers[0].getLatLng(), zoom);
         },
     });
 })();
