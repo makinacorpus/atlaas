@@ -72,12 +72,13 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.poisView.render();
 
             // add markers on map for each poiView
-            _.each(this.poisView.poiViewCollection, function (poiView, indexA) {
-                _.each(poiView.markers, function (marker, indexB) {
-                    // this.poisView.markers.addLayer(marker);
-                    this.poisView.markers[indexA+indexB] = marker;
+            _.each(this.poisView.poiViewCollection, function (poiView) {
+                _.each(poiView.markers, function (marker) {
+                    this.poisView.markers.push(marker);
                 }, this);
             }, this);
+
+            this.poisView.poiLayer.updatePois(this.poisView.markers);
 
             this.poisView.poiLayer._clusterDetailLayer.on('click', _.bind(function (e) {
                 var currentMarkerId = e.layer.options.id;
@@ -105,8 +106,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                     this.$resultsContainer.scrollTop(this.$resultsContainer.scrollTop() + poi.$el.position().top);
                 };                  
             }, this));
-
-            this.poisView.poiLayer.updatePois(this.poisView.markers);
         },
 
         initMenu: function () {
@@ -136,8 +135,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.poisView.collection = newPoisCollection;
             this.poisView.render();
 
-            this.poisView.markers.off('click');
-            this.poisView.markers.clearLayers();
+            // this.poisView.poiLayer._clusterDetailLayer.off('click');
+            this.poisView.poiLayer._clusterDetailLayer.clearLayers();
 
             this.renderPois();
         },
@@ -221,7 +220,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         clickResultHandler: function (e) {
             e.preventDefault();
-            
+
             var $result = $(e.currentTarget);
 
             this.$activeResult.removeClass('active');

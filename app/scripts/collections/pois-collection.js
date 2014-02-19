@@ -18,7 +18,6 @@ atlaas.Collections = atlaas.Collections || {};
         filterBy: function (mapState) {
         	return mapState.categories == null ? this.models : this.filter(function (poi) {
                 var poi = _.where(poi.get('services'), mapState.categories);
-
         		return poi.length;
         	});
         }

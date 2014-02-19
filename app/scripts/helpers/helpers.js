@@ -82,23 +82,26 @@ L.POILayer = L.LayerGroup.extend({
         //     received[poi.id_action] = layer;
         // }
 
-        for (var onmap in this._onMap) {
-            if (markers[onmap] === undefined) {
-                var layer = this._onMap[onmap];
-                if (this._map.hasLayer(layer))
-                    this.removeLayer(layer);
-                delete this._onMap[onmap];
-            }
-        }
+        // for (var onmap in this._onMap) {
+        //     if (markers[onmap] === undefined) {
+        //         var layer = this._onMap[onmap];
+        //         if (this._map.hasLayer(layer))
+        //             this.removeLayer(layer);
+        //         delete this._onMap[onmap];
+        //     }
+        // }
 
-        for (var marker in markers) {
-            if (this._onMap[marker] === undefined) {
-                var layer = markers[marker];
-                this._onMap[marker] = layer;
-                if (!this._clustered)
-                    this.addLayer(layer);
-            }
-        }
+        // for (var marker in markers) {
+        //     if (this._onMap[marker] === undefined) {
+        //         var layer = markers[marker];
+        //         this._onMap[marker] = layer;
+        //         if (!this._clustered)
+        //             this.addLayer(layer);
+        //     }
+        // }
+
+        this._clusterDetailLayer.clearLayers();
+        this._clusterDetailLayer.addLayers(markers);
     },
 
     __onErrored: function () {
@@ -122,7 +125,7 @@ L.POILayer = L.LayerGroup.extend({
         this._map.addLayer(this._clusterLayer);
 
         // for (var onmap in this._onMap) {
-        //     this.removeLayer(this._onMap[onmap]);
+        //     this._clusterDetailLayer.removeLayer(this._onMap[onmap]);
         // }
         this._map.removeLayer(this._clusterDetailLayer);
     },
@@ -130,10 +133,10 @@ L.POILayer = L.LayerGroup.extend({
     __uncluster: function () {
         this._map.removeLayer(this._clusterLayer);
 
-        for (var onmap in this._onMap) {
-            // this.addLayer(this._onMap[onmap]);
-            this._clusterDetailLayer.addLayer(this._onMap[onmap]);
-        }
+        // for (var onmap in this._onMap) {
+        //     // this.addLayer(this._onMap[onmap]);
+        //     this._clusterDetailLayer.addLayer(this._onMap[onmap]);
+        // }
 
         this._map.addLayer(this._clusterDetailLayer);
     },
