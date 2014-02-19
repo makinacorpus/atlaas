@@ -34,7 +34,7 @@ L.POILayer = L.LayerGroup.extend({
     },
 
     loadDepartments: function () {
-    	var poiPerDepartment 	= 'http://elastic.makina-corpus.net/atlaas/actions/_search?source={%22size%22:0,%22facets%22:%20{%22test%22:%20{%22terms%22:%20{%22size%22:100,%22script%22:%20%22doc[%27lieux.departement%27].value%22},%22global%22:%20false}}}',
+    	var poiPerDepartment 	= 'http://elastic.makina-corpus.net/atlaas/actions/_search?source={%22size%22:0,%22facets%22:%20{%22test%22:%20{%22terms%22:%20{%22size%22:100,%22script%22:%20%22doc[%27lieux.region%27].value%22},%22global%22:%20false}}}',
     		departments 		= 'scripts/helpers/regions.geojson';
     	
     	
