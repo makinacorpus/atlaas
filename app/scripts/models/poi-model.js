@@ -20,8 +20,8 @@ atlaas.Models = atlaas.Models || {};
         },
 
         parse: function(response, options)  {
-            response = response._source;
-            response.id = response.id_action;
+            response.id = response._id;
+            response = response.fields;
 
             // TODO : clean it server side
             _.each(response.services, function (service) {
