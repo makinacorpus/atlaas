@@ -12,10 +12,10 @@ window.atlaas = {
         this.height = document.documentElement.clientHeight;
         this.width  = document.documentElement.clientWidth;
 
-        $(window).on('resize', function () {
+        $(window).on('resize', _.bind(function () {
             this.height = document.documentElement.clientHeight;
             this.width  = document.documentElement.clientWidth;
-        });
+        }, this));
 
         var router = new this.Routers.AppRouter();
         var appView = new this.Views.AppView();

@@ -35,7 +35,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         // called only when template is rendered cause Leaflet needs a DOM element
         initMap: function () {
-            this.map = L.map(this.options.map, { maxZoom: 14, minZoom: 3, attributionControl: false }).setView([46.883, 2.872], 6);
+            this.map = L.map(this.options.map, { maxZoom: 14, minZoom: 3, attributionControl: false }).setView([46.883, 4], 6);
 
             L.control.attribution({position: 'bottomleft'}).addTo(this.map);
 
@@ -44,7 +44,11 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             }).addTo(this.map);
 
             this.initPois();
+
+            this.currentCoords = [];
+            this.currentZoom = 10;
         },
+
 
         initPois: function () {
             this.pois = new atlaas.Collections.PoisCollection();
@@ -54,11 +58,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.poisView.poiLayer.addTo(this.map);
             
             this.listenTo(this.poisView.collection, 'sync', function () {
-                // this.poisView.markers = L.markerClusterGroup({ chunkedLoading: true });
-
                 this.renderPois();
-
-                // this.map.addLayer(this.poisView.markers);
             });
             
 
@@ -66,6 +66,12 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 this.poiDetailView = new atlaas.Views.Map.PoiDetailView({ model: poi.model });
                 this.$el.append(this.poiDetailView.render().el);
                 this.poiDetailView.open();
+
+                var poiView = _.find(this.poisView.poiViewCollection, function(_poiView){
+                    return _poiView.model.id == poi.model.get('id');
+                });
+
+                this.map.panToOffset( poiView.markers[0].getLatLng(), [0, -(atlaas.height*0.4)] );
             });
         },
 
@@ -261,7 +267,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             $result.addClass('active');
 
-            this.map.panTo(poi.markers[0].getLatLng());
+            this.map.setView(poi.markers[0].getLatLng(), 8);
         },
     });
 })();
