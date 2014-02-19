@@ -11,6 +11,27 @@
 		opacity: 1;
 	}
 
+	.clear-bt {
+		position: absolute;
+		z-index: 5;
+		right: 52px;
+		top: 16px;
+		text-decoration: none;
+		color: @orange;
+		.translateZ(20px);
+		display: none;
+
+		&:before {
+			position: relative;
+			top: 3px;
+			margin-right: 5px;
+		}
+
+		&:hover {
+			color: darken(@orange, 30%);
+		}
+	}
+
 	ul {
 		padding: 0;
 		margin: 0;

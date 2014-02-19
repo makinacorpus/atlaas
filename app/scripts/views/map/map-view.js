@@ -9,7 +9,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         events: {
             'click .submenu__item'          : 'openMenu',
             'click .submenu__item--back'    : 'closeMenu',
-            'click .results-menu__item'     : 'clickResultHandler'
+            'click .results-menu__item'     : 'clickResultHandler',
+            'click .clear-bt'               : 'clearBtHandler',
         },
 
         template: JST['app/scripts/templates/map-view.ejs'],
@@ -127,6 +128,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         selectedCategoryHandler: function (categories) {
             this.state.categories = categories;
 
+            $('.clear-bt').show();
+
             this.filteredPois = this.pois.filterBy(this.state);
 
             // Create a new collection of poi based on filtered pois
@@ -136,6 +139,30 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.poisView.render();
 
             // this.poisView.poiLayer._clusterDetailLayer.off('click');
+            this.poisView.poiLayer._clusterDetailLayer.clearLayers();
+
+            this.renderPois();
+        },
+
+        clearBtHandler: function (e) {
+            e.preventDefault();
+
+            $('.clear-bt').hide();
+            
+            this.resetFilters();
+        },
+
+        resetFilters: function () {
+            this.state = { categories: null, bounds: [] };
+
+            this.filteredPois = this.pois.filterBy(this.state);
+
+            // Create a new collection of poi based on filtered pois
+            var newPoisCollection = new atlaas.Collections.PoisCollection(this.filteredPois);
+            // Apply this new collection to our currents pois
+            this.poisView.collection = newPoisCollection;
+            this.poisView.render();
+
             this.poisView.poiLayer._clusterDetailLayer.clearLayers();
 
             this.renderPois();

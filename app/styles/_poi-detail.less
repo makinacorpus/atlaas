@@ -38,6 +38,9 @@
 	font-size: 2em;
 	vertical-align: middle;
 	margin-top: 1px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 45%;
 }
 
 .detail__location {
@@ -137,6 +140,14 @@
 
 	a {
 		word-wrap: break-word;
+	}
+
+	h3 {
+		margin-top: 1em;
+
+		&:first-child {
+			margin-top: 0;
+		}
 	}
 }
 

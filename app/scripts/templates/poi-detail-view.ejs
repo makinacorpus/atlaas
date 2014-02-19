@@ -6,6 +6,7 @@
 <div class="detail__meta">
 	<h3 class="detail__location icon-location"><%= lieux[0].nom %></h3>
 	<a href="#location/<%= lieux[0].id_lieu %>" class="detail__bt detail__bt--location">+ Toutes les actions</a>
+	<a href="#category/<%= services[0].service %>" class="detail__bt detail__bt--location">+ <%=services[0].service%></a>
 	<div class="detail__date">Publié le <%= date %></div>
 </div>
 <div class="detail__action">
@@ -36,6 +37,11 @@
 			<% if (liens.length) { %>
 			<h3>Liens utiles</h3>
 			<%= liens %>
+			<% } %>
+
+			<% if (prestataires.length) { %>
+			<h3>Les prestataires</h3>
+			<%= prestataires %>
 			<% } %>
 		</div>
 	</div>
