@@ -63,9 +63,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             
 
             this.listenTo(this.poisView, 'openResult', function (poi) {
-                this.poiDetailView = new atlaas.Views.Map.PoiDetailView({ model: poi.model });
-                this.$el.append(this.poiDetailView.render().el);
-                this.poiDetailView.open();
+                this.showPoiDetail(poi.model);
 
                 var poiView = _.find(this.poisView.poiViewCollection, function(_poiView){
                     return _poiView.model.id == poi.model.get('id');
@@ -115,9 +113,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         showPoiDetail: function (model) {
-            if (this.poiDetailView.model == model) return;
-
             if (typeof this.poiDetailView != 'undefined') {
+                if (this.$el.find(this.poiDetailView.el).length != 0 && this.poiDetailView.model == model) return;
                 this.poiDetailView.close();
             };
 
