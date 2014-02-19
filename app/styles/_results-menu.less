@@ -131,7 +131,7 @@
 	a {
 		position: absolute;
 		left: 0;
-		.transition(all 400ms);
+		.transition(all 300ms easein);
 	}
 
 	.results-menu__item {
@@ -141,6 +141,15 @@
 	.results-menu__bt {
 		position: absolute;
 		left: 0;
+		height: 100%;
+		line-height: 4em;
+		background: @orange;
+		color: white;
+		font-weight: 300;
+
+		&:hover {
+			background: darken(@orange, 10%);
+		}
 	}
 
 	.active {
@@ -189,10 +198,6 @@
 		color: @text-color;
 		outline: none;
 		background: white;
-
-		&:active {
-			background: lighten(@orange, 10%);
-		}
 	}
 
 	.icon-right-dir {
@@ -226,6 +231,30 @@
 		&:hover {
 			background: @orange;
 			color: white;
+		}
+	}
+}
+
+
+.results-menu__wrapper {
+	li {
+		height: 100px;
+	}
+
+	.results-menu__item {
+		white-space: normal;
+		height: 100%;
+
+		h3 {
+			margin-top: 0;
+			margin-bottom: 5px;
+			font-size: 1em;
+		}
+		
+		h4 {
+			margin: 0;
+			font-weight: normal;
+			color: darken(@grayLight, 30%);
 		}
 	}
 }

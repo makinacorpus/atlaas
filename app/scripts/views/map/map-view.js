@@ -79,14 +79,32 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 }, this);
             }, this);
 
-            // this.poisView.markers.on('click', _.bind(function (e) {
-            //     var poiId = e.layer.options.id;
-            //     var poi = _.find(this.poisView.poiResultsViewCollection, function (poiResultView) {
-            //         return poiResultView.model.id == poiId;
-            //     });
+            this.poisView.poiLayer._clusterDetailLayer.on('click', _.bind(function (e) {
+                var currentMarkerId = e.layer.options.id;
+                var currentMarker = this.poisView.collection.get(currentMarkerId);
+                var popupContent = $('<div><h3 class="title">'+currentMarker.get('titre')+'</h3><h4>'+currentMarker.get('lieux')[0].nom+'</h4><a href="'+currentMarkerId+'">En savoir plus</a></div>');
+                var popup = e.layer;
+                popup.bindPopup(popupContent[0]);
+                popup.openPopup();
 
-            //     this.$resultsContainer.scrollTop(this.$resultsContainer.scrollTop() + poi.$el.position().top);
-            // }, this));
+                $(popup.getPopup().getContent()).find('a').one('click', L.Util.bind(function (e) {
+                    e.preventDefault();
+                    this.poiDetailView = new atlaas.Views.Map.PoiDetailView({ model: currentMarker });
+                    this.$el.append(this.poiDetailView.render().el);
+                    this.poiDetailView.open();
+
+                    popup.closePopup();
+                }, this));
+
+                var poiId = e.layer.options.id;
+                var poi = _.find(this.poisView.poiResultsViewCollection, function (poiResultView) {
+                    return poiResultView.model.id == poiId;
+                });
+
+                if (typeof poi != 'undefined') {
+                    this.$resultsContainer.scrollTop(this.$resultsContainer.scrollTop() + poi.$el.position().top);
+                };                  
+            }, this));
 
             this.poisView.poiLayer.updatePois(this.poisView.markers);
         },
@@ -203,8 +221,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         clickResultHandler: function (e) {
             e.preventDefault();
-
-            var $result = $(e.target);
+            
+            var $result = $(e.currentTarget);
 
             this.$activeResult.removeClass('active');
             this.$activeResult = $result;

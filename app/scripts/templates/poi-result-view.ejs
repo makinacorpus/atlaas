@@ -2,5 +2,8 @@
 	<span>pas de résultat</span>
 <% } else { %>
 	<a class="results-menu__bt" href="<%= id %>">En savoir plus</a>
-	<a class="results-menu__item" href="<%= id %>"><%= titre %></a>
+	<a class="results-menu__item" href="<%= id %>">
+		<h3><%= titre %></h3>
+		<h4><%= lieux[0].nom %></h4>
+	</a>
 <% } %>
