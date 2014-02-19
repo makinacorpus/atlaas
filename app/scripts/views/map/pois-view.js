@@ -21,11 +21,10 @@ atlaas.Views = atlaas.Views || {};
             // Initialy, display a poi summary
             var query = {
                 source: JSON.stringify({
-                    "size" : 50,
+                    "size" : 500,
                     "query" : {
                         "match_all" : {}
-                    },
-                    "fields" : ["services","lieux.latitude", "lieux.longitude"]
+                    }
                 })
             };
             
@@ -38,13 +37,15 @@ atlaas.Views = atlaas.Views || {};
                 return new atlaas.Views.Map.PoiView({ model: _model });
             });
 
-            this.poiResultsViewCollection = _.map(this.collection.models, function (_model) {
+            this.poiResultsViewCollection = _.map(this.collection.models, function (_model, index) {
                 return new atlaas.Views.Map.PoiResultView({ model: _model });
             });
 
-            // this.$el.html(_.map(this.poiResultsViewCollection, function (_result) {
-            //     return _result.render().el;
-            // }));
+            this.poiResultsViewCollection = this.poiResultsViewCollection.slice(0, 30);
+
+            this.$el.html(_.map(this.poiResultsViewCollection, function (_result) {
+                return _result.render().el;
+            }));
 
             return this;
         },

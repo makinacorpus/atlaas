@@ -42,9 +42,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(this.map);
 
-            // this.map.on('moveend', this.onMapViewChanged, this);
-            this.map.on('zoomend', this.onMapZoomChanged, this);
-
             this.initPois();
         },
 
@@ -92,40 +89,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             // }, this));
 
             this.poisView.poiLayer.updatePois(this.poisView.markers);
-        },
-
-        onMapViewChanged: function () {
-            if (this.poisView.poiLayer._clustered === false) {
-                this.state.bounds = this.map.getBounds();
-
-                // this.filteredPois = this.pois.filterBy(this.state);
-
-                // // Create a new collection of poi based on filtered pois
-                // var newPoisCollection = new atlaas.Collections.PoisCollection(this.filteredPois);
-                // // Apply this new collection to our currents pois
-                // this.poisView.collection = newPoisCollection;
-                // this.poisView.render();
-
-                // this.poisView.markers.off('click');
-                // this.poisView.markers.clearLayers();
-
-                this.poisView.fitToBounds(this.state);
-            }
-        },
-
-        onMapZoomChanged: function () {
-            if (this.poisView.poiLayer._clustered === false) {
-                this.filteredPois = this.pois.filterBy(this.state);
-
-                // // Create a new collection of poi based on filtered pois
-                var newPoisCollection = new atlaas.Collections.PoisCollection(this.filteredPois);
-                // // Apply this new collection to our currents pois
-                this.poisView.collection = newPoisCollection;
-                this.poisView.render();
-
-                // this.poisView.markers.off('click');
-                // this.poisView.markers.clearLayers();
-            }
         },
 
         initMenu: function () {
