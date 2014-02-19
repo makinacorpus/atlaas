@@ -15,7 +15,7 @@ L.POILayer = L.LayerGroup.extend({
         L.LayerGroup.prototype.initialize.apply(this, arguments);
         this._onMap = {};
         this._clustered = true;
-        this._clusterLayer = L.markerClusterGroup({ chunkedLoading: true, showCoverageOnHover: false, disableClusteringAtZoom: 5 });
+        this._clusterLayer = new L.LayerGroup();
         this._clusterDetailLayer = L.markerClusterGroup({ chunkedLoading: true, showCoverageOnHover: false });
     },
 
