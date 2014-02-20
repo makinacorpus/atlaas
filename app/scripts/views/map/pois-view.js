@@ -21,14 +21,14 @@ atlaas.Views = atlaas.Views || {};
             // Initialy, display a poi summary
             var query = {
                 source: JSON.stringify({
-                    "size" : 250,
+                    "size" : 30,
                     "query" : {
                         "match_all" : {}
                     }
                 })
             };
             
-            this.collection.fetch({ reset: true, data: query });
+            this.collection.fetch({ data: query });
             this.listenTo(this.collection, "reset", this.render);
         },
 
@@ -62,39 +62,6 @@ atlaas.Views = atlaas.Views || {};
             });
 
             this.trigger('openResult', poiResultView);
-        },
-
-        fitToBounds: function (mapState) {
-            console.log('fit to bounds!');
-            console.log(mapState.bounds);
-
-            var query = {
-                source: JSON.stringify({
-                    "query": {
-                        "filtered": {
-                            "query": {
-                                "match_all": {}
-                            }
-                        }
-                    },
-                    "filter": {
-                        "geo_bounding_box": {
-                            "lieux[0]": {
-                                "top_left": {
-                                    "lat": 47.55,
-                                    "lon": -122.06
-                                },
-                                "bottom_right": {
-                                    "lat": 47.52,
-                                    "lon": -122.02
-                                }
-                            }
-                        }
-                    }
-                })
-            };
-
-            this.collection.fetch({ reset: true, data: query });
         }
 
     });

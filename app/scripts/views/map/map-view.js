@@ -17,7 +17,10 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         attributes: { id: 'map-container', class: 'container' },
 
-        state: { categories: null, bounds: [] },
+        state: { 
+            categories: null,
+            bounds: {}
+        },
 
         initialize: function () {
             this.pois           = [],
@@ -47,6 +50,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             this.currentCoords = [];
             this.currentZoom = 10;
+
+            this.map.on('moveend', this.onMapViewChanged, this);
         },
 
 
@@ -56,11 +61,10 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.poisView = new atlaas.Views.Map.PoisView({ collection: this.pois });
 
             this.poisView.poiLayer.addTo(this.map);
-            
+
             this.listenTo(this.poisView.collection, 'sync', function () {
                 this.renderPois();
             });
-            
 
             this.listenTo(this.poisView, 'openResult', function (poi) {
                 this.showPoiDetail(poi.model);
@@ -278,5 +282,17 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             var zoom = this.map.getZoom() > 8 ? this.map.getZoom() : 8;
             this.map.setView(poi.markers[0].getLatLng(), zoom);
         },
+
+        onMapViewChanged: function () {
+            if (this.poisView.poiLayer._clustered === false) {
+                this.updatePoisState();
+            }
+        },
+
+        updatePoisState: function () {
+            this.state.bounds = this.map.getBounds();
+            this.pois.fitToBounds(this.state);
+        }
+
     });
 })();
