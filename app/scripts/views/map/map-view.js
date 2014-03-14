@@ -83,7 +83,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             // add markers on map for each poiView
             _.each(this.poisView.poiViewCollection, function (poiView) {
                 _.each(poiView.markers, function (marker) {
-                    this.poisView.markers.push(marker);
+                    this.poisView.markers[marker.options.id] = marker;
                 }, this);
             }, this);
 

@@ -21,7 +21,7 @@ L.POILayer = L.LayerGroup.extend({
 
     initialize: function () {
         L.LayerGroup.prototype.initialize.apply(this, arguments);
-        this._onMap = {};
+        this._onMap = [];
         this._clustered = true;
         this._clusterLayer = new L.LayerGroup();
         this._clusterDetailLayer = L.markerClusterGroup({ chunkedLoading: true, showCoverageOnHover: false });
@@ -72,44 +72,32 @@ L.POILayer = L.LayerGroup.extend({
     	}, this));
     },
 
-    updatePois: function (pois) {
-    	this.__onLoaded(pois);
+    updatePois: function (markers) {
+        var oldMarkers = [];
+        var newMarkers = [];
 
-        // TODO: use bounds to build URL with bbox
-        // $.getJSON('http://elastic.makina-corpus.net/atlaas/actions/_search?source=%7B%22size%22%3A50%2C%22query%22%3A%7B%22match_all%22%3A%7B%7D%7D%7D')
-        //  .success(L.Util.bind(this.__onLoaded, this))
-        //  .error(L.Util.bind(this.__onErrored, this));
-    },
+        // Removing no longer visible markers
+        for (var onmap in this._onMap) {
+            if (markers[onmap] === undefined) {
+                var layer = this._onMap[onmap];
+                delete this._onMap[onmap];
+                oldMarkers.push(layer);
+            }
+        }
 
-    __onLoaded: function (markers) {
-        // var received = {};
-        // for (var i=0, n=markers.length; i<n; i++) {
-        //     var poi = markers[i],
-        //         place = poi.getLatLng();
-        //     layer = L.circleMarker([place.latitude, place.longitude]);
-        //     received[poi.id_action] = layer;
-        // }
+        // Adding new markers
+        for (var marker in markers) {
+            if (this._onMap[marker] === undefined) {
+                var layer = markers[marker];
+                this._onMap[marker] = layer;
+                newMarkers.push(layer);
+            }
+        }
 
-        // for (var onmap in this._onMap) {
-        //     if (markers[onmap] === undefined) {
-        //         var layer = this._onMap[onmap];
-        //         if (this._map.hasLayer(layer))
-        //             this.removeLayer(layer);
-        //         delete this._onMap[onmap];
-        //     }
-        // }
-
-        // for (var marker in markers) {
-        //     if (this._onMap[marker] === undefined) {
-        //         var layer = markers[marker];
-        //         this._onMap[marker] = layer;
-        //         if (!this._clustered)
-        //             this.addLayer(layer);
-        //     }
-        // }
-
-        this._clusterDetailLayer.clearLayers();
-        this._clusterDetailLayer.addLayers(markers);
+        if (!this._clustered) {
+            this._clusterDetailLayer.removeLayers(oldMarkers);
+            this._clusterDetailLayer.addLayers(newMarkers);
+        }
     },
 
     __onErrored: function () {
