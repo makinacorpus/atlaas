@@ -7,12 +7,20 @@ CustomMarker = L.Marker.extend({
 
 // Offset for panning
 L.Map.prototype.panToOffset = function (latlng, offset, zoom, options) {
-    var x = this.latLngToContainerPoint(latlng).x - offset[0]
-    var y = this.latLngToContainerPoint(latlng).y - offset[1]
-    var point = this.containerPointToLatLng([x, y])
+    var x = this.latLngToContainerPoint(latlng).x - offset[0],
+        y = this.latLngToContainerPoint(latlng).y - offset[1],
+        point = this.containerPointToLatLng([x, y])
     return this.setView(point, this._zoom, { pan: options })
 }
 
+// Offset map bounds
+L.Map.prototype.getBoundsWithRightOffset = function (offset) {
+    var mapBounds = this.getBounds(),
+        pxBounds = this.latLngToContainerPoint(mapBounds.getNorthEast()),
+        right = pxBounds.x - offset,
+        newMapBounds = L.latLngBounds(mapBounds.getSouthWest(), this.containerPointToLatLng([right, pxBounds.y]));
+    return newMapBounds;
+}
 
 L.POILayer = L.LayerGroup.extend({
     statics: {

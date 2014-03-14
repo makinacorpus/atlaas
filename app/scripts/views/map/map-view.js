@@ -290,7 +290,9 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         updatePoisState: function () {
-            this.state.bounds = this.map.getBounds();
+            console.log(this.map.getBounds());
+            this.state.bounds = this.map.getBoundsWithRightOffset(340);
+            console.log(this.state.bounds);
             this.pois.fitToBounds(this.state);
         }
 
