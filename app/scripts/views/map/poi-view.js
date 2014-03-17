@@ -5,9 +5,8 @@ atlaas.Views = atlaas.Views || {};
 (function () {
     'use strict';
 
+    // POI view : representation of a POI displayed on the map
     atlaas.Views.Map.PoiView = Backbone.View.extend({
-
-        template: JST['app/scripts/templates/poi-detail-view.ejs'],
 
         customIcon: L.divIcon({className:'custom-icon', iconSize:null, popupAnchor: [-2, -40]}),
 
@@ -20,15 +19,10 @@ atlaas.Views = atlaas.Views || {};
             _.each(this.model.get('lieux'), function (location, index) {
                 this.markers[index] = new CustomMarker([location.latitude, location.longitude], {icon: this.customIcon, id: this.model.id});
             }, this);
-        },
-
-        render: function () {
-            this.$el.html(this.template(this.model.toJSON()));
-
-            return this;
-        },
+        }
     });
 
+    // POI result view : 'li' element of the results list
     atlaas.Views.Map.PoiResultView = atlaas.Views.Map.PoiView.extend({
 
         template: JST['app/scripts/templates/poi-result-view.ejs'],

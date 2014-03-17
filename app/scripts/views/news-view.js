@@ -5,6 +5,7 @@ atlaas.Views = atlaas.Views || {};
 (function () {
     'use strict';
 
+    // News view : the news page.
     atlaas.Views.NewsView = Backbone.View.extend({
     	el: '#news',
 

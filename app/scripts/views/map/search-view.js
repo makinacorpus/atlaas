@@ -22,8 +22,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         searchHandler: function (e) {
             if ($(e.target).val() == this.lastValue) return;
             this.lastValue = $(e.target).val();
-
-            console.log(this.options.mapState);
         },
     });
 

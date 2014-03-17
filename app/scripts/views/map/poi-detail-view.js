@@ -5,6 +5,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 (function () {
     'use strict';
 
+    // POI detail view : '#poi-detail' element
     atlaas.Views.Map.PoiDetailView = Backbone.View.extend({
 
         template: JST['app/scripts/templates/poi-detail-view.ejs'],

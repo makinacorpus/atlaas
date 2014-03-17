@@ -5,6 +5,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 (function () {
     'use strict';
 
+    // Map view : top view of the map elements
     atlaas.Views.Map.MapView = Backbone.View.extend({
         events: {
             'click .submenu__item'          : 'openMenu',
@@ -290,9 +291,9 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         updatePoisState: function () {
-            console.log(this.map.getBounds());
+            // Remove right menu from map bounds for performances
             this.state.bounds = this.map.getBoundsWithRightOffset(340);
-            console.log(this.state.bounds);
+
             this.pois.fitToBounds(this.state);
         }
 

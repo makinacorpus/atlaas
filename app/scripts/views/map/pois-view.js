@@ -5,6 +5,7 @@ atlaas.Views = atlaas.Views || {};
 (function () {
     'use strict';
 
+    // POIs view : this view displays POIs on the map and pois in the result list
     atlaas.Views.Map.PoisView = Backbone.View.extend({
         events: {
             'click .results-menu__bt'       : 'clickOpenResultHandler',
