@@ -88,6 +88,18 @@ atlaas.Views = atlaas.Views || {};
             this.$mainContainer.attr('data-visible', 'visible');
 
             this.$mainContainer.off('click.sidebar');
+        },
+
+        renderActionForm: function(action_id) {
+            this.render();
+            var action = new atlaas.Models.PoiModel();
+            action.id = action_id;
+            action.fetch();
+            this.listenTo(action, 'sync', function () {
+                var actionForm = new atlaas.Views.ActionForm({model: action});
+                this.$pageContainer.append(actionForm.render().$el);
+            });
+            return this;
         }
 
     });

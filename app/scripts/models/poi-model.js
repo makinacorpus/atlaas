@@ -7,7 +7,7 @@ atlaas.Models = atlaas.Models || {};
 
     atlaas.Models.PoiModel = Backbone.Model.extend({
 
-        urlRoot: 'http://elastic.makina-corpus.net/atlaas/actions',
+        urlRoot: atlaas.CONFIG.elasticsearch + '/actions',
 
         initialize: function() {
         },

@@ -6,6 +6,9 @@ window.atlaas = {
     Collections: {},
     Views: {},
     Routers: {},
+    CONFIG: {
+        elasticsearch: 'http://localhost:9200/atlaas'
+    },
     init: function () {
         'use strict';
 
@@ -17,24 +20,28 @@ window.atlaas = {
             this.width  = document.documentElement.clientWidth;
         }, this));
 
-        var router = new this.Routers.AppRouter();
+        this.router = new this.Routers.AppRouter();
         var appView = new this.Views.AppView();
 
-        router.on('route:home', function () {
+        this.router.on('route:home', function () {
             appView.renderMap();
         });
 
-        router.on('route:news', function () {
+        this.router.on('route:news', function () {
             appView.renderNews();
         });
 
-        router.on('route:category', function (category) {
+        this.router.on('route:edit', function (action_id) {
+            appView.renderActionForm(action_id);
+        });
+
+        this.router.on('route:category', function (category) {
             if (!appView.mapView) appView.renderMap();     
 
             console.log('category: '+category);
         });
 
-        router.on('route', function (route) {
+        this.router.on('route', function (route) {
             appView.sidebarView.updateNavigation(route);
             appView.hideSidebar();
         });
