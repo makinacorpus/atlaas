@@ -64,7 +64,11 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.poisView.poiLayer.addTo(this.map);
 
             this.listenTo(this.poisView.collection, 'sync', function () {
-                console.log(this.poisView.collection.length);
+                if (typeof this.state.categories !== 'null') {
+                    this.filteredPois = this.poisView.collection.filterBy(this.state.categories);
+                    this.poisView.collection.set(this.filteredPois);
+                };
+
                 this.renderPois();
             });
 
@@ -141,12 +145,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             $('.clear-bt').show();
 
-            this.filteredPois = this.poisView.collection.filterBy(this.state);
-
-            // Set new pois to our pois collection
-            this.poisView.collection.set(this.filteredPois);
-
-            this.renderPois();
+            this.updatePoisState();
         },
 
         clearBtHandler: function (e) {
