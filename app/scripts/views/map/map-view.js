@@ -24,7 +24,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         initialize: function () {
-            this.pois           = [],
             this.filteredPois   = []
             this.$activeResult  = $()
         },
@@ -58,13 +57,14 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
 
         initPois: function () {
-            this.pois = new atlaas.Collections.PoisCollection();
+            var pois = new atlaas.Collections.PoisCollection();
 
-            this.poisView = new atlaas.Views.Map.PoisView({ collection: this.pois });
+            this.poisView = new atlaas.Views.Map.PoisView({ collection: pois });
 
             this.poisView.poiLayer.addTo(this.map);
 
             this.listenTo(this.poisView.collection, 'sync', function () {
+                console.log(this.poisView.collection.length);
                 this.renderPois();
             });
 
@@ -81,15 +81,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         renderPois: function () {
             this.poisView.render();
-
-            // add markers on map for each poiView
-            _.each(this.poisView.poiViewCollection, function (poiView) {
-                _.each(poiView.markers, function (marker) {
-                    this.poisView.markers[marker.options.id] = marker;
-                }, this);
-            }, this);
-
-            this.poisView.poiLayer.updatePois(this.poisView.markers);
 
             this.poisView.poiLayer._clusterDetailLayer.on('click', _.bind(function (e) {
                 var currentMarkerId = e.layer.options.id;
@@ -150,16 +141,10 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             $('.clear-bt').show();
 
-            this.filteredPois = this.pois.filterBy(this.state);
+            this.filteredPois = this.poisView.collection.filterBy(this.state);
 
-            // Create a new collection of poi based on filtered pois
-            var newPoisCollection = new atlaas.Collections.PoisCollection(this.filteredPois);
-            // Apply this new collection to our currents pois
-            this.poisView.collection = newPoisCollection;
-            this.poisView.render();
-
-            // this.poisView.poiLayer._clusterDetailLayer.off('click');
-            this.poisView.poiLayer._clusterDetailLayer.clearLayers();
+            // Set new pois to our pois collection
+            this.poisView.collection.set(this.filteredPois);
 
             this.renderPois();
         },
@@ -175,17 +160,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         resetFilters: function () {
             this.state = { categories: null, bounds: [] };
 
-            this.filteredPois = this.pois.filterBy(this.state);
-
-            // Create a new collection of poi based on filtered pois
-            var newPoisCollection = new atlaas.Collections.PoisCollection(this.filteredPois);
-            // Apply this new collection to our currents pois
-            this.poisView.collection = newPoisCollection;
-            this.poisView.render();
-
-            this.poisView.poiLayer._clusterDetailLayer.clearLayers();
-
-            this.renderPois();
+            this.updatePoisState();
         },
 
         openMenu: function (e) {
@@ -286,16 +261,17 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         onMapViewChanged: function () {
-            if (this.poisView.poiLayer._clustered === false) {
-                this.updatePoisState();
-            }
+            this.updatePoisState();
         },
 
         updatePoisState: function () {
+            if (this.poisView.poiLayer._clustered) {
+                return;
+            }
             // Remove right menu from map bounds for performances
             this.state.bounds = this.map.getBoundsWithRightOffset(340);
 
-            this.pois.fitToBounds(this.state);
+            this.poisView.collection.fitToBounds(this.state);
         }
 
     });

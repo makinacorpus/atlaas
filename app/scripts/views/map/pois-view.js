@@ -14,9 +14,9 @@ atlaas.Views = atlaas.Views || {};
         el: '.results-menu__wrapper',
 
         initialize: function () {
-            this.poiViewCollection          = [],
+            this.poiViewCollection          = [];
             this.poiResultsViewCollection   = [];
-            this.poiLayer                   = new L.POILayer(),
+            this.poiLayer                   = new L.POILayer();
             this.markers                    = {};
 
             // Initialy, display a poi summary
@@ -49,6 +49,15 @@ atlaas.Views = atlaas.Views || {};
             this.$el.html(_.map(this.poiResultsViewCollection, function (_result) {
                 return _result.render().el;
             }));
+
+            // add markers on map for each poiView
+            _.each(this.poiViewCollection, function (poiView) {
+                _.each(poiView.markers, function (marker) {
+                    this.markers[marker.options.id] = marker;
+                }, this);
+            }, this);
+
+            this.poiLayer.updatePois(this.markers);
 
             return this;
         },
