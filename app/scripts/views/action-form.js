@@ -28,7 +28,7 @@ atlaas.Views = atlaas.Views || {};
                 }
             }
             this.model.sync(
-                'update',
+                'create',
                 this.model,
                 {url: atlaas.CONFIG.elasticsearch + '/review/' + this.model.id}
             );

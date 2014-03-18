@@ -96,10 +96,23 @@ atlaas.Views = atlaas.Views || {};
             action.id = action_id;
             action.fetch();
             this.listenTo(action, 'sync', function () {
+                action.set('id_action', action.id);
                 var actionForm = new atlaas.Views.ActionForm({model: action});
                 this.$pageContainer.append(actionForm.render().$el);
             });
             return this;
+        },
+
+        renderReviewList: function() {
+            this.render();
+            var collection = new atlaas.Collections.ReviewCollection();
+            collection.fetch();
+            this.listenTo(collection, 'sync', function () {
+                var reviewListView = new atlaas.Views.ReviewListView(
+                    {collection: collection}
+                );
+                this.$pageContainer.append(reviewListView.render().$el);
+            });
         }
 
     });

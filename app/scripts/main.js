@@ -35,6 +35,10 @@ window.atlaas = {
             appView.renderActionForm(action_id);
         });
 
+        this.router.on('route:reviewlist', function () {
+            appView.renderReviewList();
+        });
+
         this.router.on('route:category', function (category) {
             if (!appView.mapView) appView.renderMap();     
 
