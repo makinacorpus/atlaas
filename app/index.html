@@ -11,10 +11,16 @@
         <meta name="viewport" content="width=device-width">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+        <Link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css' rel='stylesheet' />
+        <!--[if lt IE 9]>
+          <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.21.0/L.Control.Locate.ie.css' rel='stylesheet' />
+        <![endif]-->
         <!-- build:css({.tmp, app}) styles/main.css -->
         <link rel="stylesheet" href="styles/vendor/normalize.css">
         <link rel="stylesheet" href="styles/vendor/simplebar.css">
         <link rel="stylesheet" href="styles/vendor/MarkerCluster.css">
+        <link rel="stylesheet" href="styles/vendor/LeafletCustomControls.css">
+        <link rel="stylesheet" href="styles/vendor/mapbox/mapboxCustom.css">
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
 
@@ -72,6 +78,7 @@
         </script>
         
         <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+        <Script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js'></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.4/plugins/CSSPlugin.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.4/easing/EasePack.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.4/TweenLite.min.js"></script>

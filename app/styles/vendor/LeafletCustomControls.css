@@ -1,0 +1,12 @@
+.leaflet-control-locate {
+    border: 1px solid rgba(0,0,0,0.4);
+}
+
+.leaflet-control-locate a {
+    background-color: #fff;
+    background-position: -3px, -2px;
+}
+
+.leaflet-control-locate.active a {
+    background-position: -33px -2px;
+}
