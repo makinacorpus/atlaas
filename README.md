@@ -19,9 +19,11 @@ This project is generated using Yeoman (http://yeoman.io/)
 
 ### NGINX configuration
 
-install nginx-extras package:
+Install nginx-extras package:
 
 `sudo apt-get install nginx-extras`
+
+Create a htpasswd file.
 
 Vhost::
 
@@ -50,7 +52,7 @@ Vhost::
 
         location / {
          if ($request_method = 'OPTIONS') {
-            add_header 'Access-Control-Allow-Origin' '*';
+            more_set_headers 'Access-Control-Allow-Origin: *';
 
             #
             # Om nom nom cookies
