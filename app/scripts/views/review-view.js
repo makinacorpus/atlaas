@@ -67,9 +67,14 @@ atlaas.Views = atlaas.Views || {};
         validate: function(e) {
             var model = this.model;
             model.set('id_action', model.id)
+            model.credentials = {
+                username: atlaas.CONFIG.login,
+                password: atlaas.CONFIG.password
+            };
             // we use low-level Backbone.sync method to avoid messing up
             // permanently with id and id_action
             Backbone.sync('update', model, {
+                url: atlaas.CONFIG.secure_elasticsearch + '/actions/' + model.id,
                 success: function () {
                     model.destroy({
                         url: atlaas.CONFIG.elasticsearch + '/review/' + model.id

@@ -103,6 +103,13 @@ atlaas.Views = atlaas.Views || {};
             return this;
         },
 
+        renderLogin: function() {
+            this.render();
+            var login = new atlaas.Views.LoginForm();
+            this.$pageContainer.append(login.render().$el);
+            return this;
+        },
+
         renderReviewList: function() {
             this.render();
             var collection = new atlaas.Collections.ReviewCollection();

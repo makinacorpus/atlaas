@@ -12,7 +12,8 @@ atlaas.Routers = atlaas.Routers || {};
     		"map/*subroute"		: "category",
     		"news"				: "news",
             "edit/:action_id"   : "edit",
-            "review"            : "reviewlist"
+            "review"            : "reviewlist",
+            "login"             : "login"
     	}
     });
 

@@ -7,7 +7,8 @@ window.atlaas = {
     Views: {},
     Routers: {},
     CONFIG: {
-        elasticsearch: 'http://localhost:9200/atlaas'
+        elasticsearch: 'http://elastic-local.makina-corpus.net/atlaas',
+        secure_elasticsearch: 'http://secured-elastic-local.makina-corpus.net/atlaas'
     },
     init: function () {
         'use strict';
@@ -37,6 +38,10 @@ window.atlaas = {
 
         this.router.on('route:reviewlist', function () {
             appView.renderReviewList();
+        });
+
+        this.router.on('route:login', function () {
+            appView.renderLogin();
         });
 
         this.router.on('route:category', function (category) {
