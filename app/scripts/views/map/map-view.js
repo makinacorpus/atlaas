@@ -29,12 +29,10 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         render: function () {
             this.$el.html(this.template({ id:this.options.map }));
 
-            this.initMenu();
-
             return this;
         },
 
-        // called only when template is rendered cause Leaflet needs a DOM element
+        // called only after template is rendered cause Leaflet needs an existing DOM element
         initMap: function () {
             this.map = L.map(this.options.map, { maxZoom: 14, minZoom: 3, attributionControl: false }).setView([46.883, 4], 6);
 
@@ -46,13 +44,13 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             }).addTo(this.map);
 
             this.initPois();
+            this.initMenu();
 
             this.currentCoords = [];
             this.currentZoom = 10;
 
             this.map.on('moveend', this.onMapViewChanged, this);
         },
-
 
         initPois: function () {
             var pois = new atlaas.Collections.PoisCollection();
@@ -85,6 +83,24 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 var zoom = this.map.getZoom() > 8 ? this.map.getZoom() : 8;
                 this.map.setView(poi.markers[0].getLatLng(), zoom);
             });
+        },
+
+        initMenu: function () {
+            var categoriesCollection = new atlaas.Collections.CategoriesCollection();
+            var categoriesView = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: categoriesCollection, mapState: this.state });
+
+            var resultsCollection = new atlaas.Collections.ResultsCollection();
+            var searchView = new atlaas.Views.Map.SearchView({ el: this.$el.find('.results-menu__search'), collection: resultsCollection });
+
+            this.poisView.searchResultsCollection = searchView.collection;
+
+            this.listenTo(categoriesView, 'selected', function () {
+                this.selectedCategoryHandler(categoriesView.selectedCategories);
+            });
+
+            this.$categoriesContainer = this.$el.find('.results-menu__container');
+            this.$resultsContainer = this.$categoriesContainer.find('.results-menu__wrapper');
+            this.$menuWrapper = this.$categoriesContainer.find('.menu-wrapper');
         },
 
         renderPois: function () {
@@ -126,22 +142,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.poiDetailView = new atlaas.Views.Map.PoiDetailView({ model: model });
             this.$el.append(this.poiDetailView.render().el);
             this.poiDetailView.open();
-        },
-
-        initMenu: function () {
-            var categories = new atlaas.Collections.CategoriesCollection();
-
-            var categoriesView = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: categories, mapState: this.state });
-
-            this.search = new atlaas.Views.Map.SearchView({ el: this.$el.find('.results-menu__search'), mapState: this.state });
-
-            this.listenTo(categoriesView, 'selected', function () {
-                this.selectedCategoryHandler(categoriesView.selectedCategories);
-            });
-
-            this.$categoriesContainer = this.$el.find('.results-menu__container');
-            this.$resultsContainer = this.$categoriesContainer.find('.results-menu__wrapper');
-            this.$menuWrapper = this.$categoriesContainer.find('.menu-wrapper');
         },
 
         selectedCategoryHandler: function (categories) {

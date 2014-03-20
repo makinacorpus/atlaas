@@ -20,6 +20,7 @@ atlaas.Views = atlaas.Views || {};
             this.poiLayer                   = new L.POILayer();
             this.$activeResult              = $();
             this.syncResults                = true;
+            this.searchResultsCollection    = undefined;
 
             // Initialy, display a poi summary
             var query = {
@@ -36,7 +37,7 @@ atlaas.Views = atlaas.Views || {};
         },
 
         render: function () {
-            var resultsCollection = this.syncResults ? this.collection : searchResultsCollection;
+            var resultsCollection = this.syncResults ? this.collection : this.searchResultsCollection;
 
             // ResultsView
             this.poiResultsViewCollection = _.map(resultsCollection.models, function (_model, index) {
