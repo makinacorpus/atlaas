@@ -8,6 +8,7 @@ atlaas.Views = atlaas.Views || {};
     // POIs view : this view displays POIs on the map and pois in the result list
     atlaas.Views.Map.PoisView = Backbone.View.extend({
         events: {
+            'click .results-menu__item'     : 'clickResultHandler',
             'click .results-menu__bt'       : 'clickOpenResultHandler',
         },
 
@@ -17,7 +18,8 @@ atlaas.Views = atlaas.Views || {};
             this.poiViewCollection          = [];
             this.poiResultsViewCollection   = [];
             this.poiLayer                   = new L.POILayer();
-            this.markers                    = {};
+            this.$activeResult              = $();
+            this.syncResults                = true;
 
             // Initialy, display a poi summary
             var query = {
@@ -34,32 +36,59 @@ atlaas.Views = atlaas.Views || {};
         },
 
         render: function () {
-            this.markers = {};
+            var resultsCollection = this.syncResults ? this.collection : searchResultsCollection;
 
-            this.poiViewCollection = _.map(this.collection.models, function (_model) {
-                return new atlaas.Views.Map.PoiView({ model: _model });
-            });
-
-            this.poiResultsViewCollection = _.map(this.collection.models, function (_model, index) {
+            // ResultsView
+            this.poiResultsViewCollection = _.map(resultsCollection.models, function (_model, index) {
                 return new atlaas.Views.Map.PoiResultView({ model: _model });
             });
 
+            // never display more than the 30 first results in the list (user must zoom/search to acurate)
             this.poiResultsViewCollection = this.poiResultsViewCollection.slice(0, 30);
 
             this.$el.html(_.map(this.poiResultsViewCollection, function (_result) {
                 return _result.render().el;
             }));
 
+
+            // PoisView
+            this.poiViewCollection = _.map(this.collection.models, function (_model) {
+                return new atlaas.Views.Map.PoiView({ model: _model });
+            });
+            
+            // Empty markers
+            var markers = {};
+
             // add markers on map for each poiView
             _.each(this.poiViewCollection, function (poiView) {
                 _.each(poiView.markers, function (marker) {
-                    this.markers[marker.options.id] = marker;
+                    markers[marker.options.id] = marker;
                 }, this);
             }, this);
 
-            this.poiLayer.updatePois(this.markers);
+            // Display markers
+            this.poiLayer.updatePois(markers);
 
             return this;
+        },
+
+        clickResultHandler: function (e) {
+            e.preventDefault();
+
+            var $result = $(e.currentTarget);
+
+            this.$activeResult.removeClass('active');
+            this.$activeResult = $result;
+
+            var poiId = $result.attr('href');
+
+            var poiView = _.find(this.poiViewCollection, function(poiView){
+                return poiView.model.id == poiId;
+            });
+
+            $result.addClass('active');
+
+            this.trigger('panToPoi', poiView);
         },
 
         clickOpenResultHandler: function (e) {

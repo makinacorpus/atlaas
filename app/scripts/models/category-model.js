@@ -21,7 +21,9 @@ atlaas.Models = atlaas.Models || {};
         parse: function(response, options)  {
             response = response._source;
             response.id = response.id_enjeu;
+            response.enjeu_de_developpement = response.enjeu;
             delete response.id_enjeu;
+            delete response.enjeu;
 
             return response;
         }

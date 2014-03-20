@@ -23,7 +23,7 @@ atlaas.Collections = atlaas.Collections || {};
         },
 
         fitToBounds: function (mapState) {
-            var bounds = this.convertBoundsFormat(mapState.bounds);
+            var bounds = this.convertBoundsToESFormat(mapState.bounds);
 
             var query = {
                 source: JSON.stringify({
@@ -46,7 +46,7 @@ atlaas.Collections = atlaas.Collections || {};
             this.fetch({ data: query });
         },
 
-        convertBoundsFormat: function (Lbounds) {
+        convertBoundsToESFormat: function (Lbounds) {
         	var newBoundsFormat = {
         		top_left: {
                     lat: 0,

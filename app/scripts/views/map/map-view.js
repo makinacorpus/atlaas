@@ -10,7 +10,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         events: {
             'click .submenu__item'          : 'openMenu',
             'click .submenu__item--back'    : 'closeMenu',
-            'click .results-menu__item'     : 'clickResultHandler',
             'click .clear-bt'               : 'clearBtHandler',
         },
 
@@ -25,7 +24,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         initialize: function () {
             this.filteredPois   = []
-            this.$activeResult  = $()
         },
 
         render: function () {
@@ -72,6 +70,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 this.renderPois();
             });
 
+            // Event handlers
             this.listenTo(this.poisView, 'openResult', function (poi) {
                 this.showPoiDetail(poi.model);
 
@@ -80,6 +79,11 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 });
 
                 this.map.panToOffset( poiView.markers[0].getLatLng(), [0, -(atlaas.height*0.4)] );
+            });
+
+            this.listenTo(this.poisView, 'panToPoi', function (poi) {
+                var zoom = this.map.getZoom() > 8 ? this.map.getZoom() : 8;
+                this.map.setView(poi.markers[0].getLatLng(), zoom);
             });
         },
 
@@ -237,26 +241,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                     $menuIn.remove();
                 }
             });
-        },
-
-        clickResultHandler: function (e) {
-            e.preventDefault();
-
-            var $result = $(e.currentTarget);
-
-            this.$activeResult.removeClass('active');
-            this.$activeResult = $result;
-
-            var poiId = $result.attr('href');
-
-            var poi = _.find(this.poisView.poiViewCollection, function(poiView){
-                return poiView.model.id == poiId;
-            });
-
-            $result.addClass('active');
-
-            var zoom = this.map.getZoom() > 8 ? this.map.getZoom() : 8;
-            this.map.setView(poi.markers[0].getLatLng(), zoom);
         },
 
         onMapViewChanged: function () {
