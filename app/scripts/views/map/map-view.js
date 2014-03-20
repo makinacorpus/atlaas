@@ -24,6 +24,10 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         initialize: function () {
             this.filteredPois   = []
+            this.poisView = undefined
+            this.poiResultsView = undefined
+            this.searchView = undefined    
+            this.resultsCollection = undefined
         },
 
         render: function () {
@@ -53,9 +57,9 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         initPois: function () {
-            var pois = new atlaas.Collections.PoisCollection();
+            var poisCollection = new atlaas.Collections.PoisCollection();
 
-            this.poisView = new atlaas.Views.Map.PoisView({ collection: pois });
+            this.poisView = new atlaas.Views.Map.PoisView({ collection: poisCollection });
 
             this.poisView.poiLayer.addTo(this.map);
 
@@ -65,11 +69,30 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                     this.poisView.collection.set(this.filteredPois);
                 };
 
+                this.poiResultsView.collection.reset(this.poisView.collection.models);
+
                 this.renderPois();
             });
+        },
+
+        initMenu: function () {
+            var categoriesCollection    = new atlaas.Collections.CategoriesCollection();
+            var categoriesView          = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: categoriesCollection, mapState: this.state });
+
+            this.resultsCollection      = new atlaas.Collections.ResultsCollection();
+            this.searchView             = new atlaas.Views.Map.SearchView({ el: this.$el.find('.results-menu__search'), collection: this.resultsCollection });
+            this.poiResultsView         = new atlaas.Views.Map.PoiResultsView({ collection: this.resultsCollection });
+
+            this.$categoriesContainer   = this.$el.find('.results-menu__container');
+            this.$resultsContainer      = this.$categoriesContainer.find('.results-menu__wrapper');
+            this.$menuWrapper           = this.$categoriesContainer.find('.menu-wrapper');
 
             // Event handlers
-            this.listenTo(this.poisView, 'openResult', function (poi) {
+            this.listenTo(categoriesView, 'selected', function () {
+                this.selectedCategoryHandler(categoriesView.selectedCategories);
+            });
+
+            this.listenTo(this.poiResultsView, 'openResult', function (poi) {
                 this.showPoiDetail(poi.model);
 
                 var poiView = _.find(this.poisView.poiViewCollection, function(_poiView){
@@ -79,28 +102,14 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 this.map.panToOffset( poiView.markers[0].getLatLng(), [0, -(atlaas.height*0.4)] );
             });
 
-            this.listenTo(this.poisView, 'panToPoi', function (poi) {
+            this.listenTo(this.poiResultsView, 'panToPoi', function (poiId) {
+                var poiView = _.find(this.poisView.poiViewCollection, function(_poiView){
+                    return _poiView.model.id == poiId;
+                });
+
                 var zoom = this.map.getZoom() > 8 ? this.map.getZoom() : 8;
-                this.map.setView(poi.markers[0].getLatLng(), zoom);
+                this.map.setView(poiView.markers[0].getLatLng(), zoom);
             });
-        },
-
-        initMenu: function () {
-            var categoriesCollection = new atlaas.Collections.CategoriesCollection();
-            var categoriesView = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: categoriesCollection, mapState: this.state });
-
-            var resultsCollection = new atlaas.Collections.ResultsCollection();
-            var searchView = new atlaas.Views.Map.SearchView({ el: this.$el.find('.results-menu__search'), collection: resultsCollection });
-
-            this.poisView.searchResultsCollection = searchView.collection;
-
-            this.listenTo(categoriesView, 'selected', function () {
-                this.selectedCategoryHandler(categoriesView.selectedCategories);
-            });
-
-            this.$categoriesContainer = this.$el.find('.results-menu__container');
-            this.$resultsContainer = this.$categoriesContainer.find('.results-menu__wrapper');
-            this.$menuWrapper = this.$categoriesContainer.find('.menu-wrapper');
         },
 
         renderPois: function () {
@@ -131,6 +140,10 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                     this.$resultsContainer.scrollTop(this.$resultsContainer.scrollTop() + poi.$el.position().top);
                 };                  
             }, this));
+        },
+
+        renderPoisResults: function () {
+            this.poiResultsView.render();
         },
 
         showPoiDetail: function (model) {
