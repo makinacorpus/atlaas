@@ -9,7 +9,7 @@ atlaas.Collections = atlaas.Collections || {};
 
         model: atlaas.Models.CategoryModel,
 
-        url: 'http://elastic.makina-corpus.net/atlaas/enjeux/_search',
+        url: atlaas.CONFIG.elasticsearch + '/enjeux/_search',
 
         parse: function(response, options)  {
             return response.hits.hits;

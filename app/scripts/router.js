@@ -12,6 +12,9 @@ atlaas.Routers = atlaas.Routers || {};
     		"map/actions/:id"	: "poi-detail",
     		// "map/*subroute"		: "category",
     		"news"				: "news",
+            "edit/:action_id"   : "edit",
+            "review"            : "reviewlist",
+            "login"             : "login"
     	}
     });
 

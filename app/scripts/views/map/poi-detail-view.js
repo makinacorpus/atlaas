@@ -16,6 +16,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         events: {
             'click .detail__bt--close'           : 'closeBtHandler',
+            'click .detail__bt--edit'            : 'editBtHandler',
             'click .detail__meta .detail__bt'    : 'filtersBtHandler',
         },
 
@@ -36,6 +37,12 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         	e.preventDefault();
 
         	this.close();
+        },
+
+        editBtHandler: function (e) {
+            e.preventDefault();
+
+            atlaas.router.navigate("edit/" + this.model.id, {trigger: true});
         },
 
         filtersBtHandler: function (e) {

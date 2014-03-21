@@ -32,6 +32,16 @@ window.atlaas = {
             appView.renderNews();
         });
 
+<<<<<<< HEAD
+        router.on('route:poi-detail', function (action_id) {
+            if (!appView.mapView) appView.renderMap();
+            
+            console.log('actionId: '+action_id);
+        });
+
+        router.on('route:category', function (category) {
+            if (!appView.mapView) appView.renderMap();
+=======
         this.router.on('route:edit', function (action_id) {
             appView.renderActionForm(action_id);
         });
@@ -46,6 +56,7 @@ window.atlaas = {
 
         this.router.on('route:category', function (category) {
             if (!appView.mapView) appView.renderMap();     
+>>>>>>> edit-poi
 
             console.log('category: '+category);
         });
