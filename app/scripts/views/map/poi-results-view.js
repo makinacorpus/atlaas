@@ -44,11 +44,11 @@ atlaas.Views = atlaas.Views || {};
 
         onAddedHandler: function (_result) {
             var view = new atlaas.Views.Map.PoiResultView({ model: _result });
-
+            this.addOne(view);
             // never display more than the 30 first results in the list (user must zoom/search to acurate)
-            if (this.collection.indexOf(_result) <= 30) {
-                this.addOne(view);
-            };
+            // if (this.collection.indexOf(_result) <= 30) {
+                
+            // };
         },
 
         onRemovedHandler: function (_result) {

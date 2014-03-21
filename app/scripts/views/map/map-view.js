@@ -131,6 +131,11 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 }, this));
 
                 var poiId = e.layer.options.id;
+
+                if (typeof this.poiResultsView.viewCollection[poiId] === "undefined") {
+                    this.poiResultsView.collection.add(this.poisView.collection.get(poiId));
+                }
+
                 var poi = this.poiResultsView.viewCollection[poiId];
 
                 if (!this.poiResultsView.$el.find(poi.$el).length) {
@@ -144,15 +149,15 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         renderPoisResults: function () {
             if (this.poiResultsView.syncResults) {
-                this.poiResultsView.collection.set(this.poisView.collection.models);
+                this.poiResultsView.collection.set(this.poisView.collection.models.slice(0, 30));
 
-                if (this.poisView.poiViewCollection.length <= 30) {
-                    _.each(this.poisView.poiViewCollection, function(_poiView) {
-                        if(typeof this.poiResultsView.viewCollection[_poiView.id] === "undefined") {
-                            this.poiResultsView.addOne(_poiView);
-                        }
-                    }, this);
-                }
+                // if (this.poisView.poiViewCollection.length <= 30) {
+                //     _.each(this.poisView.poiViewCollection, function(_poiView) {
+                //         if(typeof this.poiResultsView.viewCollection[_poiView.id] === "undefined") {
+                //             this.poiResultsView.addOne(_poiView);
+                //         }
+                //     }, this);
+                // }
 
                 return;
             };
