@@ -9,7 +9,8 @@ atlaas.Routers = atlaas.Routers || {};
     	routes: {
     		""					: "home",
     		"map"				: "home",
-    		"map/*subroute"		: "category",
+    		"map/actions/:id"	: "poi-detail",
+    		// "map/*subroute"		: "category",
     		"news"				: "news",
     	}
     });

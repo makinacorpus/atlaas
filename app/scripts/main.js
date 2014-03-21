@@ -28,8 +28,14 @@ window.atlaas = {
             appView.renderNews();
         });
 
+        router.on('route:poi-detail', function (action_id) {
+            if (!appView.mapView) appView.renderMap();
+            
+            console.log('actionId: '+action_id);
+        });
+
         router.on('route:category', function (category) {
-            if (!appView.mapView) appView.renderMap();     
+            if (!appView.mapView) appView.renderMap();
 
             console.log('category: '+category);
         });

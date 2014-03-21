@@ -27,6 +27,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             console.log(this.model.toJSON());
         	this.$el.html(this.template(this.model.toJSON()));
 
+            // atlaas.router.navigate("map/actions/" + this.model.id);
+
         	return this;
         },
 

@@ -12,10 +12,7 @@ atlaas.Views = atlaas.Views || {};
 
         initialize: function () {
             this.poiViewCollection          = [];
-            this.poiResultsViewCollection   = [];
-            this.poiLayer                   = new L.POILayer();            
-            this.syncResults                = true;
-            this.searchResultsCollection    = undefined;
+            this.poiLayer                   = new L.POILayer();
 
             // Initialy, display a poi summary
             var query = {
@@ -32,6 +29,8 @@ atlaas.Views = atlaas.Views || {};
         },
 
         render: function () {
+            this.poiLayer._clusterDetailLayer.off('click');
+
             // PoisView
             this.poiViewCollection = _.map(this.collection.models, function (_model) {
                 return new atlaas.Views.Map.PoiView({ model: _model });

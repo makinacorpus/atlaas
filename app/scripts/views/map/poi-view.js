@@ -30,7 +30,7 @@ atlaas.Views = atlaas.Views || {};
         tagName: 'li',
 
         initialize: function () {
-            // this.listenTo(this.model, 'change', this.render);
+            this.listenTo(this.model, 'change', this.render);
         },
 
         render: function () {
