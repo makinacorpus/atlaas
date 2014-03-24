@@ -59,7 +59,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         initPois: function () {
             var poisCollection = new atlaas.Collections.PoisCollection();
 
-            this.poisView = new atlaas.Views.Map.PoisView({ collection: poisCollection });
+            this.poisView = new atlaas.Views.Map.PoisView({ collection: poisCollection, el: this.map });
 
             this.poisView.poiLayer.addTo(this.map);
 
@@ -114,12 +114,12 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         renderPois: function () {
             this.poisView.render();
 
-            this.poisView.poiLayer._clusterDetailLayer.on('click', _.bind(function (e) {
+            this.poisView.poiLayer.clusterDetailLayer.on('click', _.bind(function (e) {
                 var currentMarkerId = e.layer.options.id;
                 var currentMarker = this.poisView.collection.get(currentMarkerId);
                 var popupContent = $('<div><h3 class="title">'+currentMarker.get('titre')+'</h3><h4>'+currentMarker.get('lieux')[0].nom+'</h4><a href="'+currentMarkerId+'">En savoir plus</a></div>');
                 var popup = e.layer;
-                popup.bindPopup(popupContent[0]);
+                popup.bindPopup(popupContent[0], { autoPan: false });
                 popup.openPopup();
 
                 $(popup.getPopup().getContent()).find('a').one('click', L.Util.bind(function (e) {
@@ -137,10 +137,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 }
 
                 var poi = this.poiResultsView.viewCollection[poiId];
-
-                if (!this.poiResultsView.$el.find(poi.$el).length) {
-                    this.poiResultsView.addOne(poi);
-                }
                 
                 this.$resultsContainer.scrollTop(this.$resultsContainer.scrollTop() + poi.$el.position().top);
                 poi.$el.find('.results-menu__item').click();
@@ -149,16 +145,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         renderPoisResults: function () {
             if (this.poiResultsView.syncResults) {
+                // never display more than the 30 first results in the list (user must zoom/search to acurate)
                 this.poiResultsView.collection.set(this.poisView.collection.models.slice(0, 30));
-
-                // if (this.poisView.poiViewCollection.length <= 30) {
-                //     _.each(this.poisView.poiViewCollection, function(_poiView) {
-                //         if(typeof this.poiResultsView.viewCollection[_poiView.id] === "undefined") {
-                //             this.poiResultsView.addOne(_poiView);
-                //         }
-                //     }, this);
-                // }
-
                 return;
             };
 

@@ -27,28 +27,11 @@ atlaas.Views = atlaas.Views || {};
         },
 
         render: function () {
-            // var resultsCollection = this.syncResults ? this.collection : this.searchResultsCollection;
-
-            // ResultViews
-            // this.poiResultsViewCollection = _.map(this.collection.models, function (_model) {
-            //     return new atlaas.Views.Map.PoiResultView({ model: _model });
-            // });
-
-            // never display more than the 30 first results in the list (user must zoom/search to acurate)
-            // this.poiResultsViewCollection = this.poiResultsViewCollection.slice(0, 30);
-
-            // this.$el.html(_.map(this.poiResultsViewCollection, function (_result) {
-            //     return _result.render().el;
-            // }));
         },
 
         onAddedHandler: function (_result) {
             var view = new atlaas.Views.Map.PoiResultView({ model: _result });
             this.addOne(view);
-            // never display more than the 30 first results in the list (user must zoom/search to acurate)
-            // if (this.collection.indexOf(_result) <= 30) {
-                
-            // };
         },
 
         onRemovedHandler: function (_result) {
@@ -61,10 +44,6 @@ atlaas.Views = atlaas.Views || {};
             this.viewCollection[_resultView.model.id] = _resultView;
             this.$el.append(_resultView.render().el);
         },
-
-        // removeOne: function (_result) {
-        //     _result
-        // },
 
         clickResultHandler: function (e) {
             e.preventDefault();
