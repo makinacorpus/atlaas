@@ -272,7 +272,9 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 return;
             }
             // Remove right menu from map bounds for performances
-            this.state.bounds = this.map.getBoundsWithRightOffset(340);
+            // this.state.bounds = this.map.getBoundsWithRightOffset(340);
+
+            this.state.bounds = this.map.getBounds().pad(0.3);
 
             this.poisView.collection.fitToBounds(this.state);
         }
