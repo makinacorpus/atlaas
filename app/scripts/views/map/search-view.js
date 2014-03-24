@@ -22,7 +22,13 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         searchHandler: function (e) {
             if ($(e.target).val() == this.lastValue) return;
             this.lastValue = $(e.target).val();
+
+            this.search(this.lastValue);
         },
+
+        search: function (query) {
+            this.trigger('search', query);
+        }
     });
 
 })();

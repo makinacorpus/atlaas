@@ -22,26 +22,51 @@ atlaas.Collections = atlaas.Collections || {};
         	});
         },
 
-        fitToBounds: function (mapState) {
+        searchBy: function (mapState) {
             var bounds = this.convertBoundsToESFormat(mapState.bounds);
+            var query = {};
 
-            var query = {
-                source: JSON.stringify({
-                	"size" : 300,
-                    "query": {
-                        "filtered": {
-                            "query": {
-                                "match_all": {}
+            if (mapState.search != "") {
+                query = {
+                    source: JSON.stringify({
+                        "size" : 300,
+                        "query": {
+                            "filtered": {
+                                "query": {
+                                    "fuzzy_like_this" : {
+                                        "fields" : ["titre", "ville"],
+                                        "like_text" : mapState.search,
+                                        "max_query_terms" : 12
+                                    }
+                                }
+                            }
+                        },
+                        "filter": {
+                            "geo_bounding_box": {
+                                "lieux.location": bounds
                             }
                         }
-                    },
-                    "filter": {
-                        "geo_bounding_box": {
-                            "lieux.location": bounds
+                    })
+                };
+            } else {
+                query = {
+                    source: JSON.stringify({
+                        "size" : 300,
+                        "query": {
+                            "filtered": {
+                                "query": {
+                                    "match_all": {}
+                                }
+                            }
+                        },
+                        "filter": {
+                            "geo_bounding_box": {
+                                "lieux.location": bounds
+                            }
                         }
-                    }
-                })
-            };
+                    })
+                };
+            }
 
             this.fetch({ data: query });
         },

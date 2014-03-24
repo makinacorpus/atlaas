@@ -19,7 +19,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         state: { 
             categories: null,
-            bounds: {}
+            bounds: {},
+            search: ""
         },
 
         initialize: function () {
@@ -28,6 +29,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.poiResultsView = undefined
             this.searchView = undefined    
             this.resultsCollection = undefined
+            this.poisCollection = undefined
         },
 
         render: function () {
@@ -57,9 +59,9 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         initPois: function () {
-            var poisCollection = new atlaas.Collections.PoisCollection();
+            this.poisCollection = new atlaas.Collections.PoisCollection();
 
-            this.poisView = new atlaas.Views.Map.PoisView({ collection: poisCollection, el: this.map });
+            this.poisView = new atlaas.Views.Map.PoisView({ collection: this.poisCollection, el: this.map });
 
             this.poisView.poiLayer.addTo(this.map);
 
@@ -109,6 +111,12 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 var zoom = this.map.getZoom() > 8 ? this.map.getZoom() : 8;
                 this.map.setView(poiView.markers[0].getLatLng(), zoom);
             });
+
+            this.listenTo(this.searchView, 'search', function (query) {
+                this.state.search = query;
+
+                this.updatePoisState();
+            });
         },
 
         renderPois: function () {
@@ -137,7 +145,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 }
 
                 var poi = this.poiResultsView.viewCollection[poiId];
-                
+
                 this.$resultsContainer.scrollTop(this.$resultsContainer.scrollTop() + poi.$el.position().top);
                 poi.$el.find('.results-menu__item').click();
             }, this));
@@ -264,6 +272,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         onMapViewChanged: function () {
+            this.state.bounds = this.map.getBounds().pad(0.3);
+            
             this.updatePoisState();
         },
 
@@ -274,9 +284,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             // Remove right menu from map bounds for performances
             // this.state.bounds = this.map.getBoundsWithRightOffset(340);
 
-            this.state.bounds = this.map.getBounds().pad(0.3);
-
-            this.poisView.collection.fitToBounds(this.state);
+            this.poisView.collection.searchBy(this.state);
         }
 
     });
