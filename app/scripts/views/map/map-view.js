@@ -30,6 +30,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.searchView = undefined    
             this.resultsCollection = undefined
             this.poisCollection = undefined
+            this.currentView = undefined
         },
 
         render: function () {
@@ -169,6 +170,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             this.listenTo(poiDetailModel, 'sync', function () {
                 this.$el.append(this.poiDetailView.render().el);
+                this.currentView = this.poiDetailView;
                 this.poiDetailView.open();
             });
         },

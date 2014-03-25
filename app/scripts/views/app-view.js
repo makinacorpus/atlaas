@@ -18,11 +18,14 @@ atlaas.Views = atlaas.Views || {};
             this.$pageContainer = $('#pages-container');
             this.$toggleSidebarBt = $('#toggle-sidebar');
 
+            this.currentView = undefined;
+
             this.sidebarView  = new atlaas.Views.SidebarView();
         },
 
         render: function () {
             this.$pageContainer.empty();
+            if(this.currentView) this.currentView.remove();
 
             if (this.sidebarView.isVisible()) this.hideSidebar();
 
@@ -31,16 +34,16 @@ atlaas.Views = atlaas.Views || {};
 
         renderMap: function () {
             this.render();
-            
+
             this.mapView = new atlaas.Views.Map.MapView({map: 'map'});
+
+            this.currentView = this.mapView;
 
             // Prepare DOM before initializing mapView cause Leaflet needs an existing element on init.
             this.$pageContainer.append(this.mapView.render().el);
 
             // Once appended to DOM, init Leaflet map
             this.mapView.initMap();
-
-            // this.mapView.initResultsMenu();
 
             return this;
         },
@@ -49,6 +52,9 @@ atlaas.Views = atlaas.Views || {};
             this.render();
 
             var newsView = new atlaas.Views.NewsView();
+
+            this.currentView = this.newsView;
+
             this.$pageContainer.append(newsView.template());
 
             newsView.render();
@@ -98,6 +104,7 @@ atlaas.Views = atlaas.Views || {};
             this.listenTo(action, 'sync', function () {
                 action.set('id_action', action.id);
                 var actionForm = new atlaas.Views.ActionForm({model: action});
+                this.currentView = actionForm;
                 this.$pageContainer.append(actionForm.render().$el);
             });
             return this;
@@ -106,6 +113,7 @@ atlaas.Views = atlaas.Views || {};
         renderLogin: function() {
             this.render();
             var login = new atlaas.Views.LoginForm();
+            this.currentView = login;
             this.$pageContainer.append(login.render().$el);
             return this;
         },
@@ -118,6 +126,7 @@ atlaas.Views = atlaas.Views || {};
                 var reviewListView = new atlaas.Views.ReviewListView(
                     {collection: collection}
                 );
+                this.currentView = reviewListView;
                 this.$pageContainer.append(reviewListView.render().$el);
             });
         }

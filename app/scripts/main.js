@@ -26,7 +26,7 @@ window.atlaas = {
         var appView = new this.Views.AppView();
 
         this.router.on('route:home', function () {
-            if (!appView.mapView) appView.renderMap();
+            appView.renderMap();
         });
 
         this.router.on('route:news', function () {
@@ -46,17 +46,18 @@ window.atlaas = {
         });
 
         this.router.on('route:poi-detail', function (action_id) {
-            if (!appView.mapView) appView.renderMap();
+            // If subview already present, hide it
+            if (typeof appView.currentView === "undefined" || appView.currentView !== appView.mapView)
+                appView.renderMap();
+
+            // If subview already present, hide it
+            if (typeof appView.mapView.currentView !== "undefined")
+                appView.mapView.currentView.close();
 
             appView.mapView.showPoiDetail(action_id);
         });
 
         this.router.on('route', function (route) {
-            if (atlaas.currentView) {
-                atlaas.currentView.close();
-                atlaas.currentView = undefined;
-            };
-
             appView.sidebarView.updateNavigation(route);
         });
 
