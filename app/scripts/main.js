@@ -52,7 +52,6 @@ window.atlaas = {
 
         this.router.on('route', function (route) {
             appView.sidebarView.updateNavigation(route);
-            appView.hideSidebar();
         });
 
         Backbone.history.start();

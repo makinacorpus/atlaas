@@ -6,7 +6,7 @@ atlaas.Views = atlaas.Views || {};
     'use strict';
 
     atlaas.Views.SidebarView = Backbone.View.extend({
-    	el: '#aside-main',
+    	el: '#main-aside',
 
     	initialize: function () {
 
