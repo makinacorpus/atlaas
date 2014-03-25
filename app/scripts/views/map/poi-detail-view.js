@@ -21,7 +21,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         initialize: function () {
-
+            this.model.fetch();
         },
 
         render: function () {
@@ -36,6 +36,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         closeBtHandler: function (e) {
         	e.preventDefault();
 
+            atlaas.router.navigate("map");
         	this.close();
         },
 
@@ -50,6 +51,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         open: function () {
+            atlaas.currentView = this;
+
         	var tweenIn = TweenLite.fromTo(this.$el, 0.4,
         	    { 'y': atlaas.height*0.2,
         	    opacity: 0},

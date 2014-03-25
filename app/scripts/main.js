@@ -15,6 +15,7 @@ window.atlaas = {
 
         this.height = document.documentElement.clientHeight;
         this.width  = document.documentElement.clientWidth;
+        this.currentView = undefined;
 
         $(window).on('resize', _.bind(function () {
             this.height = document.documentElement.clientHeight;
@@ -25,7 +26,7 @@ window.atlaas = {
         var appView = new this.Views.AppView();
 
         this.router.on('route:home', function () {
-            appView.renderMap();
+            if (!appView.mapView) appView.renderMap();
         });
 
         this.router.on('route:news', function () {
@@ -44,13 +45,18 @@ window.atlaas = {
             appView.renderLogin();
         });
 
-        this.router.on('route:category', function (category) {
-            if (!appView.mapView) appView.renderMap();     
+        this.router.on('route:poi-detail', function (action_id) {
+            if (!appView.mapView) appView.renderMap();
 
-            console.log('category: '+category);
+            appView.mapView.showPoiDetail(action_id);
         });
 
         this.router.on('route', function (route) {
+            if (atlaas.currentView) {
+                atlaas.currentView.close();
+                atlaas.currentView = undefined;
+            };
+
             appView.sidebarView.updateNavigation(route);
         });
 

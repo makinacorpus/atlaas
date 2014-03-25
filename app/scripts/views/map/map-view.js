@@ -94,7 +94,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             });
 
             this.listenTo(this.poiResultsView, 'openResult', function (poi) {
-                this.showPoiDetail(poi.model);
+                atlaas.router.navigate("map/actions/" + poi.model.id);
+                this.showPoiDetail(poi.model.id);
 
                 var poiView = _.find(this.poisView.poiViewCollection, function(_poiView){
                     return _poiView.model.id == poi.model.get('id');
@@ -123,9 +124,9 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.poisView.render();
 
             this.poisView.poiLayer.clusterDetailLayer.on('click', _.bind(function (e) {
-                var currentMarkerId = e.layer.options.id;
-                var currentMarker = this.poisView.collection.get(currentMarkerId);
-                var popupContent = $('<div><h3 class="title">'+currentMarker.get('titre')+'</h3><h4>'+currentMarker.get('lieux')[0].nom+'</h4><a href="'+currentMarkerId+'">En savoir plus</a></div>');
+                var currentPoiId = e.layer.options.id;
+                var currentPoi = this.poisView.collection.get(currentPoiId);
+                var popupContent = $('<div><h3 class="title">'+currentPoi.get('titre')+'</h3><h4>'+currentPoi.get('lieux')[0].nom+'</h4><a href="'+currentPoiId+'">En savoir plus</a></div>');
                 var popup = e.layer;
                 popup.bindPopup(popupContent[0], { autoPan: false });
                 popup.openPopup();
@@ -133,7 +134,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 $(popup.getPopup().getContent()).find('a').one('click', L.Util.bind(function (e) {
                     e.preventDefault();
 
-                    this.showPoiDetail(currentMarker);
+                    atlaas.router.navigate("map/actions/" + poi.model.id);
+                    this.showPoiDetail(currentPoiId);
 
                     popup.closePopup();
                 }, this));
@@ -161,15 +163,14 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.poiResultsView.render();
         },
 
-        showPoiDetail: function (model) {
-            if (typeof this.poiDetailView != 'undefined') {
-                if (this.$el.find(this.poiDetailView.el).length != 0 && this.poiDetailView.model == model) return;
-                this.poiDetailView.close();
-            };
+        showPoiDetail: function (action_id) {
+            var poiDetailModel = new atlaas.Models.PoiDetailModel({ id: action_id });
+            this.poiDetailView = new atlaas.Views.Map.PoiDetailView({ model: poiDetailModel });
 
-            this.poiDetailView = new atlaas.Views.Map.PoiDetailView({ model: model });
-            this.$el.append(this.poiDetailView.render().el);
-            this.poiDetailView.open();
+            this.listenTo(poiDetailModel, 'sync', function () {
+                this.$el.append(this.poiDetailView.render().el);
+                this.poiDetailView.open();
+            });
         },
 
         selectedCategoryHandler: function (categories) {
