@@ -37,6 +37,10 @@ window.atlaas = {
             appView.renderActionForm(action_id);
         });
 
+        this.router.on('route:new', function () {
+            appView.renderActionForm();
+        });
+
         this.router.on('route:reviewlist', function () {
             appView.renderReviewList();
         });
