@@ -7,7 +7,8 @@
     "backbone": "~1.0.0",
     "modernizr": "~2.6.2",
     "normalize-css": "~3.0.0",
-    "leaflet.markercluster": "~0.4.0"
+    "leaflet.markercluster": "~0.4.0",
+    "backbone-forms": "~0.14.0"
   },
   "devDependencies": {
     "lesshat": "~2.0.15"

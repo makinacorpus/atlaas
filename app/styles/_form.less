@@ -1,0 +1,83 @@
+.action-form {
+	fieldset {
+		background: @grayLighter;
+		border: none;
+		margin: 0;
+		margin-right: 340px;
+		padding: 10px;
+
+		> div {
+			.clearfix();
+
+			label {
+				float: left;
+				width: 25%;
+				padding: 0.8em;
+				color: #928886;
+			}
+
+			> div {
+				float: left;
+				width: 75%;
+				min-height: 46px;
+
+				> span {
+					> div {
+						line-height: 46px;					
+					}
+				}
+			}
+
+			& + div {
+				margin-top: 10px;
+			}
+		}
+	}
+
+	input {
+		border: none;
+		background: white;
+		border: none;
+		padding: 0.8em;
+		border-top: 1px solid transparent;
+		border-bottom: 1px solid transparent;
+		width: 100%;
+		.transition(border-top 400ms);
+
+		&:focus,
+		&:active {
+			outline: none;
+			border-top: 1px solid @orange;
+		}
+	}
+
+	textarea {
+		border: none;
+		width: 100%;
+		max-width: 100%;
+		min-height: 100px;
+		padding: 0.8em;
+		display: block;
+		border-top: 1px solid transparent;
+		border-bottom: 1px solid transparent;
+		.transition(border-top 400ms);
+
+		&:focus,
+		&:active {
+			outline: none;
+			border-top: 1px solid @orange;
+		}
+	}
+}
+
+.action-form__bt--save {
+	border: none;
+	background: @orange;
+	padding: 0.5em 2em;
+	color: white;
+	text-decoration: none;
+
+	&:hover {
+		background: darken(@orange, 20%);
+	}
+}

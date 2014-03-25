@@ -5,6 +5,7 @@
 @green : #008f76;
 @blue : #008acf;
 @grayLight : #EEE;
+@grayLighter : #F7F5F2;
 @text-color : black;
 
 @import '../bower_components/lesshat/build/lesshat';
@@ -42,11 +43,11 @@ a, button {
 .container {
     width: 100%;
     height: 100%;
-    background: white;
 }
 
 #main-container {
     position: absolute;
+    background: white;
     z-index: 1;
     .transform-style(preserve-3d);
 
@@ -198,6 +199,14 @@ header {
     }
 }
 
+#action-form {
+    overflow: auto;
+
+    .content {
+        padding: 10px;
+    }
+}
+
 #map-container {
     overflow: hidden;
     position: relative;
@@ -207,6 +216,7 @@ header {
 @import '_nav';
 @import '_results-menu';
 @import '_poi-detail';
+@import '_form';
 
 
 

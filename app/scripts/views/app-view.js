@@ -25,7 +25,7 @@ atlaas.Views = atlaas.Views || {};
 
         render: function () {
             this.$pageContainer.empty();
-            if(this.currentView) this.currentView.remove();
+            if(typeof this.currentView !== "undefined") this.currentView.remove();
 
             if (this.sidebarView.isVisible()) this.hideSidebar();
 
@@ -55,9 +55,7 @@ atlaas.Views = atlaas.Views || {};
 
             this.currentView = this.newsView;
 
-            this.$pageContainer.append(newsView.template());
-
-            newsView.render();
+            this.$pageContainer.append(newsView.render().el);
 
             return this;
         },
@@ -98,15 +96,25 @@ atlaas.Views = atlaas.Views || {};
 
         renderActionForm: function(action_id) {
             this.render();
-            var action = new atlaas.Models.PoiModel();
-            action.id = action_id;
-            action.fetch();
-            this.listenTo(action, 'sync', function () {
+
+            var action = new atlaas.Models.PoiDetailModel({ id: action_id });
+            
+            if (typeof action_id !== "undefined") { // Edit action
+                action.id = action_id;
                 action.set('id_action', action.id);
-                var actionForm = new atlaas.Views.ActionForm({model: action});
-                this.currentView = actionForm;
-                this.$pageContainer.append(actionForm.render().$el);
-            });
+                action.fetch();
+                
+                this.listenTo(action, 'sync', function () {
+                    var actionFormView = new atlaas.Views.ActionForm({ model: action });
+                    this.currentView = actionFormView;
+                    this.$pageContainer.append(actionFormView.render().$el);
+                });
+            } else { // New action
+                var actionFormView = new atlaas.Views.ActionForm({ model: action });
+                this.currentView = actionFormView;
+                this.$pageContainer.append(actionFormView.render().$el);
+            }
+            
             return this;
         },
 

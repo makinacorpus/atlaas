@@ -6,17 +6,35 @@ atlaas.Views = atlaas.Views || {};
     'use strict';
 
     atlaas.Views.ActionForm = Backbone.View.extend({
-        className: 'action-form-container',
+        id: 'action-form',
 
-        template: JST['app/scripts/templates/action-form.ejs'],
+        className: 'action-form container',
+
+        templateEdit: JST['app/scripts/templates/action-edit-form.ejs'],
+        
+        templateNew: JST['app/scripts/templates/action-new-form.ejs'],
 
         events: {
             'click .action-form__bt--save': 'submitForReview'
         },
 
+        initialize: function () {
+            this.form = new Backbone.Form({
+                model: this.model
+            });
+        },
+
         render: function () {
-            this.$el.html(this.template(this.model.toJSON()));
-            return this
+            this.form.render();
+
+            if (typeof this.model.id === "undefined")
+                this.$el.html(this.templateNew());
+            else
+                this.$el.html(this.templateEdit());
+
+            this.$el.find('.form-container').append(this.form.el);
+
+            return this;
         },
 
         submitForReview: function(e) {

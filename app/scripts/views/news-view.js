@@ -7,7 +7,9 @@ atlaas.Views = atlaas.Views || {};
 
     // News view : the news page.
     atlaas.Views.NewsView = Backbone.View.extend({
-    	el: '#news',
+    	id: 'news',
+
+        className: 'container',
 
         template: JST['app/scripts/templates/news-view.ejs'],
 
@@ -17,6 +19,8 @@ atlaas.Views = atlaas.Views || {};
 
         render: function () {
         	this.$el.html(this.template());
+
+            return this;
         }
 
     });
