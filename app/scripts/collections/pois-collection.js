@@ -33,10 +33,10 @@ atlaas.Collections = atlaas.Collections || {};
                         "query": {
                             "filtered": {
                                 "query": {
-                                    "fuzzy_like_this" : {
+                                    "multi_match" : {
                                         "fields" : ["titre", "ville"],
-                                        "like_text" : mapState.search,
-                                        "max_query_terms" : 12
+                                        "type":       "phrase_prefix",
+                                        "query" : mapState.search
                                     }
                                 }
                             }
