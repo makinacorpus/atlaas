@@ -1,4 +1,4 @@
-.action-form {
+.form-horizontal {
 	fieldset {
 		background: @grayLighter;
 		border: none;
@@ -7,30 +7,25 @@
 		padding: 10px;
 
 		> div {
-			.clearfix();
-
 			label {
 				float: left;
 				width: 25%;
-				padding: 0.8em;
+				margin: 0.8em 0;
 				color: #928886;
 			}
 
 			> div {
 				float: left;
 				width: 75%;
-				min-height: 46px;
-
-				> span {
-					> div {
-						line-height: 46px;					
-					}
-				}
 			}
 
 			& + div {
 				margin-top: 10px;
 			}
+		}
+
+		.field-date .col-sm-10 {
+			line-height: 46px;
 		}
 	}
 
@@ -68,9 +63,35 @@
 			border-top: 1px solid @orange;
 		}
 	}
+
+	ul.unstyled {
+		margin: 0;
+		padding: 0;
+
+		li {
+			position: relative;
+			list-style: none;
+
+			> div {
+				background: white;
+				padding: 0.8em;
+			}
+
+			& + li {
+				border-top: 1px solid @grayLighter;
+			}
+
+			.bbf-del {
+				position: absolute;
+				bottom: 0;
+				right: 0;
+			}
+		}
+	}
 }
 
-.action-form__bt--save {
+.modal .btn,
+.action-form button {
 	border: none;
 	background: @orange;
 	padding: 0.5em 2em;
@@ -79,5 +100,28 @@
 
 	&:hover {
 		background: darken(@orange, 20%);
+	}
+	
+	&.cancel {
+		background: @blueDark;
+
+		&:hover {
+			background: darken(@blueDark, 20%);
+		}
+	}
+}
+
+.btn {
+	&.bbf-add {
+		margin-top: 5px;
+	}
+
+	&.bbf-del {
+		padding: 0.5em 0.85em;
+		background: @blueDark;
+
+		&:hover {
+			background: darken(@blueDark, 20%);
+		}
 	}
 }

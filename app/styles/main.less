@@ -1,9 +1,12 @@
-// Variables
+//== Variables
+//
+//##
 @orange : #E94F35;
 @orangeDark : #9E311F;
 @yellow : #f6b133;
 @green : #008f76;
 @blue : #008acf;
+@blueDark : #0A2D40;
 @grayLight : #EEE;
 @grayLighter : #F7F5F2;
 @text-color : black;
@@ -33,11 +36,16 @@ h2 {
 }
 
 a, button {
+    outline: none;
     .transition(250ms all);
 
     &:hover {
         text-decoration: none;
     }
+}
+
+.pull-left {
+    float: left;
 }
 
 .container {
@@ -212,7 +220,9 @@ header {
     position: relative;
 }
 
-// objects
+//== Objects
+//
+//##
 @import '_nav';
 @import '_results-menu';
 @import '_poi-detail';
@@ -220,7 +230,9 @@ header {
 
 
 
-// Leaflet custom icon
+//== Leaflet custom icon
+//
+//##
 .custom-icon {
     background-image: url(../images/icon.svg);
     width: 33px;
@@ -288,9 +300,15 @@ header {
 
 
 
-// Utils
+//== Utils
+//
+//##
 
 // Bootstrap 3 awesome mixin
+.clearfix {
+    .clearfix();
+}
+
 .clearfix() {
   &:before,
   &:after {
@@ -309,7 +327,8 @@ header {
     .clearfix();
 }
 
-.row {
+.row,
+.form-group {
     margin: 0 -2em;
     .clearfix();
 }
@@ -322,6 +341,9 @@ header {
     width: 30%;
 }
 
+//== Custom fonts
+//
+//##
 @charset "UTF-8";
 
 @font-face {
@@ -414,7 +436,9 @@ header {
   content: "q";
 }
 
-// Marker clusters
+//== Marker clusters
+//
+//##
 .marker-cluster-small {
     background-color: fade(@orange, 60%);
 }
@@ -457,3 +481,84 @@ header {
 .leaflet-oldie .marker-cluster-large div {
     background-color: @orange;
 }
+
+//== Boostrap modules
+//
+//##
+
+//== Bootstrap modals variables dependencies
+//
+//##
+
+//** Unit-less `line-height` for use in components like buttons.
+@line-height-base:        1.428571429; // 20/14
+
+//** Z-indexes
+@zindex-modal-background:  1040;
+@zindex-modal:             1050;
+
+//== Media queries breakpoints
+//
+//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
+
+// Extra small screen / phone
+// Note: Deprecated @screen-xs and @screen-phone as of v3.0.1
+@screen-xs:                  480px;
+@screen-xs-min:              @screen-xs;
+@screen-phone:               @screen-xs-min;
+
+// Small screen / tablet
+// Note: Deprecated @screen-sm and @screen-tablet as of v3.0.1
+@screen-sm:                  768px;
+@screen-sm-min:              @screen-sm;
+@screen-tablet:              @screen-sm-min;
+
+// Medium screen / desktop
+// Note: Deprecated @screen-md and @screen-desktop as of v3.0.1
+@screen-md:                  992px;
+@screen-md-min:              @screen-md;
+@screen-desktop:             @screen-md-min;
+
+// Large screen / wide desktop
+// Note: Deprecated @screen-lg and @screen-lg-desktop as of v3.0.1
+@screen-lg:                  1200px;
+@screen-lg-min:              @screen-lg;
+@screen-lg-desktop:          @screen-lg-min;
+
+// So media queries don't overlap when required, provide a maximum
+@screen-xs-max:              (@screen-sm-min - 1);
+@screen-sm-max:              (@screen-md-min - 1);
+@screen-md-max:              (@screen-lg-min - 1);
+
+@border-radius-large:       6px;
+
+//** Padding applied to the modal body
+@modal-inner-padding:         20px;
+
+//** Padding applied to the modal title
+@modal-title-padding:         15px;
+//** Modal title line-height
+@modal-title-line-height:     @line-height-base;
+
+//** Background color of modal content area
+@modal-content-bg:                             #fff;
+//** Modal content border color
+@modal-content-border-color:                   rgba(0,0,0,.2);
+//** Modal content border color **for IE8**
+@modal-content-fallback-border-color:          #999;
+
+//** Modal backdrop background color
+@modal-backdrop-bg:           #000;
+//** Modal backdrop opacity
+@modal-backdrop-opacity:      .5;
+//** Modal header border color
+@modal-header-border-color:   #e5e5e5;
+//** Modal footer border color
+@modal-footer-border-color:   @modal-header-border-color;
+
+@modal-lg:                    900px;
+@modal-md:                    600px;
+@modal-sm:                    300px;
+
+@import 'vendor/bootstrap/component-animations';
+@import 'vendor/bootstrap/modals';
