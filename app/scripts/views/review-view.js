@@ -23,11 +23,10 @@ atlaas.Views = atlaas.Views || {};
 
             return this;
         }
-        
     });
 
     atlaas.Views.ReviewItemView = Backbone.View.extend({
-        
+
         tagName: 'li',
 
         template: JST['app/scripts/templates/reviewitem-view.ejs'],

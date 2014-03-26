@@ -7,7 +7,7 @@ window.atlaas = {
     Views: {},
     Routers: {},
     CONFIG: {
-        elasticsearch: 'http://elastic-local.makina-corpus.net/atlaas',
+        elasticsearch: 'http://elastic.makina-corpus.net/atlaas',
         secure_elasticsearch: 'http://secured-elastic-local.makina-corpus.net/atlaas'
     },
     init: function () {

@@ -19,9 +19,18 @@ atlaas.Models = atlaas.Models || {};
         schema: {
             titre:      'Text',
             sous_titre: 'Text',
-            synthese:   'TextArea',
             date:       'Date',
-            liens:      'Text'
+            actions:    'TextArea',
+            synthese:   'TextArea',
+            outils:     'Text',
+            prestataires:'Text',
+            recommandations: 'Text',
+            resultats:  'TextArea',
+            liens:      'Text',
+            personnes:  { type: 'List', itemType: 'Object', subSchema: {
+                nom: 'Text',
+                titre: 'Text'    
+            } }
         },
 
         validate: function(attrs, options) {

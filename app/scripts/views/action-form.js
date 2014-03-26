@@ -19,6 +19,13 @@ atlaas.Views = atlaas.Views || {};
         },
 
         initialize: function () {
+            console.log(Backbone.Form.editors.List.Modal.ModalAdapter);
+            //Use BootstrapModal for object List editor
+            Backbone.Form.editors.List.Modal.ModalAdapter = Backbone.BootstrapModal;
+
+            console.log(Backbone.Form.editors.List.Modal.ModalAdapter);
+            console.log(Backbone.BootstrapModal);
+
             this.form = new Backbone.Form({
                 model: this.model
             });
