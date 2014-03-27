@@ -13,6 +13,7 @@ atlaas.Views = atlaas.Views || {};
         initialize: function () {
             this.poiViewCollection          = [];
             this.poiLayer                   = new L.POILayer();
+            this.departments                = undefined;
 
             // Initialy, display a poi summary
             var query = {
@@ -23,7 +24,7 @@ atlaas.Views = atlaas.Views || {};
                     }
                 })
             };
-            
+
             this.collection.fetch({ data: query });
             this.listenTo(this.collection, "reset", this.render);
 
@@ -57,20 +58,70 @@ atlaas.Views = atlaas.Views || {};
         },
 
         loadDepartments: function () {
-            var poiPerDepartment    = atlaas.CONFIG.elasticsearch + '/actions/_search?source={%22size%22:0,%22facets%22:%20{%22test%22:%20{%22terms%22:%20{%22size%22:100,%22script%22:%20%22doc[%27lieux.region%27].value%22},%22global%22:%20false}}}',
-                departments         = 'scripts/helpers/regions.geojson';
+            var departmentsUrl = 'scripts/helpers/regions.geojson';
             
-            
-            $.when($.getJSON(poiPerDepartment), $.getJSON(departments))
-            .done(L.Util.bind(function (pois, departments) {
+            $.when($.getJSON(departmentsUrl))
+            .done(L.Util.bind(function (_departments) {
+                this.departments = _departments;
+                this.updateDepartments();
+            }, this));
+        },
 
+        updateDepartments: function (mapState) {
+            var query = {};
+
+            this.poiLayer.clusterLayer.clearLayers();
+            
+            if (this.el.hasLayer(this.poiLayer.clusterLayer))
+                this.el.removeLayer(this.poiLayer.clusterLayer);
+
+            if (typeof mapState !== "undefined" && mapState.search != "") {
+                query = {
+                    "size":0,
+                    "query": {
+                        "filtered": {
+                            "query": {
+                                "fuzzy_like_this" : {
+                                    "fields" : ["titre", "ville"],
+                                    "like_text" : mapState.search
+                                }
+                            }
+                        }
+                    },
+                    "facets": {
+                        "test": {
+                            "terms": {
+                                "size": 100,
+                                "script": "doc['lieux.region'].value"
+                            },
+                            "global": false
+                        }
+                    }
+                };
+            } else {
+                query = {
+                    "size":0,
+                    "facets": {
+                        "test": {
+                            "terms": {
+                                "size": 100,
+                                "script": "doc['lieux.region'].value"
+                            },
+                            "global": false
+                        }
+                    }
+                };
+            }
+            
+            $.when($.getJSON(atlaas.CONFIG.elasticsearch + '/actions/_search?source=' + encodeURIComponent(JSON.stringify(query))))
+            .done(L.Util.bind(function (pois) {
                 var terms = {};
                 
-                _.each(pois[0].facets.test.terms, function (department) {
+                _.each(pois.facets.test.terms, function (department) {
                     terms[department.term] = department.count;
                 });
 
-                _.each(departments[0].features, function (department) {
+                _.each(this.departments.features, function (department) {
                     var lat     = department.geometry.coordinates[0],
                         lng     = department.geometry.coordinates[1],
                         id      = department.properties.CODE_REG,
@@ -85,7 +136,7 @@ atlaas.Views = atlaas.Views || {};
 
                 this.el.addLayer(this.poiLayer.clusterLayer);
             }, this));
-        },
+        }
 
     });
 

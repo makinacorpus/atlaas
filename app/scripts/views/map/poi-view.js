@@ -11,7 +11,7 @@ atlaas.Views = atlaas.Views || {};
         customIcon: L.divIcon({className:'custom-icon', iconSize:null, popupAnchor: [-2, -40]}),
 
         initialize: function () {
-            console.log(this.model.toJSON());
+            // console.log(this.model.toJSON());
 
             // this can have multiples markers/location for the same poi
             this.markers = [],

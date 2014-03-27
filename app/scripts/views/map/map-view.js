@@ -282,12 +282,13 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         updatePoisState: function () {
             if (this.poisView.poiLayer._clustered) {
-                return;
+                this.poisView.updateDepartments(this.state);
+            } else {
+                this.poisView.collection.searchBy(this.state);
             }
+            
             // Remove right menu from map bounds for performances
             // this.state.bounds = this.map.getBoundsWithRightOffset(340);
-
-            this.poisView.collection.searchBy(this.state);
         }
 
     });
