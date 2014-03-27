@@ -192,7 +192,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         resetFilters: function () {
-            this.state = { categories: null, bounds: [] };
+            this.state.categories = null;
 
             this.updatePoisState();
         },
