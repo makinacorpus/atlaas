@@ -15,76 +15,64 @@ atlaas.Collections = atlaas.Collections || {};
             return response.hits.hits;
         },
 
-        filterBy: function (categories) {
-        	return categories == null ? this.models : this.filter(function (poi) {
-                var poi = _.where(poi.get('services'), categories);
-        		return poi.length;
-        	});
-        },
-
         searchBy: function (mapState) {
             var bounds = this.convertBoundsToESFormat(mapState.bounds);
             var query = {};
-
-            var categoriesQuery = _.map(mapState.categories, function(value, key) {
-                var object = {};
-                object[key] = value;
-                return {
-                    "match_phrase" : object
+            var filtersQuery = {
+                "bool" : {
+                    "must" : []
                 }
-            });
+            };
 
-            if (mapState.search != "") {
-                query = {
-                    source: JSON.stringify({
-                        "size" : 1000,
-                        "query": {
-                            "filtered": {
-                                "query": {
-                                    "fuzzy_like_this" : {
-                                        "fields" : ["titre", "ville"],
-                                        "like_text" : mapState.search
-                                    }
-                                }
-                            }
-                        },
-                        "filter": {
-                            "geo_bounding_box": {
-                                "lieux.location": bounds
-                            }
-                        }
-                    })
-                };
-            } else if (mapState.categories != null) {
-                query = {
-                    source: JSON.stringify({
-                        "size" : 1000,
-                        "query": {
-                            "bool" : {
-                                "must" : categoriesQuery
-                            }
-                        }
-                    })
-                };
-            } else {
-                query = {
-                    source: JSON.stringify({
-                        "size" : 1000,
-                         "query": {
-                            "filtered": {
-                                "query": {
-                                    "match_all": {}
-                                }
-                            }
-                        },
-                        "filter": {
-                            "geo_bounding_box": {
-                                "lieux.location": bounds
-                            }
-                        }
-                    })
-                };
+            // If no filter att all
+            if (mapState.search == "" && mapState.categories == null) {
+                filtersQuery.bool.must.push({ 
+                    "match_all": {}
+                });
             }
+
+            // If text search
+            if (mapState.search != "") {
+                filtersQuery.bool.must.push({ 
+                    "fuzzy_like_this" : {
+                        "fields" : ["titre", "ville"],
+                        "like_text" : mapState.search
+                    }
+                });
+            }
+
+            // If category selected
+            if (mapState.categories != null) {
+                var categoriesQuery = _.map(mapState.categories, function(value, key) {
+                    var object = {};
+                    object[key] = value;
+                    return {
+                        "match_phrase" : object
+                    }
+                });
+
+                filtersQuery.bool.must.push({ 
+                    "bool" : {
+                        "must" : categoriesQuery
+                    }
+                });
+            }
+
+            query = {
+                source: JSON.stringify({
+                    "size" : 1000,
+                    "query": {
+                        "filtered": {
+                            "query": filtersQuery
+                        }
+                    },
+                    "filter": {
+                        "geo_bounding_box": {
+                            "lieux.location": bounds
+                        }
+                    }
+                })
+            };
 
             this.fetch({ data: query });
         },

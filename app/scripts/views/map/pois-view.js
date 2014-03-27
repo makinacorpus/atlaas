@@ -67,52 +67,75 @@ atlaas.Views = atlaas.Views || {};
             }, this));
         },
 
-        updateDepartments: function (mapState) {
+        updateDepartments: function (_mapState) {
             var query = {};
+            var filtersQuery = {
+                "bool" : {
+                    "must" : []
+                }
+            };
+            var mapState = typeof _mapState === "undefined" ? { 
+                categories: null,
+                search: ""
+            } : _mapState;
 
             this.poiLayer.clusterLayer.clearLayers();
             
             if (this.el.hasLayer(this.poiLayer.clusterLayer))
                 this.el.removeLayer(this.poiLayer.clusterLayer);
 
-            if (typeof mapState !== "undefined" && mapState.search != "") {
-                query = {
-                    "size":0,
-                    "query": {
-                        "filtered": {
-                            "query": {
-                                "fuzzy_like_this" : {
-                                    "fields" : ["titre", "ville"],
-                                    "like_text" : mapState.search
-                                }
-                            }
-                        }
-                    },
-                    "facets": {
-                        "test": {
-                            "terms": {
-                                "size": 100,
-                                "script": "doc['lieux.region'].value"
-                            },
-                            "global": false
-                        }
-                    }
-                };
-            } else {
-                query = {
-                    "size":0,
-                    "facets": {
-                        "test": {
-                            "terms": {
-                                "size": 100,
-                                "script": "doc['lieux.region'].value"
-                            },
-                            "global": false
-                        }
-                    }
-                };
+            // If no filter att all
+            if (mapState.search == "" && mapState.categories == null) {
+                filtersQuery.bool.must.push({ 
+                    "match_all": {}
+                });
             }
-            
+
+            // If text search
+            if (mapState.search != "") {
+                filtersQuery.bool.must.push({ 
+                    "fuzzy_like_this" : {
+                        "fields" : ["titre", "ville"],
+                        "like_text" : mapState.search
+                    }
+                });
+            }
+
+            // If category selected
+            if (mapState.categories != null) {
+                var categoriesQuery = _.map(mapState.categories, function(value, key) {
+                    var object = {};
+                    object[key] = value;
+                    return {
+                        "match_phrase" : object
+                    }
+                });
+
+                filtersQuery.bool.must.push({ 
+                    "bool" : {
+                        "must" : categoriesQuery
+                    }
+                });
+            }
+
+            query = {
+                "size" : 0,
+                "query": {
+                    "filtered": {
+                        "query": filtersQuery
+                    }
+                },
+                "facets": {
+                    "test": {
+                        "terms": {
+                            "size": 100,
+                            "script": "doc['lieux.region'].value"
+                        },
+                        "global": false
+                    }
+                }
+            };
+
             $.when($.getJSON(atlaas.CONFIG.elasticsearch + '/actions/_search?source=' + encodeURIComponent(JSON.stringify(query))))
             .done(L.Util.bind(function (pois) {
                 var terms = {};
@@ -136,7 +159,7 @@ atlaas.Views = atlaas.Views || {};
 
                 this.el.addLayer(this.poiLayer.clusterLayer);
             }, this));
-        }
+        },
 
     });
 
