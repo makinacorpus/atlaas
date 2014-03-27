@@ -14,7 +14,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.options = options || {};
 
             this.categorieViewCollection = [];
-            this.selectedCategories = {}
+            this.selectedCategories = {};
 
             var query = {
                 source: JSON.stringify({
@@ -44,7 +44,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             var $item = $(e.target);
 
-            this.selectedCategories[$item.data('type')] = $item.text();
+            this.selectedCategories['services.' + $item.data('type')] = $item.text();
 
             this.trigger('selected');
         }

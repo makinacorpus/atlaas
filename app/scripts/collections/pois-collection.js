@@ -26,10 +26,18 @@ atlaas.Collections = atlaas.Collections || {};
             var bounds = this.convertBoundsToESFormat(mapState.bounds);
             var query = {};
 
+            var categoriesQuery = _.map(mapState.categories, function(value, key) {
+                var object = {};
+                object[key] = value;
+                return {
+                    "match_phrase" : object
+                }
+            });
+
             if (mapState.search != "") {
                 query = {
                     source: JSON.stringify({
-                        "size" : 300,
+                        "size" : 1000,
                         "query": {
                             "filtered": {
                                 "query": {
@@ -47,11 +55,22 @@ atlaas.Collections = atlaas.Collections || {};
                         }
                     })
                 };
+            } else if (mapState.categories != null) {
+                query = {
+                    source: JSON.stringify({
+                        "size" : 1000,
+                        "query": {
+                            "bool" : {
+                                "must" : categoriesQuery
+                            }
+                        }
+                    })
+                };
             } else {
                 query = {
                     source: JSON.stringify({
-                        "size" : 300,
-                        "query": {
+                        "size" : 1000,
+                         "query": {
                             "filtered": {
                                 "query": {
                                     "match_all": {}

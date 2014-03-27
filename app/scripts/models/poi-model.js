@@ -22,11 +22,11 @@ atlaas.Models = atlaas.Models || {};
         parse: function(response, options)  {
             response = response._source;
             response.id = response.id_action;
-
             // TODO : clean it server side
             _.each(response.services, function (service) {
-                service.enjeu_de_developpement = service.enjeu_de_developpement.substring(3);
-                service.usage = service.usage.substring(3);
+                // console.log(service.enjeu_de_developpement);
+                // service.enjeu_de_developpement = service.enjeu_de_developpement.substring(3);
+                // service.usage = service.usage.substring(3);
             });
 
             delete response.id_action;
