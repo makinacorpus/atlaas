@@ -16,23 +16,38 @@ atlaas.Collections = atlaas.Collections || {};
         },
 
         searchBy: function (mapState) {
-            var bounds = this.convertBoundsToESFormat(mapState.bounds);
+            var querySize = 30;
+            var bounds = {};
             var query = {};
             var filtersQuery = {
                 "bool" : {
                     "must" : []
                 }
             };
+            var boundsQuery = {};
 
-            // If no filter att all
-            if (mapState.search == "" && mapState.categories == null) {
+            // If bounds specified, load maximum of pois in bound
+            if (mapState.bounds !== null) {
+                querySize = 1000;
+                bounds = this.convertBoundsToESFormat(mapState.bounds);
+                boundsQuery = {
+                    "filter": {
+                        "geo_bounding_box": {
+                            "lieux.location": bounds
+                        }
+                    }
+                }
+            }
+
+            // If no filter at all
+            if (mapState.search === "" && mapState.categories === null) {
                 filtersQuery.bool.must.push({ 
                     "match_all": {}
                 });
             }
 
             // If text search
-            if (mapState.search != "") {
+            if (mapState.search !== "") {
                 filtersQuery.bool.must.push({ 
                     "fuzzy_like_this" : {
                         "fields" : ["titre", "ville"],
@@ -42,7 +57,7 @@ atlaas.Collections = atlaas.Collections || {};
             }
 
             // If category selected
-            if (mapState.categories != null) {
+            if (mapState.categories !== null) {
                 var categoriesQuery = _.map(mapState.categories, function(value, key) {
                     var object = {};
                     object[key] = value;
@@ -59,20 +74,22 @@ atlaas.Collections = atlaas.Collections || {};
             }
 
             query = {
-                source: JSON.stringify({
-                    "size" : 1000,
+                source: {
+                    "size" : querySize,
                     "query": {
                         "filtered": {
                             "query": filtersQuery
                         }
-                    },
-                    "filter": {
-                        "geo_bounding_box": {
-                            "lieux.location": bounds
-                        }
                     }
-                })
+                }
             };
+
+            _.extend(query.source, boundsQuery);
+
+            query = {
+                source: JSON.stringify(query.source)
+            }
+
 
             this.fetch({ data: query });
         },

@@ -80,11 +80,6 @@ atlaas.Views = atlaas.Views || {};
                 search: ""
             } : _mapState;
 
-            // this.poiLayer.clusterLayer.clearLayers();
-            
-            // if (this.el.hasLayer(this.poiLayer.clusterLayer))
-            //     this.el.removeLayer(this.poiLayer.clusterLayer);
-
             // If no filter att all
             if (mapState.search == "" && mapState.categories == null) {
                 filtersQuery.bool.must.push({ 
@@ -145,6 +140,7 @@ atlaas.Views = atlaas.Views || {};
                     terms[department.term] = department.count;
                 });
 
+                // Init markers
                 if (typeof this.departmentsMarkers === "undefined") {
                     this.departmentsMarkers = {};
 
@@ -161,20 +157,21 @@ atlaas.Views = atlaas.Views || {};
                         }
                     }, this);
                 } else {
+                    // Update markers
                     var newMarkers = {};
+                    
                     _.each(this.departments.features, function (department, index) {
                         var lat     = department.geometry.coordinates[0],
                             lng     = department.geometry.coordinates[1],
                             id      = department.properties.CODE_REG,
                             myIcon  = L.divIcon({className: 'regions-cluster-icon', iconSize:null});
                         if(terms[department.properties.CODE_REG]) {
-                            console.log(terms[department.properties.CODE_REG]);
                             myIcon.options.html = '<div><span>'+terms[department.properties.CODE_REG]+'</span></div>';
                             var marker = L.marker([lng, lat], {icon: myIcon});
                             newMarkers[index] = marker;
                         }
                     }, this);
-                    
+
                     // Removing no longer visible markers
                     for (var marker in this.departmentsMarkers) {
                         if (newMarkers[marker] === undefined) {
@@ -186,11 +183,13 @@ atlaas.Views = atlaas.Views || {};
 
                     // Adding new markers
                     for (var marker in newMarkers) {
-                        console.log(this.departmentsMarkers[marker]);
                         if (this.departmentsMarkers[marker] === undefined) {
                             var layer = newMarkers[marker];
                             this.departmentsMarkers[marker] = layer;
                             this.poiLayer.clusterLayer.addLayer(this.departmentsMarkers[marker]);
+                        } else {
+                            // Markers already on map, update their number
+                            $(this.departmentsMarkers[marker]._icon).html(newMarkers[marker].options.icon.options.html);
                         }
                     }
                 }
@@ -198,7 +197,7 @@ atlaas.Views = atlaas.Views || {};
         },
 
         initPois: function () {
-           
+            
         }
 
     });
