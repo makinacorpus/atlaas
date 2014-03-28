@@ -159,7 +159,7 @@ atlaas.Views = atlaas.Views || {};
                 } else {
                     // Update markers
                     var newMarkers = {};
-                    
+
                     _.each(this.departments.features, function (department, index) {
                         var lat     = department.geometry.coordinates[0],
                             lng     = department.geometry.coordinates[1],
@@ -193,6 +193,12 @@ atlaas.Views = atlaas.Views || {};
                         }
                     }
                 }
+
+                _.each(this.departmentsMarkers, _.bind(function (marker) {
+                    marker.on('click', _.bind(function (e) {
+                        this.trigger('zoomTo', e);
+                    }, this));
+                }, this));
             }, this));
         },
 

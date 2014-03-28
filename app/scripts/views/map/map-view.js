@@ -70,6 +70,10 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 this.renderPois();
                 this.renderPoisResults();
             });
+
+            this.listenTo(this.poisView, 'zoomTo', function (marker) {
+                this.map.setZoomAround(marker.latlng, 8);
+            });
         },
 
         initMenu: function () {
