@@ -132,6 +132,10 @@ atlaas.Views = atlaas.Views || {};
                 }
             };
 
+            _.each(this.departmentsMarkers, _.bind(function (marker) {
+                marker.off('click');
+            }, this));
+
             $.when($.getJSON(atlaas.CONFIG.elasticsearch + '/actions/_search?source=' + encodeURIComponent(JSON.stringify(query))))
             .done(L.Util.bind(function (pois) {
                 var terms = {};
