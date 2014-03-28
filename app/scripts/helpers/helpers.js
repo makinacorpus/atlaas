@@ -41,8 +41,8 @@ L.POILayer = L.LayerGroup.extend({
     },
 
     onRemove: function () {
-        if (this._map.hasLayer(this.clusterLayer))
-            this._map.removeLayer(this.clusterLayer);
+        if (this.hasLayer(this.clusterLayer))
+            this.removeLayer(this.clusterLayer);
         L.LayerGroup.prototype.onRemove.apply(this, arguments);
         map.off('zoomend', this.__onZoomChanged, this);
     },
@@ -93,15 +93,15 @@ L.POILayer = L.LayerGroup.extend({
     },
 
     __cluster: function () {
-        this._map.addLayer(this.clusterLayer);
+        this.addLayer(this.clusterLayer);
 
-        this._map.removeLayer(this.clusterDetailLayer);
+        this.removeLayer(this.clusterDetailLayer);
     },
 
     __uncluster: function () {
-        this._map.removeLayer(this.clusterLayer);
+        this.removeLayer(this.clusterLayer);
 
-        this._map.addLayer(this.clusterDetailLayer);
+        this.addLayer(this.clusterDetailLayer);
     },
 
 });

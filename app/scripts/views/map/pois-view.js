@@ -14,6 +14,7 @@ atlaas.Views = atlaas.Views || {};
             this.poiViewCollection          = [];
             this.poiLayer                   = new L.POILayer();
             this.departments                = undefined;
+            this.departmentsMarkers         = undefined;
 
             // Initialy, display a poi summary
             var query = {
@@ -30,7 +31,7 @@ atlaas.Views = atlaas.Views || {};
 
             this.loadDepartments();
 
-            this.poiLayer.addTo(this.el);
+            this.poiLayer.addLayer(this.poiLayer.clusterLayer);
         },
 
         render: function () {
@@ -79,10 +80,10 @@ atlaas.Views = atlaas.Views || {};
                 search: ""
             } : _mapState;
 
-            this.poiLayer.clusterLayer.clearLayers();
+            // this.poiLayer.clusterLayer.clearLayers();
             
-            if (this.el.hasLayer(this.poiLayer.clusterLayer))
-                this.el.removeLayer(this.poiLayer.clusterLayer);
+            // if (this.el.hasLayer(this.poiLayer.clusterLayer))
+            //     this.el.removeLayer(this.poiLayer.clusterLayer);
 
             // If no filter att all
             if (mapState.search == "" && mapState.categories == null) {
@@ -139,27 +140,66 @@ atlaas.Views = atlaas.Views || {};
             $.when($.getJSON(atlaas.CONFIG.elasticsearch + '/actions/_search?source=' + encodeURIComponent(JSON.stringify(query))))
             .done(L.Util.bind(function (pois) {
                 var terms = {};
-                
+
                 _.each(pois.facets.test.terms, function (department) {
                     terms[department.term] = department.count;
                 });
 
-                _.each(this.departments.features, function (department) {
-                    var lat     = department.geometry.coordinates[0],
-                        lng     = department.geometry.coordinates[1],
-                        id      = department.properties.CODE_REG,
-                        myIcon  = L.divIcon({className: 'regions-cluster-icon', iconSize:null});
+                if (typeof this.departmentsMarkers === "undefined") {
+                    this.departmentsMarkers = {};
 
-                    if(terms[department.properties.CODE_REG]) {
-                        myIcon.options.html = '<div><span>'+terms[department.properties.CODE_REG]+'</span></div>';
-                        var marker = L.marker([lng, lat], {icon: myIcon});
-                        this.poiLayer.clusterLayer.addLayer(marker);
+                    _.each(this.departments.features, function (department, index) {
+                        var lat     = department.geometry.coordinates[0],
+                            lng     = department.geometry.coordinates[1],
+                            id      = department.properties.CODE_REG,
+                            myIcon  = L.divIcon({className: 'regions-cluster-icon', iconSize:null});
+                        if(terms[department.properties.CODE_REG]) {
+                            myIcon.options.html = '<div><span>'+terms[department.properties.CODE_REG]+'</span></div>';
+                            var marker = L.marker([lng, lat], {icon: myIcon});
+                            this.departmentsMarkers[index] = marker;
+                            this.poiLayer.clusterLayer.addLayer(marker);
+                        }
+                    }, this);
+                } else {
+                    var newMarkers = {};
+                    _.each(this.departments.features, function (department, index) {
+                        var lat     = department.geometry.coordinates[0],
+                            lng     = department.geometry.coordinates[1],
+                            id      = department.properties.CODE_REG,
+                            myIcon  = L.divIcon({className: 'regions-cluster-icon', iconSize:null});
+                        if(terms[department.properties.CODE_REG]) {
+                            console.log(terms[department.properties.CODE_REG]);
+                            myIcon.options.html = '<div><span>'+terms[department.properties.CODE_REG]+'</span></div>';
+                            var marker = L.marker([lng, lat], {icon: myIcon});
+                            newMarkers[index] = marker;
+                        }
+                    }, this);
+                    
+                    // Removing no longer visible markers
+                    for (var marker in this.departmentsMarkers) {
+                        if (newMarkers[marker] === undefined) {
+                            var layer = this.departmentsMarkers[marker];
+                            delete this.departmentsMarkers[marker];
+                            this.poiLayer.clusterLayer.removeLayer(layer);
+                        }
                     }
-                }, this);
 
-                this.el.addLayer(this.poiLayer.clusterLayer);
+                    // Adding new markers
+                    for (var marker in newMarkers) {
+                        console.log(this.departmentsMarkers[marker]);
+                        if (this.departmentsMarkers[marker] === undefined) {
+                            var layer = newMarkers[marker];
+                            this.departmentsMarkers[marker] = layer;
+                            this.poiLayer.clusterLayer.addLayer(this.departmentsMarkers[marker]);
+                        }
+                    }
+                }
             }, this));
         },
+
+        initPois: function () {
+           
+        }
 
     });
 

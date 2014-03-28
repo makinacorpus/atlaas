@@ -67,11 +67,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.poisView.poiLayer.addTo(this.map);
 
             this.listenTo(this.poisView.collection, 'sync', function () {
-                // if (typeof this.state.categories !== 'null') {
-                //     this.filteredPois = this.poisView.collection.filterBy(this.state.categories);
-                //     this.poisView.collection.set(this.filteredPois);
-                // };
-
                 this.renderPois();
                 this.renderPoisResults();
             });
