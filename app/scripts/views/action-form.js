@@ -25,6 +25,14 @@ atlaas.Views = atlaas.Views || {};
             var categoriesCollection = new atlaas.Collections.CategoriesCollection();
             categoriesCollection.fetch();
 
+            var usages = undefined;
+            var selectedUsage = undefined;
+
+            this.listenTo(categoriesCollection, 'sync', function() {
+                usages = _.values(categoriesCollection.at(0).get('usages'));
+                selectedUsage = usages[0];
+            });
+
             var categoriesSchema = {
                 services: { type: 'List', itemType: 'Object', subSchema: {
                     axe: {
@@ -38,6 +46,7 @@ atlaas.Views = atlaas.Views || {};
                     enjeu_de_developpement: {
                         type: 'Select',
                         options: function(callback, editor) {
+                            console.log(editor);
                             callback(categoriesCollection.map(function(model) {
                                 return model.get('enjeu_de_developpement');
                             }));
@@ -46,21 +55,24 @@ atlaas.Views = atlaas.Views || {};
                     usage: {
                         type: 'Select',
                         options: function(callback, editor) {
-                            console.log(categoriesCollection.at(0).get('usages'));
-                            callback(_.map(categoriesCollection.at(0).get('usages'), function(usage) {
-                                return usage.usage;
+                            callback(_.map(usages, function(value) {
+                                return value.usage;
                             }));
                         }
                     },
                     service: {
                         type: 'Select',
                         options: function(callback, editor) {
-                            callback(categoriesCollection.map(function(model) {
-                                return model.get('service');
+                            callback(_.map(selectedUsage.services, function(value) {
+                                return value.service;
                             }));
                         }
                     },
                 } }
+            }
+
+            function test(item) {
+                console.log(item);
             }
 
             this.form = new Backbone.Form({
@@ -70,6 +82,20 @@ atlaas.Views = atlaas.Views || {};
 
             this.form.on('services:axe:change', function(form, titleEditor, extra) {
                 console.log('Title changed to "' + titleEditor.getValue() + '".');
+            });
+
+            console.log(this.form.getEditor('services'));
+
+            this.form.fields.services.editor.on('add', function(listEditor, itemEditor) {
+                console.log('User with first name "' + itemEditor.getValue().firstName + '" added.');
+            });
+
+            this.form.fields.services.editor.on('item:focus', function(listEditor, itemEditor) {
+                console.log('User "' + itemEditor.getValue().firstName + '" has been given focus.');
+            });
+
+            this.form.fields.services.editor.on('item:usage:change', function(listEditor, itemEditor, usageEditor) {
+                console.log('Last name for user "' + itemEditor.getValue().firstName + '" changed to "' + usageEditor.getValue() +'".');
             });
         },
 

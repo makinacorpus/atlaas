@@ -24,15 +24,8 @@ atlaas.Models = atlaas.Models || {};
             response.enjeu_de_developpement = response.enjeu;
             delete response.id_enjeu;
             delete response.enjeu;
-            console.log(response);
+            // console.log(response);
             return response;
-        },
-
-        getUsages: function(usage) {
-            return _.map(this.get('usages'), function(usage) {
-                console.log(usage);
-                return usage;
-            });
         }
     });
 
