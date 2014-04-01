@@ -30,6 +30,18 @@ atlaas.Models = atlaas.Models || {};
             personnes:  { type: 'List', itemType: 'Object', subSchema: {
                 nom: 'Text',
                 titre: 'Text'    
+            } },
+            lieux: { type: 'List', itemType: 'Object', subSchema: {
+                nom: 'Text',
+                adresse: 'Text',
+                departement: 'Number',
+                region: 'Number',
+                ville: 'Text',
+                code_postal: 'Number',
+                telephone: 'Number',
+                latitude: 'Number',
+                longitude: 'Number',
+                type: { type: 'Select', options: ['Ville / Village', 'autre'] }
             } }
         },
 

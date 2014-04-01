@@ -18,14 +18,21 @@ atlaas.Models = atlaas.Models || {};
         validate: function(attrs, options) {
         },
 
-        parse: function(response, options)  {
+        parse: function(response, options) {
             response = response._source;
             response.id = response.id_enjeu;
             response.enjeu_de_developpement = response.enjeu;
             delete response.id_enjeu;
             delete response.enjeu;
-
+            console.log(response);
             return response;
+        },
+
+        getUsages: function(usage) {
+            return _.map(this.get('usages'), function(usage) {
+                console.log(usage);
+                return usage;
+            });
         }
     });
 
