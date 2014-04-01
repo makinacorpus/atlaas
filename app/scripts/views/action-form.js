@@ -22,8 +22,110 @@ atlaas.Views = atlaas.Views || {};
             //Use BootstrapModal for object List editor
             Backbone.Form.editors.List.Modal.ModalAdapter = Backbone.BootstrapModal;
 
+            var categoriesCollection = new atlaas.Collections.CategoriesCollection();
+            categoriesCollection.fetch();
+
+            var usages = undefined;
+            var selectedUsage = undefined;
+            var services = undefined;
+            var currentModel = undefined;
+
+            this.listenTo(categoriesCollection, 'sync', function() {
+                currentModel = categoriesCollection.at(0);
+                usages = _.values(currentModel.get('usages'));
+                selectedUsage = usages[0];
+                services = currentModel.getServices(selectedUsage.usage);
+            });
+
+            var categoriesSchema = {
+                services: { type: 'List', itemType: 'Object', subSchema: {
+                    axe: {
+                        type: 'Select',
+                        options: function(callback, editor) {
+                            callback(categoriesCollection.map(function(model) {
+                                return model.get('axe');
+                            }));
+                        }
+                    },
+                    enjeu_de_developpement: {
+                        type: 'Select',
+                        options: function(callback, editor) {
+                            if (editor.value === null) {
+                                editor.value = currentModel.get('enjeu_de_developpement');
+                            };
+
+                            if (editor.value !== currentModel.get('enjeu_de_developpement')) {
+                                currentModel = categoriesCollection.findWhere({ enjeu_de_developpement: editor.value });
+                                usages = _.values(currentModel.get('usages'));
+                            }
+
+                            callback(categoriesCollection.map(function(model) {
+                                return model.get('enjeu_de_developpement');
+                            }));
+                        }
+                    },
+                    usage: {
+                        type: 'Select',
+                        options: function(callback, editor) {
+                            if (editor.value === null) {
+                                editor.value = selectedUsage.usage;
+                            };
+
+                            selectedUsage = currentModel.getUsage(editor.value);
+                            services = currentModel.getServices(editor.value);
+
+                            callback(_.map(usages, function(value) {
+                                return value.usage;
+                            }));
+                        }
+                    },
+                    service: {
+                        type: 'Select',
+                        options: function(callback, editor) {
+                            callback(_.map(services, function(value) {
+                                return value.service;
+                            }));
+                        }
+                    },
+                } }
+            }
+
+            function test(item) {
+                console.log(item);
+            }
+
             this.form = new Backbone.Form({
-                model: this.model
+                model: this.model,
+                schema: _.extend(this.model.schema, categoriesSchema)
+            });
+
+            this.form.fields.services.editor.on('add', function(listEditor, itemEditor) {
+                console.log('User with first name "' + itemEditor.getValue().firstName + '" added.');
+            });
+
+            this.form.fields.services.editor.on('item:focus', function(listEditor, itemEditor, fieldEditor) {
+                // console.log(itemEditor);
+            });
+
+            this.form.fields.services.editor.on('item:open', function(listEditor, itemEditor, fieldEditor) {
+                var enjeuEditor = itemEditor.modalForm.fields.enjeu_de_developpement.editor;
+                var usageEditor = itemEditor.modalForm.fields.usage.editor;
+                var serviceEditor = itemEditor.modalForm.fields.service.editor;
+
+                itemEditor.modalForm.fields.usage.editor.on('change', function(itemEditor) {
+                    var selectedEnjeu = enjeuEditor.getValue();
+                    var selectedUsage = itemEditor.getValue();
+                    var servicesList = _.map(currentModel.getServices(selectedUsage), function(value) {
+                                    return value.service;
+                                });
+
+                    serviceEditor.setOptions(servicesList);
+                    serviceEditor.setValue(null);
+                });
+            });
+
+            this.form.fields.lieux.editor.on('item:type:change', function(listEditor, itemEditor) {
+                console.log('item type change "' + itemEditor.getValue());
             });
         },
 
