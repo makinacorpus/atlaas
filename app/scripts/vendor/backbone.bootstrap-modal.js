@@ -86,6 +86,7 @@
         }
       },
       'keypress': function(event) {
+        console.log('keypress');
         if (this.options.enterTriggersOk && event.which == 13) {
           event.preventDefault();
 
@@ -98,6 +99,22 @@
           if (this.options.okCloses) {
             this.close();
           }
+        }
+      },
+      'keyup.dismiss.modal': function (e) {
+        e.which == 27 && this.trigger('cancel');
+
+        if (this.options.content && this.options.content.trigger) {
+          e.which == 27 && this.options.content.trigger('shown', this);
+        }
+      },
+      'click.dismiss.bs.modal': function (e) {
+        if (e.target !== e.currentTarget) return;
+
+        this.trigger('cancel');
+
+        if (this.options.content && this.options.content.trigger) {
+          this.options.content.trigger('cancel', this);
         }
       }
     },
@@ -210,13 +227,13 @@
           self.trigger('cancel');
         });
 
-        $(document).one('keyup.dismiss.modal', function (e) {
-          e.which == 27 && self.trigger('cancel');
+        // $(document).one('keyup.dismiss.modal', function (e) {
+        //   e.which == 27 && self.trigger('cancel');
 
-          if (self.options.content && self.options.content.trigger) {
-            e.which == 27 && self.options.content.trigger('shown', self);
-          }
-        });
+        //   if (self.options.content && self.options.content.trigger) {
+        //     e.which == 27 && self.options.content.trigger('shown', self);
+        //   }
+        // });
       }
 
       this.on('cancel', function() {
@@ -245,20 +262,6 @@
         this._preventClose = false;
         return;
       }
-
-      $el.one('hidden.bs.modal', function onHidden(e) {
-        // Ignore events propagated from interior objects, like bootstrap tooltips
-        if(e.target !== e.currentTarget){
-          return $el.one('hidden', onHidden);
-        }
-        self.remove();
-
-        if (self.options.content && self.options.content.trigger) {
-          self.options.content.trigger('hidden', self);
-        }
-
-        self.trigger('hidden');
-      });
 
       $el.modal('hide');
 

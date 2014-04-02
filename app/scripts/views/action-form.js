@@ -116,12 +116,16 @@ atlaas.Views = atlaas.Views || {};
                     var selectedEnjeu = enjeuEditor.getValue();
                     var selectedUsage = itemEditor.getValue();
                     var servicesList = _.map(currentModel.getServices(selectedUsage), function(value) {
-                                    return value.service;
-                                });
+                        return value.service;
+                    });
 
                     serviceEditor.setOptions(servicesList);
                     serviceEditor.setValue(null);
                 });
+            });
+
+            this.form.fields.services.editor.on('item:close', function(listEditor, itemEditor, fieldEditor) {
+                console.log('close');
             });
 
             this.form.fields.lieux.editor.on('item:type:change', function(listEditor, itemEditor) {
