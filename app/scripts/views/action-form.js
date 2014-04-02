@@ -27,10 +27,14 @@ atlaas.Views = atlaas.Views || {};
 
             var usages = undefined;
             var selectedUsage = undefined;
+            var services = undefined;
+            var currentModel = undefined;
 
             this.listenTo(categoriesCollection, 'sync', function() {
-                usages = _.values(categoriesCollection.at(0).get('usages'));
+                currentModel = categoriesCollection.at(0);
+                usages = _.values(currentModel.get('usages'));
                 selectedUsage = usages[0];
+                services = currentModel.getServices(selectedUsage.usage);
             });
 
             var categoriesSchema = {
@@ -46,7 +50,15 @@ atlaas.Views = atlaas.Views || {};
                     enjeu_de_developpement: {
                         type: 'Select',
                         options: function(callback, editor) {
-                            console.log(editor);
+                            if (editor.value === null) {
+                                editor.value = currentModel.get('enjeu_de_developpement');
+                            };
+
+                            if (editor.value !== currentModel.get('enjeu_de_developpement')) {
+                                currentModel = categoriesCollection.findWhere({ enjeu_de_developpement: editor.value });
+                                usages = _.values(currentModel.get('usages'));
+                            }
+
                             callback(categoriesCollection.map(function(model) {
                                 return model.get('enjeu_de_developpement');
                             }));
@@ -55,6 +67,13 @@ atlaas.Views = atlaas.Views || {};
                     usage: {
                         type: 'Select',
                         options: function(callback, editor) {
+                            if (editor.value === null) {
+                                editor.value = selectedUsage.usage;
+                            };
+
+                            selectedUsage = currentModel.getUsage(editor.value);
+                            services = currentModel.getServices(editor.value);
+
                             callback(_.map(usages, function(value) {
                                 return value.usage;
                             }));
@@ -63,7 +82,7 @@ atlaas.Views = atlaas.Views || {};
                     service: {
                         type: 'Select',
                         options: function(callback, editor) {
-                            callback(_.map(selectedUsage.services, function(value) {
+                            callback(_.map(services, function(value) {
                                 return value.service;
                             }));
                         }
@@ -80,22 +99,33 @@ atlaas.Views = atlaas.Views || {};
                 schema: _.extend(this.model.schema, categoriesSchema)
             });
 
-            this.form.on('services:axe:change', function(form, titleEditor, extra) {
-                console.log('Title changed to "' + titleEditor.getValue() + '".');
-            });
-
-            console.log(this.form.getEditor('services'));
-
             this.form.fields.services.editor.on('add', function(listEditor, itemEditor) {
                 console.log('User with first name "' + itemEditor.getValue().firstName + '" added.');
             });
 
-            this.form.fields.services.editor.on('item:focus', function(listEditor, itemEditor) {
-                console.log('User "' + itemEditor.getValue().firstName + '" has been given focus.');
+            this.form.fields.services.editor.on('item:focus', function(listEditor, itemEditor, fieldEditor) {
+                // console.log(itemEditor);
             });
 
-            this.form.fields.services.editor.on('item:usage:change', function(listEditor, itemEditor, usageEditor) {
-                console.log('Last name for user "' + itemEditor.getValue().firstName + '" changed to "' + usageEditor.getValue() +'".');
+            this.form.fields.services.editor.on('item:open', function(listEditor, itemEditor, fieldEditor) {
+                var enjeuEditor = itemEditor.modalForm.fields.enjeu_de_developpement.editor;
+                var usageEditor = itemEditor.modalForm.fields.usage.editor;
+                var serviceEditor = itemEditor.modalForm.fields.service.editor;
+
+                itemEditor.modalForm.fields.usage.editor.on('change', function(itemEditor) {
+                    var selectedEnjeu = enjeuEditor.getValue();
+                    var selectedUsage = itemEditor.getValue();
+                    var servicesList = _.map(currentModel.getServices(selectedUsage), function(value) {
+                                    return value.service;
+                                });
+
+                    serviceEditor.setOptions(servicesList);
+                    serviceEditor.setValue(null);
+                });
+            });
+
+            this.form.fields.lieux.editor.on('item:type:change', function(listEditor, itemEditor) {
+                console.log('item type change "' + itemEditor.getValue());
             });
         },
 
