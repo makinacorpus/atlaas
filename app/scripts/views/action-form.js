@@ -33,8 +33,8 @@ atlaas.Views = atlaas.Views || {};
             this.listenTo(categoriesCollection, 'sync', function() {
                 currentModel = categoriesCollection.at(0);
                 usages = _.values(currentModel.get('usages'));
-                selectedUsage = usages[0];
-                services = currentModel.getServices(selectedUsage.usage);
+                selectedUsage = usages[0].usage;
+                services = currentModel.getServices(selectedUsage);
             });
 
             var categoriesSchema = {
@@ -67,12 +67,13 @@ atlaas.Views = atlaas.Views || {};
                     usage: {
                         type: 'Select',
                         options: function(callback, editor) {
-                            if (editor.value === null) {
-                                editor.value = selectedUsage.usage;
+                            if (editor.getValue() === null) {
+                                console.log(selectedUsage);
+                                editor.setValue(selectedUsage);
                             };
-
-                            selectedUsage = currentModel.getUsage(editor.value);
-                            services = currentModel.getServices(editor.value);
+                            console.log(editor.getValue());
+                            selectedUsage = editor.value;
+                            services = selectedUsage === null ? null : currentModel.getServices(selectedUsage);
 
                             callback(_.map(usages, function(value) {
                                 return value.usage;
@@ -96,14 +97,26 @@ atlaas.Views = atlaas.Views || {};
             });
 
             this.form.fields.services.editor.on('item:open add', function(listEditor, itemEditor) {
-                var enjeuEditor = itemEditor.modalForm.fields.enjeu_de_developpement.editor;
-                var usageEditor = itemEditor.modalForm.fields.usage.editor;
-                var serviceEditor = itemEditor.modalForm.fields.service.editor;
+                var enjeuEditor     = itemEditor.modalForm.fields.enjeu_de_developpement.editor,
+                    usageEditor     = itemEditor.modalForm.fields.usage.editor,
+                    serviceEditor   = itemEditor.modalForm.fields.service.editor;
 
-                itemEditor.modalForm.fields.usage.editor.on('change', function(itemEditor) {
+                enjeuEditor.on('change', function(itemEditor) {
                     var selectedEnjeu = enjeuEditor.getValue();
-                    var selectedUsage = itemEditor.getValue();
-                    var servicesList = _.map(currentModel.getServices(selectedUsage), function(value) {
+                    currentModel = categoriesCollection.findWhere({ enjeu_de_developpement: selectedEnjeu });
+                    usages = currentModel.get('usages');
+                    var usagesList = _.map(usages, function(value) {
+                        return value.usage;
+                    });
+
+                    usageEditor.setOptions(usagesList);
+                    serviceEditor.setValue(null);
+                });
+
+                usageEditor.on('change', function(itemEditor) {
+                    selectedUsage = itemEditor.getValue();
+                    services = currentModel.getServices(selectedUsage);
+                    var servicesList = _.map(services, function(value) {
                         return value.service;
                     });
 

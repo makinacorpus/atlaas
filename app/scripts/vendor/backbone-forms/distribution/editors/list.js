@@ -207,6 +207,7 @@
     },
 
     setValue: function(value) {
+      console.log('set');
       this.value = value;
       this.render();
     },
@@ -347,6 +348,7 @@
     },
 
     setValue: function(value) {
+      console.log('set');
       this.editor.setValue(value);
     },
     
@@ -600,6 +602,7 @@
     },
 
     setValue: function(value) {
+      console.log('set');
       this.value = value;
     },
     
