@@ -32,9 +32,6 @@ atlaas.Views = atlaas.Views || {};
 
             this.listenTo(categoriesCollection, 'sync', function() {
                 currentModel = categoriesCollection.at(0);
-                usages = _.values(currentModel.get('usages'));
-                selectedUsage = usages[0].usage;
-                services = currentModel.getServices(selectedUsage);
             });
 
             var categoriesSchema = {
@@ -42,22 +39,29 @@ atlaas.Views = atlaas.Views || {};
                     axe: {
                         type: 'Select',
                         options: function(callback, editor) {
-                            callback(categoriesCollection.map(function(model) {
-                                return model.get('axe');
-                            }));
+                            callback('<option>'+ editor.value +'</option>');
+                            // callback(categoriesCollection.map(function(model) {
+                            //     return model.get('axe');
+                            // }));
                         }
                     },
                     enjeu_de_developpement: {
                         type: 'Select',
                         options: function(callback, editor) {
                             if (editor.value === null) {
-                                editor.value = currentModel.get('enjeu_de_developpement');
-                            };
+                                // default to no selection
+                                editor.$el.prop('selectedIndex', -1);
+                            }
 
-                            if (editor.value !== currentModel.get('enjeu_de_developpement')) {
+                            if (editor.value !== null) {
                                 currentModel = categoriesCollection.findWhere({ enjeu_de_developpement: editor.value });
                                 usages = _.values(currentModel.get('usages'));
                             }
+
+                            // if (editor.value !== currentModel.get('enjeu_de_developpement')) {
+                            //     currentModel = categoriesCollection.findWhere({ enjeu_de_developpement: editor.value });
+                            //     usages = _.values(currentModel.get('usages'));
+                            // }
 
                             callback(categoriesCollection.map(function(model) {
                                 return model.get('enjeu_de_developpement');
@@ -67,13 +71,10 @@ atlaas.Views = atlaas.Views || {};
                     usage: {
                         type: 'Select',
                         options: function(callback, editor) {
-                            if (editor.getValue() === null) {
-                                console.log(selectedUsage);
-                                editor.setValue(selectedUsage);
+                            if (editor.value !== null) {
+                                selectedUsage = editor.value;
+                                services = selectedUsage === null ? null : currentModel.getServices(selectedUsage);
                             };
-                            console.log(editor.getValue());
-                            selectedUsage = editor.value;
-                            services = selectedUsage === null ? null : currentModel.getServices(selectedUsage);
 
                             callback(_.map(usages, function(value) {
                                 return value.usage;
@@ -100,6 +101,11 @@ atlaas.Views = atlaas.Views || {};
                 var enjeuEditor     = itemEditor.modalForm.fields.enjeu_de_developpement.editor,
                     usageEditor     = itemEditor.modalForm.fields.usage.editor,
                     serviceEditor   = itemEditor.modalForm.fields.service.editor;
+                
+                if (enjeuEditor.value === null) {
+                    // default to no selection
+                    enjeuEditor.$el.prop('selectedIndex', -1);
+                }
 
                 enjeuEditor.on('change', function(itemEditor) {
                     var selectedEnjeu = enjeuEditor.getValue();
@@ -110,6 +116,7 @@ atlaas.Views = atlaas.Views || {};
                     });
 
                     usageEditor.setOptions(usagesList);
+                    serviceEditor.setOptions();
                     serviceEditor.setValue(null);
                 });
 
