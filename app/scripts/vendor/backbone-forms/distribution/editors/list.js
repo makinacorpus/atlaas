@@ -49,7 +49,8 @@
 
     render: function() {
       var self = this,
-          value = this.value || [];
+          value = this.value || [],
+          $ = Backbone.$;
 
       //Create main element
       var $el = $($.trim(this.template()));
@@ -308,6 +309,8 @@
     },
 
     render: function() {
+      var $ = Backbone.$;
+      
       //Create editor
       this.editor = new this.Editor({
         key: this.key,
@@ -638,10 +641,6 @@
       if (!schema.subSchema) throw new Error('Missing required option "schema.subSchema"');
 
       this.nestedSchema = schema.subSchema;
-
-      // this.on('open', function() {
-      //   console.log('open');
-      // });
     }
   });
 
