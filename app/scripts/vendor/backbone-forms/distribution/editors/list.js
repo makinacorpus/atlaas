@@ -108,7 +108,7 @@
       }, this);
 
       item.render();
-      
+
       var _addItem = function() {
         self.items.push(item);
         self.$list.append(item.el);
@@ -188,7 +188,7 @@
 
       this.items[index].remove();
       this.items.splice(index, 1);
-      
+
       if (item.addEventTriggered) {
         this.trigger('remove', this, item.editor);
         this.trigger('change', this);
@@ -207,7 +207,7 @@
     },
 
     setValue: function(value) {
-      console.log('set');
+
       this.value = value;
       this.render();
     },
@@ -322,6 +322,15 @@
         form: this.form
       });
 
+      //Create main element
+      var $el = $($.trim(this.template()));
+
+      $el.find('[data-editor]').append(this.editor.el);
+
+      //Replace the entire element so there isn't a wrapper tag
+      this.setElement($el);
+
+        
       this.editor.on('open', function() {
         this.trigger('open', this, this.editor);
       }, this);
@@ -331,15 +340,7 @@
       }, this);
 
       this.editor.render();
-
-      //Create main element
-      var $el = $($.trim(this.template()));
-
-      $el.find('[data-editor]').append(this.editor.el);
-
-      //Replace the entire element so there isn't a wrapper tag
-      this.setElement($el);
-        
+      
       return this;
     },
 
@@ -348,7 +349,7 @@
     },
 
     setValue: function(value) {
-      console.log('set');
+
       this.editor.setValue(value);
     },
     
@@ -550,10 +551,12 @@
         animate: true
       });
 
-      modal.open();
+      modal.$el.on('show.bs.modal', function() {
+        self.trigger('open', self);
+        self.trigger('focus', self);
+      });
 
-      this.trigger('open', this);
-      this.trigger('focus', this);
+      modal.open();
 
       modal.on('cancel', this.onModalClosed, this);
       
@@ -602,7 +605,6 @@
     },
 
     setValue: function(value) {
-      console.log('set');
       this.value = value;
     },
     

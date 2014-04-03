@@ -41,9 +41,7 @@
   Modal.prototype.show = function (_relatedTarget) {
     var that = this
     var e    = $.Event('show.bs.modal', { relatedTarget: _relatedTarget })
-
-    this.$element.trigger(e)
-
+    var showEvent = e
     if (this.isShown || e.isDefaultPrevented()) return
 
     this.isShown = true
@@ -70,8 +68,9 @@
       that.$element
         .addClass('in')
         .attr('aria-hidden', false)
-
       that.enforceFocus()
+
+      that.$element.trigger(showEvent)
 
       var e = $.Event('shown.bs.modal', { relatedTarget: _relatedTarget })
 
@@ -82,6 +81,7 @@
           })
           .emulateTransitionEnd(300) :
         that.$element.focus().trigger(e)
+
     })
   }
 

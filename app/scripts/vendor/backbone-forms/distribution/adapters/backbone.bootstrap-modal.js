@@ -86,7 +86,6 @@
         }
       },
       'keypress': function(event) {
-        console.log('keypress');
         if (this.options.enterTriggersOk && event.which == 13) {
           event.preventDefault();
 
@@ -163,7 +162,6 @@
 
       //Create the modal container
       $el.html(options.template(options));
-
       var $content = this.$content = $el.find('.modal-body')
 
       //Insert the main content if it's a view
