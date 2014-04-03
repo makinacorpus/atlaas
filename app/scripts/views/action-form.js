@@ -90,24 +90,12 @@ atlaas.Views = atlaas.Views || {};
                 } }
             }
 
-            function test(item) {
-                console.log(item);
-            }
-
             this.form = new Backbone.Form({
                 model: this.model,
                 schema: _.extend(this.model.schema, categoriesSchema)
             });
 
-            this.form.fields.services.editor.on('add', function(listEditor, itemEditor) {
-                console.log('User with first name "' + itemEditor.getValue().firstName + '" added.');
-            });
-
-            this.form.fields.services.editor.on('item:focus', function(listEditor, itemEditor, fieldEditor) {
-                // console.log(itemEditor);
-            });
-
-            this.form.fields.services.editor.on('item:open', function(listEditor, itemEditor, fieldEditor) {
+            this.form.fields.services.editor.on('item:open add', function(listEditor, itemEditor) {
                 var enjeuEditor = itemEditor.modalForm.fields.enjeu_de_developpement.editor;
                 var usageEditor = itemEditor.modalForm.fields.usage.editor;
                 var serviceEditor = itemEditor.modalForm.fields.service.editor;
@@ -124,12 +112,8 @@ atlaas.Views = atlaas.Views || {};
                 });
             });
 
-            this.form.fields.services.editor.on('item:close', function(listEditor, itemEditor, fieldEditor) {
-                console.log('close');
-            });
-
-            this.form.fields.lieux.editor.on('item:type:change', function(listEditor, itemEditor) {
-                console.log('item type change "' + itemEditor.getValue());
+            this.form.fields.services.editor.on('item:close close', function(listEditor, itemEditor) {
+                itemEditor.modalForm.fields.usage.editor.off('change');
             });
         },
 
