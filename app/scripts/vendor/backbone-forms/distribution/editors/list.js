@@ -512,10 +512,16 @@
       _.each(this.nestedSchema, function(schema, key) {
         var desc = schema.title ? schema.title : createTitle(key),
             val = value[key];
-
         if (_.isUndefined(val) || _.isNull(val)) val = '';
 
-        parts.push(desc + ': ' + val);
+        if (typeof val === 'object') {
+          parts.push(key + ':');
+          _.each(val, function(_value, _key) {
+            parts.push(_key + ': ' + _value);
+          });
+        } else {
+          parts.push(desc + ': ' + val);
+        }
       });
 
       return parts.join('<br />');
