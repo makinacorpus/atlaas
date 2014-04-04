@@ -13,6 +13,11 @@
 <div class="detail__action">
 	<div class="row">
 		<div class="detail__content col-8">
+			<div class="social">
+				<a href="<%= window.location.href %>" class="twitter-share-button" data-lang="fr">Tweet</a>
+				<div class="fb-like" data-href="<%= window.location.href %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false" data-width="100"></div>
+			</div>
+
 			<h3>Synthèse</h3>
 			<p><%= synthese %></p>
 
@@ -47,3 +52,13 @@
 		</div>
 	</div>
 </div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1&appId=160256717437437";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

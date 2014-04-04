@@ -57,6 +57,12 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         	    ease: Power3.easeInOut,
         	    onComplete: function () {
         	        tweenIn.kill();
+
+                    // Reload Facebook button
+                    try{ FB.XFBML.parse(); }catch(ex){}
+
+                    // Reload Twitter button
+                    try{ twttr.widgets.load(); }catch(ex){}
         	    }
         	});
         },
