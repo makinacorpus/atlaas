@@ -16,17 +16,6 @@ atlaas.Views = atlaas.Views || {};
             this.departments                = undefined;
             this.departmentsMarkers         = undefined;
 
-            // Initialy, display a poi summary
-            var query = {
-                source: JSON.stringify({
-                    "size" : 30,
-                    "query" : {
-                        "match_all" : {}
-                    }
-                })
-            };
-
-            this.collection.fetch({ data: query });
             this.listenTo(this.collection, "reset", this.render);
 
             this.loadDepartments();
