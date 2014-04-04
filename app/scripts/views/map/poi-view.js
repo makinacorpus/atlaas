@@ -11,13 +11,13 @@ atlaas.Views = atlaas.Views || {};
         customIcon: L.divIcon({className:'custom-icon', iconSize:null, popupAnchor: [-2, -40]}),
 
         initialize: function () {
-            console.log(this.model.toJSON());
+            // console.log(this.model.toJSON());
 
             // this can have multiples markers/location for the same poi
             this.markers = [],
 
             _.each(this.model.get('lieux'), function (location, index) {
-                this.markers[index] = new CustomMarker([location.latitude, location.longitude], {icon: this.customIcon, id: this.model.id});
+                this.markers[index] = new CustomMarker([location.lat, location.lon], {icon: this.customIcon, id: this.model.id});
             }, this);
         }
     });

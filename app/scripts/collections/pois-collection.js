@@ -28,7 +28,7 @@ atlaas.Collections = atlaas.Collections || {};
 
             // If bounds specified, load maximum of pois in bound
             if (mapState.bounds !== null) {
-                querySize = 1000;
+                querySize = 2000;
                 bounds = this.convertBoundsToESFormat(mapState.bounds);
                 boundsQuery = {
                     "filter": {
@@ -79,6 +79,11 @@ atlaas.Collections = atlaas.Collections || {};
                     "query": {
                         "filtered": {
                             "query": filtersQuery
+                        }
+                    },
+                    "partial_fields" : {
+                        "partial" : {
+                            "include" : ["id_action", "titre", "lieux.nom", "lieux.lat", "lieux.lon"]
                         }
                     }
                 }

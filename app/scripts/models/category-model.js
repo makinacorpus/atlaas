@@ -24,7 +24,7 @@ atlaas.Models = atlaas.Models || {};
             response.enjeu_de_developpement = response.enjeu;
             delete response.id_enjeu;
             delete response.enjeu;
-            console.log(response);
+
             return response;
         },
 
