@@ -47,6 +47,7 @@ atlaas.Views = atlaas.Views || {};
                     },
                     enjeu_de_developpement: {
                         type: 'Select',
+                        validators: ['required'],
                         options: function(callback, editor) {
                             if (editor.value === null) {
                                 // default to no selection
@@ -58,11 +59,6 @@ atlaas.Views = atlaas.Views || {};
                                 usages = _.values(currentModel.get('usages'));
                             }
 
-                            // if (editor.value !== currentModel.get('enjeu_de_developpement')) {
-                            //     currentModel = categoriesCollection.findWhere({ enjeu_de_developpement: editor.value });
-                            //     usages = _.values(currentModel.get('usages'));
-                            // }
-
                             callback(categoriesCollection.map(function(model) {
                                 return model.get('enjeu_de_developpement');
                             }));
@@ -70,6 +66,7 @@ atlaas.Views = atlaas.Views || {};
                     },
                     usage: {
                         type: 'Select',
+                        validators: ['required'],
                         options: function(callback, editor) {
                             if (editor.value !== null) {
                                 selectedUsage = editor.value;
@@ -83,6 +80,7 @@ atlaas.Views = atlaas.Views || {};
                     },
                     service: {
                         type: 'Select',
+                        validators: ['required'],
                         options: function(callback, editor) {
                             callback(_.map(services, function(value) {
                                 return value.service;
@@ -105,6 +103,10 @@ atlaas.Views = atlaas.Views || {};
                 if (enjeuEditor.value === null) {
                     // default to no selection
                     enjeuEditor.$el.prop('selectedIndex', -1);
+                    
+                    // Empty child select
+                    usageEditor.setOptions();
+                    serviceEditor.setOptions();
                 }
 
                 enjeuEditor.on('change', function(itemEditor) {
@@ -135,6 +137,25 @@ atlaas.Views = atlaas.Views || {};
             this.form.fields.services.editor.on('item:close close', function(listEditor, itemEditor) {
                 itemEditor.modalForm.fields.usage.editor.off('change');
             });
+
+            function lieuxToString(data) {
+                var content = "";
+
+                _.each(data, function(value, key) {
+                    if (_.has(schema.lieux.subSchema, key)) {
+                        if (typeof value === 'object') {
+                            content+= key + ': <br>';
+                            _.each(value, function(_value, _key) {
+                                content+= _key + ': ' + _value + '<br>';
+                            });
+                        } else {
+                            content+= key + ': ' + value + '<br>';
+                        }
+                    }
+                });
+
+                return content;
+            }
         },
 
         render: function () {

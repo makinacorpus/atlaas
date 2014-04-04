@@ -10,6 +10,7 @@ atlaas.Models = atlaas.Models || {};
         urlRoot: atlaas.CONFIG.elasticsearch + '/actions',
 
         initialize: function() {
+
         },
 
         defaults: {
@@ -17,10 +18,10 @@ atlaas.Models = atlaas.Models || {};
         },
 
         schema: {
-            titre:      'Text',
+            titre:      { type: 'Text', validators: ['required'] },
             sous_titre: 'Text',
-            date:       'Date',
-            actions:    'TextArea',
+            date:       { type: 'Date', validators: ['required'] },
+            actions:    { type: 'TextArea', validators: ['required'] },
             synthese:   'TextArea',
             outils:     'Text',
             prestataires:'Text',
@@ -31,16 +32,18 @@ atlaas.Models = atlaas.Models || {};
                 nom: 'Text',
                 titre: 'Text'    
             } },
-            lieux: { type: 'List', itemType: 'Object', subSchema: {
+            lieux: { type: 'List', itemType: 'Object', validators: ['required'], subSchema: {
                 nom: 'Text',
-                adresse: 'Text',
+                adresse: { type: 'Text', validators: ['required'] },
                 departement: 'Number',
                 region: 'Number',
                 ville: 'Text',
                 code_postal: 'Number',
                 telephone: 'Number',
-                latitude: 'Number',
-                longitude: 'Number',
+                location: { type: 'Object', validators: ['required'], subSchema: {
+                    lat: 'Number',
+                    lon: 'Number'
+                }},
                 type: { type: 'Select', options: ['Ville / Village', 'autre'] }
             } }
         },
@@ -48,7 +51,7 @@ atlaas.Models = atlaas.Models || {};
         validate: function(attrs, options) {
         },
 
-        parse: function(response, options)  {
+        parse: function(response, options) {
             response = response._source;
             response.id = response.id_action;
 
