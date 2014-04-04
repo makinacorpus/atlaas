@@ -294,7 +294,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             if (this.poisView.poiLayer._clustered) {
                 this.state.bounds = null;
                 this.poisView.updateDepartments(this.state);
-                this.poisView.collection.searchBy(this.state);
             } else {
                 this.poisView.collection.searchBy(this.state);
             }
