@@ -108,9 +108,12 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 var poiView = _.find(this.poisView.poiViewCollection, function(_poiView){
                     return _poiView.model.id == poiId;
                 });
+                this.poisView.poiLayer.clusterDetailLayer.zoomToShowLayer(poiView.markers[0], _.bind(function() {
+                    this.showPopup(poiId, poiView.markers[0]);
+                }, this));
 
-                var zoom = this.map.getZoom() > 8 ? this.map.getZoom() : 8;
-                this.map.setView(poiView.markers[0].getLatLng(), zoom);
+                // var zoom = this.map.getZoom() > 8 ? this.map.getZoom() : 8;
+                // this.map.setView(poiView.markers[0].getLatLng(), zoom);
             });
 
             this.listenTo(this.searchView, 'search', function (query) {
@@ -120,25 +123,32 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             });
         },
 
+        showPopup: function (poiId, marker) {
+            var currentPoi = this.poisView.collection.get(poiId);
+            var popupContent = $('<div><h3 class="title">'+currentPoi.get('titre')+'</h3><h4>'+currentPoi.get('lieux')[0].nom+'</h4><a href="'+poiId+'">En savoir plus</a></div>');
+            marker.bindPopup(popupContent[0], { autoPan: false });
+            marker.openPopup();
+
+            $(marker.getPopup().getContent()).find('a').one('click', L.Util.bind(function (e) {
+                e.preventDefault();
+
+                atlaas.router.navigate("map/actions/" + poiId);
+
+                if (typeof this.poiDetailView !== 'undefined') {
+                    this.poiDetailView.close();
+                };
+                
+                this.showPoiDetail(poiId);
+
+                marker.closePopup();
+            }, this));
+        },
+
         renderPois: function () {
             this.poisView.render();
 
             this.poisView.poiLayer.clusterDetailLayer.on('click', _.bind(function (e) {
-                var currentPoiId = e.layer.options.id;
-                var currentPoi = this.poisView.collection.get(currentPoiId);
-                var popupContent = $('<div><h3 class="title">'+currentPoi.get('titre')+'</h3><h4>'+currentPoi.get('lieux')[0].nom+'</h4><a href="'+currentPoiId+'">En savoir plus</a></div>');
-                var popup = e.layer;
-                popup.bindPopup(popupContent[0], { autoPan: false });
-                popup.openPopup();
-
-                $(popup.getPopup().getContent()).find('a').one('click', L.Util.bind(function (e) {
-                    e.preventDefault();
-
-                    atlaas.router.navigate("map/actions/" + poi.model.id);
-                    this.showPoiDetail(currentPoiId);
-
-                    popup.closePopup();
-                }, this));
+                this.showPopup(e.layer.options.id, e.layer);
 
                 var poiId = e.layer.options.id;
 
@@ -149,7 +159,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 var poi = this.poiResultsView.viewCollection[poiId];
 
                 this.$resultsContainer.scrollTop(this.$resultsContainer.scrollTop() + poi.$el.position().top);
-                poi.$el.find('.results-menu__item').click();
+                // poi.$el.find('.results-menu__item').click();
             }, this));
         },
 
@@ -165,6 +175,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         showPoiDetail: function (action_id) {
             var poiDetailModel = new atlaas.Models.PoiDetailModel({ id: action_id });
+
             this.poiDetailView = new atlaas.Views.Map.PoiDetailView({ model: poiDetailModel });
 
             this.listenTo(poiDetailModel, 'sync', function () {

@@ -17,6 +17,12 @@ atlaas.Views = atlaas.Views || {};
             this.departmentsMarkers         = undefined;
 
             this.listenTo(this.collection, "reset", this.render);
+            this.listenTo(this.collection, 'add', function (model) {
+                this.poiViewCollection.push(new atlaas.Views.Map.PoiView({ model: model }));
+            });
+            this.listenTo(this.collection, 'destroy', function (model) {
+                delete this.poiViewCollection[model];
+            });
 
             this.loadDepartments();
 
@@ -27,9 +33,9 @@ atlaas.Views = atlaas.Views || {};
             this.poiLayer.clusterDetailLayer.off('click');
 
             // PoisView
-            this.poiViewCollection = _.map(this.collection.models, function (_model) {
-                return new atlaas.Views.Map.PoiView({ model: _model });
-            });
+            // this.poiViewCollection = _.map(this.collection.models, function (_model) {
+            //     return new atlaas.Views.Map.PoiView({ model: _model });
+            // });
             
             // Empty markers
             var markers = {};
