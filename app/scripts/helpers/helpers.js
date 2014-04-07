@@ -1,3 +1,5 @@
+atlaas.Helpers = atlaas.Helpers || {};
+
 // Leaflet override marker class
 CustomMarker = L.Marker.extend({
     options: {
@@ -22,6 +24,9 @@ L.Map.prototype.getBoundsWithRightOffset = function (offset) {
     return newMapBounds;
 }
 
+// Custom LayerGroup : double pois layer
+    // clusterLayer : pois grouped by department
+    // clusterDetailLayer : raw markers clusters
 L.POILayer = L.LayerGroup.extend({
     statics: {
         CLUSTER_THRESHOLD: 8,
@@ -103,5 +108,12 @@ L.POILayer = L.LayerGroup.extend({
 
         this.addLayer(this.clusterDetailLayer);
     },
-
 });
+
+atlaas.Helpers.JSONtoCSV = function(data) {
+    JSONtoCSV.toCSV({
+        data: data
+    }, function(err, csv) {
+        console.log(csv);
+    });
+}

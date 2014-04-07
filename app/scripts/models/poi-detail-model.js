@@ -64,6 +64,45 @@ atlaas.Models = atlaas.Models || {};
             delete response.id_action;
 
             return response;
+        },
+
+        toCSV: function(callback) {
+            var data = [this.toJSON()];
+            JSONtoCSV.toCSV({
+                data: data,
+                fields: [
+                    {
+                        name: 'titre',
+                        label: 'Titre'
+                    },
+                    {
+                        name: 'sous_titre',
+                        label: 'Sous titre'
+                    },
+                    {
+                        name: 'date',
+                        label: 'Date'
+                    },
+                    {
+                        name: 'actions',
+                        label: 'Actions'
+                    },
+                    {
+                        name: 'synthese',
+                        label: 'Synthèse'
+                    },
+                    {
+                        name: 'outils',
+                        label: 'Outils'
+                    },
+                    {
+                        name: 'prestataires',
+                        label: 'Prestataires'
+                    }
+                ]
+            }, function(err, csv) {
+                callback(csv);
+            });
         }
     });
 

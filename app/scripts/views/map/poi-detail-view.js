@@ -17,16 +17,25 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         events: {
             'click .detail__bt--close'           : 'closeBtHandler',
             'click .detail__bt--edit'            : 'editBtHandler',
-            'click .detail__meta .detail__bt'    : 'filtersBtHandler',
+            'click .detail__bt--location'        : 'filtersBtHandler',
         },
 
         initialize: function () {
+            var that = this;
+            this.csv = "";
+
             this.model.fetch();
+
+            this.listenTo(this.model, 'sync', function() {
+                this.model.toCSV(function(data) {
+                    that.csv = data;
+                });
+            });
         },
 
         render: function () {
             // console.log(this.model.toJSON());
-        	this.$el.html(this.template(this.model.toJSON()));
+        	this.$el.html(this.template(this.model.toJSON(), this.csv));
 
         	return this;
         },

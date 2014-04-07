@@ -6,11 +6,12 @@
 <div class="detail__meta">
 	<h3 class="detail__location icon-location"><%= lieux[0].nom %></h3>
 	<a href="#location/<%= lieux[0].id_lieu %>" class="detail__bt detail__bt--location">+ Toutes les actions</a>
-	<a href="#category/<%= services[0].service %>" class="detail__bt detail__bt--location">+ <%=services[0].service%></a>
 	<div class="detail__date">Publié le <%= date %></div>
-	<button class="detail__bt--edit icon-edit">Modifier</button>
+	<a href="#edit/<%= id %>" class="detail__bt detail__bt--edit icon-edit">Modifier</a>
+	<a href="<%= "data:text/csv;charset=utf-8," + encodeURIComponent(this.csv) %>" download="data.csv" class="detail__bt detail__bt--download icon-download">Télécharger</a>
 </div>
 <div class="detail__action">
+	<a href="#category/<%= services[0].service %>" class="detail__breadcrumb">> <%=services[0].service%></a>
 	<div class="row">
 		<div class="detail__content col-8">
 			<div class="social">

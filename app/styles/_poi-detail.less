@@ -63,24 +63,23 @@
 	background: @grayLight;
 	color: darken(@grayLight, 30%);
 
+	a {
+		color: darken(@grayLight, 30%);
+	}
+
 	.detail__bt {
 		vertical-align: middle;
 	}
 
 	.detail__bt--location {
+		background: darken(@grayLight, 30%);
+		color: white;
 		margin-left: 10px;
 		font-size: 0.9em;
-	}
-}
 
-.detail__bt {
-	background: darken(@grayLight, 30%);
-	padding: 0.2em 0.5em;
-	color: white;
-	text-decoration: none;
-
-	&:hover {
-		background: @orange;
+		&:hover {
+			background: @orange;
+		}
 	}
 }
 
@@ -112,6 +111,14 @@
 
 	a {
 		color: @orangeDark;
+	}
+
+	.detail__breadcrumb {
+		text-decoration: none;
+		font-size: 0.8em;
+		color: darken(@grayLight, 30%);
+		position: relative;
+		top: -9px;
 	}
 }
 
@@ -180,41 +187,59 @@
 	}
 }
 
-.detail__bt--close {
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	background: none;
-	border: none;
-	width: 70px;
-	height: 73px;
-	padding: 0;
-	outline: none;
-	font-size: 28px;
-	.transition(300ms all);
+.detail__bt {
+	padding: 0.2em 0.5em;
+	text-decoration: none;
 
-	&.icon-cross:before {
-		font-size: 73px;
-		background: @orangeDark;
-	}
-
-	&:hover,
-	&:focus {
-		color: @orange;
+	& + & {
+		margin-left: 0;
 	}
 }
 
-.detail__bt--edit {
-	background: none;
-	border: none;
-	vertical-align: middle;
-	margin-left: 10px;
-	
-	&:hover {
-		color: @orange;
+	.detail__bt--close {
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		background: none;
+		border: none;
+		width: 70px;
+		height: 73px;
+		padding: 0;
+		outline: none;
+		font-size: 28px;
+		.transition(300ms all);
+
+		&.icon-cross:before {
+			font-size: 73px;
+			background: @orangeDark;
+		}
+
+		&:hover,
+		&:focus {
+			color: @orange;
+		}
 	}
 
-	&:before {
-		margin-right: 5px;
+	.detail__bt--edit,
+	.detail__bt--download {
+		background: none;
+		border: none;
+		vertical-align: middle;
+		margin-left: 10px;
+		
+		&:hover {
+			background: none;
+			color: @orange;
+		}
+
+		&:before {
+			margin-right: 5px;
+		}
+
+		&.icon-download:before {
+			font-size: 21px;
+			vertical-align: middle;
+			position: relative;
+			top: -3px;
+		}
 	}
-}
