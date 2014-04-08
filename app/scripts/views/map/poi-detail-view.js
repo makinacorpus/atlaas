@@ -56,8 +56,10 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         filtersBtHandler: function (e) {
             e.preventDefault();
 
+            var actorId = $(e.currentTarget).attr('href');
+
             this.close();
-            atlaas.router.navigate($(e.currentTarget).attr('href'));
+            atlaas.router.navigate(actorId, { trigger: true });
         },
 
         open: function () {

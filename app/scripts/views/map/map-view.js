@@ -211,8 +211,10 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.updatePoisState();
         },
 
-        filterByActor: function (actor_id) {
-            this.state.actor = actor_id;
+        zoomToPoisBounds: function () {
+            this.listenToOnce(this.poisView.collection, 'sync', function () {
+                this.map.fitBounds(this.poisView.collection.bounds);
+            });
 
             this.updatePoisState();
         },

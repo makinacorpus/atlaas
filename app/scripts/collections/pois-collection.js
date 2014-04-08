@@ -14,23 +14,30 @@ atlaas.Collections = atlaas.Collections || {};
         initialize: function (options) {
             this.options = options || {};
 
+            this.bounds = undefined;
+
             return this;
         },
 
         parse: function (response, options) {
+            var southWest = L.latLng(response.facets.lat.min, response.facets.lon.min),
+                northEast = L.latLng(response.facets.lat.max, response.facets.lon.max);
+
+            this.bounds = L.latLngBounds(southWest, northEast);
+
             return response.hits.hits;
         },
 
         searchBy: function (_filter) {
-            var querySize = 30;
-            var bounds = {};
-            var query = {};
-            var filtersQuery = {
-                "bool" : {
-                    "must" : []
-                }
-            };
-            var boundsQuery = {};
+            var querySize = 30,
+                bounds = {},
+                query = {},
+                filtersQuery = {
+                    "bool" : {
+                        "must" : []
+                    }
+                },
+                boundsQuery = {};
 
             // If custom filter submited, extend global filter
             this.options.filter = typeof _filter === "undefined" ? this.options.filter : _.extend(this.options.filter, _filter);
@@ -83,7 +90,7 @@ atlaas.Collections = atlaas.Collections || {};
             }
 
             // If actor filter
-            if (this.filter.actor != "") {
+            if (this.options.filter.actor != "") {
                 filtersQuery.bool.must.push({ 
                     "term" : { "personnes.id_personne" : this.options.filter.actor }
                 });
@@ -100,6 +107,18 @@ atlaas.Collections = atlaas.Collections || {};
                     "partial_fields" : {
                         "partial" : {
                             "include" : ["id_action", "titre", "lieux.nom", "lieux.lat", "lieux.lon"]
+                        }
+                    },
+                    "facets" : {
+                        "lat" : {
+                           "statistical" : {
+                              "field" : "lieux.lat"
+                           }
+                        },
+                        "lon" : {
+                           "statistical" : {
+                              "field" : "lieux.lon"
+                           }
                         }
                     }
                 }

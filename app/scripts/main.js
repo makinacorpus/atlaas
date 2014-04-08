@@ -63,15 +63,19 @@ window.atlaas = {
         });
 
         this.router.on('route:actor-filter', function (actor_id) {
-            var state = { actor: actor_id }
+            var state = { actor: actor_id };
 
             // If mapView not rendered
             if (typeof appView.currentView === "undefined" || appView.currentView !== appView.mapView)
                 appView.renderMap(state);
+            else {
+                _.extend(appView.mapView.state, state);
+                appView.mapView.zoomToPoisBounds();
+            }
 
             // If subview already present, hide it
             if (typeof appView.mapView.currentView !== "undefined")
-                appView.mapView.currentView.close();
+                appView.mapView.currentView.close();       
         });
 
         this.router.on('route', function (route) {
