@@ -11,11 +11,17 @@ atlaas.Collections = atlaas.Collections || {};
 
         url: atlaas.CONFIG.elasticsearch + '/actions/_search',
 
+        initialize: function (options) {
+            this.options = options || {};
+
+            return this;
+        },
+
         parse: function (response, options) {
             return response.hits.hits;
         },
 
-        searchBy: function (mapState) {
+        searchBy: function (_filter) {
             var querySize = 30;
             var bounds = {};
             var query = {};
@@ -26,10 +32,13 @@ atlaas.Collections = atlaas.Collections || {};
             };
             var boundsQuery = {};
 
+            // If custom filter submited, extend global filter
+            this.options.filter = typeof _filter === "undefined" ? this.options.filter : _.extend(this.options.filter, _filter);
+
             // If bounds specified, load maximum of pois in bound
-            if (mapState.bounds !== null) {
+            if (this.options.filter.bounds !== null) {
                 querySize = 2000;
-                bounds = this.convertBoundsToESFormat(mapState.bounds);
+                bounds = this.convertBoundsToESFormat(this.options.filter.bounds);
                 boundsQuery = {
                     "filter": {
                         "geo_bounding_box": {
@@ -40,25 +49,25 @@ atlaas.Collections = atlaas.Collections || {};
             }
 
             // If no filter at all
-            if (mapState.search === "" && mapState.categories === null) {
+            if (this.options.filter.search === "" && this.options.filter.categories === null && this.options.filter.actor == "") {
                 filtersQuery.bool.must.push({ 
                     "match_all": {}
                 });
             }
 
             // If text search
-            if (mapState.search !== "") {
+            if (this.options.filter.search !== "") {
                 filtersQuery.bool.must.push({ 
                     "fuzzy_like_this" : {
                         "fields" : ["titre", "ville"],
-                        "like_text" : mapState.search
+                        "like_text" : this.options.filter.search
                     }
                 });
             }
 
             // If category selected
-            if (mapState.categories !== null) {
-                var categoriesQuery = _.map(mapState.categories, function(value, key) {
+            if (this.options.filter.categories !== null) {
+                var categoriesQuery = _.map(this.options.filter.categories, function(value, key) {
                     var object = {};
                     object[key] = value;
                     return {
@@ -70,6 +79,13 @@ atlaas.Collections = atlaas.Collections || {};
                     "bool" : {
                         "must" : categoriesQuery
                     }
+                });
+            }
+
+            // If actor filter
+            if (this.filter.actor != "") {
+                filtersQuery.bool.must.push({ 
+                    "term" : { "personnes.id_personne" : this.options.filter.actor }
                 });
             }
 

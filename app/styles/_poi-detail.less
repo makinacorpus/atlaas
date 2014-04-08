@@ -72,14 +72,7 @@
 	}
 
 	.detail__bt--location {
-		background: darken(@grayLight, 30%);
 		color: white;
-		margin-left: 10px;
-		font-size: 0.9em;
-
-		&:hover {
-			background: @orange;
-		}
 	}
 
 	.social {
@@ -186,6 +179,11 @@
 	.actor__name {
 		font-weight: bold;
 	}
+
+	.detail__bt--location {
+		color: white;
+		float: right;
+	}
 }
 
 .detail__bt {
@@ -196,6 +194,17 @@
 		margin-left: 0;
 	}
 }
+	
+	.detail__bt--location {
+		background: darken(@grayLight, 30%);
+		color: white;
+		margin-left: 10px;
+		font-size: 0.9em;
+
+		&:hover {
+			background: @orange;
+		}
+	}
 
 	.detail__bt--close {
 		position: absolute;

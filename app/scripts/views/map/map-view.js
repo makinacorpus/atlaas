@@ -20,7 +20,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         state: { 
             categories: null,
             bounds: {},
-            search: ""
+            search: "",
+            actor: ""
         },
 
         initialize: function () {
@@ -34,6 +35,9 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         render: function () {
+            // Override default params if needed
+            _.extend(this.state, this.options.state);
+
             this.$el.html(this.template({ id:this.options.map }));
 
             return this;
@@ -60,9 +64,9 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         initPois: function () {
-            this.poisCollection = new atlaas.Collections.PoisCollection();
+            this.poisCollection = new atlaas.Collections.PoisCollection({ filter: this.state });
 
-            this.poisView = new atlaas.Views.Map.PoisView({ collection: this.poisCollection, el: this.map });
+            this.poisView = new atlaas.Views.Map.PoisView({ collection: this.poisCollection, el: this.map, filter: this.state });
 
             this.poisView.poiLayer.addTo(this.map);
 
@@ -203,6 +207,12 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         resetFilters: function () {
             this.state.categories = null;
+
+            this.updatePoisState();
+        },
+
+        filterByActor: function (actor_id) {
+            this.state.actor = actor_id;
 
             this.updatePoisState();
         },

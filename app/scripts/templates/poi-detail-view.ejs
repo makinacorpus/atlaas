@@ -33,9 +33,9 @@
 			<ul>
 				<% _.each(personnes, function(personne) { %>
 				<li class="actor">
-					<span class="actor__name"><%= personne.nom %></span><br/>
+					<span class="actor__name"><%= personne.nom %></span><a href="#map/actors/<%= personne.id_personne %>" class="detail__bt detail__bt--location" title="Voir toutes les actions de cette ville">+ Toutes les actions</a><br/>
 					<span class="actor__title"><%= personne.titre %></span><br/>
-					<a class="actor__email" href="mailto:<%= personne.courriel %>" target="_blank"><%= personne.courriel %></a>
+					<a class="actor__email" href="mailto:<%= personne.courriel %>" target="_blank"><%= personne.courriel %></a><br/>
 				</li>
 				<% }); %>
 			</ul>

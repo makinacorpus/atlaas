@@ -32,10 +32,10 @@ atlaas.Views = atlaas.Views || {};
             return this;
         },
 
-        renderMap: function () {
+        renderMap: function (state) {
             this.render();
 
-            this.mapView = new atlaas.Views.Map.MapView({map: 'map'});
+            this.mapView = new atlaas.Views.Map.MapView({map: 'map', state: state});
 
             this.currentView = this.mapView;
 

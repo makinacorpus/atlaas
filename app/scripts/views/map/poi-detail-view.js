@@ -17,7 +17,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         events: {
             'click .detail__bt--close'           : 'closeBtHandler',
             'click .detail__bt--edit'            : 'editBtHandler',
-            'click .detail__bt--location'        : 'filtersBtHandler',
+            'click .detail__bt--location'        : 'filtersBtHandler'
         },
 
         initialize: function () {
@@ -34,7 +34,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         render: function () {
-            // console.log(this.model.toJSON());
+            console.log(this.model.toJSON());
         	this.$el.html(this.template(this.model.toJSON(), this.csv));
 
         	return this;
@@ -55,6 +55,9 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         filtersBtHandler: function (e) {
             e.preventDefault();
+
+            this.close();
+            atlaas.router.navigate($(e.currentTarget).attr('href'));
         },
 
         open: function () {

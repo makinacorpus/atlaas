@@ -7,14 +7,13 @@ atlaas.Views = atlaas.Views || {};
 
     // POIs view : this view displays POIs on the map and pois in the result list
     atlaas.Views.Map.PoisView = Backbone.View.extend({
-        events: {
-        },
 
-        initialize: function () {
+        initialize: function (options) {
             this.poiViewCollection          = [];
             this.poiLayer                   = new L.POILayer();
             this.departments                = undefined;
             this.departmentsMarkers         = undefined;
+            this.filter                     = options.filter;
 
             this.listenTo(this.collection, "reset", this.render);
             this.listenTo(this.collection, 'add', function (model) {
@@ -63,38 +62,37 @@ atlaas.Views = atlaas.Views || {};
             }, this));
         },
 
-        updateDepartments: function (_mapState) {
+        updateDepartments: function (_filter) {
             var query = {};
             var filtersQuery = {
                 "bool" : {
                     "must" : []
                 }
             };
-            var mapState = typeof _mapState === "undefined" ? { 
-                categories: null,
-                search: ""
-            } : _mapState;
 
-            // If no filter att all
-            if (mapState.search == "" && mapState.categories == null) {
+            // If custom filter submited, extend global filter
+            this.filter = typeof _filter === "undefined" ? this.filter : _.extend(this.filter, _filter);
+
+            // If no filter at all
+            if (this.filter.search == "" && this.filter.categories == null && this.filter.actor == "") {
                 filtersQuery.bool.must.push({ 
                     "match_all": {}
                 });
             }
 
             // If text search
-            if (mapState.search != "") {
+            if (this.filter.search != "") {
                 filtersQuery.bool.must.push({ 
                     "fuzzy_like_this" : {
                         "fields" : ["titre", "ville"],
-                        "like_text" : mapState.search
+                        "like_text" : this.filter.search
                     }
                 });
             }
 
             // If category selected
-            if (mapState.categories != null) {
-                var categoriesQuery = _.map(mapState.categories, function(value, key) {
+            if (this.filter.categories != null) {
+                var categoriesQuery = _.map(this.filter.categories, function(value, key) {
                     var object = {};
                     object[key] = value;
                     return {
@@ -106,6 +104,13 @@ atlaas.Views = atlaas.Views || {};
                     "bool" : {
                         "must" : categoriesQuery
                     }
+                });
+            }
+
+            // If actor filter
+            if (this.filter.actor != "") {
+                filtersQuery.bool.must.push({ 
+                    "term" : { "personnes.id_personne" : this.filter.actor }
                 });
             }
 
