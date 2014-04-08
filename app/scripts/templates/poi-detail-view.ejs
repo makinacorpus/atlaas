@@ -5,10 +5,10 @@
 </div>
 <div class="detail__meta">
 	<h3 class="detail__location icon-location"><%= lieux[0].nom %></h3>
-	<a href="#location/<%= lieux[0].id_lieu %>" class="detail__bt detail__bt--location">+ Toutes les actions</a>
+	<a href="#location/<%= lieux[0].id_lieu %>" class="detail__bt detail__bt--location" title="Voir toutes les actions de cette ville">+ Toutes les actions</a>
 	<div class="detail__date">Publié le <%= date %></div>
 	<a href="#edit/<%= id %>" class="detail__bt detail__bt--edit icon-edit">Modifier</a>
-	<a href="<%= "data:text/csv;charset=utf-8," + encodeURIComponent(this.csv) %>" download="data.csv" class="detail__bt detail__bt--download icon-download">Télécharger</a>
+	<a href="<%= "data:text/csv;charset=utf-8," + encodeURIComponent(this.csv) %>" download="data.csv" class="detail__bt detail__bt--download icon-download" title="Télécharger la fiche sous format CSV">Télécharger</a>
 	<div class="social">
 		<a href="<%= window.location.href %>" class="twitter-share-button" data-lang="fr">Tweet</a>
 		<div class="fb-like" data-href="<%= window.location.href %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false" data-width="100"></div>
