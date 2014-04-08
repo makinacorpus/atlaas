@@ -81,6 +81,28 @@
 			background: @orange;
 		}
 	}
+
+	.social {
+		display: inline-block;
+		vertical-align: middle;
+		overflow: hidden;
+		min-width: 280px;
+		height: 22px;
+		text-align: right;
+
+		> div, > iframe {
+			vertical-align: middle;
+			min-width: 100px;
+			min-width: 100px;
+		}
+
+		.fb-like {
+			> span {
+				min-width: 100px!important;
+				min-height: 20px!important;
+			}
+		}
+	}
 }
 
 .detail__date {
@@ -131,27 +153,6 @@
 	p {
 		margin-top: 0;
 		margin-bottom: 1.4em;
-	}
-
-	.social {
-		float: right;
-		overflow: hidden;
-		min-width: 300px;
-		height: 22px;
-		text-align: right;
-
-		> div, > iframe {
-			vertical-align: middle;
-			min-width: 100px;
-			min-width: 100px;
-		}
-
-		.fb-like {
-			> span {
-				min-width: 100px!important;
-				min-height: 20px!important;
-			}
-		}
 	}
 }
 

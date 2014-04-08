@@ -9,16 +9,15 @@
 	<div class="detail__date">Publié le <%= date %></div>
 	<a href="#edit/<%= id %>" class="detail__bt detail__bt--edit icon-edit">Modifier</a>
 	<a href="<%= "data:text/csv;charset=utf-8," + encodeURIComponent(this.csv) %>" download="data.csv" class="detail__bt detail__bt--download icon-download">Télécharger</a>
+	<div class="social">
+		<a href="<%= window.location.href %>" class="twitter-share-button" data-lang="fr">Tweet</a>
+		<div class="fb-like" data-href="<%= window.location.href %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false" data-width="100"></div>
+	</div>
 </div>
 <div class="detail__action">
-	<a href="#category/<%= services[0].service %>" class="detail__breadcrumb">> <%=services[0].service%></a>
+	<a href="#category/<%= services[0].enjeu %>" class="detail__breadcrumb"><%=services[0].enjeu_de_developpement%></a><a href="#category/<%= services[0].usage %>" class="detail__breadcrumb">> <%=services[0].usage%></a><a href="#category/<%= services[0].service %>" class="detail__breadcrumb">> <%=services[0].service%></a>
 	<div class="row">
 		<div class="detail__content col-8">
-			<div class="social">
-				<a href="<%= window.location.href %>" class="twitter-share-button" data-lang="fr">Tweet</a>
-				<div class="fb-like" data-href="<%= window.location.href %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false" data-width="100"></div>
-			</div>
-
 			<h3>Synthèse</h3>
 			<p><%= synthese %></p>
 
