@@ -1,10 +1,21 @@
 import xlrd
+import json
+
+def format_phone(val):
+    if type(val) is float:
+        return '0' + str(int(val))
+    else:
+        return val
+
+def format_int(val):
+    if type(val) is float:
+        return str(int(val))
+    else:
+        return val
 
 wb = xlrd.open_workbook("../../data/ATLAAS - Import acteurs.xls")
 
 # lieux
-lieux = {}
-lieux_errors = 0
 mapping_region = {
     '1': '82',
     '2': '22',
@@ -107,11 +118,8 @@ mapping_region = {
     '973': '3',
     '974': '4',
 }
-
-# fields = 
-# Id_Lieu Type    Nom Description Latitude    Longitude   Adresse web Adresse Code postal Ville   Telephone   Fax Courriel    Population  Id_INSEE
-
-
+lieux = {}
+lieux_errors = 0
 sh = wb.sheet_by_name(u'Lieux')
 for rownum in range(1, sh.nrows):
     row = sh.row_values(rownum)
@@ -130,17 +138,18 @@ for rownum in range(1, sh.nrows):
         departement = guess_departement[:3]
     else:
         departement = guess_departement[:2]
-    info = {
+    id = format_int(row[0])
+    infos = {
         'nom': row[2],
         'fax': row[11],
-        'code_postal': row[8],
+        'code_postal': format_int(row[8]),
         'description': row[3],
         'ville': row[9],
         'adresse': row[7],
-        'id_insee': str(row[14]),
-        'telephone': row[10],
+        'id_insee': format_int(row[14]),
+        'telephone': format_phone(row[10]),
         'adresse_web': row[6],
-        'id_lieu': str(row[0]),
+        'id_lieu': id,
         'location': {
             'lat': row[4],
             'lon': row[5],
@@ -149,10 +158,114 @@ for rownum in range(1, sh.nrows):
         'courriel': row[12],
         'lat': row[4],
         'type': row[1],
-        'population': str(row[13]),
+        'population': format_int(row[13]),
         'departement': departement,
         'region': mapping_region.get(departement, ''),
     }
-    print(info)
+    lieux[id] = infos
+print("Erreur lieux: %d" % lieux_errors)
 
-print(lieux_errors)
+# Personnes
+sh = wb.sheet_by_name(u'Personnes')
+personnes = {}
+for rownum in range(1, sh.nrows):
+    row = sh.row_values(rownum)
+    id = format_int(row[0])
+    infos ={
+        'ville': row[6],
+        'code_postal': format_int(row[5]),
+        'id_personne': id,
+        'adresse': row[4],
+        'telephone': format_phone(row[7]),
+        'titre': row[2],
+        'nom': row[1],
+        'courriel': row[9],
+        'telephone_mobile': format_phone(row[8]),
+        'elu': row[3],
+    }
+    personnes[id] = infos
+
+# Services
+wb = xlrd.open_workbook("../../data/ATLAAS - Import actions V2.xls")
+sh = wb.sheet_by_name(u'Services')
+services = {}
+for rownum in range(1, sh.nrows):
+    row = sh.row_values(rownum)
+    id = format_int(row[0])
+    infos ={
+        'usage': row[3],
+        'enjeu_de_developpement': row[2],
+        'id_service': id,
+        'service': row[4],
+        'axe': row[1],
+    }
+    services[id] = infos
+
+# actions
+sh = wb.sheet_by_name(u'Actions')
+actions = {}
+for rownum in range(1, sh.nrows):
+    row = sh.row_values(rownum)
+    id = format_int(row[0])
+    infos ={
+        'outils': row[9],
+        'sous_titre': row[2],
+        'id_action': id,
+        'actions': row[5],
+        'date': format_int(row[3]),
+        'synthese': row[4],
+        'liens': row[8],
+        'titre': row[1],
+        'resultats': row[6],
+        'recommandations': row[7],
+        'prestataires': row[10],
+    }
+    actions[id] = infos
+
+# bind lieux
+sh = wb.sheet_by_name(u'Liaison Lieux (2)')
+for rownum in range(1, sh.nrows):
+    row = sh.row_values(rownum)
+    (action_id, lieu_id) = (format_int(row[0]), format_int(row[1]))
+    action = actions.get(action_id)
+    lieu = lieux.get(lieu_id)
+    if not(action and lieu):
+        continue
+    action_lieux = action.get('lieux', [])
+    action_lieux.append(lieux[lieu_id])
+    actions[action_id]['lieux'] = action_lieux
+
+# bind personnes
+sh = wb.sheet_by_name(u'Liaison Personnes (2)')
+for rownum in range(1, sh.nrows):
+    row = sh.row_values(rownum)
+    (action_id, personne_id) = (format_int(row[0]), format_int(row[1]))
+    action = actions.get(action_id)
+    personne = personnes.get(personne_id)
+    if not(action and personne):
+        continue
+    action_personnes = action.get('personnes', [])
+    action_personnes.append(personnes[personne_id])
+    actions[action_id]['personnes'] = action_personnes
+
+# bind services
+sh = wb.sheet_by_name(u'Liaison Services (2)')
+for rownum in range(1, sh.nrows):
+    row = sh.row_values(rownum)
+    (action_id, service_id) = (format_int(row[0]), format_int(row[1]))
+    action = actions.get(action_id)
+    service = services.get(service_id)
+    if not(action and service):
+        continue
+    action_services = action.get('services', [])
+    action_services.append(services[service_id])
+    actions[action_id]['services'] = action_services
+
+# export actions to json
+actions_json = open("actions.json", "wb")
+for action in actions.values():
+    header = { "index" : { "_index" : "atlaas", "_type" : "actions", "_id" : action['id_action'] } }
+    actions_json.write(bytes(json.dumps(header) + '\n', 'UTF-8'))
+    actions_json.write(bytes(json.dumps(action) + '\n', 'UTF-8'))
+actions_json.close()
+    
