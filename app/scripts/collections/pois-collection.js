@@ -11,6 +11,11 @@ atlaas.Collections = atlaas.Collections || {};
 
         url: atlaas.CONFIG.elasticsearch + '/actions/_search',
 
+        /**
+         * Constructor
+         * 
+         * @param {Object} [options.filter] - Map active pois filters
+         */
         initialize: function (options) {
             this.options = options || {};
 
@@ -28,7 +33,7 @@ atlaas.Collections = atlaas.Collections || {};
             return response.hits.hits;
         },
 
-        searchBy: function (_filter) {
+        getFiltersQuery: function (_filter) {
             var querySize = 30,
                 bounds = {},
                 query = {},
@@ -39,7 +44,7 @@ atlaas.Collections = atlaas.Collections || {};
                 },
                 boundsQuery = {};
 
-            // If custom filter submited, extend global filter
+            // If custom filter submitted, extend global filter
             this.options.filter = typeof _filter === "undefined" ? this.options.filter : _.extend(this.options.filter, _filter);
 
             // If bounds specified, load maximum of pois in bound
@@ -96,42 +101,60 @@ atlaas.Collections = atlaas.Collections || {};
                 });
             }
 
-            query = {
-                source: {
-                    "size" : querySize,
+            // If departments only
+            if (this.options.filter.departments) {
+                return query = {
+                    "size" : 0,
                     "query": {
                         "filtered": {
                             "query": filtersQuery
                         }
                     },
-                    "partial_fields" : {
-                        "partial" : {
-                            "include" : ["id_action", "titre", "lieux.nom", "lieux.lat", "lieux.lon"]
-                        }
-                    },
-                    "facets" : {
-                        "lat" : {
-                           "statistical" : {
-                              "field" : "lieux.lat"
-                           }
-                        },
-                        "lon" : {
-                           "statistical" : {
-                              "field" : "lieux.lon"
-                           }
+                    "facets": {
+                        "test": {
+                            "terms": {
+                                "size": 100,
+                                "script": "doc['lieux.region'].value"
+                            },
+                            "global": false
                         }
                     }
+                };                
+            } else {
+                query = {
+                    source: {
+                        "size" : querySize,
+                        "query": {
+                            "filtered": {
+                                "query": filtersQuery
+                            }
+                        },
+                        "partial_fields" : {
+                            "partial" : {
+                                "include" : ["id_action", "titre", "lieux.nom", "lieux.lat", "lieux.lon"]
+                            }
+                        },
+                        "facets" : {
+                            "lat" : {
+                               "statistical" : {
+                                  "field" : "lieux.lat"
+                               }
+                            },
+                            "lon" : {
+                               "statistical" : {
+                                  "field" : "lieux.lon"
+                               }
+                            }
+                        }
+                    }
+                };
+
+                _.extend(query.source, boundsQuery);
+
+                return query = {
+                    source: JSON.stringify(query.source)
                 }
-            };
-
-            _.extend(query.source, boundsQuery);
-
-            query = {
-                source: JSON.stringify(query.source)
             }
-
-
-            this.fetch({ data: query });
         },
 
         convertBoundsToESFormat: function (Lbounds) {

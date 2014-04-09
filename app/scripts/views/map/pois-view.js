@@ -8,8 +8,13 @@ atlaas.Views = atlaas.Views || {};
     // POIs view : this view displays POIs on the map and pois in the result list
     atlaas.Views.Map.PoisView = Backbone.View.extend({
 
+        /**
+         * Constructor
+         * 
+         * @param {Object} [options.filter] - Map active pois filters
+         */
         initialize: function (options) {
-            this.poiViewCollection          = [];
+            this.poiViewCollection          = {};
             this.poiLayer                   = new L.POILayer();
             this.departments                = undefined;
             this.departmentsMarkers         = undefined;
@@ -17,24 +22,24 @@ atlaas.Views = atlaas.Views || {};
 
             this.listenTo(this.collection, "reset", this.render);
             this.listenTo(this.collection, 'add', function (model) {
-                this.poiViewCollection.push(new atlaas.Views.Map.PoiView({ model: model }));
+                this.poiViewCollection[model.id] = new atlaas.Views.Map.PoiView({ model: model });
             });
-            this.listenTo(this.collection, 'destroy', function (model) {
-                delete this.poiViewCollection[model];
+            this.listenTo(this.collection, 'remove', function (model) {
+                delete this.poiViewCollection[model.id];
             });
 
-            this.loadDepartments();
-
-            this.poiLayer.addLayer(this.poiLayer.clusterLayer);
+            // If departments only
+            if (this.filter.departments) {
+                this.loadDepartments();
+                this.poiLayer.addLayer(this.poiLayer.clusterLayer);
+            } else {
+               var query = this.collection.getFiltersQuery(this.filter);
+                this.collection.fetch({ data: query });
+            }
         },
 
         render: function () {
             this.poiLayer.clusterDetailLayer.off('click');
-
-            // PoisView
-            // this.poiViewCollection = _.map(this.collection.models, function (_model) {
-            //     return new atlaas.Views.Map.PoiView({ model: _model });
-            // });
             
             // Empty markers
             var markers = {};
@@ -52,6 +57,18 @@ atlaas.Views = atlaas.Views || {};
             return this;
         },
 
+        update: function (_filter) {
+            this.filter = _filter;
+
+            // Only update if not on clustered version
+            if (this.filter.departments) {
+                this.updateDepartments(this.filter);
+            } else {
+                var query = this.collection.getFiltersQuery(this.filter);
+                this.collection.fetch({ data: query });
+            }
+        },
+
         loadDepartments: function () {
             var departmentsUrl = 'scripts/helpers/regions.geojson';
             
@@ -63,74 +80,7 @@ atlaas.Views = atlaas.Views || {};
         },
 
         updateDepartments: function (_filter) {
-            var query = {};
-            var filtersQuery = {
-                "bool" : {
-                    "must" : []
-                }
-            };
-
-            // If custom filter submited, extend global filter
-            this.filter = typeof _filter === "undefined" ? this.filter : _.extend(this.filter, _filter);
-
-            // If no filter at all
-            if (this.filter.search == "" && this.filter.categories == null && this.filter.actor == "") {
-                filtersQuery.bool.must.push({ 
-                    "match_all": {}
-                });
-            }
-
-            // If text search
-            if (this.filter.search != "") {
-                filtersQuery.bool.must.push({ 
-                    "fuzzy_like_this" : {
-                        "fields" : ["titre", "ville"],
-                        "like_text" : this.filter.search
-                    }
-                });
-            }
-
-            // If category selected
-            if (this.filter.categories != null) {
-                var categoriesQuery = _.map(this.filter.categories, function(value, key) {
-                    var object = {};
-                    object[key] = value;
-                    return {
-                        "match_phrase" : object
-                    }
-                });
-
-                filtersQuery.bool.must.push({ 
-                    "bool" : {
-                        "must" : categoriesQuery
-                    }
-                });
-            }
-
-            // If actor filter
-            if (this.filter.actor != "") {
-                filtersQuery.bool.must.push({ 
-                    "term" : { "personnes.id_personne" : this.filter.actor }
-                });
-            }
-
-            query = {
-                "size" : 0,
-                "query": {
-                    "filtered": {
-                        "query": filtersQuery
-                    }
-                },
-                "facets": {
-                    "test": {
-                        "terms": {
-                            "size": 100,
-                            "script": "doc['lieux.region'].value"
-                        },
-                        "global": false
-                    }
-                }
-            };
+            var query = this.collection.getFiltersQuery();
 
             _.each(this.departmentsMarkers, _.bind(function (marker) {
                 marker.off('click');
@@ -193,6 +143,8 @@ atlaas.Views = atlaas.Views || {};
                             this.poiLayer.clusterLayer.addLayer(this.departmentsMarkers[marker]);
                         } else {
                             // Markers already on map, update their number
+                            this.departmentsMarkers[marker].options.icon.options.html = newMarkers[marker].options.icon.options.html;
+                            // Update in the DOM (cause Leaflet doesn't have method for this)
                             $(this.departmentsMarkers[marker]._icon).html(newMarkers[marker].options.icon.options.html);
                         }
                     }

@@ -19,9 +19,10 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         state: { 
             categories: null,
-            bounds: {},
+            bounds: null,
             search: "",
-            actor: ""
+            actor: "",
+            departments: true
         },
 
         initialize: function () {
@@ -305,10 +306,13 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         updatePoisState: function () {
             if (this.poisView.poiLayer._clustered) {
                 this.state.bounds = null;
-                this.poisView.updateDepartments(this.state);
+                this.state.departments = true;
+                // this.poisView.updateDepartments(this.state);
             } else {
-                this.poisView.collection.searchBy(this.state);
+                this.state.departments = false;
             }
+
+            this.poisView.update(this.state);
             
             // Remove right menu from map bounds for performances
             // this.state.bounds = this.map.getBoundsWithRightOffset(340);

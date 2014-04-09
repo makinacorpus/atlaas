@@ -19,6 +19,14 @@ atlaas.Views = atlaas.Views || {};
             _.each(this.model.get('lieux'), function (location, index) {
                 this.markers[index] = new CustomMarker([location.lat, location.lon], {icon: this.customIcon, id: this.model.id});
             }, this);
+
+            this.listenTo(this.model, 'remove', function (model) {
+                _.each(this.markers, function (marker) {
+                    delete this.markers[marker];
+                }, this);
+
+                this.remove();
+            });
         }
     });
 
