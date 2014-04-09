@@ -284,14 +284,17 @@ for service in services.values():
         'usage': service['usage'][3:],
         'services': [],
     })
-    usage['services'].append(service)
+    usage['services'].append({
+        'id_service': service['id_service'],
+        'service': service['service'],
+    })
     usages[usage_id] = usage
     enjeu['usages'] = usages
     enjeux[enjeu_id] = enjeu
 
 enjeux_json = open("enjeux.json", "wb")
 for enjeu in enjeux.values():
-    header = { "index" : { "_index" : "atlaas", "_type" : "actions", "_id" : enjeu['id_enjeu'] } }
+    header = { "index" : { "_index" : "atlaas", "_type": "enjeux", "_id" : enjeu['id_enjeu'] } }
     enjeux_json.write(bytes(json.dumps(header) + '\n', 'UTF-8'))
     enjeux_json.write(bytes(json.dumps(enjeu) + '\n', 'UTF-8'))
 enjeux_json.close()
