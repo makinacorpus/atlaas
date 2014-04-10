@@ -33,7 +33,7 @@ atlaas.Collections = atlaas.Collections || {};
             return response.hits.hits;
         },
 
-        getFiltersQuery: function (_filter) {
+        getFiltersQuery: function (_filter, target) {
             var querySize = 30,
                 bounds = {},
                 query = {},
@@ -101,8 +101,8 @@ atlaas.Collections = atlaas.Collections || {};
                 });
             }
 
-            // If departments only
-            if (this.options.filter.departments) {
+            // If departments
+            if (typeof target !== "undefined" && target === "departments") {
                 return query = {
                     "size" : 0,
                     "query": {

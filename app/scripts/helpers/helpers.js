@@ -53,6 +53,7 @@ L.POILayer = L.LayerGroup.extend({
     },
 
     updatePois: function (markers) {
+        // console.log(markers);
         var oldMarkers = [];
         var newMarkers = [];
 
@@ -74,10 +75,8 @@ L.POILayer = L.LayerGroup.extend({
             }
         }
 
-        if (!this._clustered) {
-            this.clusterDetailLayer.removeLayers(oldMarkers);
-            this.clusterDetailLayer.addLayers(newMarkers);
-        }
+        this.clusterDetailLayer.removeLayers(oldMarkers);
+        this.clusterDetailLayer.addLayers(newMarkers);
     },
 
     __onErrored: function () {
@@ -101,6 +100,8 @@ L.POILayer = L.LayerGroup.extend({
         this.addLayer(this.clusterLayer);
 
         this.removeLayer(this.clusterDetailLayer);
+        this.clusterDetailLayer.clearLayers();
+        this._onMap = [];
     },
 
     __uncluster: function () {

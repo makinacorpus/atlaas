@@ -20,7 +20,10 @@ atlaas.Views = atlaas.Views || {};
             this.departmentsMarkers         = undefined;
             this.filter                     = options.filter;
 
-            this.listenTo(this.collection, "reset", this.render);
+            this.listenTo(this.collection, 'reset', function () {
+                for (var poiView in this.poiViewCollection) delete this.poiViewCollection[poiView];
+                this.render();
+            });
             this.listenTo(this.collection, 'add', function (model) {
                 this.poiViewCollection[model.id] = new atlaas.Views.Map.PoiView({ model: model });
             });
@@ -28,12 +31,14 @@ atlaas.Views = atlaas.Views || {};
                 delete this.poiViewCollection[model.id];
             });
 
-            // If departments only
-            if (this.filter.departments) {
+            // If departments
+            if (this.poiLayer._clustered) {
                 this.loadDepartments();
                 this.poiLayer.addLayer(this.poiLayer.clusterLayer);
-            } else {
-               var query = this.collection.getFiltersQuery(this.filter);
+            }
+
+            if (this.filter.search !== "" && this.filter.categories !== null && this.filter.actor !== "") {
+                var query = this.collection.getFiltersQuery(this.filter);
                 this.collection.fetch({ data: query });
             }
         },
@@ -60,9 +65,19 @@ atlaas.Views = atlaas.Views || {};
         update: function (_filter) {
             this.filter = _filter;
 
-            // Only update if not on clustered version
-            if (this.filter.departments) {
-                this.updateDepartments(this.filter);
+            if (this.poiLayer._clustered) {
+                this.updateDepartments();
+
+                // If any filter is active
+                if (this.filter.search !== "" || this.filter.categories !== null || this.filter.actor !== "") {
+                    var query = this.collection.getFiltersQuery(this.filter);
+                    this.collection.fetch({ data: query });
+                } else {
+                    // If no filter at all, clear collection
+                    if(this.collection.length !== 0) {
+                        this.collection.reset();
+                    }
+                }
             } else {
                 var query = this.collection.getFiltersQuery(this.filter);
                 this.collection.fetch({ data: query });
@@ -80,7 +95,7 @@ atlaas.Views = atlaas.Views || {};
         },
 
         updateDepartments: function (_filter) {
-            var query = this.collection.getFiltersQuery();
+            var query = this.collection.getFiltersQuery(_filter, "departments");
 
             _.each(this.departmentsMarkers, _.bind(function (marker) {
                 marker.off('click');

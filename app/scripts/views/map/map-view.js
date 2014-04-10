@@ -21,8 +21,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             categories: null,
             bounds: null,
             search: "",
-            actor: "",
-            departments: true
+            actor: ""
         },
 
         initialize: function () {
@@ -33,6 +32,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.resultsCollection  = undefined
             this.poisCollection     = undefined
             this.currentView        = undefined
+            this._clustered         = true
         },
 
         render: function () {
@@ -62,6 +62,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.currentZoom = 10;
 
             this.map.on('moveend', this.onMapViewChanged, this);
+            this.map.on('zoomend', this.onMapZoomChanged, this);
         },
 
         initPois: function () {
@@ -72,6 +73,13 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.poisView.poiLayer.addTo(this.map);
 
             this.listenTo(this.poisView.collection, 'sync', function () {
+                if (!this.poisView.poiLayer._clustered) {
+                    this.renderPois();
+                }
+                this.renderPoisResults();
+            });
+
+            this.listenTo(this.poisView.collection, 'reset', function () {
                 this.renderPois();
                 this.renderPoisResults();
             });
@@ -303,13 +311,19 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.updatePoisState();
         },
 
+        onMapZoomChanged: function () {
+            var clustered = this.map.getZoom() < L.POILayer.CLUSTER_THRESHOLD;
+            if (clustered !== this._clustered) {
+                if (this._clustered) {
+                    this.poisView.collection.reset();
+                }
+            }
+            this._clustered = clustered;
+        },
+
         updatePoisState: function () {
             if (this.poisView.poiLayer._clustered) {
                 this.state.bounds = null;
-                this.state.departments = true;
-                // this.poisView.updateDepartments(this.state);
-            } else {
-                this.state.departments = false;
             }
 
             this.poisView.update(this.state);
