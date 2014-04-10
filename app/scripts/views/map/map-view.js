@@ -87,11 +87,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 this.renderPoisResults();
             });
 
-            this.listenTo(this.poisView.collection, 'reset', function () {
-                this.renderPois();
-                this.renderPoisResults();
-            });
-
             this.listenTo(this.poisView, 'zoomTo', function (marker) {
                 this.map.setZoomAround(marker.latlng, 8);
             });
@@ -129,14 +124,20 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 var poiView = _.find(this.poisView.poiViewCollection, function(_poiView){
                     return _poiView.model.id == poiId;
                 });
-                console.log(poiView.markers[0]);
-                this.poisView.poiLayer.clusterDetailLayer.zoomToShowLayer(poiView.markers[0], _.bind(function() {
-                    console.log('zoom');
-                    this.showPopup(poiId, poiView.markers[0]);
-                }, this));
 
-                // var zoom = this.map.getZoom() > 8 ? this.map.getZoom() : 8;
-                // this.map.setView(poiView.markers[0].getLatLng(), zoom);
+                if (poiView.markers[0].__parent || poiView.markers[0]._icon) {
+                    this.poisView.poiLayer.clusterDetailLayer.zoomToShowLayer(poiView.markers[0], _.bind(function() {
+                        this.showPopup(poiId, poiView.markers[0]);
+                    }, this));
+                } else {
+                    this.listenToOnce(this.poisView, 'poisRendered', function () {
+                        this.poisView.poiLayer.clusterDetailLayer.zoomToShowLayer(poiView.markers[0], _.bind(function() {
+                            this.showPopup(poiId, poiView.markers[0]);
+                        }, this));
+                    });
+
+                    this.map.setView(poiView.markers[0].getLatLng(), 14);
+                }
             });
 
             this.listenTo(this.searchView, 'search', function (query) {
@@ -317,18 +318,12 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         onMapViewChanged: function () {
             this.options.state.bounds = this.map.getBounds().pad(0.3);
-            
             this.updatePoisState();
         },
 
         onMapZoomChanged: function () {
             var clustered = this.map.getZoom() < L.POILayer.CLUSTER_THRESHOLD;
-            console.log(this.poisView.clustered);
-            if (clustered !== this.poisView.clustered) {
-                if (this.poisView.clustered) {
-                    this.poisView.collection.reset();
-                }
-            }
+
             this.poisView.clustered = clustered;
         },
 

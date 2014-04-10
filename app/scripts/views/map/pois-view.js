@@ -65,6 +65,8 @@ atlaas.Views = atlaas.Views || {};
             // Display markers
             this.poiLayer.updatePois(markers);
 
+            this.trigger('poisRendered');
+
             return this;
         },
 
@@ -84,7 +86,7 @@ atlaas.Views = atlaas.Views || {};
                     this.collection.fetch({ data: query });
                 } else {
                     // If no filter at all, clear collection
-                    if(this.collection.length !== 0) {
+                    if(this.collection.length > 1) {
                         this.collection.reset();
                     }
                 }
