@@ -18,14 +18,20 @@
 	<a href="#category/<%= services[0].enjeu %>" class="detail__breadcrumb"><%=services[0].enjeu_de_developpement%></a><a href="#category/<%= services[0].usage %>" class="detail__breadcrumb">> <%=services[0].usage%></a><a href="#category/<%= services[0].service %>" class="detail__breadcrumb">> <%=services[0].service%></a>
 	<div class="row">
 		<div class="detail__content col-8">
+			<% if (synthese.length) { %>
 			<h3>Synthèse</h3>
 			<p><%= synthese %></p>
+			<% } %>
 
+			<% if (actions.length) { %>
 			<h3>Actions</h3>
 			<p><%= actions %></p>
+			<% } %>
 
+			<% if (resultats.length) { %>
 			<h3>Résultats</h3>
 			<p><%= resultats %></p>
+			<% } %>
 		</div>
 		<div class="detail__related col-4">
 			<% if (personnes.length) { %>
