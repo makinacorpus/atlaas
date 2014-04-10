@@ -98,7 +98,6 @@ L.POILayer = L.LayerGroup.extend({
 
     __cluster: function () {
         this.addLayer(this.clusterLayer);
-        console.log('cluster');
         this.removeLayer(this.clusterDetailLayer);
         this.clusterDetailLayer.clearLayers();
         this._onMap = [];
@@ -106,7 +105,6 @@ L.POILayer = L.LayerGroup.extend({
 
     __uncluster: function () {
         this.removeLayer(this.clusterLayer);
-        console.log('uncluster');
         this.addLayer(this.clusterDetailLayer);
     },
 });
