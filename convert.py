@@ -1,5 +1,6 @@
 import xlrd
 import json
+import re
 
 def format_phone(val):
     if type(val) is float:
@@ -13,19 +14,30 @@ def format_int(val):
     else:
         return val
 
+def cleanup_text(val, only_replace_double=True):
+    if not type(val) is str:
+        val = str(val)
+    val = re.sub('^\n+', '', val)
+    val = re.sub('\n+^', '', val)
+    if only_replace_double:
+        val = re.sub('\n{2}', '<br/>', val)
+    else:
+        val = re.sub('\n', '<br/>', val)
+    return val
+
 wb = xlrd.open_workbook("../../data/ATLAAS - Import acteurs.xls")
 
 # lieux
 mapping_region = {
-    '1': '82',
-    '2': '22',
-    '3': '83',
-    '4': '93',
-    '5': '93',
-    '6': '93',
-    '7': '82',
-    '8': '21',
-    '9': '73',
+    '01': '82',
+    '02': '22',
+    '03': '83',
+    '04': '93',
+    '05': '93',
+    '06': '93',
+    '07': '82',
+    '08': '21',
+    '09': '73',
     '10': '21',
     '11': '91',
     '12': '73',
@@ -143,7 +155,7 @@ for rownum in range(1, sh.nrows):
         'nom': row[2],
         'fax': row[11],
         'code_postal': format_int(row[8]),
-        'description': row[3],
+        'description': cleanup_text(row[3]),
         'ville': row[9],
         'adresse': row[7],
         'id_insee': format_int(row[14]),
@@ -211,14 +223,14 @@ for rownum in range(1, sh.nrows):
         'outils': row[9],
         'sous_titre': row[2],
         'id_action': id,
-        'actions': row[5],
+        'actions': cleanup_text(row[5]),
         'date': format_int(row[3]),
-        'synthese': row[4],
-        'liens': row[8],
+        'synthese': cleanup_text(row[4]),
+        'liens': cleanup_text(row[8], False),
         'titre': row[1],
-        'resultats': row[6],
-        'recommandations': row[7],
-        'prestataires': row[10],
+        'resultats': cleanup_text(row[6]),
+        'recommandations': cleanup_text(row[7]),
+        'prestataires': cleanup_text(row[10]),
     }
     actions[id] = infos
 
