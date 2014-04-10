@@ -24,12 +24,17 @@ Import files in elasticsearch
 -----------------------------
 
 First backup your original data:
-`tar -czf /data/nodex/tar.gz /var/lib/elasticsearch/elasticsearch/nodes`
+`tar -czf /data/nodes.tar.gz /var/lib/elasticsearch/elasticsearch/nodes`
 
-Clean-up existing index:
+Then launch the import:
+`./import.sh`
+
+FYI, this script does the following:
+
+- Clean-up existing index:
 `curl -XDELETE 'http://localhost:9200/atlaas/'`
 
-Setup index:
+- Setup index:
 `curl -XPUT 'http://localhost:9200/atlaas'`
 
 ```curl -XPUT 'http://localhost:9200/atlaas/actions/_mapping' -d '
@@ -45,6 +50,6 @@ Setup index:
     }
 }'```
 
-Import new data:
+- Import new data:
 `curl -s -XPOST localhost:9200/_bulk --data-binary @enjeux.json; echo`
 `curl -s -XPOST localhost:9200/_bulk --data-binary @actions.json; echo`
