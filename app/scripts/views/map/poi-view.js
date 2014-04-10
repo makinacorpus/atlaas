@@ -8,7 +8,7 @@ atlaas.Views = atlaas.Views || {};
     // POI view : representation of a POI displayed on the map
     atlaas.Views.Map.PoiView = Backbone.View.extend({
 
-        customIcon: L.divIcon({className:'custom-icon', iconSize:null, popupAnchor: [-2, -40]}),
+        customIcon: L.divIcon({className:'custom-icon', iconSize:null, popupAnchor: [1, -40]}),
 
         initialize: function () {
             // console.log(this.model.toJSON());

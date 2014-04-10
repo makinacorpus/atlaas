@@ -17,9 +17,11 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         attributes: { id: 'map-container', class: 'container' },
 
-        state: { 
+        defaultState: {
             categories: null,
             bounds: null,
+            pos: [46.883, 4],
+            zoom: 6,
             search: "",
             actor: ""
         },
@@ -32,12 +34,15 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.resultsCollection  = undefined
             this.poisCollection     = undefined
             this.currentView        = undefined
-            this._clustered         = true
         },
 
         render: function () {
             // Override default params if needed
-            _.extend(this.state, this.options.state);
+            if(typeof this.options.state === "undefined") {
+                this.options.state = {};
+            }
+
+            _.defaults(this.options.state, this.defaultState);
 
             this.$el.html(this.template({ id:this.options.map }));
 
@@ -46,7 +51,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         // called only after template is rendered cause Leaflet needs an existing DOM element
         initMap: function () {
-            this.map = L.map(this.options.map, { maxZoom: 14, minZoom: 3, attributionControl: false }).setView([46.883, 4], 6);
+            this.map = L.map(this.options.map, { maxZoom: 14, minZoom: 3, attributionControl: false, zoom: this.options.state.zoom, center: this.options.state.pos });
 
             L.control.attribution({position: 'bottomleft'}).addTo(this.map);
             L.control.locate().addTo(this.map);
@@ -66,14 +71,19 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         initPois: function () {
-            this.poisCollection = new atlaas.Collections.PoisCollection({ filter: this.state });
+            this.poisCollection = new atlaas.Collections.PoisCollection({ filter: this.options.state });
 
-            this.poisView = new atlaas.Views.Map.PoisView({ collection: this.poisCollection, el: this.map, filter: this.state });
+            // If not clustered
+            if (!this.map.getZoom() < L.POILayer.CLUSTER_THRESHOLD) {
+                this.options.state.bounds = this.map.getBounds().pad(0.3);
+            }
+
+            this.poisView = new atlaas.Views.Map.PoisView({ collection: this.poisCollection, el: this.map, filter: this.options.state });
 
             this.poisView.poiLayer.addTo(this.map);
 
             this.listenTo(this.poisView.collection, 'sync', function () {
-                if (!this.poisView.poiLayer._clustered) {
+                if (!this.poisView.clustered) {
                     this.renderPois();
                 }
                 this.renderPoisResults();
@@ -91,7 +101,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         initMenu: function () {
             var categoriesCollection    = new atlaas.Collections.CategoriesCollection();
-            var categoriesView          = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: categoriesCollection, mapState: this.state });
+            var categoriesView          = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: categoriesCollection, mapState: this.options.state });
 
             this.resultsCollection      = new atlaas.Collections.ResultsCollection();
             this.searchView             = new atlaas.Views.Map.SearchView({ el: this.$el.find('.results-menu__search'), collection: this.resultsCollection });
@@ -121,7 +131,9 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 var poiView = _.find(this.poisView.poiViewCollection, function(_poiView){
                     return _poiView.model.id == poiId;
                 });
+                console.log(poiView.markers[0]);
                 this.poisView.poiLayer.clusterDetailLayer.zoomToShowLayer(poiView.markers[0], _.bind(function() {
+                    console.log('zoom');
                     this.showPopup(poiId, poiView.markers[0]);
                 }, this));
 
@@ -130,7 +142,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             });
 
             this.listenTo(this.searchView, 'search', function (query) {
-                this.state.search = query;
+                this.options.state.search = query;
 
                 this.updatePoisState();
             });
@@ -199,7 +211,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         selectedCategoryHandler: function (categories) {
-            this.state.categories = categories;
+            this.options.state.categories = categories;
 
             $('.clear-bt').show();
 
@@ -215,7 +227,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         resetFilters: function () {
-            this.state.categories = null;
+            this.options.state.categories = null;
 
             this.updatePoisState();
         },
@@ -306,30 +318,36 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         onMapViewChanged: function () {
-            this.state.bounds = this.map.getBounds().pad(0.3);
+            this.options.state.bounds = this.map.getBounds().pad(0.3);
             
             this.updatePoisState();
         },
 
         onMapZoomChanged: function () {
             var clustered = this.map.getZoom() < L.POILayer.CLUSTER_THRESHOLD;
-            if (clustered !== this._clustered) {
-                if (this._clustered) {
+            console.log(this.poisView.clustered);
+            if (clustered !== this.poisView.clustered) {
+                if (this.poisView.clustered) {
                     this.poisView.collection.reset();
                 }
             }
-            this._clustered = clustered;
+            this.poisView.clustered = clustered;
         },
 
         updatePoisState: function () {
-            if (this.poisView.poiLayer._clustered) {
-                this.state.bounds = null;
-            }
+            this.options.state.zoom = this.map.getZoom();
+            this.options.state.center = [this.map.getCenter().lat, this.map.getCenter().lng];
 
-            this.poisView.update(this.state);
+            var route = atlaas.router.toFragment('', {
+                zoom: this.options.state.zoom, pos: this.options.state.center
+            });
+
+            atlaas.router.navigate(route);
+
+            this.poisView.update(this.options.state);
             
             // Remove right menu from map bounds for performances
-            // this.state.bounds = this.map.getBoundsWithRightOffset(340);
+            // this.options.state.bounds = this.map.getBoundsWithRightOffset(340);
         }
 
     });

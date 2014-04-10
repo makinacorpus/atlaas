@@ -37,10 +37,11 @@ L.POILayer = L.LayerGroup.extend({
         this._onMap = [];
         this._clustered = true;
         this.clusterLayer = new L.LayerGroup();
-        this.clusterDetailLayer = L.markerClusterGroup({ chunkedLoading: true, showCoverageOnHover: false });
+        this.clusterDetailLayer = L.markerClusterGroup({ showCoverageOnHover: false });
     },
 
     onAdd: function (map) {
+        this._clustered = map.getZoom() < L.POILayer.CLUSTER_THRESHOLD;
         L.LayerGroup.prototype.onAdd.apply(this, arguments);
         map.on('zoomend', this.__onZoomChanged, this);
     },
@@ -53,7 +54,6 @@ L.POILayer = L.LayerGroup.extend({
     },
 
     updatePois: function (markers) {
-        // console.log(markers);
         var oldMarkers = [];
         var newMarkers = [];
 
@@ -98,7 +98,7 @@ L.POILayer = L.LayerGroup.extend({
 
     __cluster: function () {
         this.addLayer(this.clusterLayer);
-
+        console.log('cluster');
         this.removeLayer(this.clusterDetailLayer);
         this.clusterDetailLayer.clearLayers();
         this._onMap = [];
@@ -106,7 +106,7 @@ L.POILayer = L.LayerGroup.extend({
 
     __uncluster: function () {
         this.removeLayer(this.clusterLayer);
-
+        console.log('uncluster');
         this.addLayer(this.clusterDetailLayer);
     },
 });

@@ -26,8 +26,8 @@ window.atlaas = {
         var appView = new this.Views.AppView();
 
         this.router.on('route:home', function (params) {
-            appView.renderMap();
             console.log(params);
+            appView.renderMap(params);
         });
 
         this.router.on('route:news', function () {

@@ -16,6 +16,7 @@ atlaas.Views = atlaas.Views || {};
         initialize: function (options) {
             this.poiViewCollection          = {};
             this.poiLayer                   = new L.POILayer();
+            this.clustered                  = this.el.getZoom() < L.POILayer.CLUSTER_THRESHOLD;
             this.departments                = undefined;
             this.departmentsMarkers         = undefined;
             this.filter                     = options.filter;
@@ -30,16 +31,24 @@ atlaas.Views = atlaas.Views || {};
             this.listenTo(this.collection, 'remove', function (model) {
                 delete this.poiViewCollection[model.id];
             });
-
+            
             // If departments
-            if (this.poiLayer._clustered) {
+            if (this.clustered) {
                 this.loadDepartments();
                 this.poiLayer.addLayer(this.poiLayer.clusterLayer);
-            }
 
-            if (this.filter.search !== "" && this.filter.categories !== null && this.filter.actor !== "") {
+                if (this.filter.search !== "" && this.filter.categories !== null && this.filter.actor !== "") {
+                    var query = this.collection.getFiltersQuery(this.filter);
+                    this.collection.fetch({ data: query });
+                }
+            } else {
                 var query = this.collection.getFiltersQuery(this.filter);
                 this.collection.fetch({ data: query });
+
+                this.listenToOnce(this.collection, 'sync', function() {
+                    console.log('first sync');
+                    this.poiLayer.addLayer(this.poiLayer.clusterDetailLayer);
+                });
             }
         },
 
@@ -65,8 +74,12 @@ atlaas.Views = atlaas.Views || {};
         update: function (_filter) {
             this.filter = _filter;
 
-            if (this.poiLayer._clustered) {
-                this.updateDepartments();
+            if (this.clustered) {
+                if (typeof this.departments === 'undefined') {
+                    this.loadDepartments();
+                } else {
+                    this.updateDepartments();
+                }
 
                 // If any filter is active
                 if (this.filter.search !== "" || this.filter.categories !== null || this.filter.actor !== "") {
