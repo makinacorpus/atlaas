@@ -45,10 +45,7 @@ atlaas.Views = atlaas.Views || {};
                 var query = this.collection.getFiltersQuery(this.filter);
                 this.collection.fetch({ data: query });
 
-                this.listenToOnce(this.collection, 'sync', function() {
-                    console.log('first sync');
-                    this.poiLayer.addLayer(this.poiLayer.clusterDetailLayer);
-                });
+                this.poiLayer.addLayer(this.poiLayer.clusterDetailLayer);
             }
         },
 

@@ -63,8 +63,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.initPois();
             this.initMenu();
 
-            this.currentCoords = [];
-            this.currentZoom = 10;
+            this.poisView.poiLayer.addTo(this.map);
 
             this.map.on('moveend', this.onMapViewChanged, this);
             this.map.on('zoomend', this.onMapZoomChanged, this);
@@ -80,7 +79,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             this.poisView = new atlaas.Views.Map.PoisView({ collection: this.poisCollection, el: this.map, filter: this.options.state });
 
-            this.poisView.poiLayer.addTo(this.map);
 
             this.listenTo(this.poisView.collection, 'sync', function () {
                 if (!this.poisView.clustered) {
