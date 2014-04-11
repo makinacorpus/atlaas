@@ -229,11 +229,18 @@ module.exports = function (grunt) {
                     src: [
                         '<%= yeoman.dist %>/scripts/{,*/}*.js',
                         '<%= yeoman.dist %>/styles/{,*/}*.css',
+                        '<%= yeoman.dist %>/styles/vendor/{,*/}*.css',
                         '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
                         '/styles/fonts/{,*/}*.*',
                     ]
                 }
             }
+        },
+        'gh-pages': {
+            options: {
+                base: 'dist'
+            },
+            src: ['**']
         }
     });
 
@@ -308,6 +315,10 @@ module.exports = function (grunt) {
         'uglify',
         'copy',
         'usemin'
+    ]);
+
+    grunt.registerTask('push', [
+        'gh-pages'
     ]);
 
     grunt.registerTask('default', [
