@@ -389,18 +389,15 @@ L.MarkerClusterGroup = L.FeatureGroup.extend({
 			//Layer should be visible now but isn't on screen, just pan over to it
 			this._map.on('moveend', showMarker, this);
 			this._map.panTo(layer.getLatLng());
-		} else if (layer.__parent._zoom == this._map.getZoom()) {
-			if (layer._icon) {
+		} else if (layer.__parent._zoom === this._map.getZoom() && this._map.getBounds().contains(layer.getLatLng())) {
+			//Layer is visible and clustered, show it immediately
+			var afterSpiderfy = function () {
+				this.off('spiderfied', afterSpiderfy, this);
 				callback();
-			} else if (layer.__parent._icon) {
-				var afterSpiderfy = function () {
-					this.off('spiderfied', afterSpiderfy, this);
-					callback();
-				};
+			};
 
-				this.on('spiderfied', afterSpiderfy, this);
-				layer.__parent.spiderfy();
-			}
+			this.on('spiderfied', afterSpiderfy, this);
+			layer.__parent.spiderfy();
 		} else {
 			this._map.on('moveend', showMarker, this);
 			this.on('animationend', showMarker, this);
