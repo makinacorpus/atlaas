@@ -227,8 +227,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             $('.clear-bt').hide();
             
             this.resetFilters();
-
-            this.renderPoisResults();
         },
 
         resetFilters: function () {
@@ -337,7 +335,16 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.options.state.zoom = this.map.getZoom();
             this.options.state.center = [this.map.getCenter().lat, this.map.getCenter().lng];
 
-            var route = atlaas.router.toFragment('', {
+            // update url with params
+            var regex = /#(.*)\?/;
+            var currentRoute = Backbone.history.location.hash;
+
+            // If url has already params
+            if (regex.test(Backbone.history.location.hash)) {
+                currentRoute = regex.exec(currentRoute)[1];
+            }
+
+            var route = atlaas.router.toFragment(currentRoute, {
                 zoom: this.options.state.zoom, pos: this.options.state.center
             });
 
@@ -348,6 +355,5 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             // Remove right menu from map bounds for performances
             // this.options.state.bounds = this.map.getBoundsWithRightOffset(340);
         }
-
     });
 })();
