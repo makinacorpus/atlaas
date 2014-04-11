@@ -87,6 +87,10 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 this.renderPoisResults();
             });
 
+            this.listenTo(this.poisView.collection, 'reset', function () {
+                this.renderPoisResults();
+            });
+
             this.listenTo(this.poisView, 'zoomTo', function (marker) {
                 this.map.setZoomAround(marker.latlng, 8);
             });
@@ -223,6 +227,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             $('.clear-bt').hide();
             
             this.resetFilters();
+
+            this.renderPoisResults();
         },
 
         resetFilters: function () {
