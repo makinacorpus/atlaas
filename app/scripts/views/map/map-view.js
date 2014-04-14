@@ -101,7 +101,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             var categoriesView          = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: categoriesCollection, mapState: this.options.state });
 
             this.resultsCollection      = new atlaas.Collections.ResultsCollection();
-            this.searchView             = new atlaas.Views.Map.SearchView({ el: this.$el.find('.results-menu__search'), collection: this.resultsCollection });
+            this.searchView             = new atlaas.Views.Map.SearchView({ el: this.$el.find('.results-menu__search'), collection: this.resultsCollection, state: this.options.state.search });
             this.poiResultsView         = new atlaas.Views.Map.PoiResultsView({ collection: this.resultsCollection });
 
             this.$categoriesContainer   = this.$el.find('.results-menu__container');
@@ -333,7 +333,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         updatePoisState: function () {
             this.options.state.zoom = this.map.getZoom();
-            this.options.state.center = [this.map.getCenter().lat, this.map.getCenter().lng];
+            this.options.state.center = [this.map.getCenter().lat.toFixed(3), this.map.getCenter().lng.toFixed(3)];
 
             // update url with params
             var regex = /#(.*)\?/;
@@ -345,7 +345,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             }
 
             var route = atlaas.router.toFragment(currentRoute, {
-                zoom: this.options.state.zoom, pos: this.options.state.center
+                zoom: this.options.state.zoom, pos: this.options.state.center, search: this.options.state.search
             });
 
             atlaas.router.navigate(route);
