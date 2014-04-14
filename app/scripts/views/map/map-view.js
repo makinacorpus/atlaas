@@ -211,9 +211,16 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 this.currentView = this.poiDetailView;
                 this.poiDetailView.open();
             });
+
+            this.listenToOnce(this.poiDetailView, 'filtered', function(service) {
+                this.options.state.categories = service;
+
+                this.updatePoisState();
+            });
         },
 
         selectedCategoryHandler: function (categories) {
+            console.log(categories);
             this.options.state.categories = categories;
 
             $('.clear-bt').show();
@@ -344,12 +351,26 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 currentRoute = regex.exec(currentRoute)[1];
             }
 
-            var route = atlaas.router.toFragment(currentRoute, {
-                zoom: this.options.state.zoom, pos: this.options.state.center, search: this.options.state.search
-            });
+            // Construct url params defaults
+            var urlFilters = {
+                zoom:   this.options.state.zoom,
+                pos:    this.options.state.center
+            }
+
+            // Add optional params
+            if (this.options.state.search !== '') {
+                _.extend(urlFilters, { search: this.options.state.search });
+            };
+
+            if (this.options.state.categories !== null) {
+                _.extend(urlFilters, { s: this.options.state.categories });
+            };
+
+            var route = atlaas.router.toFragment(currentRoute, urlFilters);
 
             atlaas.router.navigate(route);
 
+            // Update map pois
             this.poisView.update(this.options.state);
             
             // Remove right menu from map bounds for performances

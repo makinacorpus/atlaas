@@ -17,7 +17,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         events: {
             'click .detail__bt--close'           : 'closeBtHandler',
             'click .detail__bt--edit'            : 'editBtHandler',
-            'click .detail__bt--location'        : 'filtersBtHandler'
+            'click .detail__bt--location'        : 'filtersBtHandler',
+            'click .detail__breadcrumb'          : 'categoryBtHandler',
         },
 
         initialize: function () {
@@ -30,6 +31,45 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 this.model.toCSV(function(data) {
                     that.csv = data;
                 });
+
+                var serviceId = this.model.get('services')[0].id_service;
+
+                console.log(serviceId);
+
+                var query = {
+                    "size" : 2000,
+                    "query": {
+                        "filtered": {
+                            "term" : { "services.id_service" : serviceId }
+                        }
+                    },
+                    "partial_fields" : {
+                        "partial" : {
+                            "include" : ["id_action", "titre", "lieux.nom", "lieux.lat", "lieux.lon"]
+                        }
+                    },
+                    "facets" : {
+                        "lat" : {
+                            "statistical" : {
+                                "field" : "lieux.lat"
+                            }
+                        },
+                        "lon" : {
+                            "statistical" : {
+                                "field" : "lieux.lon"
+                            }
+                        }
+                    }
+                };
+
+                query = {
+                    source: JSON.stringify(query.source)
+                }
+
+                $.when($.getJSON(atlaas.CONFIG.elasticsearch + '/actions/_search?source=' + encodeURIComponent(JSON.stringify(query))))
+                .done(L.Util.bind(function (pois) {
+                    console.log(pois);
+                }, this));
             });
         },
 
@@ -60,6 +100,14 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             this.close();
             atlaas.router.navigate(actorId, { trigger: true });
+        },
+
+        categoryBtHandler: function (e) {
+            e.preventDefault();
+
+            var serviceId = $(e.currentTarget).attr('href');
+
+            this.trigger('filtered', serviceId);
         },
 
         open: function () {

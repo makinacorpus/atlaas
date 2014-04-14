@@ -15,7 +15,7 @@
 	</div>
 </div>
 <div class="detail__action">
-	<a href="#category/<%= services[0].enjeu %>" class="detail__breadcrumb"><%=services[0].enjeu_de_developpement%></a><a href="#category/<%= services[0].usage %>" class="detail__breadcrumb">> <%=services[0].usage%></a><a href="#category/<%= services[0].service %>" class="detail__breadcrumb">> <%=services[0].service%></a>
+	<a href="#category/<%= services[0].enjeu %>" class="detail__breadcrumb"><%=services[0].enjeu_de_developpement%></a><a href="#category/<%= services[0].usage %>" class="detail__breadcrumb">> <%=services[0].usage%></a><a href="<%= services[0].id_service %>" class="detail__breadcrumb">> <%=services[0].service%></a>
 	<div class="row">
 		<div class="detail__content col-8">
 			<% if (synthese.length) { %>
