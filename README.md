@@ -102,4 +102,5 @@ Vhost::
 - New Share buttons (Facebook/Twitter) on action detail page
 - New "Download as CSV" button on action detail page
 - Performance optimisation on markers display (lighten server request and rendering)
+
 ####0.1 Beta version
