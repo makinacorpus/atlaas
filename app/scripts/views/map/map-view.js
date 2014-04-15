@@ -97,8 +97,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         initMenu: function () {
-            var categoriesCollection    = new atlaas.Collections.CategoriesCollection();
-            var categoriesView          = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: categoriesCollection, mapState: this.options.state });
+            this.categoriesCollection    = new atlaas.Collections.CategoriesCollection();
+            this.categoriesView          = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: this.categoriesCollection, mapState: this.options.state });
 
             this.resultsCollection      = new atlaas.Collections.ResultsCollection();
             this.searchView             = new atlaas.Views.Map.SearchView({ el: this.$el.find('.results-menu__search'), collection: this.resultsCollection, state: this.options.state.search });
@@ -109,8 +109,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.$menuWrapper           = this.$categoriesContainer.find('.menu-wrapper');
 
             // Event handlers
-            this.listenTo(categoriesView, 'selected', function () {
-                this.selectedCategoryHandler(categoriesView.selectedCategories);
+            this.listenTo(this.categoriesView, 'selected', function () {
+                this.selectedCategoryHandler(this.categoriesView.selectedCategories);
             });
 
             this.listenTo(this.poiResultsView, 'openResult', function (poi) {
@@ -363,8 +363,41 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             };
 
             if (this.options.state.categories !== null) {
-                _.extend(urlFilters, { s: this.options.state.categories });
-            };
+                if (typeof this.options.state.categories.enjeu_de_developpement !== 'undefined') {
+                    var enjeu = this.categoriesCollection.findWhere({ 'enjeu_de_developpement' : this.options.state.categories.enjeu_de_developpement });
+                    _.extend(urlFilters, { e: enjeu.id });
+                };
+
+                if (typeof this.options.state.categories.usage !== 'undefined') {
+                    var usageId;
+                    var that = this;
+                    this.categoriesCollection.each(function(usage) {
+                        _.each(usage.get('usages'), function(_usage, key) {
+                            if (_usage.usage === that.options.state.categories.usage) {
+                                usageId = key;
+                                return;
+                            }
+                        });
+                    });
+                    _.extend(urlFilters, { u: usageId });
+                };
+
+                if (typeof this.options.state.categories.service !== 'undefined') {
+                    var serviceId;
+                    var that = this;
+                    this.categoriesCollection.each(function(usage) {
+                        _.each(usage.get('usages'), function(_usage) {
+                            _.each(_usage.services, function(_service) {
+                                if (_service.service === that.options.state.categories.service) {
+                                    serviceId = _service.id_service;
+                                    return;
+                                }
+                            });
+                        });
+                    });
+                    _.extend(urlFilters, { s: serviceId });
+                };
+            }
 
             var route = atlaas.router.toFragment(currentRoute, urlFilters);
 

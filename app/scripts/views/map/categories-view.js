@@ -44,7 +44,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             var $item = $(e.target);
 
-            this.selectedCategories['services.' + $item.data('type')] = $item.text();
+            this.selectedCategories[$item.data('type')] = $item.text();
 
             this.trigger('selected');
         }
@@ -60,7 +60,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         template: JST['app/scripts/templates/categorie-view.ejs'],
 
         initialize: function () {
-            // console.log(this.model.toJSON());
+            console.log(this.model.toJSON());
         },
 
         render: function () {

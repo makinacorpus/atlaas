@@ -1,9 +1,9 @@
 <a class="submenu__item icon-right-dir" href="<%= id %>" data-type="enjeu_de_developpement"><%= enjeu_de_developpement %></a>
 <ul class="usages submenu">
 	<li><a href="#back" class="submenu__item--back icon-left-dir">Retour</a></li>
-	<% _.each(usages, function(usage) { %>
+	<% _.each(usages, function(usage, key) { %>
 	<li>
-		<a class="submenu__item icon-right-dir" href="<%= usage.id_usage %>" data-type="usage"><%= usage.usage %></a>
+		<a class="submenu__item icon-right-dir" href="<%= key %>" data-type="usage"><%= usage.usage %></a>
 		<ul class="services submenu">
 			<li><a href="#back" class="submenu__item--back icon-left-dir">Retour</a></li>
 			<% _.each(usage.services, function(service) { %>

@@ -78,29 +78,18 @@ atlaas.Collections = atlaas.Collections || {};
             }
 
             // If category selected
-            // if (this.options.filter.categories !== null) {
-            //     var categoriesQuery = _.map(this.options.filter.categories, function(value, key) {
-            //         var object = {};
-            //         object[key] = value;
-            //         return {
-            //             "match_phrase" : object
-            //         }
-            //     });
-
-            //     filtersQuery.bool.must.push({ 
-            //         "bool" : {
-            //             "must" : categoriesQuery
-            //         }
-            //     });
-            // }
             if (this.options.filter.categories !== null) {
+                var categoriesQuery = _.map(this.options.filter.categories, function(value, key) {
+                    var object = {};
+                    object['services.'+key] = value;
+                    return {
+                        "match_phrase" : object
+                    }
+                });
+
                 filtersQuery.bool.must.push({ 
                     "bool" : {
-                        "must" : {
-                            "match_phrase" : {
-                                "services.id_service": this.options.filter.categories
-                            }
-                        }
+                        "must" : categoriesQuery
                     }
                 });
             }
