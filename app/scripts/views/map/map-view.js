@@ -217,6 +217,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
                 this.updatePoisState();
             });
+
+            this.resetPoisType();
         },
 
         selectedCategoryHandler: function (categories) {
@@ -236,10 +238,16 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.resetFilters();
         },
 
+        // Reset filters : categories, search,
         resetFilters: function () {
             this.options.state.categories = null;
 
             this.updatePoisState();
+        },
+
+        // Reset pois type to default (actions pois)
+        resetPoisType: function () {
+            this.options.state.actor = '';
         },
 
         zoomToPoisBounds: function () {
@@ -401,7 +409,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             var route = atlaas.router.toFragment(currentRoute, urlFilters);
 
-            atlaas.router.navigate(route);
+            atlaas.router.navigate(route, { replace: true });
 
             // Update map pois
             this.poisView.update(this.options.state);

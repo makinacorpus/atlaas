@@ -11,6 +11,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             'keyup .search-input'           : 'searchHandler',
             'paste .search-input'           : 'searchHandler',
             'mouseup .search-input'         : 'searchHandler',
+            'submit form'                   : 'submitHandler',
         },
 
         initialize: function (options) {
@@ -30,6 +31,10 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         search: function (query) {
             this.trigger('search', query);
+        },
+
+        submitHandler: function (e) {
+            e.preventDefault();
         }
     });
 

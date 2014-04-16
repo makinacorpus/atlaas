@@ -70,7 +70,7 @@ window.atlaas = {
             if (typeof appView.currentView === "undefined" || appView.currentView !== appView.mapView)
                 appView.renderMap(state);
             else {
-                _.extend(appView.mapView.state, state);
+                _.extend(appView.mapView.options.state, state);
                 appView.mapView.zoomToPoisBounds();
             }
 
