@@ -60,8 +60,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(this.map);
 
-            this.initPois();
             this.initMenu();
+            this.initPois();
 
             this.poisView.poiLayer.addTo(this.map);
 
@@ -111,6 +111,47 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             // Event handlers
             this.listenTo(this.categoriesView, 'selected', function () {
                 this.selectedCategoryHandler(this.categoriesView.selectedCategories);
+            });
+
+            this.listenToOnce(this.categoriesCollection, 'sync', function () {
+                if (this.options.state.categories === null && typeof this.options.state.e !== 'undefined' || typeof this.options.state.u !== 'undefined' || typeof this.options.state.s !== 'undefined') {
+                    this.options.state.categories = {};
+                }
+
+                if (typeof this.options.state.e !== 'undefined') {
+                    var enjeu = this.categoriesCollection.get(this.options.state.e);
+                    _.extend(this.options.state.categories, { enjeu_de_developpement: enjeu.get('enjeu_de_developpement') });
+                }
+
+                if (typeof this.options.state.u !== 'undefined') {
+                    var usageName;
+                    var that = this;
+                    this.categoriesCollection.each(function(usage) {
+                        _.each(usage.get('usages'), function(_usage, key) {
+                            if (key === this.options.state.u) {
+                                usageName = _usage.usage;
+                                return;
+                            }
+                        });
+                    });
+                    _.extend(this.options.state.categories, { usages: usageName });
+                }
+
+                if (typeof this.options.state.s !== 'undefined') {
+                    var serviceName;
+                    var that = this;
+                    this.categoriesCollection.each(function(usage) {
+                        _.each(usage.get('usages'), function(_usage) {
+                            _.each(_usage.services, function(_service) {
+                                if (_service.id_service === this.options.state.s) {
+                                    serviceName = _service.service;
+                                    return;
+                                }
+                            });
+                        });
+                    });
+                    _.extend(this.options.state.categories, { usages: serviceName });
+                }
             });
 
             this.listenTo(this.poiResultsView, 'openResult', function (poi) {
@@ -212,8 +253,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 this.poiDetailView.open();
             });
 
-            this.listenToOnce(this.poiDetailView, 'filtered', function(service) {
-                this.options.state.categories = service;
+            this.listenTo(this.poiDetailView, 'filtered', function(category) {
+                this.options.state.categories = category;
 
                 this.updatePoisState();
             });
@@ -222,7 +263,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         selectedCategoryHandler: function (categories) {
-            console.log(categories);
             this.options.state.categories = categories;
 
             $('.clear-bt').show();

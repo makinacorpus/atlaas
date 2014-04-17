@@ -105,9 +105,14 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         categoryBtHandler: function (e) {
             e.preventDefault();
 
-            var serviceId = $(e.currentTarget).attr('href');
+            var $item = $(e.currentTarget);
 
-            this.trigger('filtered', serviceId);
+            var selectedCategories = {};
+            selectedCategories[$item.data('type')] = $item.attr('href');
+
+            atlaas.router.navigate("map");
+            this.close();
+            this.trigger('filtered', selectedCategories);
         },
 
         open: function () {
