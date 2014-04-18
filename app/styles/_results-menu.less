@@ -1,7 +1,7 @@
 .map-menu {
 	position: absolute;
 	right: 0;
-	top: 30%;
+	top: 20%;
 	bottom: 0;
 	z-index: 2;
 	width: 340px;
@@ -39,10 +39,6 @@
 	ul {
 		padding: 0;
 		margin: 0;
-		height: 100%;
-		.transform(translateZ(0));
-		overflow-y: auto;
-		overflow-x: hidden;
 	}
 
 	.active > a {
@@ -269,6 +265,13 @@
 
 .results {
 	width: 100%;
+	height: auto;
+	position: absolute;
+	top: 108px;
+	bottom: 0px;
+	background: rgba(255, 255, 255, 0.3);
+	overflow-y: auto;
+	overflow-x: hidden;
 
 	span {
 		display: block;
@@ -308,10 +311,12 @@
 	.results__item {
 		white-space: normal;
 		height: 100%;
+		padding: 0.5em;
+		padding-left: 2em;
 
 		h3 {
 			margin-top: 0;
-			margin-bottom: 5px;
+			margin-bottom: 0;
 			font-size: 1em;
 		}
 		
@@ -319,6 +324,14 @@
 			margin: 0;
 			font-weight: normal;
 			color: darken(@grayLight, 30%);
+		}
+
+		&.icon-location:before {
+			position: absolute;
+			top: 10px;
+			left: 8px;
+			font-size: 18px;
+			color: @orange;
 		}
 	}
 }
