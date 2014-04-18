@@ -1,4 +1,4 @@
-.results-menu {
+.map-menu {
 	position: absolute;
 	right: 0;
 	top: 30%;
@@ -9,6 +9,10 @@
 
 	form:hover .soon {
 		opacity: 1;
+	}
+
+	a {
+		text-decoration: none;
 	}
 
 	.clear-bt {
@@ -41,20 +45,32 @@
 		overflow-x: hidden;
 	}
 
+	.active > a {
+		background: @orange;
+		color: white;
+
+		&:hover {
+			background: @orange;
+			color: white;
+		}
+	}
+
 	li {
+		display: block;
+		outline: none;
+		background: white;
 		list-style: none;
 		background: white;
-		border-top: 1px solid rgba(0,0,0,0.2);
 
 		&:first-child {
 			border-top: none;
 		}
 
 		a {
+			display: block;
 			padding: 1em;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
+			width: 100%;
+			color: @text-color;
 
 			&:hover {
 				background: @grayLight;
@@ -67,6 +83,10 @@
 
 		&.subview {
 			border-top: none;
+		}
+
+		& + li {
+			border-top: 1px solid rgba(0,0,0,0.2);
 		}
 	}
 
@@ -122,7 +142,7 @@
 			display: block;
 
 			li {
-				display: block;
+				display: table;
 			}
 
 			.submenu {
@@ -130,55 +150,63 @@
 			}
 		}
 	}
-}
 
-.results-menu__list {
-	background: white;
-	position: absolute;
-	bottom: 0;
-	top: 52px;
-	width: 100%;
-
-	span {
-		display: block;
-		padding: 1em;
-	}
-
-	li {
+	.icon-right-dir,
+	.icon-left-dir {
 		position: relative;
-		height: 53px;
-	}
 
-	a {
-		position: absolute;
-		left: 0;
-		.transition(all 300ms easein);
-	}
-
-	.results-menu__item {
-		width: 100%;
-	}
-
-	.results-menu__bt {
-		position: absolute;
-		left: 0;
-		height: 100%;
-		line-height: 4em;
-		background: @orange;
-		color: white;
-		font-weight: 300;
-
-		&:hover {
-			background: darken(@orange, 10%);
+		&:before {
+			font-size: 20px;
+			position: absolute;
+			top: 50%;
+			margin-top: -9px;
+			right: 10px;
 		}
 	}
 
-	.active {
-		left: 120px;
+	.icon-left-dir {
+		&:before {
+			left: 9px;
+		}
 	}
 }
 
-.results-menu__search {
+.map-menu__bt {
+	width: 50%;
+	float: left;
+	background: white;
+	border-top: 1px solid rgba(0,0,0,0.2);
+	padding: 1em 0.5em;
+	color: @text-color;
+	border-bottom: 2px solid black;
+
+	&:hover {
+		background: @grayLight;
+	}
+
+	& + & {
+		border-left: 1px solid @grayLight;
+	}
+}
+	
+	.map-menu__bt--categories {
+		border-bottom-color: @green;
+		padding-left: 38px;
+
+		&:hover {
+			color: @green;
+		}
+	}
+
+	.map-menu__bt--action {
+		border-bottom-color: @orange;
+
+		&:hover {
+			color: @orange;
+		}
+	}
+
+.map-menu__search {
 	position: relative;
 
 	.search-input {
@@ -205,64 +233,69 @@
 	}
 }
 
-.results-menu__container {
+.menu-categories {
 	position: absolute;
-	border-top: 1px solid #EEE;
+	right: 110%;
 	width: 100%;
-	bottom: 0;
-	top: 53px;
-
-	li a {
-		display: block;
-		padding: 1em;
-		text-decoration: none;
-		color: @text-color;
-		outline: none;
-		background: white;
+	font-size: 12px;
+	
+	.menu-categories__wrapper {
+		.box-shadow(0px 0px 4px 1px rgba(0, 0, 0, 0.2));
 	}
 
-	.icon-right-dir {
-		position: relative;
-
-		&:before {
-			font-size: 24px;
-			position: absolute;
-			top: 50%;
-			margin-top: -11px;
-			right: 10px;
-		}
+	li {
+		width: 100%;
+		display: table;
 	}
 
-	.icon-left-dir {
-		position: relative;
-
-		&:before {
-			font-size: 24px;
-			position: absolute;
-			top: 50%;
-			margin-top: -11px;
-			left: 9px;
-		}
-	}
-
-	.active > a {
-		background: @orange;
-		color: white;
-
-		&:hover {
-			background: @orange;
-			color: white;
-		}
+	.submenu__item {
+		padding: 0 1em;
+		display: table-cell;
+		vertical-align: middle;
+		height: 53px;
+		width: 100%;
 	}
 }
 
+.results {
+	width: 100%;
 
-.results-menu__wrapper {
-	li {
-		height: 100px;
+	span {
+		display: block;
+		padding: 1em;
 	}
 
-	.results-menu__item {
+	li {
+		position: relative;
+		height: 75px;
+	}
+
+	a {
+		background: white;
+		position: absolute;
+		left: 0;
+		.transition(all 300ms easein);
+	}
+
+	.results__bt {
+		position: absolute;
+		left: 0;
+		height: 100%;
+		line-height: 4em;
+		background: @orange;
+		color: white;
+		font-weight: 300;
+
+		&:hover {
+			background: darken(@orange, 10%);
+		}
+	}
+
+	.active {
+		left: 120px;
+	}
+
+	.results__item {
 		white-space: normal;
 		height: 100%;
 

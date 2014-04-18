@@ -8,8 +8,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
     // Map view : top view of the map elements
     atlaas.Views.Map.MapView = Backbone.View.extend({
         events: {
-            'click .submenu__item'          : 'openMenu',
-            'click .submenu__item--back'    : 'closeMenu',
             'click .clear-bt'               : 'clearBtHandler',
         },
 
@@ -98,15 +96,13 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         initMenu: function () {
             var categoriesCollection    = new atlaas.Collections.CategoriesCollection();
-            var categoriesView          = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: categoriesCollection, mapState: this.options.state });
+            var categoriesView          = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.menu-categories'), collection: categoriesCollection, mapState: this.options.state });
 
             this.resultsCollection      = new atlaas.Collections.ResultsCollection();
-            this.searchView             = new atlaas.Views.Map.SearchView({ el: this.$el.find('.results-menu__search'), collection: this.resultsCollection, state: this.options.state.search });
+            this.searchView             = new atlaas.Views.Map.SearchView({ el: this.$el.find('.map-menu__search'), collection: this.resultsCollection, state: this.options.state.search });
             this.poiResultsView         = new atlaas.Views.Map.PoiResultsView({ collection: this.resultsCollection });
 
-            this.$categoriesContainer   = this.$el.find('.results-menu__container');
-            this.$resultsContainer      = this.$categoriesContainer.find('.results-menu__wrapper');
-            this.$menuWrapper           = this.$categoriesContainer.find('.menu-wrapper');
+            this.$resultsContainer      = this.$el.find('.results');
 
             // Event handlers
             this.listenTo(categoriesView, 'selected', function () {
@@ -241,83 +237,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             });
 
             this.updatePoisState();
-        },
-
-        openMenu: function (e) {
-            var $item = $(e.currentTarget),
-            $currentSubmenu = $item.parents('ul'),
-            $newSubmenu = $item.siblings('ul');
-            
-            if ($newSubmenu.length == 0) return;
-
-            e.preventDefault();
-
-            if (TweenLite.getTweensOf(this.$menuWrapper).length != 0) return;
-
-            var $menuIn = $newSubmenu.clone().addClass('in').appendTo(this.$categoriesContainer);
-            
-            var tweenOut = TweenLite.to(this.$menuWrapper, 0.4,
-                { 'x': '-220px',
-                'z': '10px',
-                'opacity': '0',
-                ease: Power2.easeInOut,
-                onComplete: function () {
-                    tweenOut.seek(0);
-                    tweenOut.pause();
-                    tweenOut.kill();
-                } 
-            });
-
-            TweenLite.fromTo($menuIn, 0.4,
-                { 'x': '220px',
-                'opacity': '0'},
-                { 'x': '0px',
-                'opacity': '1',
-                ease: Power2.easeInOut,
-                onComplete: function () {
-                    $currentSubmenu.parent('li').removeClass('subviewopen').addClass('subview');
-                    $currentSubmenu.addClass('subview');
-                    $item.parent().addClass('subviewopen');
-                    $menuIn.remove();
-                }
-            });
-        },
-
-        closeMenu: function (e) {
-            var $item = $(e.currentTarget),
-            $currentSubmenu = $item.closest('ul'),
-            $parentMenu = $currentSubmenu.parent().closest('ul');
-
-            e.preventDefault();
-
-            if (TweenLite.getTweensOf(this.$menuWrapper).length != 0) return;
-
-            var $menuIn = $parentMenu.clone().addClass('in').removeClass('subview').addClass('subviewopen').appendTo(this.$categoriesContainer);
-
-            var tweenOut = TweenLite.to(this.$menuWrapper, 0.4,
-                { 'x': '220px',
-                'opacity': '0',
-                ease: Power2.easeInOut,
-                onComplete: function () {
-                    tweenOut.seek(0);
-                    tweenOut.pause();
-                    tweenOut.kill();
-                }
-            });
-
-            TweenLite.fromTo($menuIn, 0.4,
-                { 'x': '-220px',
-                'opacity': '0'},
-                { 'x': '0px',
-                'opacity': '1',
-                ease: Power2.easeInOut,
-                onComplete: function () {
-                    $parentMenu.removeClass('subview');
-                    $('.subviewopen').removeClass('subviewopen');
-                    $parentMenu.parent('li').removeClass('subview').addClass('subviewopen');
-                    $menuIn.remove();
-                }
-            });
         },
 
         onMapViewChanged: function () {

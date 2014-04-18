@@ -1,24 +1,22 @@
-<div class="results-menu">
-	<div class="results-menu__search">
+<div class="map-menu">
+	<div class="map-menu__search">
 		<form action="">
 			<input type="text" class="search-input" placeholder="Rechercher"><span class="icon-search"></span>
 		</form>
 	</div>
-	<div class="results-menu__container">
-		<a class="clear-bt icon-cross" href="#">Effacer</a>
-		<ul class="menu-wrapper">
-			<li class="results-menu__categories">
-				<a class="submenu__item icon-right-dir" href="#">Thèmes / Enjeux</a>
+	<div class="clearfix">
+		<a class="map-menu__bt map-menu__bt--categories icon-left-dir" href="#">Catégories</a>
+		<a class="map-menu__bt map-menu__bt--action" href="#">+ Proposer une action</a>
+		<div class="menu-categories">
+			<ul class="menu-categories__wrapper">
 				<ul class="enjeux submenu">
-					<li><a href="#back" class="submenu__item--back icon-left-dir">Retour</a></li>
+					<li><a href="#back" class="submenu__item submenu__item--back icon-left-dir">Retour</a></li>
 				</ul>
-			</li>
-			<li class="results-menu__list">
-				<ul class="results-menu__wrapper">
-				</ul>
-			</li>
-		</ul>
+			</ul>
+		</div>
 	</div>
+	<ul class="results">
+	</ul>
 </div>
 
 <div id="<%= id %>" class="container">
