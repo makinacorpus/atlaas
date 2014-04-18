@@ -55,9 +55,12 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         openMenu: function (e) {
             var $item = $(e.currentTarget),
-            $currentSubmenu = $item.parents('ul'),
+            $currentSubmenu = $item.parents('ul').eq(0),
             $newSubmenu = $item.siblings('ul');
 
+            $currentSubmenu.add($newSubmenu).find('.active').removeClass('active');
+            $item.addClass('active');
+            
             if ($newSubmenu.length == 0) return;
 
             e.preventDefault();
@@ -65,6 +68,10 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             if (TweenLite.getTweensOf(this.$menuWrapper).length != 0) return;
 
             var $menuIn = $newSubmenu.clone().addClass('in').appendTo(this.$el);
+
+
+            // Set back button label with selected category
+            $newSubmenu.add($menuIn).find('.submenu__item--back').text($item.text());
             
             var tweenOut = TweenLite.to(this.$categoriesContainer, 0.4,
                 { 'x': '-220px',

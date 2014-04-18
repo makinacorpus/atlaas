@@ -77,10 +77,6 @@
 			}
 		}
 
-		.submenu__item--back {
-			padding-left: 2em;
-		}
-
 		&.subview {
 			border-top: none;
 		}
@@ -239,7 +235,7 @@
 	width: 100%;
 	font-size: 12px;
 	
-	.menu-categories__wrapper {
+	> ul {
 		.box-shadow(0px 0px 4px 1px rgba(0, 0, 0, 0.2));
 	}
 
@@ -254,6 +250,17 @@
 		vertical-align: middle;
 		height: 53px;
 		width: 100%;
+
+		&.active {
+			background: @green;
+			color: white;
+		}
+	}
+
+	.submenu__item--back {
+		padding-left: 2.3em;
+		font-weight: bold;
+		border-bottom: 6px solid @green;
 	}
 }
 
