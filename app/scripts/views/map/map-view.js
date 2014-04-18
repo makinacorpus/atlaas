@@ -8,7 +8,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
     // Map view : top view of the map elements
     atlaas.Views.Map.MapView = Backbone.View.extend({
         events: {
-            'click .clear-bt'               : 'clearBtHandler',
+            'click .clear-bt'                : 'clearBtHandler',
+            'click .map-menu__bt--categories': 'categoriesBtHandler',
         },
 
         template: JST['app/scripts/templates/map-view.ejs'],
@@ -96,7 +97,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         initMenu: function () {
             var categoriesCollection    = new atlaas.Collections.CategoriesCollection();
-            var categoriesView          = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.menu-categories'), collection: categoriesCollection, mapState: this.options.state });
+            this.categoriesView         = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.menu-categories'), collection: categoriesCollection, mapState: this.options.state });
 
             this.resultsCollection      = new atlaas.Collections.ResultsCollection();
             this.searchView             = new atlaas.Views.Map.SearchView({ el: this.$el.find('.map-menu__search'), collection: this.resultsCollection, state: this.options.state.search });
@@ -105,8 +106,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.$resultsContainer      = this.$el.find('.results');
 
             // Event handlers
-            this.listenTo(categoriesView, 'selected', function () {
-                this.selectedCategoryHandler(categoriesView.selectedCategories);
+            this.listenTo(this.categoriesView, 'selected', function () {
+                this.selectedCategoryHandler(this.categoriesView.selectedCategories);
             });
 
             this.listenTo(this.poiResultsView, 'openResult', function (poi) {
@@ -273,6 +274,43 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             
             // Remove right menu from map bounds for performances
             // this.options.state.bounds = this.map.getBoundsWithRightOffset(340);
+        },
+
+        categoriesBtHandler: function (e) {
+            e.preventDefault();
+
+            if ($(e.currentTarget).hasClass('open')) {
+                this.closeCategories();
+            } else {
+                this.openCategories();
+            }
+
+            $(e.currentTarget).toggleClass('open');
+        },
+
+        openCategories: function () {
+            this.categoriesView.$el.show();
+
+            TweenLite.fromTo(this.categoriesView.$el, 0.4,
+                { 'x': '100px',
+                'opacity': '0'},
+                { 'x': '0',
+                'opacity': '1',
+                ease: Power2.easeInOut,
+                onComplete: function () {}
+            });
+        },
+
+        closeCategories: function () {
+            TweenLite.to(this.categoriesView.$el, 0.4,
+                { 'x': '100px',
+                'opacity': '0',
+                ease: Power2.easeInOut,
+                onComplete: function () {
+                    this.categoriesView.$el.hide();
+                },
+                onCompleteScope: this
+            });
         }
     });
 })();
