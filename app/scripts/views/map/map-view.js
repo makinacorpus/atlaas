@@ -322,13 +322,15 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         onMapViewChanged: function () {
             this.options.state.bounds = this.map.getBounds().pad(0.3);
-            this.updatePoisState();
         },
 
         onMapZoomChanged: function () {
             var clustered = this.map.getZoom() < L.POILayer.CLUSTER_THRESHOLD;
 
-            this.poisView.clustered = clustered;
+            if(this.poisView.clustered != clustered) {
+                this.poisView.clustered = clustered;
+                this.updatePoisState();
+            }
         },
 
         updatePoisState: function () {
