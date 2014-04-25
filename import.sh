@@ -16,4 +16,4 @@ curl -XPUT 'http://localhost:9200/atlaas/actions/_mapping' -d '
 }'
 
 curl -s -XPOST localhost:9200/_bulk --data-binary @enjeux.json; echo
-curl -s -XPOST localhost:9200/_bulk --data-binary @actions.json; echo
+find . -name "actions*.json" | while read line; do curl -s -XPOST localhost:9200/_bulk --data-binary @$line; echo; done;

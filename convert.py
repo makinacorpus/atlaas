@@ -25,7 +25,7 @@ def cleanup_text(val, only_replace_double=True):
         val = re.sub('\n', '<br/>', val)
     return val
 
-wb = xlrd.open_workbook("../../data/ATLAAS - Import acteurs.xls")
+wb = xlrd.open_workbook("../../data/ATLAAS-IMPORT.xls")
 
 # lieux
 mapping_region = {
@@ -198,7 +198,6 @@ for rownum in range(1, sh.nrows):
     personnes[id] = infos
 
 # Services
-wb = xlrd.open_workbook("../../data/ATLAAS - Import actions V2.xls")
 sh = wb.sheet_by_name(u'Services')
 services = {}
 for rownum in range(1, sh.nrows):
@@ -231,11 +230,13 @@ for rownum in range(1, sh.nrows):
         'resultats': cleanup_text(row[6]),
         'recommandations': cleanup_text(row[7]),
         'prestataires': cleanup_text(row[10]),
+        'videos': cleanup_text(row[11]),
+        'photos': cleanup_text(row[12]),
     }
     actions[id] = infos
 
 # bind lieux
-sh = wb.sheet_by_name(u'Liaison Lieux (2)')
+sh = wb.sheet_by_name(u'Liaison Lieux')
 for rownum in range(1, sh.nrows):
     row = sh.row_values(rownum)
     (action_id, lieu_id) = (format_int(row[0]), format_int(row[1]))
@@ -248,7 +249,7 @@ for rownum in range(1, sh.nrows):
     actions[action_id]['lieux'] = action_lieux
 
 # bind personnes
-sh = wb.sheet_by_name(u'Liaison Personnes (2)')
+sh = wb.sheet_by_name(u'Liaison Personnes')
 for rownum in range(1, sh.nrows):
     row = sh.row_values(rownum)
     (action_id, personne_id) = (format_int(row[0]), format_int(row[1]))
@@ -261,7 +262,7 @@ for rownum in range(1, sh.nrows):
     actions[action_id]['personnes'] = action_personnes
 
 # bind services
-sh = wb.sheet_by_name(u'Liaison Services (2)')
+sh = wb.sheet_by_name(u'Liaison Services')
 for rownum in range(1, sh.nrows):
     row = sh.row_values(rownum)
     (action_id, service_id) = (format_int(row[0]), format_int(row[1]))
@@ -274,11 +275,19 @@ for rownum in range(1, sh.nrows):
     actions[action_id]['services'] = action_services
 
 # export actions to json
-actions_json = open("actions.json", "wb")
+index = 1
+count = 0
+actions_json = open("actions-%d.json" % index, "wb")
 for action in actions.values():
     header = { "index" : { "_index" : "atlaas", "_type" : "actions", "_id" : action['id_action'] } }
     actions_json.write(bytes(json.dumps(header) + '\n', 'UTF-8'))
     actions_json.write(bytes(json.dumps(action) + '\n', 'UTF-8'))
+    count += 1
+    if count > 1000:
+        index += 1
+        actions_json.close()
+        actions_json = open("actions-%d.json" % index, "wb")
+        count = 0
 actions_json.close()
 
 # export enjeux
