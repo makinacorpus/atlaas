@@ -31,6 +31,17 @@
 			<h3>Résultats</h3>
 			<p><%= resultats %></p>
 			<% } %>
+
+			<% if (videos.length) { %>
+			<h3>Vidéos</h3>
+			<p><%= videos %></p>
+			<% } %>
+
+			<% if (photos.length) { %>
+			<h3>Photos</h3>
+			<p><%= photos %></p>
+			<% } %>
+
 		</div>
 		<div class="detail__related col-4">
 			<% if (personnes.length) { %>
