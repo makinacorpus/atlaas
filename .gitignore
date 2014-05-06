@@ -1,0 +1,6 @@
+*.egg-info
+*.pyc
+*.xls
+*.json
+venv
+app/myvenv
