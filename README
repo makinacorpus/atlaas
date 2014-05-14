@@ -2,4 +2,4 @@
 Install:
 `virtualenv .`
 `source bin/activate`
-`easy_install xlrd flask flask-admin flask-login flask-sqlalchemy flask-wtf wtforms pycurl`
+`easy_install xlrd xlwt flask flask-admin flask-login flask-sqlalchemy flask-wtf wtforms pycurl requests`

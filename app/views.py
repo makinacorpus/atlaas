@@ -6,6 +6,7 @@ from flask.ext import login
 from werkzeug.utils import secure_filename
 from app import app
 from app.convert import convert
+from app.export import export
 from app.models import *
 from flask.ext.login import login_required
 from flask.ext.admin import helpers, expose, Admin, BaseView
@@ -27,8 +28,8 @@ def upload_file():
             flash(u'La base de données a été mise à jour.')
             return redirect('/admin/convertview/')
 
-@app.route('/admin/dumpview/', methods=['GET', 'POST'])
+@app.route('/export')
 @login_required
 def get_file():
-    if request.method == 'GET':
-        return send_from_directory(app.config['UPLOAD_FOLDER'], 'ATLAAS-IMPORT.xls', as_attachment=True)
+    export()
+    return redirect('/admin/dumpview/')

@@ -5,11 +5,9 @@
 
     <div>
         {% if current_user.is_authenticated() %}
-        <h1>Récupérer le contenu de la base de données</h1>
+        <h1>Exporter le contenu de la base de données</h1>
         <div id="form">
-          <form action="" enctype="multipart/form-data" method="get">
-            <button class="btn btn-primary" type="submit">Récupérer</button>
-          </form>
+          <a class="btn" href="/export"><i class="icon-file"></i>Exporter</a>
         </div>
         {% else %}
         <form method="POST" action="">
