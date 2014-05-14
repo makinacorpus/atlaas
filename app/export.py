@@ -14,15 +14,20 @@ def export():
 
     w = Workbook()
 
+    title_style = XFStyle()
+    font = Font()
+    font.bold = True
+    title_style.font = font
+
     # Services
 
     # Initialize services
     ws_Services = w.add_sheet('Services')
-    ws_Services.write(0, 0, u'Id_Service')
-    ws_Services.write(0, 1, u'Axe')
-    ws_Services.write(0, 2, u'Enjeu de développement ')
-    ws_Services.write(0, 3, u'Usage')
-    ws_Services.write(0, 4, u'Service')
+    ws_Services.write(0, 0, u'Id_Service', style=title_style)
+    ws_Services.write(0, 1, u'Axe', style=title_style)
+    ws_Services.write(0, 2, u'Enjeu de développement ', style=title_style)
+    ws_Services.write(0, 3, u'Usage', style=title_style)
+    ws_Services.write(0, 4, u'Service', style=title_style)
 
     # Parse services
     r = requests.get("http://localhost:9200/atlaas/enjeux/_search")
@@ -46,19 +51,40 @@ def export():
 
     # Initialize actions
     ws_Actions = w.add_sheet('Actions')
-    ws_Actions.write(0, 0, u'Id_Service')
-    ws_Actions.write(0, 1, u'Titre')
-    ws_Actions.write(0, 2, u'Sous-titre ')
-    ws_Actions.write(0, 3, u'Date')
-    ws_Actions.write(0, 4, u'Synthèse')
-    ws_Actions.write(0, 5, u'Actions')
-    ws_Actions.write(0, 6, u'Résultats')
-    ws_Actions.write(0, 7, u'Recommandations ')
-    ws_Actions.write(0, 8, u'Liens')
-    ws_Actions.write(0, 9, u'Outils')
-    ws_Actions.write(0, 10, u'Prestataires')
-    ws_Actions.write(0, 11, u'Videos')
-    ws_Actions.write(0, 12, u'Photos ')
+    ws_Actions.write(0, 0, u'Id_Action', style=title_style)
+    ws_Actions.write(0, 1, u'Titre', style=title_style)
+    ws_Actions.write(0, 2, u'Sous-titre ', style=title_style)
+    ws_Actions.write(0, 3, u'Date', style=title_style)
+    ws_Actions.write(0, 4, u'Synthèse', style=title_style)
+    ws_Actions.write(0, 5, u'Actions', style=title_style)
+    ws_Actions.write(0, 6, u'Résultats', style=title_style)
+    ws_Actions.write(0, 7, u'Recommandations ', style=title_style)
+    ws_Actions.write(0, 8, u'Liens', style=title_style)
+    ws_Actions.write(0, 9, u'Outils', style=title_style)
+    ws_Actions.write(0, 10, u'Prestataires', style=title_style)
+    ws_Actions.write(0, 11, u'Videos', style=title_style)
+    ws_Actions.write(0, 12, u'Photos ', style=title_style)
+
+    # Parse services
+    r = requests.get("http://localhost:9200/atlaas/actions/_search?size=10000")
+    hits = json.loads(r.content)["hits"]["hits"]
+    i = 1
+    for action in hits:
+        source = action["_source"]
+        ws_Actions.write(i, 0, source["id_action"])
+        ws_Actions.write(i, 1, source["titre"])
+        ws_Actions.write(i, 2, source["sous_titre"])
+        ws_Actions.write(i, 3, source["date"])
+        ws_Actions.write(i, 4, source["synthese"])
+        ws_Actions.write(i, 5, source["actions"])
+        ws_Actions.write(i, 6, source["resultats"])
+        ws_Actions.write(i, 7, source["recommandations"])
+        ws_Actions.write(i, 8, source["liens"])
+        ws_Actions.write(i, 9, source["outils"])
+        ws_Actions.write(i, 10, source["prestataires"])
+        ws_Actions.write(i, 11, source["videos"])
+        ws_Actions.write(i, 12, source["photos"])
+        i += 1
 
 
     # Save the xls doc
