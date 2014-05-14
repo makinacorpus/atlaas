@@ -2,6 +2,8 @@ import xlrd
 import json
 import re
 import os
+import sys
+import requests
 from app import app
 
 def convert(file):
@@ -322,3 +324,33 @@ def convert(file):
         enjeux_json.write(json.dumps(header).encode('UTF-8') + '\n')
         enjeux_json.write(json.dumps(enjeu).encode('UTF-8') + '\n')
     enjeux_json.close()
+
+    r = requests.delete("http://localhost:9200/atlaas/")
+    n = os.write(sys.stdout.fileno(), r.content)
+
+    r = requests.put("http://localhost:9200/atlaas/")
+    n = os.write(sys.stdout.fileno(), r.content)
+
+    r = requests.put("http://localhost:9200/atlaas/actions/_mapping", data='{ \
+        "actions" : { \
+            "properties" : { \
+                "lieux": { \
+                    "properties" : { \
+                        "location" : {"type" : "geo_point"} \
+                    } \
+                } \
+            } \
+        } \
+    }')
+    n = os.write(sys.stdout.fileno(), r.content)
+
+    enjeux_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "enjeux.json"), "rb")
+    r = requests.post("http://localhost:9200/atlaas/_bulk", data=enjeux_json)
+    n = os.write(sys.stdout.fileno(), r.content)
+    enjeux_json.close()
+
+    for i in range (1, index+1):
+        actions_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "actions-%d.json" % i), "rb")
+        r = requests.post("http://localhost:9200/atlaas/_bulk", data=actions_json)
+        n = os.write(sys.stdout.fileno(), r.content)
+        actions_json.close()
