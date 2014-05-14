@@ -1,19 +1,22 @@
+# -*- coding: utf-8 -*-
+
 import os
-from flask import render_template, request, redirect, url_for, jsonify, Response
+from flask import render_template, request, redirect, url_for, jsonify, Response, send_from_directory, flash
+from flask.ext import login
 from werkzeug.utils import secure_filename
 from app import app
 from app.convert import convert
+from app.models import *
+from flask.ext.login import login_required
+from flask.ext.admin import helpers, expose, Admin, BaseView
 from config import *
-
-@app.route('/')
-def index():
-	return render_template('index.html')
 
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
-@app.route('/upload', methods=['GET', 'POST'])
+@app.route('/admin/convertview/', methods=['GET', 'POST'])
+@login_required
 def upload_file():
     if request.method == 'POST':
         file = request.files['file']
@@ -21,5 +24,11 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             convert(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return render_template('filesent.html')
-    return render_template('index.html')
+            flash(u'La base de données a été mise à jour.')
+            return redirect('/admin/convertview/')
+
+@app.route('/admin/dumpview/', methods=['GET', 'POST'])
+@login_required
+def get_file():
+    if request.method == 'GET':
+        return send_from_directory(app.config['UPLOAD_FOLDER'], 'ATLAAS-IMPORT.xls', as_attachment=True)

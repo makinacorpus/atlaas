@@ -1,28 +1,7 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <title>Upload an Excel file</title>
-  <meta charset="utf-8" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-
-    html, body {
-      height:100%;
-      margin:0;
-    }
-
-  </style>
-</head>
-<body>
-  <div id="form">
-    <form action="" enctype="multipart/form-data" method="post">
-    Sélectionnez un fichier Excel :<br>
-    <input type="file" name="file" size="40">
-    <input type="submit" value="Envoyer">
-    </form>
-  </div>
-
-</body>
+    <body>
+        <div>
+            <a href="{{ url_for('admin.index') }}">Go to admin!</a>
+        </div>
+    </body>
 </html>
