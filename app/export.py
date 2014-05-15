@@ -6,6 +6,7 @@ import re
 import os
 import sys
 import requests
+import time
 from app import app
 
 def export():
@@ -85,50 +86,60 @@ def export():
 
     # Services
 
-    r = requests.get("http://localhost:9200/atlaas/enjeux/_search")
+    r = requests.get("http://localhost:9200/atlaas/enjeux/_search?size=10000")
     hits = json.loads(r.content)["hits"]["hits"]
-    i = 1
+    services_list = []
     for enjeu in hits:
         enjeu_name = enjeu["_source"]["id_enjeu"][1:2] + '. ' + enjeu["_source"]["enjeu"]
         for usages_id in enjeu["_source"]["usages"]:
             usage_name = usages_id[2:3] + enjeu["_source"]["usages"][usages_id]["usage"]
             services =  enjeu["_source"]["usages"][usages_id]["services"]
             for service in services:
-                id_service = service["id_service"]
-                service_name = service["service"]
-                ws_Services.write(i, 0, id_service)
-                ws_Services.write(i, 2, enjeu_name)
-                ws_Services.write(i, 3, usage_name)
-                ws_Services.write(i, 4, service_name)
-                i += 1
+                service_dict ={}
+                service_dict["id_service"] = service["id_service"]
+                service_dict["enjeu_name"] = enjeu_name
+                service_dict["usage_name"] = usage_name
+                service_dict["service_name"] = service["service"]
+                services_list.append(service_dict)
+    services_list = sorted(services_list, key=lambda k: int(k['id_service'][1:]))
+    i = 1
+    for service in services_list:
+        ws_Services.write(i, 0, service["id_service"])
+        ws_Services.write(i, 2, service["enjeu_name"])
+        ws_Services.write(i, 3, service["usage_name"])
+        ws_Services.write(i, 4, service["service_name"])
+        i += 1
+
 
     # Actions
 
-    r = requests.get("http://localhost:9200/atlaas/actions/_search?size=10")
+    r = requests.get("http://localhost:9200/atlaas/actions/_search?size=10000")
     hits = json.loads(r.content)["hits"]["hits"]
-    i = 1
     i_llieu = 1
     i_lpersonne = 1
     i_lservice = 1
     i_lieu = 1
     i_personne = 1
+    actions_list = []
     lieux = []
     personnes = []
     for action in hits:
         source = action["_source"]
-        ws_Actions.write(i, 0, source["id_action"])
-        ws_Actions.write(i, 1, source["titre"])
-        ws_Actions.write(i, 2, source["sous_titre"])
-        ws_Actions.write(i, 3, source["date"])
-        ws_Actions.write(i, 4, source["synthese"])
-        ws_Actions.write(i, 5, source["actions"])
-        ws_Actions.write(i, 6, source["resultats"])
-        ws_Actions.write(i, 7, source["recommandations"])
-        ws_Actions.write(i, 8, source["liens"])
-        ws_Actions.write(i, 9, source["outils"])
-        ws_Actions.write(i, 10, source["prestataires"])
-        ws_Actions.write(i, 11, source["videos"])
-        ws_Actions.write(i, 12, source["photos"])
+        action_dict ={}
+        action_dict["id_action"] = source["id_action"]
+        action_dict["titre"] = source["titre"]
+        action_dict["sous_titre"] = source["sous_titre"]
+        action_dict["date"] = source["date"]
+        action_dict["synthese"] = source["synthese"]
+        action_dict["actions"] = source["actions"]
+        action_dict["resultats"] = source["resultats"]
+        action_dict["recommandations"] = source["recommandations"]
+        action_dict["liens"] = source["liens"]
+        action_dict["outils"] = source["outils"]
+        action_dict["prestataires"] = source["prestataires"]
+        action_dict["videos"] = source["videos"]
+        action_dict["photos"] = source["photos"]
+        actions_list.append(action_dict)
         for liaison_lieux in source["lieux"]:
             lieux.append(liaison_lieux)
             ws_Liaison_Lieux.write(i_llieu, 0, source["id_action"])
@@ -143,7 +154,25 @@ def export():
             ws_Liaison_Services.write(i_lservice, 0, source["id_action"])
             ws_Liaison_Services.write(i_lservice, 1, liaison_services["id_service"])
             i_lservice += 1
-        i += 1
+    actions_list = sorted(actions_list, key=lambda k: int(k['id_action']))
+    i = 1
+    for action in actions_list:
+        ws_Actions.write(i, 0, action["id_action"])
+        ws_Actions.write(i, 1, action["titre"])
+        ws_Actions.write(i, 2, action["sous_titre"])
+        ws_Actions.write(i, 3, action["date"])
+        ws_Actions.write(i, 4, action["synthese"])
+        ws_Actions.write(i, 5, action["actions"])
+        ws_Actions.write(i, 6, action["resultats"])
+        ws_Actions.write(i, 7, action["recommandations"])
+        ws_Actions.write(i, 8, action["liens"])
+        ws_Actions.write(i, 9, action["outils"])
+        ws_Actions.write(i, 10, action["prestataires"])
+        ws_Actions.write(i, 11, action["videos"])
+        ws_Actions.write(i, 12, action["photos"])
+        i +=1
+
+
     lieux_uniques = {lieu['id_lieu']:lieu for lieu in lieux}.values()
     lieux_uniques = sorted(lieux_uniques, key=lambda k: int(k['id_lieu']))
     for lieu_unique in lieux_uniques:
@@ -178,8 +207,9 @@ def export():
         ws_Personnes.write(i_personne, 9, personne_unique["courriel"])
         i_personne +=1
 
-
-
     # Save the xls doc
-    w.save(os.path.join(app.config['UPLOAD_FOLDER'], 'ATLAAS-EXPORT.xls'))
+    datetime = time.strftime("%Y%m%d-%H%M%S")
+    filepath = os.path.join(app.config['EXPORT_FOLDER'], 'ATLAAS-EXPORT-' + datetime + '.xls')
+    w.save(filepath)
 
+    return filepath

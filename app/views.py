@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import os
-from flask import render_template, request, redirect, url_for, jsonify, Response, send_from_directory, flash
+import time
+from flask import render_template, request, redirect, url_for, jsonify, Response, send_from_directory, flash, send_file
 from flask.ext import login
 from werkzeug.utils import secure_filename
 from app import app
@@ -31,5 +32,5 @@ def upload_file():
 @app.route('/export')
 @login_required
 def get_file():
-    export()
-    return redirect('/admin/dumpview/')
+    response = send_file(export(), as_attachment=True, attachment_filename='ATLAAS-EXPORT.xls')
+    return response

@@ -1,7 +1,9 @@
 import os
+from sqlalchemy.orm import synonym
 from flask import Flask, url_for, redirect, render_template, request
 from flask.ext.sqlalchemy import SQLAlchemy
 from wtforms import form, fields, validators
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask.ext import admin, login
 from flask.ext.admin.contrib import sqla
 from flask.ext.login import login_required
@@ -16,7 +18,19 @@ class User(db.Model):
     last_name = db.Column(db.String(100))
     login = db.Column(db.String(80), unique=True)
     email = db.Column(db.String(120))
-    password = db.Column(db.String(64))
+    _password = db.Column(db.String(64))
+
+    def _get_password(self):
+        return self._password
+    
+    def _set_password(self, password):
+        self._password = generate_password_hash(password)
+
+    password = synonym('_password', descriptor=property(_get_password,
+                                                        _set_password))
+
+    def check_password(self, password):
+        return check_password_hash(self._password, password)
 
     # Flask-Login integration
     def is_authenticated(self):
@@ -47,7 +61,7 @@ class LoginForm(form.Form):
         if user is None:
             raise validators.ValidationError('Invalid user')
 
-        if user.password != self.password.data:
+        if not user.check_password(self.password.data):
             raise validators.ValidationError('Invalid password')
 
     def get_user(self):

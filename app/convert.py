@@ -5,6 +5,7 @@ import os
 import sys
 import requests
 from app import app
+from app.export import export
 
 def convert(file):
     def format_phone(val):
@@ -29,6 +30,8 @@ def convert(file):
         else:
             val = re.sub('\n', '<br/>', val)
         return val
+
+    # First backup the current data
 
     wb = xlrd.open_workbook(file)
 

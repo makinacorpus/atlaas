@@ -28,8 +28,8 @@ def build_sample_db():
 
     db.drop_all()
     db.create_all()
-    test_user = User(login="admin", password="admin")
-    db.session.add(test_user)
+    admin_user = User(login="admin", password="admin")
+    db.session.add(admin_user)
 
     db.session.commit()
     return
