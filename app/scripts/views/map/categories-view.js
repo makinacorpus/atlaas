@@ -141,6 +141,34 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 }
             });
         },
+
+        open: function () {
+            this.$el.show();
+
+            TweenLite.fromTo(this.$el, 0.4,
+                { 'x': '100px',
+                'opacity': '0'},
+                { 'x': '0',
+                'opacity': '1',
+                ease: Power2.easeInOut
+            });
+        },
+
+        close: function () {
+            TweenLite.to(this.$el, 0.4,
+                { 'x': '100px',
+                'opacity': '0',
+                ease: Power2.easeInOut,
+                onComplete: function () {
+                    this.$el.hide();
+                },
+                onCompleteScope: this
+            });
+        },
+
+        reset: function () {
+            this.$el.find('.active').removeClass('active');
+        }
     });
 
 

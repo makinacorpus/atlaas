@@ -8,7 +8,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
     // Map view : top view of the map elements
     atlaas.Views.Map.MapView = Backbone.View.extend({
         events: {
-            'click .clear-bt'                : 'clearBtHandler',
             'click .map-menu__bt--categories': 'categoriesBtHandler',
         },
 
@@ -213,23 +212,30 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         selectedCategoryHandler: function (categories) {
             this.options.state.categories = categories;
 
-            $('.clear-bt').show();
+            this.addFilter(_.values(categories));
 
             this.updatePoisState();
-        },
-
-        clearBtHandler: function (e) {
-            e.preventDefault();
-
-            $('.clear-bt').hide();
-            
-            this.resetFilters();
         },
 
         resetFilters: function () {
             this.options.state.categories = null;
 
+            this.categoriesView.reset();
+
             this.updatePoisState();
+        },
+
+        addFilter: function (filter) {
+            if (typeof this.activeFilter !== 'undefined') {
+                this.activeFilter.remove();
+            };
+
+            this.activeFilter = new atlaas.Views.Map.ActiveFilterView({ filter: filter });
+            this.$resultsContainer.before(this.activeFilter.render().el);
+
+            this.listenToOnce(this.activeFilter, 'activeFilterRemoved', function() {
+                this.resetFilters();
+            });
         },
 
         zoomToPoisBounds: function () {
@@ -280,37 +286,12 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             e.preventDefault();
 
             if ($(e.currentTarget).hasClass('open')) {
-                this.closeCategories();
+                this.categoriesView.close();
             } else {
-                this.openCategories();
+                this.categoriesView.open();
             }
 
             $(e.currentTarget).toggleClass('open');
-        },
-
-        openCategories: function () {
-            this.categoriesView.$el.show();
-
-            TweenLite.fromTo(this.categoriesView.$el, 0.4,
-                { 'x': '100px',
-                'opacity': '0'},
-                { 'x': '0',
-                'opacity': '1',
-                ease: Power2.easeInOut,
-                onComplete: function () {}
-            });
-        },
-
-        closeCategories: function () {
-            TweenLite.to(this.categoriesView.$el, 0.4,
-                { 'x': '100px',
-                'opacity': '0',
-                ease: Power2.easeInOut,
-                onComplete: function () {
-                    this.categoriesView.$el.hide();
-                },
-                onCompleteScope: this
-            });
         }
     });
 })();
