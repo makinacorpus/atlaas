@@ -290,11 +290,18 @@ for action in actions.values():
         count = 0
 actions_json.close()
 
-# export enjeux
-enjeux = {}
+# export axes
+axes = {}
 for service in services.values():
-    enjeu_id = service['axe'][0] + service['enjeu_de_developpement'][0]
+    axe_id = service['axe'][0]
+    enjeu_id = axe_id + service['enjeu_de_developpement'][0]
     usage_id = enjeu_id + service['usage'][0]
+    axe = axes.setdefault(axe_id, {
+        'id_axe' : axe_id,
+        'axe': service['axe'][3:],
+        'enjeux': {}
+        })
+    enjeux = axe['enjeux']
     enjeu = enjeux.setdefault(enjeu_id, {
         'enjeu': service['enjeu_de_developpement'][3:],
         'id_enjeu': enjeu_id,
@@ -313,10 +320,12 @@ for service in services.values():
     usages[usage_id] = usage
     enjeu['usages'] = usages
     enjeux[enjeu_id] = enjeu
+    axe['enjeux'] = enjeux
+    axes[axe_id] = axe
 
-enjeux_json = open("enjeux.json", "wb")
-for enjeu in enjeux.values():
-    header = { "index" : { "_index" : "atlaas", "_type": "enjeux", "_id" : enjeu['id_enjeu'] } }
-    enjeux_json.write(bytes(json.dumps(header) + '\n', 'UTF-8'))
-    enjeux_json.write(bytes(json.dumps(enjeu) + '\n', 'UTF-8'))
-enjeux_json.close()
+axes_json = open("axes.json", "wb")
+for axe in axes.values():
+    header = { "index" : { "_index" : "atlaas", "_type": "axes", "_id" : axe['id_axe'] } }
+    axes_json.write(bytes(json.dumps(header) + '\n', 'UTF-8'))
+    axes_json.write(bytes(json.dumps(axe) + '\n', 'UTF-8'))
+axes_json.close()
