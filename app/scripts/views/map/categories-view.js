@@ -46,7 +46,10 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             var $item = $(e.target);
 
-            this.selectedCategories['services.' + $item.data('type')] = $item.text();
+            if (!$item.hasClass('active')) {
+                this.selectedCategories = {};
+                this.selectedCategories['services.' + $item.data('type')] = $item.text();
+            }
 
             this.openMenu(e);
 
@@ -58,8 +61,10 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             $currentSubmenu = $item.parents('ul').eq(0),
             $newSubmenu = $item.siblings('ul');
 
-            $currentSubmenu.add($newSubmenu).find('.active').removeClass('active');
-            $item.addClass('active');
+            if (!$item.hasClass('active')) {
+                $currentSubmenu.add($newSubmenu).find('.active').removeClass('active');
+                $item.addClass('active');
+            }
             
             if ($newSubmenu.length == 0) return;
 
