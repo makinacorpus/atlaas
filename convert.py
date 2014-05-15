@@ -298,6 +298,7 @@ for service in services.values():
     enjeu = enjeux.setdefault(enjeu_id, {
         'enjeu': service['enjeu_de_developpement'][3:],
         'id_enjeu': enjeu_id,
+        'axe': service['axe'][3:],
         'usages': {},
     })
     usages = enjeu['usages']
