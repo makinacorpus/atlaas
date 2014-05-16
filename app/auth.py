@@ -70,6 +70,6 @@ init_login()
 admin = admin.Admin(app, 'Atlaas', index_view=MyAdminIndexView(), base_template='my_master.html')
 
 # Add view
-admin.add_view(ConvertView(name=u'Mettre à jour'))
-admin.add_view(DumpView(name=u'Récupérer'))
+admin.add_view(ConvertView(name=u'Importer'))
+admin.add_view(DumpView(name=u'Exporter'))
 admin.add_view(MyModelView(User, db.session))

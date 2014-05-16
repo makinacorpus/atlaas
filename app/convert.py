@@ -32,6 +32,7 @@ def convert(file):
         return val
 
     # First backup the current data
+    export()
 
     wb = xlrd.open_workbook(file)
 
@@ -298,14 +299,22 @@ def convert(file):
             count = 0
     actions_json.close()
 
-    # export enjeux
-    enjeux = {}
+    # export axes
+    axes = {}
     for service in services.values():
-        enjeu_id = service['axe'][0] + service['enjeu_de_developpement'][0]
+        axe_id = service['axe'][0]
+        enjeu_id = axe_id + service['enjeu_de_developpement'][0]
         usage_id = enjeu_id + service['usage'][0]
+        axe = axes.setdefault(axe_id, {
+            'id_axe' : axe_id,
+            'axe': service['axe'][3:],
+            'enjeux': {}
+            })
+        enjeux = axe['enjeux']
         enjeu = enjeux.setdefault(enjeu_id, {
             'enjeu': service['enjeu_de_developpement'][3:],
             'id_enjeu': enjeu_id,
+            'axe': service['axe'][3:],
             'usages': {},
         })
         usages = enjeu['usages']
@@ -320,13 +329,29 @@ def convert(file):
         usages[usage_id] = usage
         enjeu['usages'] = usages
         enjeux[enjeu_id] = enjeu
+        axe['enjeux'] = enjeux
+        axes[axe_id] = axe
 
-    enjeux_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "enjeux.json"), "wb")
-    for enjeu in enjeux.values():
-        header = { "index" : { "_index" : "atlaas", "_type": "enjeux", "_id" : enjeu['id_enjeu'] } }
-        enjeux_json.write(json.dumps(header).encode('UTF-8') + '\n')
-        enjeux_json.write(json.dumps(enjeu).encode('UTF-8') + '\n')
-    enjeux_json.close()
+    axes_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "axes.json"), "wb")
+    for axe in axes.values():
+        header = { "index" : { "_index" : "atlaas", "_type": "axes", "_id" : axe['id_axe'] } }
+        axes_json.write(json.dumps(header).encode('UTF-8') + '\n')
+        axes_json.write(json.dumps(axe).encode('UTF-8') + '\n')
+    axes_json.close()
+
+    lieux_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "lieux.json"), "wb")
+    for lieu in lieux.values():
+        header = { "index" : { "_index" : "atlaas", "_type": "lieux", "_id" : lieu['id_lieu'] } }
+        lieux_json.write(json.dumps(header).encode('UTF-8') + '\n')
+        lieux_json.write(json.dumps(lieu).encode('UTF-8') + '\n')
+    lieux_json.close()
+
+    personnes_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "personnes.json"), "wb")
+    for personne in personnes.values():
+        header = { "index" : { "_index" : "atlaas", "_type": "personnes", "_id" : personne['id_personne'] } }
+        personnes_json.write(json.dumps(header).encode('UTF-8') + '\n')
+        personnes_json.write(json.dumps(personne).encode('UTF-8') + '\n')
+    personnes_json.close()
 
     r = requests.delete("http://localhost:9200/atlaas/")
     n = os.write(sys.stdout.fileno(), r.content)
@@ -347,10 +372,20 @@ def convert(file):
     }')
     n = os.write(sys.stdout.fileno(), r.content)
 
-    enjeux_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "enjeux.json"), "rb")
-    r = requests.post("http://localhost:9200/atlaas/_bulk", data=enjeux_json)
+    axes_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "axes.json"), "rb")
+    r = requests.post("http://localhost:9200/atlaas/_bulk", data=axes_json)
     n = os.write(sys.stdout.fileno(), r.content)
-    enjeux_json.close()
+    axes_json.close()
+
+    lieux_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "lieux.json"), "rb")
+    r = requests.post("http://localhost:9200/atlaas/_bulk", data=lieux_json)
+    n = os.write(sys.stdout.fileno(), r.content)
+    lieux_json.close()
+
+    personnes_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "personnes.json"), "rb")
+    r = requests.post("http://localhost:9200/atlaas/_bulk", data=personnes_json)
+    n = os.write(sys.stdout.fileno(), r.content)
+    personnes_json.close()
 
     for i in range (1, index+1):
         actions_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "actions-%d.json" % i), "rb")

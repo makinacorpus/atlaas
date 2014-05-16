@@ -86,34 +86,38 @@ def export():
 
     # Services
 
-    r = requests.get("http://localhost:9200/atlaas/enjeux/_search?size=10000")
+    r = requests.get("http://localhost:9200/atlaas/axes/_search?size=100000")
     hits = json.loads(r.content)["hits"]["hits"]
     services_list = []
-    for enjeu in hits:
-        enjeu_name = enjeu["_source"]["id_enjeu"][1:2] + '. ' + enjeu["_source"]["enjeu"]
-        for usages_id in enjeu["_source"]["usages"]:
-            usage_name = usages_id[2:3] + enjeu["_source"]["usages"][usages_id]["usage"]
-            services =  enjeu["_source"]["usages"][usages_id]["services"]
-            for service in services:
-                service_dict ={}
-                service_dict["id_service"] = service["id_service"]
-                service_dict["enjeu_name"] = enjeu_name
-                service_dict["usage_name"] = usage_name
-                service_dict["service_name"] = service["service"]
-                services_list.append(service_dict)
+    for axe in hits:
+        axe_name = axe["_source"]["axe"]
+        for enjeux_id in axe["_source"]["enjeux"]:
+            enjeu_name = axe["_source"]["enjeux"][enjeux_id]["enjeu"]
+            usages =  axe["_source"]["enjeux"][enjeux_id]["usages"]
+            for usage_id in usages:
+                usage_name = usages[usage_id]["usage"]
+                services = usages[usage_id]["services"]
+                for service in services:
+                    service_dict ={}
+                    service_dict["id_service"] = service["id_service"]
+                    service_dict["axe_name"] = axe_name
+                    service_dict["enjeu_name"] = enjeu_name
+                    service_dict["usage_name"] = usage_name
+                    service_dict["service_name"] = service["service"]
+                    services_list.append(service_dict)
     services_list = sorted(services_list, key=lambda k: int(k['id_service'][1:]))
     i = 1
     for service in services_list:
         ws_Services.write(i, 0, service["id_service"])
+        ws_Services.write(i, 1, service["axe_name"])
         ws_Services.write(i, 2, service["enjeu_name"])
         ws_Services.write(i, 3, service["usage_name"])
         ws_Services.write(i, 4, service["service_name"])
         i += 1
 
-
     # Actions
 
-    r = requests.get("http://localhost:9200/atlaas/actions/_search?size=10000")
+    r = requests.get("http://localhost:9200/atlaas/actions/_search?size=100000")
     hits = json.loads(r.content)["hits"]["hits"]
     i_llieu = 1
     i_lpersonne = 1
@@ -121,8 +125,6 @@ def export():
     i_lieu = 1
     i_personne = 1
     actions_list = []
-    lieux = []
-    personnes = []
     for action in hits:
         source = action["_source"]
         action_dict ={}
@@ -141,12 +143,10 @@ def export():
         action_dict["photos"] = source["photos"]
         actions_list.append(action_dict)
         for liaison_lieux in source["lieux"]:
-            lieux.append(liaison_lieux)
             ws_Liaison_Lieux.write(i_llieu, 0, source["id_action"])
             ws_Liaison_Lieux.write(i_llieu, 1, liaison_lieux["id_lieu"])
             i_llieu += 1
         for liaison_personnes in source["personnes"]:
-            personnes.append(liaison_personnes)
             ws_Liaison_Personnes.write(i_lpersonne, 0, source["id_action"])
             ws_Liaison_Personnes.write(i_lpersonne, 1, liaison_personnes["id_personne"])
             i_lpersonne += 1
@@ -172,40 +172,83 @@ def export():
         ws_Actions.write(i, 12, action["photos"])
         i +=1
 
+    # Lieux
 
-    lieux_uniques = {lieu['id_lieu']:lieu for lieu in lieux}.values()
-    lieux_uniques = sorted(lieux_uniques, key=lambda k: int(k['id_lieu']))
-    for lieu_unique in lieux_uniques:
-        ws_Lieux.write(i_lieu, 0, lieu_unique["id_lieu"])
-        ws_Lieux.write(i_lieu, 1, lieu_unique["type"])
-        ws_Lieux.write(i_lieu, 2, lieu_unique["nom"])
-        ws_Lieux.write(i_lieu, 3, lieu_unique["description"])
-        ws_Lieux.write(i_lieu, 4, lieu_unique["lat"])
-        ws_Lieux.write(i_lieu, 5, lieu_unique["lon"])
-        ws_Lieux.write(i_lieu, 6, lieu_unique["adresse_web"])
-        ws_Lieux.write(i_lieu, 7, lieu_unique["adresse"])
-        ws_Lieux.write(i_lieu, 8, lieu_unique["code_postal"])
-        ws_Lieux.write(i_lieu, 9, lieu_unique["ville"])
-        ws_Lieux.write(i_lieu, 10, lieu_unique["telephone"])
-        ws_Lieux.write(i_lieu, 11, lieu_unique["fax"])
-        ws_Lieux.write(i_lieu, 12, lieu_unique["courriel"])
-        ws_Lieux.write(i_lieu, 13, lieu_unique["population"])
-        ws_Lieux.write(i_lieu, 14, lieu_unique["id_insee"])
-        i_lieu +=1
-    personnes_uniques = {personne['id_personne']:personne for personne in personnes}.values()
-    personnes_uniques = sorted(personnes_uniques, key=lambda k: int(k['id_personne']))
-    for personne_unique in personnes_uniques:
-        ws_Personnes.write(i_personne, 0, personne_unique["id_personne"])
-        ws_Personnes.write(i_personne, 1, personne_unique["nom"])
-        ws_Personnes.write(i_personne, 2, personne_unique["titre"])
-        ws_Personnes.write(i_personne, 3, personne_unique["elu"])
-        ws_Personnes.write(i_personne, 4, personne_unique["adresse"])
-        ws_Personnes.write(i_personne, 5, personne_unique["code_postal"])
-        ws_Personnes.write(i_personne, 6, personne_unique["ville"])
-        ws_Personnes.write(i_personne, 7, personne_unique["telephone"])
-        ws_Personnes.write(i_personne, 8, personne_unique["telephone_mobile"])
-        ws_Personnes.write(i_personne, 9, personne_unique["courriel"])
-        i_personne +=1
+    r = requests.get("http://localhost:9200/atlaas/lieux/_search?size=100000")
+    hits = json.loads(r.content)["hits"]["hits"]
+    lieux_list = []
+    for lieu in hits:
+        source = lieu["_source"]
+        lieu_dict ={}
+        lieu_dict["id_lieu"] = source["id_lieu"]
+        lieu_dict["type"] = source["type"]
+        lieu_dict["nom"] = source["nom"]
+        lieu_dict["description"] = source["description"]
+        lieu_dict["lat"] = source["lat"]
+        lieu_dict["lon"] = source["lon"]
+        lieu_dict["adresse_web"] = source["adresse_web"]
+        lieu_dict["adresse"] = source["adresse"]
+        lieu_dict["code_postal"] = source["code_postal"]
+        lieu_dict["ville"] = source["ville"]
+        lieu_dict["telephone"] = source["telephone"]
+        lieu_dict["fax"] = source["fax"]
+        lieu_dict["courriel"] = source["courriel"]
+        lieu_dict["population"] = source["population"]
+        lieu_dict["id_insee"] = source["id_insee"]
+        lieux_list.append(lieu_dict)
+    lieux_list = sorted(lieux_list, key=lambda k: k['id_lieu'])
+    i = 1
+    for lieu in lieux_list:
+        ws_Lieux.write(i, 0, lieu["id_lieu"])
+        ws_Lieux.write(i, 1, lieu["type"])
+        ws_Lieux.write(i, 2, lieu["nom"])
+        ws_Lieux.write(i, 3, lieu["description"])
+        ws_Lieux.write(i, 4, lieu["lat"])
+        ws_Lieux.write(i, 5, lieu["lon"])
+        ws_Lieux.write(i, 6, lieu["adresse_web"])
+        ws_Lieux.write(i, 7, lieu["adresse"])
+        ws_Lieux.write(i, 8, lieu["code_postal"])
+        ws_Lieux.write(i, 9, lieu["ville"])
+        ws_Lieux.write(i, 10, lieu["telephone"])
+        ws_Lieux.write(i, 11, lieu["fax"])
+        ws_Lieux.write(i, 12, lieu["courriel"])
+        ws_Lieux.write(i, 13, lieu["population"])
+        ws_Lieux.write(i, 14, lieu["id_insee"])
+        i += 1
+
+    # Personnes
+
+    r = requests.get("http://localhost:9200/atlaas/personnes/_search?size=100000")
+    hits = json.loads(r.content)["hits"]["hits"]
+    personnes_list = []
+    for personne in hits:
+        source = personne["_source"]
+        personne_dict ={}
+        personne_dict["id_personne"] = source["id_personne"]
+        personne_dict["nom"] = source["nom"]
+        personne_dict["titre"] = source["titre"]
+        personne_dict["elu"] = source["elu"]
+        personne_dict["adresse"] = source["adresse"]
+        personne_dict["code_postal"] = source["code_postal"]
+        personne_dict["ville"] = source["ville"]
+        personne_dict["telephone"] = source["telephone"]
+        personne_dict["telephone_mobile"] = source["telephone_mobile"]
+        personne_dict["courriel"] = source["courriel"]
+        personnes_list.append(personne_dict)
+    personnes_list = sorted(personnes_list, key=lambda k: k['id_personne'])
+    i = 1
+    for personne in personnes_list:
+        ws_Personnes.write(i, 0, personne["id_personne"])
+        ws_Personnes.write(i, 1, personne["nom"])
+        ws_Personnes.write(i, 2, personne["titre"])
+        ws_Personnes.write(i, 3, personne["elu"])
+        ws_Personnes.write(i, 4, personne["adresse"])
+        ws_Personnes.write(i, 5, personne["code_postal"])
+        ws_Personnes.write(i, 6, personne["ville"])
+        ws_Personnes.write(i, 7, personne["telephone"])
+        ws_Personnes.write(i, 8, personne["telephone_mobile"])
+        ws_Personnes.write(i, 9, personne["courriel"])
+        i += 1
 
     # Save the xls doc
     datetime = time.strftime("%Y%m%d-%H%M%S")
