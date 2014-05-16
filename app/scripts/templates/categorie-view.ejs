@@ -1,13 +1,21 @@
-<a class="submenu__item category icon-right-dir" href="<%= id %>" data-type="enjeu_de_developpement"><%= enjeu_de_developpement %></a>
-<ul class="usages submenu">
+<a class="submenu__item category icon-right-dir" href="<%= id %>" data-type="axe"><%= axe %></a>
+<ul class="enjeux submenu">
 	<li><a href="#back" class="submenu__item submenu__item--back icon-left-dir">Retour</a></li>
-	<% _.each(usages, function(usage) { %>
+	<% _.each(enjeux, function(enjeu) { %>
 	<li>
-		<a class="submenu__item category icon-right-dir" href="<%= usage.id_usage %>" data-type="usage"><%= usage.usage %></a>
-		<ul class="services submenu">
+		<a class="submenu__item category icon-right-dir" href="<%= id %>" data-type="enjeu"><%= enjeu.enjeu %></a>
+		<ul class="usages submenu">
 			<li><a href="#back" class="submenu__item submenu__item--back icon-left-dir">Retour</a></li>
-			<% _.each(usage.services, function(service) { %>
-			<li><a class="submenu__item category" href="<%= service.id_service %>" data-type="service"><%= service.service %></a></li>
+			<% _.each(enjeu.usages, function(usage) { %>
+			<li>
+				<a class="submenu__item category icon-right-dir" href="<%= usage.id_usage %>" data-type="usage"><%= usage.usage %></a>
+				<ul class="services submenu">
+					<li><a href="#back" class="submenu__item submenu__item--back icon-left-dir">Retour</a></li>
+					<% _.each(usage.services, function(service) { %>
+					<li><a class="submenu__item category" href="<%= service.id_service %>" data-type="service"><%= service.service %></a></li>
+					<% }); %>
+				</ul>
+			</li>
 			<% }); %>
 		</ul>
 	</li>
