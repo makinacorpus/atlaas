@@ -16,9 +16,6 @@
 	}
 
 	.activerFilterBt {
-		position: absolute;
-		z-index: 5;
-		top: 16px;
 		width: 100%;
 		border: none;
 		text-decoration: none;
@@ -274,6 +271,10 @@
 	background: rgba(255, 255, 255, 0.3);
 	overflow-y: auto;
 	overflow-x: hidden;
+
+	&.hasFilter {
+		top: 131px;
+	}
 
 	span {
 		display: block;

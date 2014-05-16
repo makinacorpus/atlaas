@@ -221,6 +221,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.options.state.categories = null;
 
             this.categoriesView.reset();
+            this.$resultsContainer.removeClass('hasFilter');
 
             this.updatePoisState();
         },
@@ -231,7 +232,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             };
 
             this.activeFilter = new atlaas.Views.Map.ActiveFilterView({ filter: filter });
-            this.$resultsContainer.before(this.activeFilter.render().el);
+            this.$resultsContainer.before(this.activeFilter.render().el).addClass('hasFilter');
 
             this.listenToOnce(this.activeFilter, 'activeFilterRemoved', function() {
                 this.resetFilters();
@@ -284,14 +285,26 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         categoriesBtHandler: function (e) {
             e.preventDefault();
+            e.stopPropagation();
 
-            if ($(e.currentTarget).hasClass('open')) {
+            var $catBt = $(e.currentTarget);
+
+            if ($catBt.hasClass('open')) {
                 this.categoriesView.close();
+                $(document).off('click.menu');
             } else {
                 this.categoriesView.open();
+
+                $(document).off('click.menu').on('click.menu', _.bind(function(e) {
+                    if(this.categoriesView.$el.has(e.target).length === 0) {
+                        this.categoriesView.close();
+                        $catBt.toggleClass('open');
+                        $(document).off('click.menu');
+                    }
+                }, this));
             }
 
-            $(e.currentTarget).toggleClass('open');
+            $catBt.toggleClass('open');
         }
     });
 })();
