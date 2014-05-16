@@ -8,9 +8,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
     // Map view : top view of the map elements
     atlaas.Views.Map.MapView = Backbone.View.extend({
         events: {
-            'click .submenu__item'          : 'openMenu',
-            'click .submenu__item--back'    : 'closeMenu',
-            'click .clear-bt'               : 'clearBtHandler',
+            'click .map-menu__bt--categories': 'categoriesBtHandler',
         },
 
         template: JST['app/scripts/templates/map-view.ejs'],
@@ -60,8 +58,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(this.map);
 
-            this.initMenu();
             this.initPois();
+            this.initMenu();
 
             this.poisView.poiLayer.addTo(this.map);
 
@@ -98,15 +96,13 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         initMenu: function () {
             this.categoriesCollection    = new atlaas.Collections.CategoriesCollection();
-            this.categoriesView          = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.results-menu__categories .submenu'), collection: this.categoriesCollection, mapState: this.options.state });
+            this.categoriesView          = new atlaas.Views.Map.CategoriesView({ el: this.$el.find('.menu-categories'), collection: this.categoriesCollection, mapState: this.options.state });
 
             this.resultsCollection      = new atlaas.Collections.ResultsCollection();
-            this.searchView             = new atlaas.Views.Map.SearchView({ el: this.$el.find('.results-menu__search'), collection: this.resultsCollection, state: this.options.state.search });
+            this.searchView             = new atlaas.Views.Map.SearchView({ el: this.$el.find('.map-menu__search'), collection: this.resultsCollection, state: this.options.state.search });
             this.poiResultsView         = new atlaas.Views.Map.PoiResultsView({ collection: this.resultsCollection });
 
-            this.$categoriesContainer   = this.$el.find('.results-menu__container');
-            this.$resultsContainer      = this.$categoriesContainer.find('.results-menu__wrapper');
-            this.$menuWrapper           = this.$categoriesContainer.find('.menu-wrapper');
+            this.$resultsContainer      = this.$el.find('.results');
 
             // Event handlers
             this.listenTo(this.categoriesView, 'selected', function () {
@@ -114,13 +110,18 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             });
 
             this.listenToOnce(this.categoriesCollection, 'sync', function () {
-                if (this.options.state.categories === null && typeof this.options.state.e !== 'undefined' || typeof this.options.state.u !== 'undefined' || typeof this.options.state.s !== 'undefined') {
+                if (this.options.state.categories === null && typeof this.options.state.a !== 'undefined' && typeof this.options.state.e !== 'undefined' || typeof this.options.state.u !== 'undefined' || typeof this.options.state.s !== 'undefined') {
                     this.options.state.categories = {};
+                }
+
+                if (typeof this.options.state.a !== 'undefined') {
+                    var axe = this.categoriesCollection.get(this.options.state.a);
+                    _.extend(this.options.state.categories, { axe: axe.get('axe') });
                 }
 
                 if (typeof this.options.state.e !== 'undefined') {
                     var enjeu = this.categoriesCollection.get(this.options.state.e);
-                    _.extend(this.options.state.categories, { enjeu_de_developpement: enjeu.get('enjeu_de_developpement') });
+                    _.extend(this.options.state.categories, { enjeu: enjeu.get('enjeu_de_developpement') });
                 }
 
                 if (typeof this.options.state.u !== 'undefined') {
@@ -265,7 +266,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         selectedCategoryHandler: function (categories) {
             this.options.state.categories = categories;
 
-            $('.clear-bt').show();
+            this.addFilter(_.values(categories));
 
             this.updatePoisState();
         },
@@ -278,14 +279,13 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.resetFilters();
         },
 
-        // Reset filters : categories, search,
         resetFilters: function () {
             this.options.state.categories = null;
-
+            this.categoriesView.reset();
+            this.$resultsContainer.removeClass('hasFilter');
             this.updatePoisState();
         },
-
-        // Reset pois type to default (actions pois)
+	// Reset pois type to default (actions pois)
         resetPoisType: function () {
             this.options.state.actor = '';
         },
@@ -298,92 +298,30 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.updatePoisState();
         },
 
-        openMenu: function (e) {
-            var $item = $(e.currentTarget),
-            $currentSubmenu = $item.parents('ul'),
-            $newSubmenu = $item.siblings('ul');
-            
-            if ($newSubmenu.length == 0) return;
+        addFilter: function (filter) {
+            if (typeof this.activeFilter !== 'undefined') {
+                this.activeFilter.remove();
+            };
 
-            e.preventDefault();
+            this.activeFilter = new atlaas.Views.Map.ActiveFilterView({ filter: filter });
+            this.$resultsContainer.before(this.activeFilter.render().el).addClass('hasFilter');
 
-            if (TweenLite.getTweensOf(this.$menuWrapper).length != 0) return;
-
-            var $menuIn = $newSubmenu.clone().addClass('in').appendTo(this.$categoriesContainer);
-            
-            var tweenOut = TweenLite.to(this.$menuWrapper, 0.4,
-                { 'x': '-220px',
-                'z': '10px',
-                'opacity': '0',
-                ease: Power2.easeInOut,
-                onComplete: function () {
-                    tweenOut.seek(0);
-                    tweenOut.pause();
-                    tweenOut.kill();
-                } 
-            });
-
-            TweenLite.fromTo($menuIn, 0.4,
-                { 'x': '220px',
-                'opacity': '0'},
-                { 'x': '0px',
-                'opacity': '1',
-                ease: Power2.easeInOut,
-                onComplete: function () {
-                    $currentSubmenu.parent('li').removeClass('subviewopen').addClass('subview');
-                    $currentSubmenu.addClass('subview');
-                    $item.parent().addClass('subviewopen');
-                    $menuIn.remove();
-                }
-            });
-        },
-
-        closeMenu: function (e) {
-            var $item = $(e.currentTarget),
-            $currentSubmenu = $item.closest('ul'),
-            $parentMenu = $currentSubmenu.parent().closest('ul');
-
-            e.preventDefault();
-
-            if (TweenLite.getTweensOf(this.$menuWrapper).length != 0) return;
-
-            var $menuIn = $parentMenu.clone().addClass('in').removeClass('subview').addClass('subviewopen').appendTo(this.$categoriesContainer);
-
-            var tweenOut = TweenLite.to(this.$menuWrapper, 0.4,
-                { 'x': '220px',
-                'opacity': '0',
-                ease: Power2.easeInOut,
-                onComplete: function () {
-                    tweenOut.seek(0);
-                    tweenOut.pause();
-                    tweenOut.kill();
-                }
-            });
-
-            TweenLite.fromTo($menuIn, 0.4,
-                { 'x': '-220px',
-                'opacity': '0'},
-                { 'x': '0px',
-                'opacity': '1',
-                ease: Power2.easeInOut,
-                onComplete: function () {
-                    $parentMenu.removeClass('subview');
-                    $('.subviewopen').removeClass('subviewopen');
-                    $parentMenu.parent('li').removeClass('subview').addClass('subviewopen');
-                    $menuIn.remove();
-                }
+            this.listenToOnce(this.activeFilter, 'activeFilterRemoved', function() {
+                this.resetFilters();
             });
         },
 
         onMapViewChanged: function () {
             this.options.state.bounds = this.map.getBounds().pad(0.3);
-            this.updatePoisState();
         },
 
         onMapZoomChanged: function () {
             var clustered = this.map.getZoom() < L.POILayer.CLUSTER_THRESHOLD;
 
-            this.poisView.clustered = clustered;
+            if(this.poisView.clustered != clustered) {
+                this.poisView.clustered = clustered;
+                this.updatePoisState();
+            }
         },
 
         updatePoisState: function () {
@@ -411,40 +349,58 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             };
 
             if (this.options.state.categories !== null) {
-                if (typeof this.options.state.categories.enjeu_de_developpement !== 'undefined') {
-                    var enjeu = this.categoriesCollection.findWhere({ 'enjeu_de_developpement' : this.options.state.categories.enjeu_de_developpement });
-                    _.extend(urlFilters, { e: enjeu.id });
-                };
+                if (typeof this.options.state.categories.axe !== 'undefined') {
+                    var axe = this.categoriesCollection.findWhere({ 'axe' : this.options.state.categories.axe });
+                    _.extend(urlFilters, { a: axe.id });
+                }
 
-                if (typeof this.options.state.categories.usage !== 'undefined') {
-                    var usageId;
+                if (typeof this.options.state.categories.enjeu !== 'undefined') {
+                    var enjeuId;
                     var that = this;
-                    this.categoriesCollection.each(function(usage) {
-                        _.each(usage.get('usages'), function(_usage, key) {
-                            if (_usage.usage === that.options.state.categories.usage) {
-                                usageId = key;
+                    this.categoriesCollection.each(function(axe) {
+                        _.each(axe.get('enjeux'), function(enjeu, key) {
+                            if (enjeu.enjeu === that.options.state.categories.enjeu) {
+                                enjeuId = key;
                                 return;
                             }
                         });
                     });
-                    _.extend(urlFilters, { u: usageId });
-                };
+                    _.extend(urlFilters, { e: enjeuId });
+                }
 
-                if (typeof this.options.state.categories.service !== 'undefined') {
-                    var serviceId;
+                if (typeof this.options.state.categories.usage !== 'undefined') {
+                    var usageId;
                     var that = this;
-                    this.categoriesCollection.each(function(usage) {
-                        _.each(usage.get('usages'), function(_usage) {
-                            _.each(_usage.services, function(_service) {
-                                if (_service.service === that.options.state.categories.service) {
-                                    serviceId = _service.id_service;
+                    this.categoriesCollection.each(function(axe) {
+                        _.each(axe.get('enjeux'), function(enjeu) {
+                            _.each(enjeu.usages, function(usage, key) {
+                                if (usage.usage === that.options.state.categories.usage) {
+                                    usageId = key;
                                     return;
                                 }
                             });
                         });
                     });
+                    _.extend(urlFilters, { u: usageId });
+                }
+
+                if (typeof this.options.state.categories.service !== 'undefined') {
+                    var serviceId;
+                    var that = this;
+                    this.categoriesCollection.each(function(axe) {
+                        _.each(axe.get('enjeux'), function(enjeu) {
+                            _.each(enjeu.usages, function(usage) {
+                                _.each(usage.services, function(_service) {
+                                    if (_service.service === that.options.state.categories.service) {
+                                        serviceId = _service.id_service;
+                                        return;
+                                    }
+                                });
+                            });
+                        });
+                    });
                     _.extend(urlFilters, { s: serviceId });
-                };
+                }
             }
 
             var route = atlaas.router.toFragment(currentRoute, urlFilters);
@@ -456,6 +412,30 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             
             // Remove right menu from map bounds for performances
             // this.options.state.bounds = this.map.getBoundsWithRightOffset(340);
+        },
+
+        categoriesBtHandler: function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            var $catBt = $(e.currentTarget);
+
+            if ($catBt.hasClass('open')) {
+                this.categoriesView.close();
+                $(document).off('click.menu');
+            } else {
+                this.categoriesView.open();
+
+                $(document).off('click.menu').on('click.menu', _.bind(function(e) {
+                    if(this.categoriesView.$el.has(e.target).length === 0) {
+                        this.categoriesView.close();
+                        $catBt.toggleClass('open');
+                        $(document).off('click.menu');
+                    }
+                }, this));
+            }
+
+            $catBt.toggleClass('open');
         }
     });
 })();

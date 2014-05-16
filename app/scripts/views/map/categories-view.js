@@ -7,7 +7,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
     atlaas.Views.Map.CategoriesView = Backbone.View.extend({
         events: {
-            'click .submenu__item' : 'clickHandler'
+            'click .submenu__item.category' : 'clickHandler',
+            'click .submenu__item--back'    : 'closeMenu',
         },
 
         initialize: function (options) {
@@ -15,6 +16,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             this.categorieViewCollection = [];
             this.selectedCategories = {};
+            this.$categoriesContainer   = this.$el.find('.menu-categories__wrapper');
 
             var query = {
                 source: JSON.stringify({
@@ -34,7 +36,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         		return new atlaas.Views.Map.CategorieView({ model: model });
         	});
 
-        	this.$el.append(_.map(this.categorieViewCollection, function (categorie) {
+        	this.$categoriesContainer.append(_.map(this.categorieViewCollection, function (categorie) {
         		return categorie.render().el;
         	}));
         },
@@ -44,11 +46,129 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             var $item = $(e.target);
 
-            this.selectedCategories[$item.data('type')] = $item.text();
+            if (!$item.hasClass('active')) {
+                this.selectedCategories = {};
+                this.selectedCategories[$item.data('type')] = $item.text();
+            }
+
+            this.openMenu(e);
 
             this.trigger('selected');
-        }
+        },
 
+        openMenu: function (e) {
+            var $item = $(e.currentTarget),
+            $currentSubmenu = $item.parents('ul').eq(0),
+            $newSubmenu = $item.siblings('ul');
+
+            if (!$item.hasClass('active')) {
+                $currentSubmenu.add($newSubmenu).find('.active').removeClass('active');
+                $item.addClass('active');
+            }
+            
+            if ($newSubmenu.length == 0) return;
+
+            e.preventDefault();
+
+            if (TweenLite.getTweensOf(this.$menuWrapper).length != 0) return;
+
+            var $menuIn = $newSubmenu.clone().addClass('in').appendTo(this.$el);
+
+
+            // Set back button label with selected category
+            $newSubmenu.add($menuIn).find('.submenu__item--back').text($item.text());
+            
+            var tweenOut = TweenLite.to(this.$categoriesContainer, 0.4,
+                { 'x': '-220px',
+                'z': '10px',
+                'opacity': '0',
+                ease: Power2.easeInOut,
+                onComplete: function () {
+                    tweenOut.seek(0);
+                    tweenOut.pause();
+                    tweenOut.kill();
+                } 
+            });
+
+            TweenLite.fromTo($menuIn, 0.4,
+                { 'x': '220px',
+                'opacity': '0'},
+                { 'x': '0px',
+                'opacity': '1',
+                ease: Power2.easeInOut,
+                onComplete: function () {
+                    $currentSubmenu.parent('li').removeClass('subviewopen').addClass('subview');
+                    $currentSubmenu.addClass('subview');
+                    $item.parent().addClass('subviewopen');
+                    $menuIn.remove();
+                }
+            });
+        },
+
+        closeMenu: function (e) {
+            var $item = $(e.currentTarget),
+            $currentSubmenu = $item.closest('ul'),
+            $parentMenu = $currentSubmenu.parent().closest('ul');
+
+            e.preventDefault();
+
+            if (TweenLite.getTweensOf(this.$menuWrapper).length != 0) return;
+
+            var $menuIn = $parentMenu.clone().addClass('in').removeClass('subview').addClass('subviewopen').appendTo(this.$el);
+
+            var tweenOut = TweenLite.to(this.$categoriesContainer, 0.4,
+                { 'x': '220px',
+                'opacity': '0',
+                ease: Power2.easeInOut,
+                onComplete: function () {
+                    tweenOut.seek(0);
+                    tweenOut.pause();
+                    tweenOut.kill();
+                }
+            });
+
+            TweenLite.fromTo($menuIn, 0.4,
+                { 'x': '-220px',
+                'opacity': '0'},
+                { 'x': '0px',
+                'opacity': '1',
+                ease: Power2.easeInOut,
+                onComplete: function () {
+                    $parentMenu.removeClass('subview');
+                    $('.subviewopen').removeClass('subviewopen');
+                    $parentMenu.parent('li').removeClass('subview').addClass('subviewopen');
+                    $menuIn.remove();
+                }
+            });
+        },
+
+        open: function () {
+            this.$el.show();
+
+            TweenLite.fromTo(this.$el, 0.4,
+                { 'x': '100px',
+                'opacity': '0'},
+                { 'x': '0',
+                'opacity': '1',
+                ease: Power2.easeInOut
+            });
+        },
+
+        close: function () {
+            TweenLite.to(this.$el, 0.4,
+                { 'x': '100px',
+                'opacity': '0',
+                ease: Power2.easeInOut,
+                onComplete: function () {
+                    this.$el.hide();
+                },
+                onCompleteScope: this
+            });
+        },
+
+        reset: function () {
+            this.$el.find('.active').removeClass('active');
+        }
     });
 
 

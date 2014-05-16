@@ -9,11 +9,11 @@ atlaas.Views = atlaas.Views || {};
 
         template: JST['app/scripts/templates/poi-results.ejs'],
 
-        el: '.results-menu__wrapper',
+        el: '.results',
 
         events: {
-            'click .results-menu__item'     : 'clickResultHandler',
-            'click .results-menu__bt'       : 'clickOpenResultHandler',
+            'click .results__item'     : 'clickResultHandler',
+            'click .results__bt'       : 'clickOpenResultHandler',
         },
 
         initialize: function () {
