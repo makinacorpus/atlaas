@@ -9,7 +9,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         
         tagName: 'button',
 
-        className: 'activerFilterBt icon-cross',
+        className: 'activeFilterBt icon-cross',
 
         events: {
             'click'     : 'clickHandler'
