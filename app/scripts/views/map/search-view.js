@@ -11,6 +11,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             'keyup .search-input'           : 'searchHandler',
             'paste .search-input'           : 'searchHandler',
             'mouseup .search-input'         : 'searchHandler',
+            'click .results-menu__search__clear-bt' : 'clearHandler',
         },
 
         initialize: function (options) {
@@ -18,10 +19,14 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             this.$el.find('.search-input').val(this.options.state);
 
-            if (this.options.state !== '') { this.$el.find('.search-input').focus(); }
+            if (this.options.state !== '') { 
+                this.$el.find('.search-input').focus();
+                this.search(this.options.state);
+            }
         },
 
         searchHandler: function (e) {
+            console.log(e);
             if ($(e.target).val() == this.options.state) return;
             this.options.state = $(e.target).val();
 
@@ -29,7 +34,21 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         search: function (query) {
+            if (this.options.state !== '') {
+                this.$el.addClass('search');
+            } else {
+                this.reset();
+            }
+
             this.trigger('search', query);
+        },
+
+        clearHandler: function (e) {
+            this.$el.find('.search-input').val('').trigger('change');
+        },
+
+        reset: function () {
+            this.$el.removeClass('search');
         }
     });
 

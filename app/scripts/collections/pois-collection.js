@@ -34,8 +34,7 @@ atlaas.Collections = atlaas.Collections || {};
         },
 
         getFiltersQuery: function (_filter, target) {
-            var querySize = 30,
-                bounds = {},
+            var bounds = {},
                 query = {},
                 filtersQuery = {
                     "bool" : {
@@ -47,19 +46,6 @@ atlaas.Collections = atlaas.Collections || {};
             // If custom filter submitted, extend global filter
             this.options.filter = typeof _filter === "undefined" ? this.options.filter : _.extend(this.options.filter, _filter);
 
-            // If bounds specified, load maximum of pois in bound
-            if (this.options.filter.bounds !== null) {
-                querySize = 2000;
-                bounds = this.convertBoundsToESFormat(this.options.filter.bounds);
-                boundsQuery = {
-                    "filter": {
-                        "geo_bounding_box": {
-                            "lieux.location": bounds
-                        }
-                    }
-                }
-            }
-
             // If no filter at all
             if (this.options.filter.search === "" && this.options.filter.categories === null && this.options.filter.actor == "") {
                 filtersQuery.bool.must.push({ 
@@ -70,9 +56,8 @@ atlaas.Collections = atlaas.Collections || {};
             // If text search
             if (this.options.filter.search !== "") {
                 filtersQuery.bool.must.push({ 
-                    "fuzzy_like_this" : {
-                        "fields" : ["titre", "ville"],
-                        "like_text" : this.options.filter.search
+                    "match" : {
+                        "_all" : this.options.filter.search
                     }
                 });
             }
@@ -123,7 +108,7 @@ atlaas.Collections = atlaas.Collections || {};
             } else {
                 query = {
                     source: {
-                        "size" : querySize,
+                        "size" : 100000,
                         "query": {
                             "filtered": {
                                 "query": filtersQuery

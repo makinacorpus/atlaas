@@ -20,22 +20,26 @@ atlaas.Models = atlaas.Models || {};
 
         parse: function(response, options) {
             response = response._source;
-            response.id = response.id_enjeu;
-            response.enjeu_de_developpement = response.enjeu;
-            delete response.id_enjeu;
-            delete response.enjeu;
+            response.id = response.id_axe;
+            delete response.id_axe;
 
             return response;
         },
 
-        getUsage: function(usageName) {
-            return _.find(this.attributes.usages, function(_usage) {
+        getEnjeu: function(enjeuName) {
+            return _.find(this.attributes.enjeux, function(_enjeu) {
+                return _enjeu.enjeu == enjeuName;
+            });
+        },
+
+        getUsage: function(enjeuName, usageName) {
+            return _.find(this.getEnjeu(enjeuName).usages, function(_usage) {
                 return _usage.usage == usageName;
             });
         },
 
-        getServices: function(usageName) {
-            return this.getUsage(usageName).services;
+        getServices: function(enjeuName, usageName) {
+            return this.getUsage(enjeuName, usageName).services;
         }
     });
 
