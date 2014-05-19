@@ -11,9 +11,11 @@
 				<a class="submenu__item category icon-right-dir" href="<%= usage.id_usage %>" data-type="usage"><%= usage.usage %></a>
 				<ul class="services submenu">
 					<li><a href="#back" class="submenu__item submenu__item--back icon-left-dir">Retour</a></li>
-					<% _.each(usage.services, function(service) { %>
-					<li><a class="submenu__item category" href="<%= service.id_service %>" data-type="service"><%= service.service %></a></li>
-					<% }); %>
+					<div>
+						<% _.each(usage.services, function(service) { %>
+						<li><a class="submenu__item category" href="<%= service.id_service %>" data-type="service"><%= service.service %></a></li>
+						<% }); %>
+					</div>
 				</ul>
 			</li>
 			<% }); %>

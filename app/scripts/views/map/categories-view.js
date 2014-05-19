@@ -29,6 +29,11 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             this.listenTo(this.collection, "reset", this.render);
             this.collection.fetch({ reset: true, data: query });
+
+            $(window).on('resize', _.bind(function () {
+                // Fix max-height to have a scrollbar for overflow
+                this.$el.find('div').css('max-height', atlaas.height - this.$el.offset().top - 53);
+            }, this));
         },
 
         render: function () {
@@ -155,6 +160,9 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 'opacity': '1',
                 ease: Power2.easeInOut
             });
+
+            // Fix max-height to have a scrollbar for overflow
+            this.$el.find('div').css('max-height', atlaas.height - this.$el.offset().top - 53);
         },
 
         close: function () {
