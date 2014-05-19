@@ -32,7 +32,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             $(window).on('resize', _.bind(function () {
                 // Fix max-height to have a scrollbar for overflow
-                this.$el.find('div').css('max-height', atlaas.height - this.$el.offset().top - 53);
+                this.$el.find('div').css('max-height', atlaas.height - this.$el.offset().top - 60);
             }, this));
         },
 
@@ -162,7 +162,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             });
 
             // Fix max-height to have a scrollbar for overflow
-            this.$el.find('div').css('max-height', atlaas.height - this.$el.offset().top - 53);
+            this.$el.find('div').css('max-height', atlaas.height - this.$el.offset().top - 60);
         },
 
         close: function () {

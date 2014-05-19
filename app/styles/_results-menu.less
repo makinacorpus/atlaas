@@ -16,18 +16,25 @@
 	}
 
 	.activeFilterBt {
+		position: relative;
 		width: 100%;
+		text-align: left;
 		border: none;
 		text-decoration: none;
-		background: @orange;
+		background: @orangeLight;
+		padding: 7px 30px 7px 13px;
 		color: white;
 		font-style: italic;
 		font-size: 14px;
+		font-weight: 300;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 
 		&:before {
-			position: relative;
-			top: 3px;
-			margin-right: 5px;
+			position: absolute;
+			top: 9px;
+			right: 15px;
 		}
 
 		&:hover {
@@ -154,7 +161,7 @@
 			font-size: 20px;
 			position: absolute;
 			top: 50%;
-			margin-top: -9px;
+			margin-top: -10px;
 			right: 10px;
 		}
 	}
@@ -183,7 +190,7 @@
 		border-left: 1px solid @grayLight;
 	}
 }
-	
+
 	.map-menu__bt--categories {
 		border-bottom-color: @green;
 		padding-left: 38px;
@@ -191,6 +198,11 @@
 		&:hover,
 		&.open {
 			color: @green;
+		}
+
+		&:active,
+		&.open {
+			.box-shadow(inset 0px 1px 6px 0px rgba(0, 0, 0, 0.2));
 		}
 	}
 
@@ -289,6 +301,8 @@
 		padding-left: 2.3em;
 		font-weight: bold;
 		border-bottom: 6px solid @green;
+		font-size: 14px;
+		height: 58px;
 	}
 }
 
@@ -303,7 +317,7 @@
 	overflow-x: hidden;
 
 	&.hasFilter {
-		top: 131px;
+		top: 140px;
 	}
 
 	span {

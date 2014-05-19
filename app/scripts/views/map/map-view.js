@@ -237,45 +237,52 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.resetPoisType();
         },
 
+        // Retrieve categories from the url and add it to map state : used for permalink feature
         parseUrlCategories: function () {
+            var that = this;
+
             if (typeof this.options.state.axe !== 'undefined') {
                 var axe = this.categoriesCollection.get(this.options.state.axe);
                 _.extend(this.options.state.categories, { type: 'axe', id: this.options.state.axe, name: axe.get('axe') });
             }
 
             if (typeof this.options.state.enjeu !== 'undefined') {
-                var enjeu = this.categoriesCollection.get(this.options.state.enjeu);
-                _.extend(this.options.state.categories, { type: 'enjeu', id: this.options.state.enjeu, name: enjeu.get('enjeu_de_developpement') });
-            }
-
-            if (typeof this.options.state.usage !== 'undefined') {
-                var usageName;
-                var that = this;
-                this.categoriesCollection.each(function(usage) {
-                    _.each(usage.get('usages'), function(_usage, key) {
-                        if (key === this.options.state.usage) {
-                            usageName = _usage.usage;
+                this.categoriesCollection.each(function(axe) {
+                    _.each(axe.get('enjeux'), function(enjeu) {
+                        if (enjeu.id_enjeu === that.options.state.enjeu) {
+                            _.extend(that.options.state.categories, { type: 'enjeu', id: that.options.state.enjeu, name: enjeu.enjeu });
                             return;
                         }
                     });
                 });
-                _.extend(this.options.state.categories, { type: 'usage', id: this.options.state.usage, name: usageName });
             }
 
-            if (typeof this.options.state.service !== 'undefined') {
-                var serviceName;
-                var that = this;
-                this.categoriesCollection.each(function(usage) {
-                    _.each(usage.get('usages'), function(_usage) {
-                        _.each(_usage.services, function(_service) {
-                            if (_service.id_service === this.options.state.service) {
-                                serviceName = _service.service;
+            if (typeof this.options.state.usage !== 'undefined') {
+                this.categoriesCollection.each(function(axe) {
+                    _.each(axe.get('enjeux'), function(enjeu) {
+                        _.each(enjeu.usages, function(usage, key) {
+                            if (key === that.options.state.usage) {
+                                _.extend(that.options.state.categories, { type: 'usage', id: that.options.state.usage, name: usage.usage });
                                 return;
                             }
                         });
                     });
                 });
-                _.extend(this.options.state.categories, { type: 'service', id: this.options.state.service, name: serviceName });
+            }
+
+            if (typeof this.options.state.service !== 'undefined') {
+                this.categoriesCollection.each(function(axe) {
+                    _.each(axe.get('enjeux'), function(enjeu) {
+                        _.each(enjeu.usages, function(usage) {
+                            _.each(usage.services, function(service) {
+                                if (service.id_service === that.options.state.service) {
+                                    _.extend(that.options.state.categories, { type: 'service', id: that.options.state.service, name: service.service });
+                                    return;
+                                }
+                            });
+                        });
+                    });
+                });
             }
         },
 
