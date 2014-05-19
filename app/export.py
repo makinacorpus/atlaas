@@ -90,12 +90,12 @@ def export():
     hits = json.loads(r.content)["hits"]["hits"]
     services_list = []
     for axe in hits:
-        axe_name = axe["_source"]["axe"]
+        axe_name = axe["_source"]["id_axe"] + ". " + axe["_source"]["axe"]
         for enjeux_id in axe["_source"]["enjeux"]:
-            enjeu_name = axe["_source"]["enjeux"][enjeux_id]["enjeu"]
+            enjeu_name = enjeux_id[1:2] + ". " + axe["_source"]["enjeux"][enjeux_id]["enjeu"]
             usages =  axe["_source"]["enjeux"][enjeux_id]["usages"]
             for usage_id in usages:
-                usage_name = usages[usage_id]["usage"]
+                usage_name = usage_id[2:3] + ". " + usages[usage_id]["usage"]
                 services = usages[usage_id]["services"]
                 for service in services:
                     service_dict ={}

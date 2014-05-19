@@ -144,9 +144,13 @@ def convert(file):
     sh = wb.sheet_by_name(u'Lieux')
     for rownum in range(1, sh.nrows):
         row = sh.row_values(rownum)
-        if not row[4]:
+        if (type(row[4]) is str) or (type(row[5]) is str): 
             lieux_errors += 1
-            continue
+            lat = ''
+            lon = ''
+        else:
+            lat = float(row[4])
+            lon = float(row[5])
         guess_departement = str(row[14])
         if not guess_departement:
             guess_departement = str(row[8])
@@ -172,11 +176,11 @@ def convert(file):
             'adresse_web': row[6],
             'id_lieu': id,
             'location': {
-                'lat': float(row[4]),
-                'lon': float(row[5]),
+                'lat': lat,
+                'lon': lon,
             },
-            'lon': float(row[5]),
-            'lat': float(row[4]),
+            'lon': lon,
+            'lat': lat,
             'courriel': row[12],
             'type': row[1],
             'population': format_int(row[13]),
@@ -354,10 +358,8 @@ def convert(file):
     personnes_json.close()
 
     r = requests.delete("http://localhost:9200/atlaas/")
-    n = os.write(sys.stdout.fileno(), r.content)
 
     r = requests.put("http://localhost:9200/atlaas/")
-    n = os.write(sys.stdout.fileno(), r.content)
 
     r = requests.put("http://localhost:9200/atlaas/actions/_mapping", data='{ \
         "actions" : { \
@@ -370,25 +372,20 @@ def convert(file):
             } \
         } \
     }')
-    n = os.write(sys.stdout.fileno(), r.content)
 
     axes_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "axes.json"), "rb")
     r = requests.post("http://localhost:9200/atlaas/_bulk", data=axes_json)
-    n = os.write(sys.stdout.fileno(), r.content)
     axes_json.close()
 
     lieux_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "lieux.json"), "rb")
     r = requests.post("http://localhost:9200/atlaas/_bulk", data=lieux_json)
-    n = os.write(sys.stdout.fileno(), r.content)
     lieux_json.close()
 
     personnes_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "personnes.json"), "rb")
     r = requests.post("http://localhost:9200/atlaas/_bulk", data=personnes_json)
-    n = os.write(sys.stdout.fileno(), r.content)
     personnes_json.close()
 
     for i in range (1, index+1):
         actions_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "actions-%d.json" % i), "rb")
         r = requests.post("http://localhost:9200/atlaas/_bulk", data=actions_json)
-        n = os.write(sys.stdout.fileno(), r.content)
         actions_json.close()
