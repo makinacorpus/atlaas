@@ -15,7 +15,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             'click'     : 'clickHandler'
         },
 
-        template: _.template('<%= filter %>'),
+        template: _.template('<%= name %>'),
 
         initialize: function (options) {
             this.options = options || {};
@@ -28,8 +28,8 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         clickHandler: function (e) {
-            this.trigger('activeFilterRemoved');
             this.remove();
+            this.trigger('activeFilterRemoved', this);
         }
     });
 

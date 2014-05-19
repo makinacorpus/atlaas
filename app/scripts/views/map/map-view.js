@@ -21,11 +21,12 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             pos: [46.883, 4],
             zoom: 6,
             search: "",
-            actor: ""
+            actor: null
         },
 
         initialize: function () {
             this.filteredPois       = []
+            this.activeFilters      = []
             this.poisView           = undefined
             this.poiResultsView     = undefined
             this.searchView         = undefined    
@@ -108,6 +109,11 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
             this.$resultsContainer      = this.$el.find('.results');
 
+            if (this.options.state.actor !== null) {
+                _.extend(this.options.state.actor, {type: 'actor'});
+                this.addFilter(this.options.state.actor);
+            }
+
             // Event handlers
             this.listenTo(this.categoriesView, 'selected', function () {
                 this.selectedCategoryHandler(this.categoriesView.selectedCategories);
@@ -121,7 +127,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                     this.options.state.categories = {};
 
                     this.parseUrlCategories();
-                    this.addFilter(this.options.state.categories.name);
+                    this.addFilter(this.options.state.categories);
 
                     this.poisDeferred.resolve();
                 });
@@ -202,7 +208,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 var poi = this.poiResultsView.viewCollection[poiId];
 
                 this.$resultsContainer.scrollTop(this.$resultsContainer.scrollTop() + poi.$el.position().top);
-                // poi.$el.find('.results-menu__item').click();
             }, this));
         },
 
@@ -227,25 +232,28 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 this.poiDetailView.open();
             });
 
-            this.listenTo(this.poiDetailView, 'filtered', function(args) {
-                var type = args[0];
-                var filter = args[1];
-
-                if (type === 'axe' || type === 'enjeu' || type === 'usage' || type === 'service') {
-                    var category = this.categoriesCollection.getCategoryOfType(type, filter);
-                    console.log(category);
-                    _.each()
-                    this.options.state.categories = category;
+            this.listenTo(this.poiDetailView, 'filtered', function(filter) {
+                if (filter.type === 'axe' || filter.type === 'enjeu' || filter.type === 'usage' || filter.type === 'service') {
+                    var categoryId = this.categoriesCollection.getCategoryIdOfType(filter.type, filter.name);
+                    this.options.state.categories = {
+                        type: filter.type,
+                        id: categoryId,
+                        name: filter.name
+                    };
                 } else {
-                    this.options.state[type] = filter;
+                    this.options.state[filter.type] = {
+                        id: filter.id,
+                        name: filter.name
+                    };
                 }
 
-                console.log(this.options.state);
-                // this.updateUrl();
-                // this.updatePoisState();
+                this.addFilter(filter);
+                this.updateUrl();
+                this.updatePoisState();
+                this.zoomToPoisBounds();
             });
 
-            this.resetPoisType();
+            this.listenTo(this.poiDetailView, 'closed', this.updateUrl);
         },
 
         // Retrieve categories from the url and add it to map state : used for permalink feature
@@ -299,32 +307,36 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         selectedCategoryHandler: function (categories) {
             this.options.state.categories = categories;
-
-            this.addFilter(categories.name);
+            this.addFilter(categories);
 
             this.updateUrl();
             this.updatePoisState();
         },
 
-        clearBtHandler: function (e) {
-            e.preventDefault();
+        resetFilters: function (filter) {
+            var categoriesTypes = ['axe', 'enjeu', 'usage', 'service'];
+            var that = this;
 
-            $('.clear-bt').hide();
-            
-            this.resetFilters();
-        },
+            if(_.contains(categoriesTypes, filter.options.type)) {
+                this.options.state.categories = null;
+                this.categoriesView.reset();
+            } else {
+                this.options.state.actor = null;
+            }
 
-        resetFilters: function () {
-            this.options.state.categories = null;
-            this.categoriesView.reset();
-            this.$resultsContainer.removeClass('hasFilter');
             this.updateUrl();
             this.updatePoisState();
+
+            if (this.$el.find('.activeFilterBt').length < 1) {
+                this.$resultsContainer.removeClass('hasFilter');
+            } else {
+                this.$resultsContainer.removeClass('hasFilters').addClass('hasFilter');
+            }
         },
 	    
         // Reset pois type to default (actions pois)
         resetPoisType: function () {
-            this.options.state.actor = '';
+            this.options.state.actor = {};
         },
 
         zoomToPoisBounds: function () {
@@ -337,15 +349,37 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         },
 
         addFilter: function (filter) {
-            if (typeof this.activeFilter !== 'undefined') {
-                this.activeFilter.remove();
-            };
+            var categoriesTypes = ['axe', 'enjeu', 'usage', 'service'];
+            var that = this;
 
-            this.activeFilter = new atlaas.Views.Map.ActiveFilterView({ filter: filter });
-            this.$resultsContainer.before(this.activeFilter.render().el).addClass('hasFilter');
+            if (typeof this.activeFilters !== 'undefined') {
+                _.each(this.activeFilters, function(_filter, index) {
+                    if(_.contains(categoriesTypes, filter.type)) {
+                        if (_.contains(categoriesTypes, _filter.options.type)) {
+                            _filter.remove();
+                            delete that.activeFilters[index];
+                        }
+                    } else {
+                        if (_filter.options.type === filter.type) {
+                            _filter.remove();
+                        };
+                    }
+                });
+            }
 
-            this.listenToOnce(this.activeFilter, 'activeFilterRemoved', function() {
-                this.resetFilters();
+            this.activeFilter = new atlaas.Views.Map.ActiveFilterView(filter);
+            this.activeFilters.push(this.activeFilter);
+            
+            this.$resultsContainer.before(this.activeFilter.render().el);
+
+            if (this.$el.find('.activeFilterBt').length > 1) {
+                this.$resultsContainer.removeClass('hasFilter').addClass('hasFilters');
+            } else {
+                this.$resultsContainer.removeClass('hasFilters').addClass('hasFilter');
+            }
+
+            this.listenToOnce(this.activeFilter, 'activeFilterRemoved', function(filter) {
+                this.resetFilters(filter);
             });
         },
 
@@ -379,7 +413,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             // Construct url params defaults
             var urlFilters = {
                 zoom:   this.options.state.zoom,
-                pos:    this.options.state.pos
+                pos:    this.options.state.pos,
             }
 
             // Add optional params
@@ -391,6 +425,13 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 var type = this.options.state.categories.type;
                 var id = this.options.state.categories.id;
                 urlFilters[type] = id;
+            }
+
+            if (this.options.state.actor !== null) {
+                _.extend(urlFilters, { actor: { 
+                    id: this.options.state.actor.id,
+                    name: this.options.state.actor.name
+                }});
             }
 
             var route = atlaas.router.toFragment(currentRoute, urlFilters);

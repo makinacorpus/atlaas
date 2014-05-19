@@ -47,7 +47,7 @@ atlaas.Collections = atlaas.Collections || {};
             this.options.filter = typeof _filter === "undefined" ? this.options.filter : _.extend(this.options.filter, _filter);
 
             // If no filter at all
-            if (this.options.filter.search === "" && this.options.filter.categories === null && this.options.filter.actor == "") {
+            if (this.options.filter.search === "" && this.options.filter.categories === null && this.options.filter.actor === null) {
                 filtersQuery.bool.must.push({ 
                     "match_all": {}
                 });
@@ -66,7 +66,7 @@ atlaas.Collections = atlaas.Collections || {};
             if (this.options.filter.categories !== null) {
                 var categoriesQuery = {};
                 categoriesQuery['services.'+this.options.filter.categories.type] = this.options.filter.categories.name;
-                console.log(categoriesQuery);
+
                 filtersQuery.bool.must.push({ 
                     "bool" : {
                         "must" : { "match_phrase" : categoriesQuery }
@@ -75,9 +75,9 @@ atlaas.Collections = atlaas.Collections || {};
             }
 
             // If actor filter
-            if (this.options.filter.actor != "") {
+            if (this.options.filter.actor !== null) {
                 filtersQuery.bool.must.push({ 
-                    "term" : { "personnes.id_personne" : this.options.filter.actor }
+                    "term" : { "personnes.id_personne" : this.options.filter.actor.id }
                 });
             }
 

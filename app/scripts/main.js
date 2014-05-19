@@ -50,10 +50,10 @@ window.atlaas = {
             appView.renderLogin();
         });
 
-        this.router.on('route:poi-detail', function (action_id) {
+        this.router.on('route:poi-detail', function (action_id, params) {
             // If mapView not rendered
             if (typeof appView.currentView === "undefined" || appView.currentView !== appView.mapView)
-                appView.renderMap();
+                appView.renderMap(params);
 
             // If subview already present, hide it
             if (typeof appView.mapView.currentView !== "undefined")
@@ -61,22 +61,6 @@ window.atlaas = {
 
             // Then show detail view
             appView.mapView.showPoiDetail(action_id);
-        });
-
-        this.router.on('route:actor-filter', function (actor_id) {
-            var state = { actor: actor_id };
-
-            // If mapView not rendered
-            if (typeof appView.currentView === "undefined" || appView.currentView !== appView.mapView)
-                appView.renderMap(state);
-            else {
-                _.extend(appView.mapView.options.state, state);
-                appView.mapView.zoomToPoisBounds();
-            }
-
-            // If subview already present, hide it
-            if (typeof appView.mapView.currentView !== "undefined")
-                appView.mapView.currentView.close();       
         });
 
         this.router.on('route', function (route) {

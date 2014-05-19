@@ -15,17 +15,43 @@ atlaas.Collections = atlaas.Collections || {};
             return response.hits.hits;
         },
 
-        getCategoryOfType: function(type, categoryName) {
-        	if (type === 'enjeu') {
-        		var enjeu;
-        		this.each(function(category) {
-        			enjeu = category.getEnjeu(categoryName);
-                    if(typeof enjeu !== 'undefined') return;
-                });
-                return enjeu;
-        	} else if (type === 'usage') {
+        getCategoryIdOfType: function(type, categoryName) {
+            var id;
 
-        	}
+            if (type === 'enjeu') {
+                this.each(function(category) {
+                    var _enjeu = category.getEnjeu(categoryName);
+                    if (typeof _enjeu !== 'undefined') {
+                       id = _enjeu.id_enjeu;
+                    }
+                });
+            } else if (type === 'usage') {
+                this.each(function(category) {
+                    _.each(category.get('enjeux'), function(enjeu) {
+                        _.each(enjeu.usages, function(usage, key) {
+                            if (usage.usage === categoryName) {
+                                id = key;
+                                return;
+                            }
+                        });
+                    });
+                });
+            } else if (type === 'service') {
+                this.each(function(category) {
+                    _.each(category.get('enjeux'), function(enjeu) {
+                        _.each(enjeu.usages, function(usage) {
+                            _.each(usage.services, function(_service, key) {
+                                if (_service.service === categoryName) {
+                                    id = _service.id_service;
+                                    return;
+                                }
+                            });
+                        });
+                    });
+                });
+            }
+
+            return id;
         }
 
     });

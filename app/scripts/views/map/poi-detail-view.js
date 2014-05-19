@@ -80,25 +80,30 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         closeBtHandler: function (e) {
         	e.preventDefault();
 
-            atlaas.router.navigate("map");
+            atlaas.router.navigate('map');
+            this.trigger('closed');
         	this.close();
         },
 
         editBtHandler: function (e) {
             e.preventDefault();
 
-            atlaas.router.navigate("edit/" + this.model.id, {trigger: true});
+            atlaas.router.navigate('edit/' + this.model.id, {trigger: true});
         },
 
         filtersBtHandler: function (e) {
             e.preventDefault();
 
-            var type = $(e.currentTarget).attr('data-type');
-            var id = $(e.currentTarget).attr('data-id');
+            var filter = {
+                type: $(e.currentTarget).attr('data-type'),
+                name: $(e.currentTarget).attr('data-name'),
+                id: $(e.currentTarget).attr('data-id')
+            }
 
             this.close();
-
-            this.trigger('filtered', [type, id]);
+            atlaas.router.navigate('map');
+            this.trigger('closed');
+            this.trigger('filtered', filter);
         },
 
         open: function () {
