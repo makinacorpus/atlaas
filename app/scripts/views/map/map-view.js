@@ -58,10 +58,14 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(this.map);
 
-            this.initPois();
-            this.initMenu();
+            this.poisDeferred = $.Deferred();
 
-            this.poisView.poiLayer.addTo(this.map);
+            this.initMenu();
+            
+            this.poisDeferred.done(_.bind(function() {
+                this.initPois();
+                this.poisView.poiLayer.addTo(this.map);
+            }, this));
 
             this.map.on('moveend', this.onMapViewChanged, this);
             this.map.on('zoomend', this.onMapZoomChanged, this);
@@ -109,51 +113,19 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 this.selectedCategoryHandler(this.categoriesView.selectedCategories);
             });
 
-            this.listenToOnce(this.categoriesCollection, 'sync', function () {
-                if (this.options.state.categories === null && typeof this.options.state.a !== 'undefined' && typeof this.options.state.e !== 'undefined' || typeof this.options.state.u !== 'undefined' || typeof this.options.state.s !== 'undefined') {
+            // No category filter, load pois immediately
+            if (this.options.state.categories === null && typeof this.options.state.axe === 'undefined' && typeof this.options.state.enjeu === 'undefined' && typeof this.options.state.usage === 'undefined' && typeof this.options.state.service === 'undefined') {
+                this.poisDeferred.resolve();
+            } else {
+                this.listenToOnce(this.categoriesCollection, 'sync', function () {
                     this.options.state.categories = {};
-                }
 
-                if (typeof this.options.state.a !== 'undefined') {
-                    var axe = this.categoriesCollection.get(this.options.state.a);
-                    _.extend(this.options.state.categories, { axe: axe.get('axe') });
-                }
+                    this.parseUrlCategories();
+                    this.addFilter(this.options.state.categories.name);
 
-                if (typeof this.options.state.e !== 'undefined') {
-                    var enjeu = this.categoriesCollection.get(this.options.state.e);
-                    _.extend(this.options.state.categories, { enjeu: enjeu.get('enjeu_de_developpement') });
-                }
-
-                if (typeof this.options.state.u !== 'undefined') {
-                    var usageName;
-                    var that = this;
-                    this.categoriesCollection.each(function(usage) {
-                        _.each(usage.get('usages'), function(_usage, key) {
-                            if (key === this.options.state.u) {
-                                usageName = _usage.usage;
-                                return;
-                            }
-                        });
-                    });
-                    _.extend(this.options.state.categories, { usages: usageName });
-                }
-
-                if (typeof this.options.state.s !== 'undefined') {
-                    var serviceName;
-                    var that = this;
-                    this.categoriesCollection.each(function(usage) {
-                        _.each(usage.get('usages'), function(_usage) {
-                            _.each(_usage.services, function(_service) {
-                                if (_service.id_service === this.options.state.s) {
-                                    serviceName = _service.service;
-                                    return;
-                                }
-                            });
-                        });
-                    });
-                    _.extend(this.options.state.categories, { usages: serviceName });
-                }
-            });
+                    this.poisDeferred.resolve();
+                });
+            }
 
             this.listenTo(this.poiResultsView, 'openResult', function (poi) {
                 atlaas.router.navigate("map/actions/" + poi.model.id);
@@ -189,6 +161,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.listenTo(this.searchView, 'search', function (query) {
                 this.options.state.search = query;
 
+                this.updateUrl();
                 this.updatePoisState();
             });
         },
@@ -257,17 +230,61 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.listenTo(this.poiDetailView, 'filtered', function(category) {
                 this.options.state.categories = category;
 
+                this.updateUrl();
                 this.updatePoisState();
             });
 
             this.resetPoisType();
         },
 
+        parseUrlCategories: function () {
+            if (typeof this.options.state.axe !== 'undefined') {
+                var axe = this.categoriesCollection.get(this.options.state.axe);
+                _.extend(this.options.state.categories, { type: 'axe', id: this.options.state.axe, name: axe.get('axe') });
+            }
+
+            if (typeof this.options.state.enjeu !== 'undefined') {
+                var enjeu = this.categoriesCollection.get(this.options.state.enjeu);
+                _.extend(this.options.state.categories, { type: 'enjeu', id: this.options.state.enjeu, name: enjeu.get('enjeu_de_developpement') });
+            }
+
+            if (typeof this.options.state.usage !== 'undefined') {
+                var usageName;
+                var that = this;
+                this.categoriesCollection.each(function(usage) {
+                    _.each(usage.get('usages'), function(_usage, key) {
+                        if (key === this.options.state.usage) {
+                            usageName = _usage.usage;
+                            return;
+                        }
+                    });
+                });
+                _.extend(this.options.state.categories, { type: 'usage', id: this.options.state.usage, name: usageName });
+            }
+
+            if (typeof this.options.state.service !== 'undefined') {
+                var serviceName;
+                var that = this;
+                this.categoriesCollection.each(function(usage) {
+                    _.each(usage.get('usages'), function(_usage) {
+                        _.each(_usage.services, function(_service) {
+                            if (_service.id_service === this.options.state.service) {
+                                serviceName = _service.service;
+                                return;
+                            }
+                        });
+                    });
+                });
+                _.extend(this.options.state.categories, { type: 'service', id: this.options.state.service, name: serviceName });
+            }
+        },
+
         selectedCategoryHandler: function (categories) {
             this.options.state.categories = categories;
 
-            this.addFilter(_.values(categories));
+            this.addFilter(categories.name);
 
+            this.updateUrl();
             this.updatePoisState();
         },
 
@@ -283,9 +300,11 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             this.options.state.categories = null;
             this.categoriesView.reset();
             this.$resultsContainer.removeClass('hasFilter');
+            this.updateUrl();
             this.updatePoisState();
         },
-	// Reset pois type to default (actions pois)
+	    
+        // Reset pois type to default (actions pois)
         resetPoisType: function () {
             this.options.state.actor = '';
         },
@@ -295,6 +314,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 this.map.fitBounds(this.poisView.collection.bounds);
             });
 
+            this.updateUrl();
             this.updatePoisState();
         },
 
@@ -313,6 +333,10 @@ atlaas.Views.Map = atlaas.Views.Map || {};
 
         onMapViewChanged: function () {
             this.options.state.bounds = this.map.getBounds().pad(0.3);
+            this.options.state.zoom = this.map.getZoom();
+            this.options.state.pos = [this.map.getCenter().lat.toFixed(3), this.map.getCenter().lng.toFixed(3)];
+
+            this.updateUrl();
         },
 
         onMapZoomChanged: function () {
@@ -324,10 +348,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             }
         },
 
-        updatePoisState: function () {
-            this.options.state.zoom = this.map.getZoom();
-            this.options.state.center = [this.map.getCenter().lat.toFixed(3), this.map.getCenter().lng.toFixed(3)];
-
+        updateUrl: function () {
             // update url with params
             var regex = /#(.*)\?/;
             var currentRoute = Backbone.history.location.hash;
@@ -340,73 +361,26 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             // Construct url params defaults
             var urlFilters = {
                 zoom:   this.options.state.zoom,
-                pos:    this.options.state.center
+                pos:    this.options.state.pos
             }
 
             // Add optional params
             if (this.options.state.search !== '') {
                 _.extend(urlFilters, { search: this.options.state.search });
-            };
+            }
 
             if (this.options.state.categories !== null) {
-                if (typeof this.options.state.categories.axe !== 'undefined') {
-                    var axe = this.categoriesCollection.findWhere({ 'axe' : this.options.state.categories.axe });
-                    _.extend(urlFilters, { a: axe.id });
-                }
-
-                if (typeof this.options.state.categories.enjeu !== 'undefined') {
-                    var enjeuId;
-                    var that = this;
-                    this.categoriesCollection.each(function(axe) {
-                        _.each(axe.get('enjeux'), function(enjeu, key) {
-                            if (enjeu.enjeu === that.options.state.categories.enjeu) {
-                                enjeuId = key;
-                                return;
-                            }
-                        });
-                    });
-                    _.extend(urlFilters, { e: enjeuId });
-                }
-
-                if (typeof this.options.state.categories.usage !== 'undefined') {
-                    var usageId;
-                    var that = this;
-                    this.categoriesCollection.each(function(axe) {
-                        _.each(axe.get('enjeux'), function(enjeu) {
-                            _.each(enjeu.usages, function(usage, key) {
-                                if (usage.usage === that.options.state.categories.usage) {
-                                    usageId = key;
-                                    return;
-                                }
-                            });
-                        });
-                    });
-                    _.extend(urlFilters, { u: usageId });
-                }
-
-                if (typeof this.options.state.categories.service !== 'undefined') {
-                    var serviceId;
-                    var that = this;
-                    this.categoriesCollection.each(function(axe) {
-                        _.each(axe.get('enjeux'), function(enjeu) {
-                            _.each(enjeu.usages, function(usage) {
-                                _.each(usage.services, function(_service) {
-                                    if (_service.service === that.options.state.categories.service) {
-                                        serviceId = _service.id_service;
-                                        return;
-                                    }
-                                });
-                            });
-                        });
-                    });
-                    _.extend(urlFilters, { s: serviceId });
-                }
+                var type = this.options.state.categories.type;
+                var id = this.options.state.categories.id;
+                urlFilters[type] = id;
             }
 
             var route = atlaas.router.toFragment(currentRoute, urlFilters);
 
             atlaas.router.navigate(route, { replace: true });
+        },
 
+        updatePoisState: function () {
             // Update map pois
             this.poisView.update(this.options.state);
             

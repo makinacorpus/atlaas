@@ -64,17 +64,12 @@ atlaas.Collections = atlaas.Collections || {};
 
             // If category selected
             if (this.options.filter.categories !== null) {
-                var categoriesQuery = _.map(this.options.filter.categories, function(value, key) {
-                    var object = {};
-                    object['services.'+key] = value;
-                    return {
-                        "match_phrase" : object
-                    }
-                });
-
+                var categoriesQuery = {};
+                categoriesQuery['services.'+this.options.filter.categories.type] = this.options.filter.categories.name;
+                console.log(categoriesQuery);
                 filtersQuery.bool.must.push({ 
                     "bool" : {
-                        "must" : categoriesQuery
+                        "must" : { "match_phrase" : categoriesQuery }
                     }
                 });
             }

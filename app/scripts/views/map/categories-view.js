@@ -47,8 +47,11 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             var $item = $(e.target);
 
             if (!$item.hasClass('active')) {
-                this.selectedCategories = {};
-                this.selectedCategories[$item.data('type')] = $item.text();
+                this.selectedCategories = {
+                    type: $item.data('type'),
+                    id: $item.attr('href'),
+                    name: $item.text()
+                }
             }
 
             this.openMenu(e);
