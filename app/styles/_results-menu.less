@@ -216,7 +216,6 @@
 
 .map-menu__search {
 	position: relative;
-	overflow: hidden;
 
 	.search-input {
 		border: none;
@@ -239,6 +238,7 @@
 		right: 1em;
 		margin-top: -8px;
 		pointer-events: none;
+		display: block;
 	}
 
 	.results-menu__search__clear-bt {
@@ -249,6 +249,7 @@
 		top: -20%;
 		right: 1em;
 		margin-top: -8px;
+		display: none;
 	}
 
 	.icon-search,
@@ -259,10 +260,12 @@
 	&.search {
 		.icon-search {
 			top: 120%;
+			display: none;
 		}
 
 		.results-menu__search__clear-bt {
 			top: 50%;
+			display: block;
 		}
 	}
 }
@@ -341,7 +344,7 @@
 		position: absolute;
 		left: 0;
 		height: 100%;
-		line-height: 4em;
+		line-height: 2.5em;
 		background: @orange;
 		color: white;
 		font-weight: 300;
