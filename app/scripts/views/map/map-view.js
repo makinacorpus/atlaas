@@ -227,11 +227,22 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 this.poiDetailView.open();
             });
 
-            this.listenTo(this.poiDetailView, 'filtered', function(category) {
-                this.options.state.categories = category;
+            this.listenTo(this.poiDetailView, 'filtered', function(args) {
+                var type = args[0];
+                var filter = args[1];
 
-                this.updateUrl();
-                this.updatePoisState();
+                if (type === 'axe' || type === 'enjeu' || type === 'usage' || type === 'service') {
+                    var category = this.categoriesCollection.getCategoryOfType(type, filter);
+                    console.log(category);
+                    _.each()
+                    this.options.state.categories = category;
+                } else {
+                    this.options.state[type] = filter;
+                }
+
+                console.log(this.options.state);
+                // this.updateUrl();
+                // this.updatePoisState();
             });
 
             this.resetPoisType();

@@ -17,8 +17,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         events: {
             'click .detail__bt--close'           : 'closeBtHandler',
             'click .detail__bt--edit'            : 'editBtHandler',
-            'click .detail__bt--location'        : 'filtersBtHandler',
-            'click .detail__breadcrumb'          : 'categoryBtHandler',
+            'click .filter'                      : 'filtersBtHandler'
         },
 
         initialize: function () {
@@ -33,8 +32,6 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 });
 
                 var serviceId = this.model.get('services')[0].id_service;
-
-                console.log(serviceId);
 
                 var query = {
                     "size" : 2000,
@@ -96,23 +93,12 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         filtersBtHandler: function (e) {
             e.preventDefault();
 
-            var actorId = $(e.currentTarget).attr('href');
+            var type = $(e.currentTarget).attr('data-type');
+            var id = $(e.currentTarget).attr('data-id');
 
             this.close();
-            atlaas.router.navigate(actorId, { trigger: true });
-        },
 
-        categoryBtHandler: function (e) {
-            e.preventDefault();
-
-            var $item = $(e.currentTarget);
-
-            var selectedCategories = {};
-            selectedCategories[$item.data('type')] = $item.attr('href');
-
-            atlaas.router.navigate("map");
-            this.close();
-            this.trigger('filtered', selectedCategories);
+            this.trigger('filtered', [type, id]);
         },
 
         open: function () {

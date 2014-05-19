@@ -14,7 +14,7 @@
 	</div>
 </div>
 <div class="detail__action">
-	<a href="<%= services[0].enjeu_de_developpement %>" class="detail__breadcrumb" data-type="enjeu_de_developpement"><%=services[0].enjeu_de_developpement%></a><a href="<%= services[0].usage %>" class="detail__breadcrumb" data-type="usage">> <%=services[0].usage%></a><a href="<%= services[0].id_service %>" class="detail__breadcrumb" data-type="service">> <%=services[0].service%></a>
+	<a href="<%= services[0].enjeu_de_developpement %>" class="detail__breadcrumb filter" data-type="enjeu" data-id="<%= services[0].enjeu_de_developpement %>"><%=services[0].enjeu_de_developpement%></a><a href="<%= services[0].usage %>" class="detail__breadcrumb filter" data-type="usage" data-id="<%=services[0].usage%>" >> <%=services[0].usage%></a><a href="<%= services[0].id_service %>" class="detail__breadcrumb filter" data-type="service" data-id="<%=services[0].service%>">> <%=services[0].service%></a>
 	<div class="row">
 		<div class="detail__content col-8">
 			<% if (synthese.length) { %>
@@ -49,7 +49,7 @@
 			<ul>
 				<% _.each(personnes, function(personne) { %>
 				<li class="actor">
-					<span class="actor__name"><%= personne.nom %></span><a href="#map/actors/<%= personne.id_personne %>" class="detail__bt detail__bt--location" title="Voir toutes les actions de cette ville">+ Toutes les actions</a><br/>
+					<span class="actor__name"><%= personne.nom %></span><a href="#map?actor=<%= personne.id_personne %>" class="detail__bt detail__bt--location filter" title="Voir toutes les actions de cet acteur" data-type="actor" data-id="<%= personne.id_personne %>">+ Toutes les actions</a><br/>
 					<span class="actor__title"><%= personne.titre %></span><br/>
 					<% if (personne.elu.length) { %> <span><%= personne.elu %></span><br/> <% } %>
 					<a class="actor__email" href="mailto:<%= personne.courriel %>" target="_blank"><%= personne.courriel %></a><br/>
