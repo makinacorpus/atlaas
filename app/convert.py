@@ -218,7 +218,7 @@ def convert(file):
         id = format_int(row[0])
         infos ={
             'usage': row[3],
-            'enjeu_de_developpement': row[2],
+            'enjeu': row[2],
             'id_service': id,
             'service': row[4],
             'axe': row[1],
@@ -307,7 +307,7 @@ def convert(file):
     axes = {}
     for service in services.values():
         axe_id = service['axe'][0]
-        enjeu_id = axe_id + service['enjeu_de_developpement'][0]
+        enjeu_id = axe_id + service['enjeu'][0]
         usage_id = enjeu_id + service['usage'][0]
         axe = axes.setdefault(axe_id, {
             'id_axe' : axe_id,
@@ -316,7 +316,7 @@ def convert(file):
             })
         enjeux = axe['enjeux']
         enjeu = enjeux.setdefault(enjeu_id, {
-            'enjeu': service['enjeu_de_developpement'][3:],
+            'enjeu': service['enjeu'][3:],
             'id_enjeu': enjeu_id,
             'axe': service['axe'][3:],
             'usages': {},
