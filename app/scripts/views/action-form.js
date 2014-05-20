@@ -48,8 +48,9 @@ atlaas.Views = atlaas.Views || {};
 
                             if (editor.value !== null) {
                                 currentModel = categoriesCollection.findWhere({ axe: editor.value });
-                                enjeux = _.values(currentModel.get('enjeux'));
                             }
+                            
+                            enjeux = _.values(currentModel.get('enjeux'));
                             
                             callback(categoriesCollection.map(function(model) {
                                 return model.get('axe');
