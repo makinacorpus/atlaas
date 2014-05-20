@@ -96,6 +96,15 @@ Vhost::
 
 
 ### Changelog
+####0.3
+- 'axes' added to categories both on front side and back/editor side
+- Brand new categories UI
+- New active filters feature : easily see which filters are currently activated
+- Search feature configured for better results
+- No more viewport limit to results (searches are on the whole world)
+- Search input has better behaviour and a reset button
+- New label 'menu' on the sandwhich menu button
+
 ####0.2
 - Edit/Add new action with /#edit and /#new
 - New Edit button on action detail page
