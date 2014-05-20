@@ -59,6 +59,7 @@ atlaas.Views = atlaas.Views || {};
                     },
                     enjeu_de_developpement: {
                         type: 'Select',
+                        title: 'Enjeu',
                         validators: ['required'],
                         options: function(callback, editor) {
                             if (editor.value === null) {

@@ -19,14 +19,14 @@ atlaas.Models = atlaas.Models || {};
 
         schema: {
             titre:      { type: 'Text', validators: ['required'] },
-            sous_titre: 'Text',
+            sous_titre: { type: 'Text', title: 'Sous-titre' },
             date:       { type: 'Date', validators: ['required'] },
             actions:    { type: 'TextArea', validators: ['required'] },
-            synthese:   'TextArea',
+            synthese:   { type: 'TextArea', title: 'Synthèse' },
             outils:     'Text',
             prestataires:'Text',
             recommandations: 'Text',
-            resultats:  'TextArea',
+            resultats:  { type: 'TextArea', title: 'Résultats' },
             liens:      'Text',
             personnes:  { type: 'List', itemType: 'Object', subSchema: {
                 nom: 'Text',
@@ -35,12 +35,12 @@ atlaas.Models = atlaas.Models || {};
             lieux: { type: 'List', itemType: 'Object', validators: ['required'], subSchema: {
                 nom: 'Text',
                 adresse: { type: 'Text', validators: ['required'] },
-                departement: 'Number',
-                region: 'Number',
+                departement: { type: 'Number', title: 'Département' },
+                region: { type: 'Number', title: 'Région' },
                 ville: 'Text',
-                code_postal: 'Number',
-                telephone: 'Number',
-                location: { type: 'Object', validators: ['required'], subSchema: {
+                code_postal: { type: 'Number', title: 'Code postal' },
+                telephone: { type: 'Number', title: 'Téléphone' },
+                location: { type: 'Object', title: 'Localisation', validators: ['required'], subSchema: {
                     lat: 'Number',
                     lon: 'Number'
                 }},
