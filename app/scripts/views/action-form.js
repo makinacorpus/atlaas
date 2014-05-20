@@ -204,6 +204,12 @@ atlaas.Views = atlaas.Views || {};
 
             this.form.commit();
 
+            var modal = new Backbone.BootstrapModal({ content: 'Vos modifications ont bien été soumises à nos administrateurs. Elles seront ajoutés très bientôt.<br/> Merci.', animate: true, allowCancel: false, cancelText: 'Annuler' }).open();
+
+            modal.on('ok', _.bind(function(){
+                atlaas.router.navigate('', {trigger: true});
+            }, this));
+
             // for(var attr in this.model.attributes) {
             //     var input = this.$el.find('*[name="'+attr+'"]');
             //     if(input.length > 0) {
