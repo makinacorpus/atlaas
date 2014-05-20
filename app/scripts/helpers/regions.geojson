@@ -12,13 +12,13 @@
 { "type": "Feature", "properties": { "CODE_REG": "21" }, "geometry": { "type": "Point", "coordinates": [ 4.5, 49 ] } },
 { "type": "Feature", "properties": { "CODE_REG": "94" }, "geometry": { "type": "Point", "coordinates": [ 9.1, 42.1 ] } },
 { "type": "Feature", "properties": { "CODE_REG": "43" }, "geometry": { "type": "Point", "coordinates": [ 6, 47 ] } },
-{ "type": "Feature", "properties": { "CODE_REG": "01" }, "geometry": { "type": "Point", "coordinates": [ -61.6, 16.25 ] } },
-{ "type": "Feature", "properties": { "CODE_REG": "03" }, "geometry": { "type": "Point", "coordinates": [ -53, 4.2 ] } },
+{ "type": "Feature", "properties": { "CODE_REG": "1" }, "geometry": { "type": "Point", "coordinates": [ -61.6, 16.25 ] } },
+{ "type": "Feature", "properties": { "CODE_REG": "3" }, "geometry": { "type": "Point", "coordinates": [ -53, 4.2 ] } },
 { "type": "Feature", "properties": { "CODE_REG": "11" }, "geometry": { "type": "Point", "coordinates": [ 2.5, 48.5 ] } },
 { "type": "Feature", "properties": { "CODE_REG": "91" }, "geometry": { "type": "Point", "coordinates": [ 3.2, 43.7 ] } },
 { "type": "Feature", "properties": { "CODE_REG": "74" }, "geometry": { "type": "Point", "coordinates": [ 1.6, 45.7 ] } },
 { "type": "Feature", "properties": { "CODE_REG": "41" }, "geometry": { "type": "Point", "coordinates": [ 6, 49 ] } },
-{ "type": "Feature", "properties": { "CODE_REG": "02" }, "geometry": { "type": "Point", "coordinates": [ -61, 14.7 ] } },
+{ "type": "Feature", "properties": { "CODE_REG": "2" }, "geometry": { "type": "Point", "coordinates": [ -61, 14.7 ] } },
 { "type": "Feature", "properties": { "CODE_REG": "06" }, "geometry": { "type": "Point", "coordinates": [ 45.2, -12.8 ] } },
 { "type": "Feature", "properties": { "CODE_REG": "73" }, "geometry": { "type": "Point", "coordinates": [ 1.3, 43.5 ] } },
 { "type": "Feature", "properties": { "CODE_REG": "31" }, "geometry": { "type": "Point", "coordinates": [ 2.7, 50.5 ] } },
@@ -28,7 +28,7 @@
 { "type": "Feature", "properties": { "CODE_REG": "22" }, "geometry": { "type": "Point", "coordinates": [ 2.8, 49.5 ] } },
 { "type": "Feature", "properties": { "CODE_REG": "54" }, "geometry": { "type": "Point", "coordinates": [ 0.2, 46.1 ] } },
 { "type": "Feature", "properties": { "CODE_REG": "93" }, "geometry": { "type": "Point", "coordinates": [ 6, 44 ] } },
-{ "type": "Feature", "properties": { "CODE_REG": "04" }, "geometry": { "type": "Point", "coordinates": [ 55.5, -21.15 ] } },
+{ "type": "Feature", "properties": { "CODE_REG": "4" }, "geometry": { "type": "Point", "coordinates": [ 55.5, -21.15 ] } },
 { "type": "Feature", "properties": { "CODE_REG": "82" }, "geometry": { "type": "Point", "coordinates": [ 5.3, 45.5 ] } }
 ]
 }
