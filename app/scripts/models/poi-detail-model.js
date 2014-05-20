@@ -57,6 +57,7 @@ atlaas.Models = atlaas.Models || {};
 
             // TODO : clean it server side
             _.each(response.services, function (service) {
+                service.axe = service.axe.substring(3);
                 service.enjeu_de_developpement = service.enjeu_de_developpement.substring(3);
                 service.usage = service.usage.substring(3);
             });

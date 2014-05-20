@@ -25,7 +25,9 @@ atlaas.Views = atlaas.Views || {};
             var categoriesCollection = new atlaas.Collections.CategoriesCollection();
             categoriesCollection.fetch();
 
+            var enjeux = undefined;
             var usages = undefined;
+            var selectedEnjeu = undefined;
             var selectedUsage = undefined;
             var services = undefined;
             var currentModel = undefined;
@@ -39,10 +41,19 @@ atlaas.Views = atlaas.Views || {};
                     axe: {
                         type: 'Select',
                         options: function(callback, editor) {
-                            callback('<option>'+ editor.value +'</option>');
-                            // callback(categoriesCollection.map(function(model) {
-                            //     return model.get('axe');
-                            // }));
+                            if (editor.value === null) {
+                                // default to no selection
+                                editor.$el.prop('selectedIndex', -1);
+                            }
+
+                            if (editor.value !== null) {
+                                currentModel = categoriesCollection.findWhere({ axe: editor.value });
+                                enjeux = _.values(currentModel.get('enjeux'));
+                            }
+                            
+                            callback(categoriesCollection.map(function(model) {
+                                return model.get('axe');
+                            }));
                         }
                     },
                     enjeu_de_developpement: {
@@ -55,12 +66,12 @@ atlaas.Views = atlaas.Views || {};
                             }
 
                             if (editor.value !== null) {
-                                currentModel = categoriesCollection.findWhere({ enjeu_de_developpement: editor.value });
-                                usages = _.values(currentModel.get('usages'));
+                                selectedEnjeu = editor.value;
+                                usages = selectedEnjeu === null ? null : currentModel.getEnjeu(selectedEnjeu).usages;
                             }
 
-                            callback(categoriesCollection.map(function(model) {
-                                return model.get('enjeu_de_developpement');
+                            callback(enjeux.map(function(enjeu) {
+                                return enjeu.enjeu;
                             }));
                         }
                     },
@@ -70,8 +81,8 @@ atlaas.Views = atlaas.Views || {};
                         options: function(callback, editor) {
                             if (editor.value !== null) {
                                 selectedUsage = editor.value;
-                                services = selectedUsage === null ? null : currentModel.getServices(selectedUsage);
-                            };
+                                services = selectedUsage === null ? null : currentModel.getServices(selectedEnjeu, selectedUsage);
+                            }
 
                             callback(_.map(usages, function(value) {
                                 return value.usage;
@@ -96,7 +107,8 @@ atlaas.Views = atlaas.Views || {};
             });
 
             this.form.fields.services.editor.on('item:open add', function(listEditor, itemEditor) {
-                var enjeuEditor     = itemEditor.modalForm.fields.enjeu_de_developpement.editor,
+                var axeEditor       = itemEditor.modalForm.fields.axe.editor,
+                    enjeuEditor     = itemEditor.modalForm.fields.enjeu_de_developpement.editor,
                     usageEditor     = itemEditor.modalForm.fields.usage.editor,
                     serviceEditor   = itemEditor.modalForm.fields.service.editor;
                 
@@ -109,10 +121,24 @@ atlaas.Views = atlaas.Views || {};
                     serviceEditor.setOptions();
                 }
 
+                axeEditor.on('change', function(itemEditor) {
+                    var selectedAxe = axeEditor.getValue();
+                    currentModel = categoriesCollection.findWhere({ axe: selectedAxe });
+                    enjeux = currentModel.get('enjeux');
+                    var enjeuxList = _.map(enjeux, function(value) {
+                        return value.enjeu;
+                    });
+
+                    enjeuEditor.setOptions(enjeuxList);
+                    usageEditor.setOptions();
+                    usageEditor.setValue(null);
+                    serviceEditor.setOptions();
+                    serviceEditor.setValue(null);
+                });
+
                 enjeuEditor.on('change', function(itemEditor) {
-                    var selectedEnjeu = enjeuEditor.getValue();
-                    currentModel = categoriesCollection.findWhere({ enjeu_de_developpement: selectedEnjeu });
-                    usages = currentModel.get('usages');
+                    selectedEnjeu = enjeuEditor.getValue();
+                    usages = currentModel.getEnjeu(selectedEnjeu).usages;
                     var usagesList = _.map(usages, function(value) {
                         return value.usage;
                     });
@@ -124,7 +150,7 @@ atlaas.Views = atlaas.Views || {};
 
                 usageEditor.on('change', function(itemEditor) {
                     selectedUsage = itemEditor.getValue();
-                    services = currentModel.getServices(selectedUsage);
+                    services = currentModel.getServices(selectedEnjeu, selectedUsage);
                     var servicesList = _.map(services, function(value) {
                         return value.service;
                     });
