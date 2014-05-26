@@ -16,7 +16,8 @@ atlaas.Routers = atlaas.Routers || {};
             "edit/:action_id"   : "edit",
             "new"               : "new",
             "review"            : "reviewlist",
-            "login"             : "login"
+            "login"             : "login",
+            "*path"             : "static"
     	}
     });
 

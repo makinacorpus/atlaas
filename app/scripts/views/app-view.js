@@ -53,7 +53,7 @@ atlaas.Views = atlaas.Views || {};
 
             var newsView = new atlaas.Views.NewsView();
 
-            this.currentView = this.newsView;
+            this.currentView = newsView;
 
             this.$pageContainer.append(newsView.render().el);
 
@@ -137,6 +137,21 @@ atlaas.Views = atlaas.Views || {};
                 this.currentView = reviewListView;
                 this.$pageContainer.append(reviewListView.render().$el);
             });
+        },
+
+        renderStaticPage: function () {
+            this.render();
+
+            var staticPageView = new atlaas.Views.StaticPageView();
+
+            this.currentView = staticPageView;
+
+            staticPageView.loadPage().then(_.bind(function() {
+                this.$pageContainer.append(staticPageView.render().el);
+            }, this));
+
+
+            return this;
         }
 
     });

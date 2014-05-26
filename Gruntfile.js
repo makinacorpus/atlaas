@@ -137,6 +137,11 @@ module.exports = function (grunt) {
                 files: {
                     ".tmp/styles/main.css": "<%= yeoman.app %>/styles/main.less"
                 }
+            },
+            dev: {
+                files: {
+                    "<%= yeoman.app %>/_site/styles/main.css": "<%= yeoman.app %>/styles/main.less"
+                }
             }
         },
         // not enabled since usemin task does concat and uglify
@@ -224,6 +229,11 @@ module.exports = function (grunt) {
             compile: {
                 files: {
                     '.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/*.ejs']
+                }
+            },
+            dev: {
+                files: {
+                    '<%= yeoman.app %>/_site/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/*.ejs']
                 }
             }
         },

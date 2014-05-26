@@ -63,6 +63,11 @@ window.atlaas = {
             appView.mapView.showPoiDetail(action_id);
         });
 
+        this.router.on('route:static', function () {
+            // Try to load a static page, else 404
+            appView.renderStaticPage();
+        });
+
         this.router.on('route', function (route) {
             appView.sidebarView.updateNavigation(route);
         });
