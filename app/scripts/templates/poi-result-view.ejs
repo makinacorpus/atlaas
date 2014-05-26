@@ -1,9 +1,0 @@
-<% if (typeof id === 'undefined') { %>
-	<span>pas de résultat</span>
-<% } else { %>
-	<a class="results__bt" href="<%= id %>">En savoir plus</a>
-	<a class="results__item icon-location" href="<%= id %>" data-id="<%= id %>">
-		<h3><%= titre %></h3>
-		<h4><%= lieux[0].nom %></h4>
-	</a>
-<% } %>
