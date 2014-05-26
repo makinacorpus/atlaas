@@ -7,6 +7,8 @@ permalink: none
 # Currently using github project domain
 root: /atlaas
 source: ./dist
+# Markdown interpreter
+markdown: kramdown
 # prose.io settings
 # https://github.com/prose/prose/wiki/Prose-Configuration
 prose:

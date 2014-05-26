@@ -211,7 +211,8 @@ module.exports = function (grunt) {
                         '.htaccess',
                         'images/{,*/}*.{webp,gif,svg}',
                         'styles/fonts/{,*/}*.*',
-                        'scripts/helpers/*.geojson'
+                        'scripts/helpers/*.geojson',
+                        'pages/{,*/}*.md'
                     ]
                 }]
             }
