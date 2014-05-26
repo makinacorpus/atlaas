@@ -1,0 +1,21 @@
+# See http://jekyllrb.com/docs/configuration/.
+name: Atlaas - Atlas de l'Internet Public et Citoyen
+# GitHub Pages is running in safe mode, so use it during tests as well.
+safe: true
+# No permalink
+permalink: none
+# Currently using github project domain
+root: /atlaas
+source: ./dist
+# prose.io settings
+# https://github.com/prose/prose/wiki/Prose-Configuration
+prose:
+  siteurl: "http://makinacorpus.github.io/atlaas"
+  media: "media"
+  rooturl: "pages"
+  metadata:
+    "data":
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "page"
