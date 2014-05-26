@@ -1,12 +1,9 @@
 # See http://jekyllrb.com/docs/configuration/.
 name: Atlaas - Atlas de l'Internet Public et Citoyen
-# GitHub Pages is running in safe mode, so use it during tests as well.
-safe: true
 # No permalink
 permalink: none
 # Currently using github project domain
 root: /atlaas
-source: ./dist
 # Markdown interpreter
 markdown: kramdown
 # prose.io settings

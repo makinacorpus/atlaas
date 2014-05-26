@@ -212,7 +212,10 @@ module.exports = function (grunt) {
                         'images/{,*/}*.{webp,gif,svg}',
                         'styles/fonts/{,*/}*.*',
                         'scripts/helpers/*.geojson',
-                        'pages/{,*/}*.md'
+                        'pages/{,*/}*.md',
+                        '_layouts/*.html',
+                        '_config.yml',
+                        'media/{,*/}*.*'
                     ]
                 }]
             }

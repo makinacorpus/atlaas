@@ -3,4 +3,4 @@ layout: news
 title: "À propos"
 ---
 
-![Charte d'utilisation](media/Charte d’utilisation du portail ATLAAS.pdf)
+[Charte d'utilisation](media/Charte%20d’utilisation%20du%20portail%20ATLAAS.pdf)
