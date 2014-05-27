@@ -16,7 +16,6 @@ atlaas.Views = atlaas.Views || {};
         },
 
         render: function () {
-            console.log(this.template);
         	this.$el.html(this.template);
 
             return this;
