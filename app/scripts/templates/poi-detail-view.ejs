@@ -10,7 +10,7 @@
 	<a href="<%= "data:text/csv;charset=utf-8," + encodeURIComponent(this.csv) %>" download="data.csv" class="detail__bt detail__bt--download icon-download" title="Télécharger la fiche sous format CSV">Télécharger</a>
 	<div class="social">
 		<a href="<%= window.location.href %>" class="twitter-share-button" data-lang="fr">Tweet</a>
-		<div class="fb-like" data-href="<%= window.location.href %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false" data-width="100"></div>
+		<div class="fb-share-button" data-href="<%= window.location.href %>" data-width="130" data-type="button_count"></div>
 	</div>
 </div>
 <div class="detail__action">
@@ -75,7 +75,6 @@
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1&appId=160256717437437";
+  js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&appId=260459277472867&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
