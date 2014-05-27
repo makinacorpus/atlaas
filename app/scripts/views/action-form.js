@@ -190,9 +190,9 @@ atlaas.Views = atlaas.Views || {};
             this.form.render();
 
             if (typeof this.model.id === "undefined")
-                this.$el.html(this.templateNew());
+                this.$el.html(this.templateNew(this.model.attributes));
             else
-                this.$el.html(this.templateEdit());
+                this.$el.html(this.templateEdit(this.model.attributes));
 
             this.$el.find('.form-container').append(this.form.el);
 
