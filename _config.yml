@@ -18,6 +18,10 @@ prose:
       - /scripts
       - /styles
       - /images
+      - CNAME
+      - favicon.ico
+      - robot.txt
+      - /pages/news.md
   metadata:
     "data":
       - name: "layout"
