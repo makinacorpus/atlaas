@@ -1,7 +1,6 @@
 ---
 layout: news
-title: "Site Atlaas en ligne !"
-published: true
+title:  "Site Atlaas en ligne !"
 ---
 
 Terre de Cro Magon est située à 30km au Sud Est de Périgueux.
