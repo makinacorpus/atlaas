@@ -55,7 +55,10 @@ atlaas.Views = atlaas.Views || {};
 
             this.currentView = newsView;
 
-            this.$pageContainer.append(newsView.render().el);
+            newsView.loadPage().then(_.bind(function() {
+                console.log('lol');
+                this.$pageContainer.append(newsView.render().el);
+            }, this));
 
             return this;
         },

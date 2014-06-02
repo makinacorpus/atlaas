@@ -11,16 +11,33 @@ atlaas.Views = atlaas.Views || {};
 
         className: 'container',
 
-        template: JST['app/scripts/templates/news-view.ejs'],
-
         initialize: function () {
-
+            this.newsNumber = 3;
+            this.template = '';
         },
 
         render: function () {
-        	this.$el.html(this.template());
+        	this.$el.html(this.template);
 
             return this;
+        },
+
+        loadPage: function () {
+            var deferred = $.Deferred();
+            var that = this;
+
+            for (var i = 1; i <= this.newsNumber; i++) {
+                $.ajax({
+                    url: 'pages/news/' + i + '.html',
+                }).done(function(data) {
+                    that.template += data;
+                    deferred.resolve();
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+                    deferred.resolve();
+                });
+            }
+
+            return deferred;
         }
 
     });

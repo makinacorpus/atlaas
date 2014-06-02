@@ -218,6 +218,7 @@ module.exports = function (grunt) {
                         'styles/fonts/{,*/}*.*',
                         'scripts/helpers/*.geojson',
                         'pages/{,*/}*.md',
+                        '_posts/*.md',
                         '_layouts/*.html',
                         '_config.yml',
                         'media/{,*/}*.*',
