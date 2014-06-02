@@ -6,8 +6,10 @@ Annuaire Territorial de Liaison des Acteurs, Actions et Services numériques
 This project is generated using Yeoman (http://yeoman.io/)
 
 ### Requirements
+- gem
 - npm (version > 1.2.10)
 - grunt (`npm install -g grunt-cli`)
+- less (`npm install -g lessc`)
 
 ####Note : You should name your project folder 'atlaas' to let Yeoman generator CLI be able to automatically generate Backbone views/models/collections... (`yo backbone:view myview`)
 
@@ -17,7 +19,12 @@ This project is generated using Yeoman (http://yeoman.io/)
 - `$ grunt serve`
 - look your browser
 
-### NGINX configuration
+#### Since project is now powered by Jekyll (for admin purpose), you will need to install Jekyll too : 
+- `gem install jekyll`
+
+Plus, if you're looking the site through Jekyll built-in server, you will need to recompile JST and Less files everytime Jekyll rebuild the site.
+
+### NGINX configuration (Elastic Search)
 
 Install nginx-extras package:
 
@@ -96,6 +103,12 @@ Vhost::
 
 
 ### Changelog
+####0.4
+- Site now powered by Jekyll
+- Static pages and news now editable via Prose.io
+- Better support for mobile devices (tablet only)
+- Minor changes : new partners logo, new back button on editors pages, new Facebook share button, plus bug fixes
+
 ####0.3
 - 'axes' added to categories both on front side and back/editor side
 - Brand new categories UI
