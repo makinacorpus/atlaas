@@ -220,7 +220,8 @@ module.exports = function (grunt) {
                         'pages/{,*/}*.md',
                         '_layouts/*.html',
                         '_config.yml',
-                        'media/{,*/}*.*'
+                        'media/{,*/}*.*',
+                        'CNAME'
                     ]
                 }]
             }
