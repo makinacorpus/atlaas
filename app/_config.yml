@@ -11,7 +11,17 @@ markdown: kramdown
 prose:
   siteurl: "http://makinacorpus.github.io/atlaas"
   media: "media"
-  rooturl: "pages"
+  ignore:
+      - index.html
+      - _config.yml
+      - /_layouts
+      - /scripts
+      - /styles
+      - /images
+      - CNAME
+      - favicon.ico
+      - robot.txt
+      - /pages/news.md
   metadata:
     "data":
       - name: "layout"
