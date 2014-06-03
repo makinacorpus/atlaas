@@ -142,14 +142,14 @@ atlaas.Views = atlaas.Views || {};
             });
         },
 
-        renderStaticPage: function () {
+        renderStaticPage: function (route) {
             this.render();
 
             var staticPageView = new atlaas.Views.StaticPageView();
 
             this.currentView = staticPageView;
 
-            staticPageView.loadPage().then(_.bind(function() {
+            staticPageView.loadPage(route).then(_.bind(function() {
                 this.$pageContainer.append(staticPageView.render().el);
             }, this));
 

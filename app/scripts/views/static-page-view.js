@@ -21,12 +21,12 @@ atlaas.Views = atlaas.Views || {};
             return this;
         },
 
-        loadPage: function () {
+        loadPage: function (route) {
             var deferred = $.Deferred();
             var that = this;
 
             $.ajax({
-                url: 'pages/' + Backbone.history.fragment + '.html',
+                url: 'pages/' + route + '.html',
             }).done(function(data) {
                 that.template = data;
                 deferred.resolve();

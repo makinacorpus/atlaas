@@ -4,9 +4,9 @@
 	  {% for post in site.posts %}
 	    <li>
 	      <article>
-	      	<h2>{{ page.title }}</h2>
-	      	Publié le <span class="date">{{ site.time | date: "%d/%m/%y" }}</span>
-	      	{{ content }}
+	      	<h2>{{ post.title }}</h2>
+	      	Publié le <span class="date">{{ post.date | date: "%d/%m/%y" }}</span>
+	      	{{ post.content }}
 	      </article>
 	    </li>
 	  {% endfor %}
