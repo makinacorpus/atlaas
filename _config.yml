@@ -20,11 +20,12 @@ prose:
       - /images
       - CNAME
       - favicon.ico
-      - robot.txt
+      - robots.txt
       - /pages/news.md
+      - README.md
   metadata:
-    "data":
+    "_posts":
       - name: "layout"
         field:
           element: "hidden"
-          value: "page"
+          value: "static"

@@ -1,5 +1,5 @@
 ---
-layout: news
+layout: static
 title:  "Site Atlaas en ligne !"
 ---
 
