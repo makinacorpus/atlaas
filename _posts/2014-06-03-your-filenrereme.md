@@ -1,6 +1,6 @@
 ---
 layout: static
-published: false
+published: true
 ---
 
 ## Nouvel article
