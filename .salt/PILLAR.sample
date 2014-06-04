@@ -33,6 +33,7 @@ makina-states.projectname:
     DATABASE_FILE: '{data_root}/app.sqlite'
     SQLALCHEMY_DATABASE_URI: 'sqlite:///{DATABASE_FILE}'
     SQLALCHEMY_RECORD_QUERIES: False
+    ELASTICSEARCH: http://elastic.foo.net/atlaas
   env_defaults:
     dev:
       SQLALCHEMY_RECORD_QUERIES: True
