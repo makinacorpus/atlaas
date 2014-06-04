@@ -18,4 +18,5 @@ SQLALCHEMY_RECORD_QUERIES = False
 {% endif %}
 ERROR_MAIL_FROM = "{{data.ERROR_MAIL_FROM}}"
 ERROR_MAIL_TO = "{{data.ERROR_MAIL_TO}}"
+ELASTICSEARCH = "{{data.ELASTICSEARCH}}"
 # vim:set et sts=4 ts=4 tw=80:
