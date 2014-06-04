@@ -1,4 +1,12 @@
 *.egg-info
+.buildout/
+.installed.cfg
+.mr.developer.cfg
+kgs.cfg
+eggs
+bin
+salt_config.py
+salt.cfg
 *.pyc
 *.xls
 *.json

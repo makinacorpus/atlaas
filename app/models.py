@@ -22,7 +22,7 @@ class User(db.Model):
 
     def _get_password(self):
         return self._password
-    
+
     def _set_password(self, password):
         self._password = generate_password_hash(password)
 

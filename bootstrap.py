@@ -1,0 +1,1 @@
+import socket;socket.setdefaulttimeout(2)

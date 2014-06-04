@@ -1,0 +1,40 @@
+#
+# This file contains default values which are used
+# by the salt states deploying your project.
+# you may copy them to your relevant PILLAR file
+# before editing them.
+# If you need to add variables, this is where to begin.
+# Please keep defaults in there, but real passwords
+# must be putted inside pillar
+#
+# replace project_name in your pillar by
+# the current projectname
+# you can also merge parts of this file
+# with the relevant pillar
+makina-states.projectname:
+  data:
+    domain: annuaire.mydomain.tld
+    nginx_upstreams: salt://makina-projects/{name}/files/nginx.upstreams.conf
+    nginx_vhost: salt://makina-projects/{name}/files/nginx.content.conf
+    ERROR_MAIL_FROM: "foo@bar.com"
+    ERROR_MAIL_TO:  "foo@moo.com"
+    static: "{data_root}/static"
+    host: localhost
+    port: 8080
+    workers: 1
+    appdata_root: "{data_root}/app"
+    ADMIN: fadmin
+    PASSWORD: fadmin
+    BASE_DIR: "{project_root}"
+    SECRET_KEY: 'development key'
+    UPLOAD_FOLDER: "{appdata_root}"
+    CONVERSION_FOLDER: "{appdata_root}/conversion"
+    EXPORT_FOLDER: "{appdata_root}/export"
+    DATABASE_FILE: '{data_root}/app.sqlite'
+    SQLALCHEMY_DATABASE_URI: 'sqlite:///{DATABASE_FILE}'
+    SQLALCHEMY_RECORD_QUERIES: False
+  env_defaults:
+    dev:
+      SQLALCHEMY_RECORD_QUERIES: True
+
+# vim:set ft=yaml:
