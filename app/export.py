@@ -9,6 +9,9 @@ import requests
 import time
 from app import app
 
+E_SEARCH = app.config['ELASTICSEARCH']
+
+
 def export():
 
 #import pdb; pdb.set_trace()
@@ -86,7 +89,7 @@ def export():
 
     # Services
 
-    r = requests.get("http://localhost:9200/atlaas/axes/_search?size=100000")
+    r = requests.get(E_SEARCH + "/axes/_search?size=100000")
     hits = json.loads(r.content)["hits"]["hits"]
     services_list = []
     for axe in hits:
@@ -117,7 +120,7 @@ def export():
 
     # Actions
 
-    r = requests.get("http://localhost:9200/atlaas/actions/_search?size=100000")
+    r = requests.get(E_SEARCH + "/actions/_search?size=100000")
     hits = json.loads(r.content)["hits"]["hits"]
     i_llieu = 1
     i_lpersonne = 1
@@ -174,7 +177,7 @@ def export():
 
     # Lieux
 
-    r = requests.get("http://localhost:9200/atlaas/lieux/_search?size=100000")
+    r = requests.get(E_SEARCH + "/lieux/_search?size=100000")
     hits = json.loads(r.content)["hits"]["hits"]
     lieux_list = []
     for lieu in hits:
@@ -218,7 +221,7 @@ def export():
 
     # Personnes
 
-    r = requests.get("http://localhost:9200/atlaas/personnes/_search?size=100000")
+    r = requests.get(E_SEARCH + "/personnes/_search?size=100000")
     hits = json.loads(r.content)["hits"]["hits"]
     personnes_list = []
     for personne in hits:

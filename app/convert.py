@@ -7,6 +7,10 @@ import requests
 from app import app
 from app.export import export
 
+
+E_SEARCH = app.config['ELASTICSEARCH']
+
+
 def convert(file):
     def format_phone(val):
         if type(val) is float:
@@ -144,7 +148,7 @@ def convert(file):
     sh = wb.sheet_by_name(u'Lieux')
     for rownum in range(1, sh.nrows):
         row = sh.row_values(rownum)
-        if (type(row[4]) is str) or (type(row[5]) is str): 
+        if (type(row[4]) is str) or (type(row[5]) is str):
             lieux_errors += 1
             lat = ''
             lon = ''
@@ -357,11 +361,11 @@ def convert(file):
         personnes_json.write(json.dumps(personne).encode('UTF-8') + '\n')
     personnes_json.close()
 
-    r = requests.delete("http://localhost:9200/atlaas/")
+    r = requests.delete(E_SEARCH + "/")
 
-    r = requests.put("http://localhost:9200/atlaas/")
+    r = requests.put(E_SEARCH + "/")
 
-    r = requests.put("http://localhost:9200/atlaas/actions/_mapping", data='{ \
+    r = requests.put(E_SEARCH + "/actions/_mapping", data='{ \
         "actions" : { \
             "properties" : { \
                 "lieux": { \
@@ -374,18 +378,18 @@ def convert(file):
     }')
 
     axes_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "axes.json"), "rb")
-    r = requests.post("http://localhost:9200/atlaas/_bulk", data=axes_json)
+    r = requests.post(E_SEARCH + "/_bulk", data=axes_json)
     axes_json.close()
 
     lieux_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "lieux.json"), "rb")
-    r = requests.post("http://localhost:9200/atlaas/_bulk", data=lieux_json)
+    r = requests.post(E_SEARCH + "/_bulk", data=lieux_json)
     lieux_json.close()
 
     personnes_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "personnes.json"), "rb")
-    r = requests.post("http://localhost:9200/atlaas/_bulk", data=personnes_json)
+    r = requests.post(E_SEARCH + "/_bulk", data=personnes_json)
     personnes_json.close()
 
     for i in range (1, index+1):
         actions_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "actions-%d.json" % i), "rb")
-        r = requests.post("http://localhost:9200/atlaas/_bulk", data=actions_json)
+        r = requests.post(E_SEARCH + "/_bulk", data=actions_json)
         actions_json.close()
