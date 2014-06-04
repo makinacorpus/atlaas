@@ -1,4 +1,4 @@
-*.sqlite
+app/app.sqlite
 *.egg-info
 *.pyc
 *.xls
