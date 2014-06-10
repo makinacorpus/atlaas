@@ -15,7 +15,7 @@ SQLALCHEMY_RECORD_QUERIES = True
 ERROR_MAIL_FROM = 'foo@a.com'
 ERROR_MAIL_TO = 'foo@abcom'
 ELASTICSEARCH = 'http://elastic.foo.net/atlaas'
-
+FRONTEND = 'http://frontend.foo.net'
 
 MAIL_SERVER = ''
 MAIL_PORT = 465
