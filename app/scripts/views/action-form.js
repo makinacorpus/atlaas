@@ -57,7 +57,7 @@ atlaas.Views = atlaas.Views || {};
                             }));
                         }
                     },
-                    enjeu_de_developpement: {
+                    enjeu: {
                         type: 'Select',
                         title: 'Enjeu',
                         validators: ['required'],
@@ -110,7 +110,7 @@ atlaas.Views = atlaas.Views || {};
 
             this.form.fields.services.editor.on('item:open add', function(listEditor, itemEditor) {
                 var axeEditor       = itemEditor.modalForm.fields.axe.editor,
-                    enjeuEditor     = itemEditor.modalForm.fields.enjeu_de_developpement.editor,
+                    enjeuEditor     = itemEditor.modalForm.fields.enjeu.editor,
                     usageEditor     = itemEditor.modalForm.fields.usage.editor,
                     serviceEditor   = itemEditor.modalForm.fields.service.editor;
                 
