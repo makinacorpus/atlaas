@@ -146,11 +146,10 @@ def export():
         action_dict["photos"] = source["photos"]
         actions_list.append(action_dict)
 
-        if "personnes" in source:
-            for liaison_personnes in source["personnes"]:
-                ws_Liaison_Personnes.write(i_lpersonne, 0, source["id_action"])
-                ws_Liaison_Personnes.write(i_lpersonne, 1, liaison_personnes["id_personne"])
-                i_lpersonne += 1
+        for liaison_personnes in source["personnes"]:
+            ws_Liaison_Personnes.write(i_lpersonne, 0, source["id_action"])
+            ws_Liaison_Personnes.write(i_lpersonne, 1, liaison_personnes["id_personne"])
+            i_lpersonne += 1
 
         if "lieux" in source:
             for liaison_lieux in source["lieux"]:
