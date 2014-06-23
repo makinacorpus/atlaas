@@ -1,5 +1,0 @@
-
-Install:
-`virtualenv .`
-`source bin/activate`
-`easy_install xlrd flask flask-admin flask-login flask-sqlalchemy flask-wtf wtforms`
