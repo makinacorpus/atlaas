@@ -1,3 +1,4 @@
+app/app.sqlite
 *.egg-info
 .buildout/
 .installed.cfg
