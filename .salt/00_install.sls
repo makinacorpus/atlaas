@@ -106,6 +106,6 @@ dbinstall-{{cfg.name}}:
 {{ nginx.virtualhost(domain=data.domain,
    active=True,
    doc_root=data.static,
-   extra=cfg,
+   cfg=cfg,
    vh_top_source=data.nginx_upstreams,
    vh_content_source=data.nginx_vhost) }}
