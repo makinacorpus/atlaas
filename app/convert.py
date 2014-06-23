@@ -6,9 +6,13 @@ import sys
 import requests
 from app import app
 from app.export import export
+from requests.auth import HTTPBasicAuth
 
 
 E_SEARCH = app.config['ELASTICSEARCH']
+E_SEARCH_SECURED = app.config['ELASTICSEARCH_SECURED']
+E_SEARCH_SECURED_USER = app.config['ELASTICSEARCH_SECURED_USER']
+E_SEARCH_SECURED_PASSWORD = app.config['ELASTICSEARCH_SECURED_PASSWORD']
 
 
 def convert(file):
@@ -292,18 +296,18 @@ def convert(file):
         actions[action_id]['services'] = action_services
 
     # export actions to json
-    index = 1
+    index_a = 1
     count = 0
-    actions_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "actions-%d.json" % index), "wb")
+    actions_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "actions-%d.json" % index_a), "wb")
     for action in actions.values():
         header = { "index" : { "_index" : "atlaas", "_type" : "actions", "_id" : action['id_action'] } }
         actions_json.write(json.dumps(header).encode('UTF-8') + '\n')
         actions_json.write(json.dumps(action).encode('UTF-8') + '\n')
         count += 1
-        if count > 1000:
-            index += 1
+        if count > 200:
+            index_a += 1
             actions_json.close()
-            actions_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "actions-%d.json" % index), "wb")
+            actions_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "actions-%d.json" % index_a), "wb")
             count = 0
     actions_json.close()
 
@@ -347,25 +351,45 @@ def convert(file):
         axes_json.write(json.dumps(axe).encode('UTF-8') + '\n')
     axes_json.close()
 
-    lieux_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "lieux.json"), "wb")
+    # export lieux to json
+    index_l = 1
+    count = 0
+    lieux_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "lieux-%d.json" % index_l), "wb")
     for lieu in lieux.values():
         header = { "index" : { "_index" : "atlaas", "_type": "lieux", "_id" : lieu['id_lieu'] } }
         lieux_json.write(json.dumps(header).encode('UTF-8') + '\n')
         lieux_json.write(json.dumps(lieu).encode('UTF-8') + '\n')
+        count += 1
+        if count > 1000:
+            index_l += 1
+            lieux_json.close()
+            lieux_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "lieux-%d.json" % index_l), "wb")
+            count = 0
     lieux_json.close()
 
-    personnes_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "personnes.json"), "wb")
+    # export personnes to json
+    index_p = 1
+    count = 0
+    personnes_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "personnes-%d.json" % index_p), "wb")
     for personne in personnes.values():
         header = { "index" : { "_index" : "atlaas", "_type": "personnes", "_id" : personne['id_personne'] } }
         personnes_json.write(json.dumps(header).encode('UTF-8') + '\n')
         personnes_json.write(json.dumps(personne).encode('UTF-8') + '\n')
+        count += 1
+        if count > 1000:
+            index_p += 1
+            personnes_json.close()
+            personnes_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "personnes-%d.json" % index_p), "wb")
+            count = 0
     personnes_json.close()
 
-    r = requests.delete(E_SEARCH + "/")
+    auth = HTTPBasicAuth(E_SEARCH_SECURED_USER, E_SEARCH_SECURED_PASSWORD)
 
-    r = requests.put(E_SEARCH + "/")
+    r = requests.delete(E_SEARCH_SECURED + "/", auth=auth)
 
-    r = requests.put(E_SEARCH + "/actions/_mapping", data='{ \
+    r = requests.put(E_SEARCH_SECURED + "/", auth=auth)
+
+    r = requests.put(E_SEARCH_SECURED + "/actions/_mapping", data='{ \
         "actions" : { \
             "properties" : { \
                 "lieux": { \
@@ -375,21 +399,23 @@ def convert(file):
                 } \
             } \
         } \
-    }')
+    }', auth=auth)
+
+    for i in range (1, index_l+1):
+        lieux_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "lieux-%d.json" % i), "rb")
+        r = requests.post(E_SEARCH_SECURED + "/_bulk", data=lieux_json, auth=auth)
+        lieux_json.close()
 
     axes_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "axes.json"), "rb")
-    r = requests.post(E_SEARCH + "/_bulk", data=axes_json)
+    r = requests.post(E_SEARCH_SECURED + "/_bulk", data=axes_json, auth=auth)
     axes_json.close()
 
-    lieux_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "lieux.json"), "rb")
-    r = requests.post(E_SEARCH + "/_bulk", data=lieux_json)
-    lieux_json.close()
+    for i in range (1, index_p+1):
+        personnes_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "personnes-%d.json" % i), "rb")
+        r = requests.post(E_SEARCH_SECURED + "/_bulk", data=personnes_json, auth=auth)
+        personnes_json.close()
 
-    personnes_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "personnes.json"), "rb")
-    r = requests.post(E_SEARCH + "/_bulk", data=personnes_json)
-    personnes_json.close()
-
-    for i in range (1, index+1):
+    for i in range (1, index_a+1):
         actions_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "actions-%d.json" % i), "rb")
-        r = requests.post(E_SEARCH + "/_bulk", data=actions_json)
+        r = requests.post(E_SEARCH_SECURED + "/_bulk", data=actions_json, auth=auth)
         actions_json.close()
