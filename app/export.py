@@ -150,6 +150,7 @@ def export():
                 ws_Liaison_Lieux.write(i_llieu, 0, source["id_action"])
                 ws_Liaison_Lieux.write(i_llieu, 1, liaison_lieux["id_lieu"])
                 i_llieu += 1
+
         if "personnes" in source:
             for liaison_personnes in source["personnes"]:
                 ws_Liaison_Personnes.write(i_lpersonne, 0, source["id_action"])
