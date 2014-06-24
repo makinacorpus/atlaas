@@ -4,7 +4,7 @@
 	<button class="detail__bt--close icon-cross">close</button>
 </div>
 <div class="detail__meta">
-	<h3 class="detail__location icon-location"><%= lieux[0].nom %></h3>
+	<h3 class="detail__location icon-location"><% if (lieux !== 'undefined') { %><%= lieux[0].nom %><% } %></h3>
 	<div class="detail__date">Publié le <%= date %></div>
 	<a href="#edit/<%= id %>" class="detail__bt detail__bt--edit icon-edit">Modifier</a>
 	<a href="<%= "data:text/csv;charset=utf-8," + encodeURIComponent(this.csv) %>" download="data.csv" class="detail__bt detail__bt--download icon-download" title="Télécharger la fiche sous format CSV">Télécharger</a>
@@ -44,18 +44,20 @@
 
 		</div>
 		<div class="detail__related col-4">
-			<% if (personnes.length) { %>
-			<h3 class="icon-acteurs">Les acteurs</h3>
-			<ul>
-				<% _.each(personnes, function(personne) { %>
-				<li class="actor">
-					<span class="actor__name"><%= personne.nom %></span><a href="#map?actor=<%= personne.id_personne %>" class="detail__bt detail__bt--location filter" title="Voir toutes les actions de cet acteur" data-type="actor" data-id="<%= personne.id_personne %>" data-name="<%= personne.nom %>">+ Toutes les actions</a><br/>
-					<span class="actor__title"><%= personne.titre %></span><br/>
-					<% if (personne.elu.length) { %> <span><%= personne.elu %></span><br/> <% } %>
-					<a class="actor__email" href="mailto:<%= personne.courriel %>" target="_blank"><%= personne.courriel %></a><br/>
-				</li>
-				<% }); %>
-			</ul>
+			<% if (typeof personnes !== 'undefined') { %>
+				<% if (personnes.length) { %>
+				<h3 class="icon-acteurs">Les acteurs</h3>
+				<ul>
+					<% _.each(personnes, function(personne) { %>
+					<li class="actor">
+						<span class="actor__name"><%= personne.nom %></span><a href="#map?actor=<%= personne.id_personne %>" class="detail__bt detail__bt--location filter" title="Voir toutes les actions de cet acteur" data-type="actor" data-id="<%= personne.id_personne %>" data-name="<%= personne.nom %>">+ Toutes les actions</a><br/>
+						<span class="actor__title"><%= personne.titre %></span><br/>
+						<% if (personne.elu.length) { %> <span><%= personne.elu %></span><br/> <% } %>
+						<a class="actor__email" href="mailto:<%= personne.courriel %>" target="_blank"><%= personne.courriel %></a><br/>
+					</li>
+					<% }); %>
+				</ul>
+				<% } %>
 			<% } %>
 			<% if (liens.length) { %>
 			<h3>Liens utiles</h3>
