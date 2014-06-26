@@ -44,18 +44,28 @@ def get_file():
 def notify_user():
     id = request.args.get("id")
     review = requests.get("%s/review/%s" % (app.config["ELASTICSEARCH"], id))
-
     review_json = json.loads(review.content)
+ 
+    admins = [adm for adm in app.config["MAIL_DEFAULT_TO"].split(",")]
+    #persons = [p["courriel"] for p in review_json["_source"]["personnes"]]
+
     title = review_json["_source"]["titre"]
-    url_frontend = app.config["FRONTEND"]
+    url_frontend = "%s/#login" % app.config["FRONTEND"]
 
     msg = Message()
-    msg.recipients = [p["courriel"] for p in review_json["_source"]["personnes"]]
     msg.subject = u"Nouvelle modification sur '%s'" % title
-    msg.html = u"Bonjour, <br> Des modifications ont été apportées sur la fiche de '%s. <a href='%s'>Page des reviews</a> <br> Cordialement. <br> L'équipe d'atlaas'" % (title, url_frontend)
+    
+    for emails in [admins]:#, persons]:
+       if emails is admins:
+          msg.html = u"Bonjour, <br> Des modifications ont été apportées sur la fiche <a href='%s'>%s</a> <br> Cordialement. <br> L'équipe d'atlaas" % (url_frontend, title)
+       else:
+          msg.html = u"Bonjour, <br> Des modifications ont été apportées sur la fiche '%s'. <br> La fiche est en cours de modération.<br> Cordialement <br> L'équipe d'atlaas" % title
+       for email in emails:
+          msg.recipients = [email]
+          try:
+             mail.send(msg)
+          except Exception as e:
+	     return jsonify({"status": False})
 
-    try:
-        mail.send(msg)
-        return jsonify({"status": True})
-    except:
-        return jsonify({"status": False})
+    return jsonify({"status": True})
+
