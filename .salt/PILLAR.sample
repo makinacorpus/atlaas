@@ -33,7 +33,19 @@ makina-states.projectname:
     DATABASE_FILE: '{data_root}/app.sqlite'
     SQLALCHEMY_DATABASE_URI: 'sqlite:///{DATABASE_FILE}'
     SQLALCHEMY_RECORD_QUERIES: False
-    ELASTICSEARCH: http://elastic.foo.net/atlaas
+    ELASTICSEARCH: "http://elastic.foo.net/atlaas"
+    FRONTEND: "http://foo.fr"
+    MAIL_SERVER: ''
+    MAIL_PORT: 465
+    MAIL_USE_TLS: False
+    MAIL_USE_SSL: True
+    MAIL_USERNAME: ''
+    MAIL_PASSWORD: ''
+    MAIL_DEBUG: False
+    MAIL_DEFAULT_TO: ''
+    MAIL_DEFAULT_SENDER: 'astreinte@foo.com'
+    MAIL_MAX_EMAILS: None
+    TESTING: True
   env_defaults:
     dev:
       SQLALCHEMY_RECORD_QUERIES: True
