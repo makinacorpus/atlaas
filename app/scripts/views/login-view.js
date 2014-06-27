@@ -23,7 +23,18 @@ atlaas.Views = atlaas.Views || {};
             e.preventDefault();
             atlaas.CONFIG.login = this.$el.find('*[name="login"]').val();
             atlaas.CONFIG.password = this.$el.find('*[name="password"]').val();
-            atlaas.router.navigate("review", {trigger: true});
+            $.ajax({
+                // /type/id/_update allows partial update
+                url: atlaas.CONFIG.secure_elasticsearch + '/lieux/_mapping',
+                type: "GET",
+                headers: {
+                 'Authorization': "Basic " + btoa(atlaas.CONFIG.login + ":" + atlaas.CONFIG.password)
+                }
+                }).done(function(){
+                    atlaas.router.navigate("review", {trigger: true});
+                }).fail(function(){
+                    alert("error on authentification, please retry");
+                })
         }
 
     });
