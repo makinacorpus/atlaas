@@ -8,7 +8,8 @@ window.atlaas = {
     Routers: {},
     CONFIG: {
         elasticsearch: 'http://elastic.makina-corpus.net/atlaas',
-        secure_elasticsearch: 'http://secured-elastic-local.makina-corpus.net/atlaas'
+        secure_elasticsearch: 'http://secured-elastic-local.makina-corpus.net/atlaas',
+        backend: 'http://staging-local.makina-corpus.net',
     },
     init: function () {
         'use strict';
