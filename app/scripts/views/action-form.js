@@ -207,7 +207,7 @@ atlaas.Views = atlaas.Views || {};
 
             /** If there is no error **/
             if (!errors) {
-
+                var id = this.model.id;
                 /** Modal **/
                 var modal = new Backbone.BootstrapModal({ 
                     content: 'Vos modifications ont bien été soumises à nos administrateurs. Elles seront ajoutés très bientôt.<br/> Merci.', 
@@ -223,11 +223,14 @@ atlaas.Views = atlaas.Views || {};
                 this.model.sync(
                     'create',
                     this.model,
-                    {url: atlaas.CONFIG.elasticsearch + '/review/' + this.model.id}
+                    {
+                        url: atlaas.CONFIG.elasticsearch + '/review/' + id,
+                        success: function () {
+                            /** Notify admin by email **/
+                            $.post(atlaas.CONFIG.backend+ "/notify?id=" + id);
+                        },
+                     }
                 );
-
-                /** Notify admin by email **/
-                $.post(atlaas.CONFIG.backend+ "/notify?id=" + this.model.id);
             }
         }
 
