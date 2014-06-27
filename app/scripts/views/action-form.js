@@ -202,27 +202,33 @@ atlaas.Views = atlaas.Views || {};
         submitForReview: function(e) {
             e.preventDefault();
 
-            this.form.commit();
+            /** Apply changes from form on model **/
+            var errors = this.form.commit();
 
-            var modal = new Backbone.BootstrapModal({ content: 'Vos modifications ont bien été soumises à nos administrateurs. Elles seront ajoutés très bientôt.<br/> Merci.', animate: true, allowCancel: false, cancelText: 'Annuler' }).open();
+            /** If there is no error **/
+            if (!errors) {
 
-            modal.on('ok', _.bind(function(){
-                atlaas.router.navigate('', {trigger: true});
-            }, this));
+                /** Modal **/
+                var modal = new Backbone.BootstrapModal({ 
+                    content: 'Vos modifications ont bien été soumises à nos administrateurs. Elles seront ajoutés très bientôt.<br/> Merci.', 
+                    animate: true, 
+                    allowCancel: false, 
+                    cancelText: 'Annuler' }).open();
 
-            // for(var attr in this.model.attributes) {
-            //     var input = this.$el.find('*[name="'+attr+'"]');
-            //     if(input.length > 0) {
-            //         this.model.set(attr, input.val());
-            //     }
-            // }
+                modal.on('ok', _.bind(function(){
+                    atlaas.router.navigate('', {trigger: true});
+                }, this));
+                console.log(this.model);
+                /** Create review index at server side **/
+                this.model.sync(
+                    'create',
+                    this.model,
+                    {url: atlaas.CONFIG.elasticsearch + '/review/' + this.model.id}
+                );
 
-            // this.model.sync(
-            //     'create',
-            //     this.model,
-            //     {url: atlaas.CONFIG.elasticsearch + '/review/' + this.model.id}
-            // );
-            // atlaas.router.navigate("", {trigger: true});
+                /** Notify admin by email **/
+                //$.post(atlaas.CONFIG.backend+ "/notify?id=" + this.model.id);
+            }
         }
 
     });
