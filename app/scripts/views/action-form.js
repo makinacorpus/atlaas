@@ -218,7 +218,7 @@ atlaas.Views = atlaas.Views || {};
                 modal.on('ok', _.bind(function(){
                     atlaas.router.navigate('', {trigger: true});
                 }, this));
-                console.log(this.model);
+
                 /** Create review index at server side **/
                 this.model.sync(
                     'create',
@@ -227,7 +227,7 @@ atlaas.Views = atlaas.Views || {};
                 );
 
                 /** Notify admin by email **/
-                //$.post(atlaas.CONFIG.backend+ "/notify?id=" + this.model.id);
+                $.post(atlaas.CONFIG.backend+ "/notify?id=" + this.model.id);
             }
         }
 
