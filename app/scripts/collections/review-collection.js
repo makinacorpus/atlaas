@@ -7,7 +7,7 @@ atlaas.Collections = atlaas.Collections || {};
 
     atlaas.Collections.ReviewCollection = Backbone.Collection.extend({
 
-        model: atlaas.Models.PoiModel,
+        model: atlaas.Models.PoiDetailModel,
 
         url: atlaas.CONFIG.elasticsearch + '/review/_search',
 
