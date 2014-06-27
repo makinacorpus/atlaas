@@ -30,7 +30,9 @@ atlaas.Models = atlaas.Models || {};
             liens:      'Text',
             personnes:  { type: 'List', itemType: 'Object', subSchema: {
                 nom: 'Text',
-                titre: 'Text'    
+                titre: 'Text',
+                courriel: 'Text',
+                id_personne: { type: 'Hidden'}   
             } },
             lieux: { type: 'List', itemType: 'Object', validators: ['required'], subSchema: {
                 nom: 'Text',
@@ -39,12 +41,13 @@ atlaas.Models = atlaas.Models || {};
                 region: { type: 'Number', title: 'Région' },
                 ville: 'Text',
                 code_postal: { type: 'Number', title: 'Code postal' },
-                telephone: { type: 'Number', title: 'Téléphone' },
+                telephone: { type: 'Text', title: 'Téléphone' },
                 location: { type: 'Object', title: 'Localisation', validators: ['required'], subSchema: {
                     lat: 'Number',
                     lon: 'Number'
                 }},
-                type: { type: 'Select', options: ['Ville / Village', 'autre'] }
+                type: { type: 'Select', options: ['Ville / Village', 'autre'] },
+                id_lieu: { type: 'Hidden'}
             } }
         },
 
