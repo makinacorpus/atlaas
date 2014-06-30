@@ -1,11 +1,7 @@
 ---
 layout: static
-title: À propos
+title: Comment ça marche
 published: true
 ---
 
-
-
-test
-
-1
+![](/media/arrow.png)
