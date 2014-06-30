@@ -5,3 +5,5 @@ published: true
 ---
 
 Contenu faq
+
+images & textes
