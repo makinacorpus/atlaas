@@ -4,4 +4,4 @@ title: Comment ça marche
 published: true
 ---
 
-![](/media/arrow.png)
+Contenu faq
