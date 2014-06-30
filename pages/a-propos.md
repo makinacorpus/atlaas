@@ -14,9 +14,13 @@ published: true
 
 L'ATLAAS est un portail contributif, de type Web 2.0, ci‐après le Portail, qui organise une visibilité de l’Internet public et citoyen sur la France. Il présente et publie des informations concernant les actions et les acteurs territoriaux (structures et personnes). Il est évolutif selon  son  appropriation  par  les acteurs notamment pour présenter leurs projets en matière de services, ainsi que les technologies qu’ils utilisent et, le cas échéant, la description des compétences à mobiliser pour mettre en œuvre sur un territoire les différentes catégories de projets.
 C’est ainsi que l’ATLAAS propose de partager de l’information sur les outils, faire connaitre les projets et les pratiques professionnelles dans la perspective d’un partage des coûts et d’une mutualisation des bonnes pratiques. Il permet de qualifier la contribution des acteurs au développement des territoires suivant les enjeux :
+
 - de développement démocratique et citoyen (démocratie locale, efficacité des services publics, protection de la vie privée) ;
+
 - du « vivre ensemble » : existence de services pour la cohésion sociale, les dynamiques solidaires, la qualité de vie quotidienne, l’éducation et la santé ;
+
 - d’accès  partagé  à  la  connaissance,  la  culture  et  l’éducation  (vie  culturelle,  partage  de ressources, protection et valorisation du patrimoine) ;
+
 - de  création  de  richesses :  développement  économique  et  durable,  création  d’emploi  et employabilité, attractivité du territoire.
 
 La présente charte définit les conditions générales d’utilisation du portail ATLAAS, en rappelant l’application du droit et en précisant le cadre légal afin de sensibiliser et de responsabiliser l'utilisateur, visiteur du Portail, ci‐après l’Utilisateur, étant précisé que toute connexion au Portail est subordonnée au respect de la charte d’utilisation, des mentions légales du Portail et de toute règlementation ou loi applicable. Elle indique, par ailleurs, les droits et obligations de l’éditeur, fournisseur du portail, ci‐après l’Éditeur, ainsi que ceux de l’Utilisateur. Enfin elle précise les conditions juridiques d’utilisation des contenus du Portail et de contribution par celui‐ci à son enrichissement. Enfin, elle rappelle les conditions spécifiques de protection  des  éventuels traitements de données à caractère personnel dont l’utilisation est nécessaire pour assurer  les finalités du portail.
@@ -28,15 +32,26 @@ L’Éditeur se réserve le droit de modifier tout ou partie et à tout moment l
 La quantité et la facilité de circulation des informations et des contenus sur Internet ne doivent pas faire oublier la nécessité de respecter la législation. Internet, les réseaux et les services de communication numérique ne sont pas des zones de non‐droit. Le rappel non exhaustif des règles de droit principalement concernées par l’utilisation d’Internet et du Portail proposé vise  le  double objectif de sensibiliser le visiteur du présent site à leur existence et à leur respect  et  ainsi  de renforcer ainsi la prévention d’actes illicites.
 
 Il est donc, ici, tout d’abord rappelé (mais pas exclusivement) les usages qui sont interdits et le cas échéant sanctionnés par la voie pénale :
+
 - l'atteinte  à  la  vie  privée  d'autrui  et  l’utilisation  des  données  personnelles  d’une  personne sans son autorisation ;
+
 - la diffamation et l'injure ;
+
 - l’utilisation  d’une  œuvre  de  l’esprit  sans  l’autorisation  de  son  auteur  (par  exemple :  un morceau de musique, une photographie, un livre, un site Web) ;
+
 - l’utilisation  d’un  objet  soumis  aux  droits  voisins  sans  l’autorisation  de  son  titulaire  (par exemple : un CD, un DVD, une émission de télévision, un article en ligne…) ;
+
 - la contrefaçon d’une marque ;
+
 - l’incitation à la consommation de substances interdites ;
+
 - la provocation de mineurs à commettre des actes illicites ou dangereux, le fait de favoriser la corruption d'un mineur, l'exploitation à caractère pornographique de l'image d'un mineur, la diffusion de messages à caractère violent ou pornographique susceptibles d'être perçus par un mineur ;
+
 - la  provocation  aux  crimes  et  délits  et  la  provocation  au  suicide,  la  provocation  à  la discrimination, à la haine notamment raciale, ou à la violence ;
-- l'apologie  de  tous  les  crimes,  notamment  meurtre,  viol,  crime  de  guerre  et  crime  contre l'humanité ; la négation de crimes contre l'humanité.
+
+- l'apologie  de  tous  les  crimes,  notamment  meurtre,  viol,  crime  de  guerre  et  crime  contre l'humanité ; 
+
+- la négation de crimes contre l'humanité.
 
 ### IL EST ENSUITE CONVENU CE QUI SUIT
 
@@ -49,8 +64,11 @@ ATLAAS est une œuvre de l'esprit s'exprimant par une réunion de données et de
 C’est ainsi que cette création intègre, notamment une base de données, ci‐après, dénommée Base de données, considérée comme un recueil d'œuvres ou de données diverses ou d'autres éléments indépendants, disposés de  manière  systématique  ou  méthodique,  et  individuellement  accessibles par interrogations  électroniques.
 
 Outre les contributions spécifiques des Utilisateurs, cette base de données est en particulier alimentée par trois bases d’information dont les droits d’utilisation ont été concédés à l’association Villes Internet :
+
 - Le fonds d’information Villes Internet et de son réseau de collectivités et partenaires ;
+
 - La base « NetPublic » géolocalisée des Espaces Publics Numériques (EPN), gérée par la Délégation aux Usages d’Internet du Ministère de l’Économie, du Redressement productif et du Numérique ;
+
 - Les données enregistrées par l’Observatoire des Territoires Numériques (OteN). 
 De nouvelles bases de données pourront être proposées pour intégration dans le portail.
 
@@ -75,8 +93,11 @@ L’Éditeur s'efforce dans la mesure du  possible  de maintenir accessible le s
 ##### 3. Protection des données à caractère personnel de l’Utilisateur
 
 En application des dispositions de la loi Informatique et Libertés n° 78‐17 du 6 janvier 1978 et de la directive européenne 95/46/CE relative à la protection des données personnelles et à la libre circulation de ces données du 24 octobre 1995, l’Éditeur s’engage à respecter les règles légales de protection de ce type de données. Il garantit notamment à l’Utilisateur :
+
 - de n’utiliser les données à caractère personnel le concernant que pour les strictes finalités pour lesquelles elles sont collectées ;
+
 - de lui communiquer les finalités et la destination des informations enregistrées et leur durée de conservation, laquelle ne peut en tout état de cause excéder ce qui est nécessaire à la réalisation des finalités pour lesquelles elles sont collectées ou traitées ;
+
 - de lui garantir un droit d'accès et de rectification aux données le concernant.
 
 ##### 4. Contrôle des pages Web
@@ -86,16 +107,25 @@ L’Éditeur se réserve le droit de contrôler le contenu de toute page Web hé
 #### III. ENGAGEMENTS DE L’UTILISATEUR
 
 L’Utilisateur s’engage à respecter la législation en vigueur, évoquée à titre non exhaustif ci‐dessous, et notamment il s’engage à utiliser les Services :
+
 - dans le respect des lois relatives à la propriété littéraire et artistique ;
+
 - dans le respect des lois relatives à l’Informatique aux fichiers et aux libertés ;
+
 - dans le respect des règles relatives à la protection de la vie privée et notamment du droit à l’image d’autrui ;
+
 - en s'assurant de ne pas envoyer  de  messages  à  caractère  raciste, pornographique, pédophile, injurieux, diffamatoire… et de manière générale à ne pas diffuser d’informations présentant le caractère d’un délit.
 
 Lorsque l’Utilisateur est amené à constituer des fichiers comportant des données, issues du Portail, à caractère personnel telles que définies par la loi du 6 janvier 1978  relative  à  l'informatique,  aux fichiers et aux libertés et par la directive européenne 95/46/CE relative à la protection des données personnelles et à la libre circulation de ces données du 24 octobre 1995, il veillera en particulier :
+
 - à respecter les procédures préalables auprès de la CNIL ;
+
 - à procéder à l'information préalable des personnes concernées quant à la finalité et les destinataires du traitement de ces informations ;
+
 - à n'effectuer auprès de mineurs, aucune collecte d'informations concernant l'entourage familial, le mode de vie des parents, leur statut socio‐professionnel ;
+
 - à procéder à l'information préalable des personnes concernées quant au risque inhérent à Internet que ces données soient utilisées dans des pays n'assurant pas un niveau de protection suffisant des données à caractère personnel.
+
 Lorsque l’Utilisateur est amené à créer ou à utiliser des œuvres protégées par le droit d’auteur ou des droits voisins du droit d’auteur dans le cadre de réalisations multimédias ou de communications en ligne permis par les contenus et services d’édition proposés par l’Éditeur, l’Utilisateur s’engage à faire figurer une information précise sur  les  modes  d'utilisation  autorisés  pour  chacun  des documents qui seraient ainsi publiés. D’une manière  générale  l'ensemble  des  contenus  proposés devra comporter autant que possible l'ensemble des éléments nécessaires à l'analyse de leur validité juridique (auteur, source d’origine, qualité de l'auteur, date de publication), ainsi que des précisions quant au caractère de chaque document (original  ou  adaptation,  nature  des  modifications apportées).
 
 L’Utilisateur s’engage à ne pas effectuer, de manière volontaire, des opérations pouvant nuire au fonctionnement du Portail de même qu’à l’intégrité des ressources informatiques proposées par le Portail. Il s’engage notamment à ne pas introduire des programmes virus.
@@ -132,6 +162,7 @@ Par ailleurs, au regard de la possibilité d’export  des  contenus intégrés 
 L’Éditeur recueille des informations concernant l’Utilisateur :
 
 ‐ lors de chaque commande d’extraction de données pertinentes (civilité, entité, nom, prénom, fonction, adresse postale, émail, numéro de téléphone…). Ces données ne sont pas transmises à des tiers mais peuvent être utilisées par l’Éditeur pour tout renseignement d’informations relatif à la réutilisation envisagée ou pour toute demande de partenariat en lien avec l’Internet public et citoyen sur la France.
+
 ‐ lors de toute intégration de données par l’Utilisateur, en vue d’enrichir la base de données, et ce pour permettre à l’Éditeur de respecter ses obligations de détention et de conservation des données permettant l'identification de toute personne ayant contribué à la communication au public d'un contenu, conformément aux dispositions de l’article 6‐II de la loi du 21 juin 2004.
 
 Conformément aux dispositions de la Loi Informatique et Libertés du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés et par la directive européenne 95/46/CE relative à la protection des données personnelles et à la libre circulation de ces données du 24 octobre 1995, l’Utilisateur concerné bénéficie d’un droit d’accès, de rectification ou d’opposition sur les données nominatives collectées le concernant. Ces droits peuvent être exercés en contactant l’Éditeur à l’adresse suivante :
