@@ -99,7 +99,7 @@ j.	‘‘liens‘‘ : précisez la ou les adresse(s) internet associée(s) à l
 
 k.	‘‘Personnes‘‘ : indiquer un contact responsable de l’action (‘‘nom‘‘, ‘‘titre‘‘ (fonction), ‘‘courriel‘‘)
 
-l.	‘‘lieu‘‘ : pour géo-localiser (obligatoire !) : ‘‘Nom‘‘, ‘‘Adresse‘‘, ‘‘Département‘‘ (code numérique, deux premiers chiffres du code postal), ‘‘Région‘‘ (code INSEE, consultez la page suivante pour la liste : http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp), ‘‘Ville‘‘, ‘‘Code postal‘‘, ‘‘Téléphone‘‘ (numéro sans espace ni caractères spéciaux), ‘‘Localisation‘‘ (latitude et longitude), ‘‘Type‘‘ (‘‘Ville / village‘‘ ou ‘‘Autre‘‘)
+l.	‘‘lieu‘‘ : pour géo-localiser (obligatoire !) : ‘‘Nom‘‘, ‘‘Adresse‘‘, ‘‘Département‘‘ (code numérique, deux premiers chiffres du code postal), ‘‘Région‘‘ (code INSEE, consultez la page suivante pour la liste : [http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp](http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp)), ‘‘Ville‘‘, ‘‘Code postal‘‘, ‘‘Téléphone‘‘ (numéro sans espace ni caractères spéciaux), ‘‘Localisation‘‘ (latitude et longitude), ‘‘Type‘‘ (‘‘Ville / village‘‘ ou ‘‘Autre‘‘)
 
 m.	‘‘Services‘‘: pour associer un ou plusieur thèmes de l’Atlaas à l’action ‘‘cf. Classement des types de services‘‘ (obligatoire)
 
@@ -113,9 +113,9 @@ A venir
 
 -	Si vous avez besoin d’informations ou d’aide, veuillez consulter le menu. 
 
--	Si vous ne trouvez pas la réponse à vos questions, vous pouvez nous contacter à l’adresse atlaas.admin@villes-internet.net.
+-	Si vous ne trouvez pas la réponse à vos questions, vous pouvez nous contacter à l’adresse [atlaas.admin@villes-internet.net](atlaas.admin@villes-internet.net).
 
--	Charte d’utilisation : http://atlaas.fr/#a-propos
+-	Charte d’utilisation : [http://atlaas.fr/#a-propos](http://atlaas.fr/#a-propos)
 
 ### 4)	Classement des types de services
 
