@@ -120,12 +120,10 @@ A venir
 ### 4)	Classement des types de services
 
 ![[Atlaas] Tab0.jpg](/media/[Atlaas] Tab0.jpg)
-![[Atlaas] Tab11.jpg](/media/[Atlaas] Tab11.jpg)
+![](/media/%5BAtlaas%5D%20Tab11.jpg)
 ![[Atlaas] Tab12.jpg](/media/[Atlaas] Tab12.jpg)
 ![[Atlaas] Tab13.jpg](/media/[Atlaas] Tab13.jpg)
 ![[Atlaas] Tab2.jpg](/media/[Atlaas] Tab2.jpg)
 ![[Atlaas] Tab3.jpg](/media/[Atlaas] Tab3.jpg)
 ![[Atlaas] Tab41.jpg](/media/[Atlaas] Tab41.jpg)
 ![[Atlaas] Tab42.jpg](/media/[Atlaas] Tab42.jpg)
-
-
