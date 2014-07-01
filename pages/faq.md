@@ -16,11 +16,11 @@ Pour trouver et afficher sur la carte l’ensemble des actions concernant un mot
 
 1. rendez-vous sur le panneau latéral (à droite)
 
-2. cliquez sur le champ de recherche (''Recherche')
+2. cliquez sur le champ de recherche (''Recherche'')
 
 3. entrez les mots-clés séparés des espaces
 
-Toutes les actions contenant au moins un des mots-clés s’afficheront sur la carte. 
+Toutes les actions contenant au moins un des mots-clés s'afficheront sur la carte. 
 Pour annuler l’affichage, cliquer sur la croix à côté du champ de recherche.
 
 #### 1.2)	Rechercher les actions associés à un thème de l’Atlaas
