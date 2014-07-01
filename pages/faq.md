@@ -122,7 +122,7 @@ l. ''Lieu'' : pour géo-localiser (obligatoire !) :
 
 - ''Type'' (''Ville / village'' ou ''Autre'')
 
-m. ''Services'' : pour associer un ou plusieur thèmes de l'Atlaas à l’action cf. ''Classement des types de services'' (obligatoire)
+m. ''Services'' : pour associer un ou plusieurs thèmes de l'Atlaas à l'action cf. ''Classement des types de services'' (obligatoire)
 
 #### 2.2) Modifier une action
 
