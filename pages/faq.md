@@ -1,3 +1,8 @@
+---
+layout: static
+title: Comment ça marche
+published: true
+---
 
 ## Mode d’emploi de l’ATLAAS
 
