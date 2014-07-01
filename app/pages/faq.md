@@ -16,11 +16,11 @@ Pour trouver et afficher sur la carte l’ensemble des actions concernant un mot
 
 1. rendez-vous sur le panneau latéral (à droite)
 
-2. cliquez sur le champ de recherche (‘‘Recherche‘‘)
+2. cliquez sur le champ de recherche (''Recherche'')
 
 3. entrez les mots-clés séparés des espaces
 
-Toutes les actions contenant au moins un des mots-clés s’afficheront sur la carte. 
+Toutes les actions contenant au moins un des mots-clés s'afficheront sur la carte. 
 Pour annuler l’affichage, cliquer sur la croix à côté du champ de recherche.
 
 #### 1.2)	Rechercher les actions associés à un thème de l’Atlaas
@@ -29,42 +29,42 @@ Pour trouver toutes les actions par thèmes :
 
 1. rendez-vous sur le panneau latéral (à droite)
 
-2. cliquez sur ‘‘Thèmes‘‘
+2. cliquez sur ''Thèmes''
 
-3. sélectionner le thème et les sous-thèmes souhaités
+3. sélectionnez le thème et les sous-thèmes souhaités
 
-Toutes les actions associées au sous-thème s’afficheront sur la carte. 
-Pour annuler la recherche, cliquez sur la croix à droite du texte dans l‘encadré rouge qui indique le sous-thème sélectionné.
+Toutes les actions associées au sous-thème s'afficheront sur la carte. 
+Pour annuler la recherche, cliquez sur la croix à droite du texte dans l'encadré rouge qui indique le sous-thème sélectionné.
 
 #### 1.3)	Parcourir la carte
 
 Les actions suivantes sont possibles sur la carte :
 
-- zoomer (boutons ‘‘+“ et ‘‘-‘‘ en haut à gauche)
+- zoomer (boutons ''+'' et ''-'' en haut à gauche)
 
-- géolocalisation de l’utilisateur (flèches sou les boutons de zoom)
+- géolocalisation de l'utilisateur (flèches sous les boutons de zoom)
 
 - défilement de la carte (maintenir le clic et déplacer le curseur de la souris dans la direction souhaitée)
 
 #### 1.4)	Consulter une action
 
-Après avoir rechercher des actions, il est possible d‘en consulter les fiches
+Après avoir recherché des actions, il est possible d'en consulter les fiches
 
 -	soit via la carte :
 
-1. cliquer sur le nombre cerclé de rouge indiquant le nombre d’actions associées à la zone
+1. cliquez sur le nombre cerclé de rouge indiquant le nombre d'actions associées à la zone
 
-2. cliquer sur le pointeur de géo-localisation associé à l’action
+2. cliquez sur le pointeur de géo-localisation associé à l'action
 
-3. cliquer sur le lien ‘‘en savoir plus‘‘
+3. cliquez sur le lien ''en savoir plus''
 
-- soit via la liste d’actions :
+- soit via la liste d'actions :
 
-1. faire défiler les actions
+1. faites défiler les actions
 
-2. sélectionner l’action souaitée 
+2. sélectionnez l'action souaitée 
 
-3. cliquer sur le bouton ‘‘en savoir plus‘‘
+3. cliquez sur le bouton ''en savoir plus''
 
 ### 2) Edition
 
@@ -74,37 +74,55 @@ Les utilisateurs peuvent aussi créer (proposer) une fiche et proposer une modif
 
 1. rendez-vous sur le panneau latéral (à droite)
 
-2. cliquer soit sur ‘‘+Proposer une action‘‘ soit sur ‘‘Menu‘‘ puis ‘‘Contribuez !‘‘
+2. cliquez soit sur ''+Proposer une action'' soit sur ''Menu'' puis ''Contribuez !''
 
-3. une page ‘‘Nouvelle fiche‘‘ apparaît
+3. une page ''Nouvelle fiche'' apparaît
 
 4. renseignez un maximum de champs possibles :
 
-a. ‘‘Titre‘‘ de l’action
+a. ''Titre'' de l’action
 
-b. ‘‘Sous-titre‘‘ : mini description. Veuillez éviter de dépasser deux lignes.
+b. ''Sous-titre'' : courte description. Veuillez éviter de dépasser deux lignes.
 
-c. ‘‘Date‘‘ : par défaut, il s’agit de la date actuelle
+c. ''Date'' : par défaut, il s'agit de la date actuelle
 
-d. ‘‘Actions‘‘ : renseignez de la façon la plus factuelle possible ce qui a été réalisé
+d. ''Actions'' : renseignez de la façon la plus factuelle possible ce qui a été réalisé
 
-e. ‘‘Synthèse‘‘ : une description plus détaillée peut être entrée ici
+e. ''Synthèse'' : une description plus détaillée peut être entrée ici
 
-f. ‘‘Outils‘‘ : si un matériel/logiciel spécifique a été créé ou utilisé
+f. ''Outils'' : si un matériel/logiciel spécifique a été créé ou utilisé
 
-g. ‘‘Prestataire‘‘ : les structures impliquées dans l’action
+g. ''Prestataire'' : les structures impliquées dans l'action
 
-h. ‘‘Recommandations‘‘ : conseils d’utilisation
+h. ''Recommandations'' : conseils d'utilisation
 
-i. ‘‘Résultats‘‘ : si des résultats (statistiques, …) sont déjà visibles
+i. ''Résultats'' : si des résultats (statistiques, …) sont déjà visibles
 
-j. ‘‘liens‘‘ : précisez la ou les adresse(s) internet associée(s) à l’action
+j. ''Liens'' : précisez la ou les adresse(s) internet associée(s) à l'action
 
-k. ‘‘Personnes‘‘ : indiquer un contact responsable de l’action (‘‘nom‘‘, ‘‘titre‘‘ (fonction), ‘‘courriel‘‘)
+k. ''Personnes'' : indiquez un contact responsable de l'action (''nom'', ''titre'' (fonction), ''courriel'')
 
-l. ‘‘lieu‘‘ : pour géo-localiser (obligatoire !) : ‘‘Nom‘‘, ‘‘Adresse‘‘, ‘‘Département‘‘ (code numérique, deux premiers chiffres du code postal), ‘‘Région‘‘ (code INSEE, consultez la page suivante pour la liste : [http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp](http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp)), ‘‘Ville‘‘, ‘‘Code postal‘‘, ‘‘Téléphone‘‘ (numéro sans espace ni caractères spéciaux), ‘‘Localisation‘‘ (latitude et longitude), ‘‘Type‘‘ (‘‘Ville / village‘‘ ou ‘‘Autre‘‘)
+l. ''Lieu'' : pour géo-localiser (obligatoire !) : 
 
-m. ‘‘Services‘‘: pour associer un ou plusieur thèmes de l’Atlaas à l’action ‘‘cf. Classement des types de services‘‘ (obligatoire)
+- ''Nom'', 
+
+- ''Adresse'', 
+
+- ''Département'' (code numérique, deux premiers chiffres du code postal), 
+
+- ''Région'' (code INSEE, consultez la page suivante pour la liste : [http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp](http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp)), 
+
+- ''Ville'', 
+
+- ''Code postal'', 
+
+- ''Téléphone'' (numéro sans espace ni caractères spéciaux), 
+
+- ''Localisation'' (latitude et longitude), 
+
+- ''Type'' (''Ville / village'' ou ''Autre'')
+
+m. ''Services'' : pour associer un ou plusieurs thèmes de l'Atlaas à l'action cf. ''Classement des types de services'' (obligatoire)
 
 #### 2.2) Modifier une action
 
@@ -112,21 +130,21 @@ A venir
 
 ### 3)	Modération du site
 
-- La création et la modification de fiche sont soumises à validation.
+- La création et la modification de fiches sont soumises à validation.
 
-- Si vous avez besoin d’informations ou d’aide, veuillez consulter le menu. 
+- Si vous avez besoin d'informations ou d'aide, veuillez consulter le menu. 
 
-- Si vous ne trouvez pas la réponse à vos questions, vous pouvez nous contacter à l’adresse [atlaas.admin@villes-internet.net](atlaas.admin@villes-internet.net).
+- Si vous ne trouvez pas la réponse à vos questions, vous pouvez nous contacter à l'adresse [atlaas.admin@villes-internet.net](atlaas.admin@villes-internet.net).
 
-- Charte d’utilisation : [http://atlaas.fr/#a-propos](http://atlaas.fr/#a-propos)
+- Charte d'utilisation : [http://atlaas.fr/#a-propos](http://atlaas.fr/#a-propos)
 
 ### 4)	Classement des types de services
 
-#### 1. Démocratie et services publics
+#### _1. Démocratie et services publics_
 
-#####	1. Démocratie et services publics / a. Efficacité des services publics 
+#####	1. Démocratie et services publics / _a. Efficacité des services publics_ 
     
-######    	1. Démocratie et services publics / a. Efficacité des services publics / 1. Accès des citoyens aux ser-vices publics, droits et démarches
+######    	1. Démocratie et services publics / a. Efficacité des services publics / _1. Accès des citoyens aux ser-vices publics, droits et démarches_
 
 - Des services ciblés, parcours personnalisés ou sites dédiés par profil d'usagers
 
@@ -148,7 +166,7 @@ A venir
 
 - Un guide des aides publiques par thème et par profil d'usagers
 
-######		1. Démocratie et services publics / a. Efficacité des services publics / 2. Formation et implication des élus et des agents
+######		1. Démocratie et services publics / a. Efficacité des services publics / _2. Formation et implication des élus et des agents_
 
 - La sensibilisation et la formation des élus aux enjeux du numérique
 
@@ -160,7 +178,7 @@ A venir
 
 - L'implication des services dans la co-production des contenus (éventuellement intercommunale)
 
-######		1. Démocratie et services publics / a. Efficacité des services publics / 3. Coopération et mutualisation inter-services et inter-administrations 
+######		1. Démocratie et services publics / a. Efficacité des services publics / _3. Coopération et mutualisation inter-services et inter-administrations_ 
 
 - La coopération décentralisée internationale (jumelages, solidarité)
 
@@ -180,9 +198,9 @@ A venir
 
 - L'utilisation de systèmes interopérables ou de logiciels libres (redistribution des codes)
 
-#####	1. Démocratie et services publics / b. Vitalité de la démocratie locale
+#####	1. Démocratie et services publics / _b. Vitalité de la démocratie locale_
 
-######   	1. Démocratie et services publics / b. Vitalité de la démocratie locale / 1. Transparence de la gouver-nance locale
+######   	1. Démocratie et services publics / b. Vitalité de la démocratie locale / _1. Transparence de la gouver-nance locale_
 
 - Des outils pour le conseil municipal et les élus (vidéo, permanence en ligne)
 
@@ -198,7 +216,7 @@ A venir
 
 - Une entité, structure, conseil pour la concertation de la politique numérique
 
-######        1. Démocratie et services publics / b. Vitalité de la démocratie locale / 2. Participation démocratique des citoyens 
+######        1. Démocratie et services publics / b. Vitalité de la démocratie locale / _2. Participation démocratique des citoyens_ 
 
 - Des dispositifs numériques d'animation des instances participatives (comités de quartier)
 
@@ -214,7 +232,7 @@ A venir
 
 - L'utilisation du numérique par les élus dans la relation aux habitants (mail, blog, débat en ligne)
 
-###### 		1. Démocratie et services publics / b. Vitalité de la démocratie locale / 3. Développement de la vie associative
+###### 		1. Démocratie et services publics / b. Vitalité de la démocratie locale / _3. Développement de la vie associative_
 
 - Des aides à l'équipement et au fonctionnement numérique en réseau
 
@@ -232,13 +250,13 @@ A venir
 
 - Une aide en ligne pour les associations (demandes de subvention...)
 
-#####	1. Démocratie et services publics / c. Protection de la vie privée
+#####	1. Démocratie et services publics / _c. Protection de la vie privée_
 
-######    	1. Démocratie et services publics / c. Protection de la vie privée / 1. Respect des droits et protection des données personnelles
+######    	1. Démocratie et services publics / c. Protection de la vie privée / _1. Respect des droits et protection des données personnelles_
 
-- L’existence d'un Correspondant Informatique et Liberté (CIL)
+- L'existence d'un Correspondant Informatique et Liberté (CIL)
 
-- La communication ou le débat sur la vidéosurveillance
+- La communication ou le débat sur la vidéo-surveillance
 
 - La confidentialité, le droit d'accès et de modification des données personnelles
 
@@ -250,17 +268,17 @@ A venir
 
 - Une charte d'utilisation d'internet sur le site de la collectivité
 
-######		1. Démocratie et services publics / c. Protection de la vie privée / 2. Protection des mineurs, éducation critique 
+######		1. Démocratie et services publics / c. Protection de la vie privée / _2. Protection des mineurs, éducation critique_ 
 
 - La sensibilisation et la protection des mineurs
 
 - L'éducation critique aux média
 
-#### 2. Vivre ensemble
+#### _2. Vivre ensemble_
 
-##### 2. Vivre ensemble / a. Renforcement de la cohésion sociale 
+##### 2. Vivre ensemble / _a. Renforcement de la cohésion sociale_ 
  
-######		2. Vivre ensemble / a. Renforcement de la cohésion sociale / 1. Mise en réseau des habitants 
+######		2. Vivre ensemble / a. Renforcement de la cohésion sociale / _1. Mise en réseau des habitants_ 
 
 - Des espaces pour les communautés locales
 			
@@ -276,7 +294,7 @@ A venir
 
 - Une plate-forme de rencontre et de mise en réseau des habitants (réseau social...)
 		
-######        2. Vivre ensemble / a. Renforcement de la cohésion sociale / 2. Co-production et hébergement de contenus 
+######        2. Vivre ensemble / a. Renforcement de la cohésion sociale / _2. Co-production et hébergement de contenus_ 
 
 - La co-production avec les habitants d'une chaîne vidéo (web TV) ou radio
 
@@ -284,15 +302,15 @@ A venir
 
 - L'hébergement de sites, blogs ou pages personnelles par la collectivité
 
-#####	2. Vivre ensemble / b. Développement des solidarités 
+#####	2. Vivre ensemble / _b. Développement des solidarités_ 
 
-######		2. Vivre ensemble / b. Développement des solidarités / 1. Aides à l’équipement des publics en difficultés 
+######		2. Vivre ensemble / b. Développement des solidarités / _1. Aides à l’équipement des publics en difficultés_ 
 
 - Des aides à l'équipement et des tarifs aménagés pour les publics en précarité
 
 - L'implication des bailleurs dans l'accès aux usages du numérique dans le logement social
 
-######		2. Vivre ensemble / b. Développement des solidarités / 2. Insertion par le numérique 
+######		2. Vivre ensemble / b. Développement des solidarités / _2. Insertion par le numérique_ 
 
 - Des actions à destination des publics spécifiques (jeunes, handicapés, seniors...)
 
@@ -306,9 +324,9 @@ A venir
 
 - L'accessibilité pour tous aux sites et aux services en ligne (W3C, lecture vocale)
 
-#####	2. Vivre ensemble / c. Qualité de la vie quotidienne 
+#####	2. Vivre ensemble / _c. Qualité de la vie quotidienne_ 
 
-######			2. Vivre ensemble / c. Qualité de la vie quotidienne / 1. Accès aux informations pra-tiques 
+######			2. Vivre ensemble / c. Qualité de la vie quotidienne / _1. Accès aux informations pratiques_ 
 
 - Des applications spécifiques pour smartphones
 
@@ -328,7 +346,7 @@ A venir
 
 - Une version du site internet de la collectivité adaptée aux terminaux mobiles
 
-######		2. Vivre ensemble / c. Qualité de la vie quotidienne / 2. Accès aux sports et aux loisirs
+######		2. Vivre ensemble / c. Qualité de la vie quotidienne / _2. Accès aux sports et aux loisirs_
 
 - De l'aide aux loisirs et aux vacances proposée par la collectivité
 
@@ -342,11 +360,11 @@ A venir
 
 - Une information sur les espaces et sites de loisirs (carte des lieux, horaires, bornes...)
 
-#### 3. Partage de la connaissance
+#### _3. Partage de la connaissance_
 
-#####	3. Partage de la connaissance / a. Diffusion et partage des ressources éduca-tives 
+#####	3. Partage de la connaissance / _a. Diffusion et partage des ressources éducatives_ 
 
-######		3. Partage de la connaissance / a. Diffusion et partage des ressources éduca-tives / 1. Soutien et équipement des structures éducatives
+######		3. Partage de la connaissance / a. Diffusion et partage des ressources éducatives / _1. Soutien et équipement des structures éducatives_
 
 - La maintenance technique des équipements numériques dans les écoles
 
@@ -358,21 +376,21 @@ A venir
 
 - L'équipement matériel et logiciel des établissements scolaires et/ou des familles
 
-######		3. Partage de la connaissance / a. Diffusion et partage des ressources éduca-tives / 2. Formation et accompagnement des publics 
+######		3. Partage de la connaissance / a. Diffusion et partage des ressources éducatives / _2. Formation et accompagnement des publics_ 
 
 - Des contenus éducatifs et pédagogiques en ligne proposés par la collectivité
 
 - L'accompagnement des publics scolaires à l'utilisation d'internet (animateur dédié, handicap...)
 
-######		3. Partage de la connaissance / a. Diffusion et partage des ressources éduca-tives / 3. Organisation de la communauté éducative 
+######		3. Partage de la connaissance / a. Diffusion et partage des ressources éducatives / _3. Organisation de la communauté éducative_ 
 
 - Des informations et des services pratiques en ligne sur la vie scolaire et périscolaire
 
 - La mise en réseau d'une communauté éducative interactive (extranet, espace numérique de travail)
 
-#####	3. Partage de la connaissance / b. Développement des pratiques culturelles 
+#####	3. Partage de la connaissance / _b. Développement des pratiques culturelles_ 
 
-######		3. Partage de la connaissance / b. Développement des pratiques culturelles / 1. Accès aux ressources cultu-relles 
+######		3. Partage de la connaissance / b. Développement des pratiques culturelles / _1. Accès aux ressources culturelles_ 
 
 - Des contenus culturels et artistiques sur les réseaux numériques
 
@@ -382,7 +400,7 @@ A venir
 
 - Un guide des lieux et des acteurs culturels de la collectivité
 
-######		3. Partage de la connaissance / b. Développement des pratiques culturelles / 2. Développement de la création artistique 
+######		3. Partage de la connaissance / b. Développement des pratiques culturelles / _2. Développement de la création artistique_ 
 
 - Des aides financières ou logistiques à la création numérique (lieux, concours, événements…)
 
@@ -390,9 +408,9 @@ A venir
 
 - Le respect et l'information sur les droits d'auteurs
 
-#####	3. Partage de la connaissance / c. Protection et valorisa-tion du patrimoine 
+#####	3. Partage de la connaissance / _c. Protection et valorisa-tion du patrimoine_ 
 
-######		3. Partage de la connaissance / c. Protection et valorisa-tion du patrimoine / 1. Numérisation des ressources patrimoniales 
+######		3. Partage de la connaissance / c. Protection et valorisa-tion du patrimoine / _1. Numérisation des ressources patrimoniales_ 
 
 - La production de contenus en ligne par les habitants (wiki territoire, mémoire vivante)
 
@@ -402,7 +420,7 @@ A venir
 
 - Une politique de numérisation du patrimoine (muséographie, images numérisées...)
 
-######		3. Partage de la connaissance / c. Protection et valorisa-tion du patrimoine / 2. Accès aux ressources et mobilité 
+######		3. Partage de la connaissance / c. Protection et valorisa-tion du patrimoine / _2. Accès aux ressources et mobilité_ 
 
 - Des outils cartographiques de navigation sur le territoire (SIG)
 
@@ -412,11 +430,11 @@ A venir
 
 - La mise en valeur du patrimoine, de l'histoire et de la géographie du territoire
 
-#### 4. Création de richesses
+#### _4. Création de richesses_
 
-#####	4. Création de richesses / a. Création d’emplois et employabilité 
+#####	4. Création de richesses / _a. Création d’emplois et employabilité_ 
 
-######		4. Création de richesses / a. Création d’emplois et employabilité / 1. Accès à l’emploi 
+######		4. Création de richesses / a. Création d’emplois et employabilité / _1. Accès à l’emploi_ 
 
 - Des dispositifs de rencontres et d'échanges pour les demandeurs d'emploi (bénévolat, stage...)
 
@@ -440,15 +458,15 @@ A venir
 
 - Une Bourse à l'Emploi local en ligne
 
-######		4. Création de richesses / a. Création d’emplois et employabilité / 2. Accès à la formation profes-sionnelle 
+######		4. Création de richesses / a. Création d’emplois et employabilité / _2. Accès à la formation profes-sionnelle_ 
 
 - Des dispositifs d'initiation et de formation aux outils numériques (ateliers thématiques)
 
 -  L'accès facilité à la formation professionnelle, la télé-présence, la formation en ligne
 
-#####	4. Création de richesses / b. Développement économique et durable 
+#####	4. Création de richesses / _b. Développement économique et durable_ 
 
-######		4. Création de richesses / b. Développement économique et durable / 1. Aides au développement, soutien de l’innovation 
+######		4. Création de richesses / b. Développement économique et durable / _1. Aides au développement, soutien de l’innovation_ 
 
 - Des aides à l'équipement pour les PME
 
@@ -464,7 +482,7 @@ A venir
 
 - Une présentation de l'économie locale et des aides au développement
 
-######		4. Création de richesses / b. Développement économique et durable / 2. Partenariats et mise en réseau des acteurs
+######		4. Création de richesses / b. Développement économique et durable / _2. Partenariats et mise en réseau des acteurs_
 
 - Des échanges économiques internationaux
 
@@ -474,7 +492,7 @@ A venir
 
 - La présence d'espaces et de services spécifiques dédiés aux acteurs économiques (espaces de co-working, fablabs, rencontres interprofessionnelles…)
 
-######		4. Création de richesses / b. Développement économique et durable / 3. Développement durable 
+######		4. Création de richesses / b. Développement économique et durable / _3. Développement durable_ 
 
 - Des actions de sensibilisation et de participation au développement durable (Agenda 21)
 
@@ -484,9 +502,9 @@ A venir
 
 - Un dispositif de recyclage et/ou de don du matériel informatique (DEEE, Ordi 2.0...)
 
-#####	4. Création de richesses / c. Attractivité du territoire 
+#####	4. Création de richesses / _c. Attractivité du territoire_ 
 
-######		4. Création de richesses / c. Attractivité du territoire / 1. Accès aux nouvelles technolo-gies, développement du haut et très haut débit 
+######		4. Création de richesses / c. Attractivité du territoire / _1. Accès aux nouvelles technolo-gies, développement du haut et très haut débit_ 
 
 - De l'information sur les dispositifs d'accès à internet (site web, signalétique, bornes)
 
@@ -496,7 +514,7 @@ A venir
 
 - L'équipement, l'information, la formation aux systèmes et aux logiciels libres
 
-######		4. Création de richesses / c. Attractivité du territoire / 2. Marketing territorial 
+######		4. Création de richesses / c. Attractivité du territoire / _2. Marketing territorial_ 
 
 - Des services en ligne d'accueil des nouveaux arrivants (habitants, entreprises...)
 
@@ -509,26 +527,3 @@ A venir
 - La promotion du site du territoire sur internet (sites partenaires, moteurs de recherche...)
 
 - La publication du site en une ou plusieurs langues étrangères
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-	
-	
-
-
-
-
-
-
