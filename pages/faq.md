@@ -140,6 +140,8 @@ A venir
 
 ### 4)	Classement des types de services
 
+Par soucis de simplicité, le dernier niveau de détail a été retiré. 
+
 #### 1. Démocratie et services publics
 
 #####	a. Efficacité des services publics 
