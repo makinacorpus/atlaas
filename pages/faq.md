@@ -31,7 +31,7 @@ Pour trouver toutes les actions par thèmes :
 
 2. cliquez sur ‘‘Thèmes‘‘
 
-3. sélectionner le thème et les sous-thèmes souhaités
+3. sélectionnez le thème et les sous-thèmes souhaités
 
 Toutes les actions associées au sous-thème s’afficheront sur la carte. 
 Pour annuler la recherche, cliquez sur la croix à droite du texte dans l‘encadré rouge qui indique le sous-thème sélectionné.
@@ -48,23 +48,23 @@ Les actions suivantes sont possibles sur la carte :
 
 #### 1.4)	Consulter une action
 
-Après avoir rechercher des actions, il est possible d‘en consulter les fiches
+Après avoir recherché des actions, il est possible d‘en consulter les fiches
 
 -	soit via la carte :
 
-1. cliquer sur le nombre cerclé de rouge indiquant le nombre d’actions associées à la zone
+1. cliquez sur le nombre cerclé de rouge indiquant le nombre d’actions associées à la zone
 
-2. cliquer sur le pointeur de géo-localisation associé à l’action
+2. cliquez sur le pointeur de géo-localisation associé à l’action
 
-3. cliquer sur le lien ‘‘en savoir plus‘‘
+3. cliquez sur le lien ‘‘en savoir plus‘‘
 
 - soit via la liste d’actions :
 
-1. faire défiler les actions
+1. faites défiler les actions
 
-2. sélectionner l’action souaitée 
+2. sélectionnez l’action souaitée 
 
-3. cliquer sur le bouton ‘‘en savoir plus‘‘
+3. cliquez sur le bouton ‘‘en savoir plus‘‘
 
 ### 2) Edition
 
@@ -74,7 +74,7 @@ Les utilisateurs peuvent aussi créer (proposer) une fiche et proposer une modif
 
 1. rendez-vous sur le panneau latéral (à droite)
 
-2. cliquer soit sur ‘‘+Proposer une action‘‘ soit sur ‘‘Menu‘‘ puis ‘‘Contribuez !‘‘
+2. cliquez soit sur ‘‘+Proposer une action‘‘ soit sur ‘‘Menu‘‘ puis ‘‘Contribuez !‘‘
 
 3. une page ‘‘Nouvelle fiche‘‘ apparaît
 
