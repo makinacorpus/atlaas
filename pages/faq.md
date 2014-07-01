@@ -124,9 +124,9 @@ A venir
 
 #### 1. Démocratie et services publics
 
-#####	a. Efficacité des services publics 
+#####	1. Démocratie et services publics / a. Efficacité des services publics 
     
-######    	1. Accès des citoyens aux ser-vices publics, droits et démarches
+######    	1. Démocratie et services publics / a. Efficacité des services publics / 1. Accès des citoyens aux ser-vices publics, droits et démarches
 
 - Des services ciblés, parcours personnalisés ou sites dédiés par profil d'usagers
 
@@ -148,7 +148,7 @@ A venir
 
 - Un guide des aides publiques par thème et par profil d'usagers
 
-######		2. Formation et implication des élus et des agents
+######		1. Démocratie et services publics / a. Efficacité des services publics / 2. Formation et implication des élus et des agents
 
 - La sensibilisation et la formation des élus aux enjeux du numérique
 
@@ -160,7 +160,7 @@ A venir
 
 - L'implication des services dans la co-production des contenus (éventuellement intercommunale)
 
-######		3. Coopération et mutualisation inter-services et inter-administrations 
+######		1. Démocratie et services publics / a. Efficacité des services publics / 3. Coopération et mutualisation inter-services et inter-administrations 
 
 - La coopération décentralisée internationale (jumelages, solidarité)
 
@@ -180,9 +180,9 @@ A venir
 
 - L'utilisation de systèmes interopérables ou de logiciels libres (redistribution des codes)
 
-#####	b. Vitalité de la démocratie locale
+#####	1. Démocratie et services publics / b. Vitalité de la démocratie locale
 
-######   	1. Transparence de la gouver-nance locale
+######   	1. Démocratie et services publics / b. Vitalité de la démocratie locale / 1. Transparence de la gouver-nance locale
 
 - Des outils pour le conseil municipal et les élus (vidéo, permanence en ligne)
 
@@ -198,7 +198,7 @@ A venir
 
 - Une entité, structure, conseil pour la concertation de la politique numérique
 
-######        2. Participation démocratique des citoyens 
+######        1. Démocratie et services publics / b. Vitalité de la démocratie locale / 2. Participation démocratique des citoyens 
 
 - Des dispositifs numériques d'animation des instances participatives (comités de quartier)
 
@@ -214,7 +214,7 @@ A venir
 
 - L'utilisation du numérique par les élus dans la relation aux habitants (mail, blog, débat en ligne)
 
-###### 		3. Développement de la vie associative
+###### 		1. Démocratie et services publics / b. Vitalité de la démocratie locale / 3. Développement de la vie associative
 
 - Des aides à l'équipement et au fonctionnement numérique en réseau
 
@@ -232,9 +232,9 @@ A venir
 
 - Une aide en ligne pour les associations (demandes de subvention...)
 
-#####	c. Protection de la vie privée
+#####	1. Démocratie et services publics / c. Protection de la vie privée
 
-######    	1. Respect des droits et protection des données personnelles
+######    	1. Démocratie et services publics / c. Protection de la vie privée / 1. Respect des droits et protection des données personnelles
 
 - L’existence d'un Correspondant Informatique et Liberté (CIL)
 
@@ -250,7 +250,7 @@ A venir
 
 - Une charte d'utilisation d'internet sur le site de la collectivité
 
-######		2. Protection des mineurs, éducation critique 
+######		1. Démocratie et services publics / c. Protection de la vie privée / 2. Protection des mineurs, éducation critique 
 
 - La sensibilisation et la protection des mineurs
 
@@ -258,9 +258,9 @@ A venir
 
 #### 2. Vivre ensemble
 
-##### a. Renforcement de la cohésion sociale 
+##### 2. Vivre ensemble / a. Renforcement de la cohésion sociale 
  
-######		1. Mise en réseau des habitants 
+######		2. Vivre ensemble / a. Renforcement de la cohésion sociale / 1. Mise en réseau des habitants 
 
 - Des espaces pour les communautés locales
 			
@@ -276,7 +276,7 @@ A venir
 
 - Une plate-forme de rencontre et de mise en réseau des habitants (réseau social...)
 		
-######        2. Co-production et hébergement de contenus 
+######        2. Vivre ensemble / a. Renforcement de la cohésion sociale / 2. Co-production et hébergement de contenus 
 
 - La co-production avec les habitants d'une chaîne vidéo (web TV) ou radio
 
@@ -284,15 +284,15 @@ A venir
 
 - L'hébergement de sites, blogs ou pages personnelles par la collectivité
 
-#####	b. Développement des solidarités 
+#####	2. Vivre ensemble / b. Développement des solidarités 
 
-######		1. Aides à l’équipement des publics en difficultés 
+######		2. Vivre ensemble / b. Développement des solidarités / 1. Aides à l’équipement des publics en difficultés 
 
 - Des aides à l'équipement et des tarifs aménagés pour les publics en précarité
 
 - L'implication des bailleurs dans l'accès aux usages du numérique dans le logement social
 
-######		2. Insertion par le numérique 
+######		2. Vivre ensemble / b. Développement des solidarités / 2. Insertion par le numérique 
 
 - Des actions à destination des publics spécifiques (jeunes, handicapés, seniors...)
 
@@ -306,9 +306,9 @@ A venir
 
 - L'accessibilité pour tous aux sites et aux services en ligne (W3C, lecture vocale)
 
-#####	c. Qualité de la vie quotidienne 
+#####	2. Vivre ensemble / c. Qualité de la vie quotidienne 
 
-######			1. Accès aux informations pra-tiques 
+######			2. Vivre ensemble / c. Qualité de la vie quotidienne / 1. Accès aux informations pra-tiques 
 
 - Des applications spécifiques pour smartphones
 
@@ -328,7 +328,7 @@ A venir
 
 - Une version du site internet de la collectivité adaptée aux terminaux mobiles
 
-######		2. Accès aux sports et aux loisirs
+######		2. Vivre ensemble / c. Qualité de la vie quotidienne / 2. Accès aux sports et aux loisirs
 
 - De l'aide aux loisirs et aux vacances proposée par la collectivité
 
@@ -344,9 +344,9 @@ A venir
 
 #### 3. Partage de la connaissance
 
-#####	a. Diffusion et partage des ressources éduca-tives 
+#####	3. Partage de la connaissance / a. Diffusion et partage des ressources éduca-tives 
 
-######		1. Soutien et équipement des structures éducatives
+######		3. Partage de la connaissance / a. Diffusion et partage des ressources éduca-tives / 1. Soutien et équipement des structures éducatives
 
 - La maintenance technique des équipements numériques dans les écoles
 
@@ -358,21 +358,21 @@ A venir
 
 - L'équipement matériel et logiciel des établissements scolaires et/ou des familles
 
-######		2. Formation et accompagnement des publics 
+######		3. Partage de la connaissance / a. Diffusion et partage des ressources éduca-tives / 2. Formation et accompagnement des publics 
 
 - Des contenus éducatifs et pédagogiques en ligne proposés par la collectivité
 
 - L'accompagnement des publics scolaires à l'utilisation d'internet (animateur dédié, handicap...)
 
-######		3. Organisation de la communauté éducative 
+######		3. Partage de la connaissance / a. Diffusion et partage des ressources éduca-tives / 3. Organisation de la communauté éducative 
 
 - Des informations et des services pratiques en ligne sur la vie scolaire et périscolaire
 
 - La mise en réseau d'une communauté éducative interactive (extranet, espace numérique de travail)
 
-#####	b. Développement des pratiques culturelles 
+#####	3. Partage de la connaissance / b. Développement des pratiques culturelles 
 
-######		1. Accès aux ressources cultu-relles 
+######		3. Partage de la connaissance / b. Développement des pratiques culturelles / 1. Accès aux ressources cultu-relles 
 
 - Des contenus culturels et artistiques sur les réseaux numériques
 
@@ -382,7 +382,7 @@ A venir
 
 - Un guide des lieux et des acteurs culturels de la collectivité
 
-######		2. Développement de la création artistique 
+######		3. Partage de la connaissance / b. Développement des pratiques culturelles / 2. Développement de la création artistique 
 
 - Des aides financières ou logistiques à la création numérique (lieux, concours, événements…)
 
@@ -390,9 +390,9 @@ A venir
 
 - Le respect et l'information sur les droits d'auteurs
 
-#####	c. Protection et valorisa-tion du patrimoine 
+#####	3. Partage de la connaissance / c. Protection et valorisa-tion du patrimoine 
 
-######		1. Numérisation des ressources patrimoniales 
+######		3. Partage de la connaissance / c. Protection et valorisa-tion du patrimoine / 1. Numérisation des ressources patrimoniales 
 
 - La production de contenus en ligne par les habitants (wiki territoire, mémoire vivante)
 
@@ -402,7 +402,7 @@ A venir
 
 - Une politique de numérisation du patrimoine (muséographie, images numérisées...)
 
-######		2. Accès aux ressources et mobilité 
+######		3. Partage de la connaissance / c. Protection et valorisa-tion du patrimoine / 2. Accès aux ressources et mobilité 
 
 - Des outils cartographiques de navigation sur le territoire (SIG)
 
@@ -414,9 +414,9 @@ A venir
 
 #### 4. Création de richesses
 
-#####	a. Création d’emplois et employabilité 
+#####	4. Création de richesses / a. Création d’emplois et employabilité 
 
-######		1. Accès à l’emploi 
+######		4. Création de richesses / a. Création d’emplois et employabilité / 1. Accès à l’emploi 
 
 - Des dispositifs de rencontres et d'échanges pour les demandeurs d'emploi (bénévolat, stage...)
 
@@ -440,15 +440,15 @@ A venir
 
 - Une Bourse à l'Emploi local en ligne
 
-######		2. Accès à la formation profes-sionnelle 
+######		4. Création de richesses / a. Création d’emplois et employabilité / 2. Accès à la formation profes-sionnelle 
 
 - Des dispositifs d'initiation et de formation aux outils numériques (ateliers thématiques)
 
 -  L'accès facilité à la formation professionnelle, la télé-présence, la formation en ligne
 
-#####	b. Développement économique et durable 
+#####	4. Création de richesses / b. Développement économique et durable 
 
-######		1. Aides au développement, soutien de l’innovation 
+######		4. Création de richesses / b. Développement économique et durable / 1. Aides au développement, soutien de l’innovation 
 
 - Des aides à l'équipement pour les PME
 
@@ -464,7 +464,7 @@ A venir
 
 - Une présentation de l'économie locale et des aides au développement
 
-######		2. Partenariats et mise en réseau des acteurs
+######		4. Création de richesses / b. Développement économique et durable / 2. Partenariats et mise en réseau des acteurs
 
 - Des échanges économiques internationaux
 
@@ -474,7 +474,7 @@ A venir
 
 - La présence d'espaces et de services spécifiques dédiés aux acteurs économiques (espaces de co-working, fablabs, rencontres interprofessionnelles…)
 
-######		3. Développement durable 
+######		4. Création de richesses / b. Développement économique et durable / 3. Développement durable 
 
 - Des actions de sensibilisation et de participation au développement durable (Agenda 21)
 
@@ -484,9 +484,9 @@ A venir
 
 - Un dispositif de recyclage et/ou de don du matériel informatique (DEEE, Ordi 2.0...)
 
-#####	c. Attractivité du territoire 
+#####	4. Création de richesses / c. Attractivité du territoire 
 
-######		1. Accès aux nouvelles technolo-gies, développement du haut et très haut débit 
+######		4. Création de richesses / c. Attractivité du territoire / 1. Accès aux nouvelles technolo-gies, développement du haut et très haut débit 
 
 - De l'information sur les dispositifs d'accès à internet (site web, signalétique, bornes)
 
@@ -496,7 +496,7 @@ A venir
 
 - L'équipement, l'information, la formation aux systèmes et aux logiciels libres
 
-######		2. Marketing territorial 
+######		4. Création de richesses / c. Attractivité du territoire / 2. Marketing territorial 
 
 - Des services en ligne d'accueil des nouveaux arrivants (habitants, entreprises...)
 
