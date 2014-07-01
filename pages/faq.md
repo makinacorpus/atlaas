@@ -170,7 +170,7 @@ A venir
  
 ######		1. Mise en réseau des habitants 
 		
-#####		2. Co-production et hébergement de contenus 
+######		2. Co-production et hébergement de contenus 
 
 #####	b. Développement des solidarités 
 
