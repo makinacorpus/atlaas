@@ -16,7 +16,7 @@ Pour trouver et afficher sur la carte l’ensemble des actions concernant un mot
 
 1. rendez-vous sur le panneau latéral (à droite)
 
-2. cliquez sur le champ de recherche (‘‘Recherche‘‘)
+2. cliquez sur le champ de recherche (''Recherche')
 
 3. entrez les mots-clés séparés des espaces
 
@@ -29,7 +29,7 @@ Pour trouver toutes les actions par thèmes :
 
 1. rendez-vous sur le panneau latéral (à droite)
 
-2. cliquez sur ‘‘Thèmes‘‘
+2. cliquez sur ''Thèmes''
 
 3. sélectionnez le thème et les sous-thèmes souhaités
 
