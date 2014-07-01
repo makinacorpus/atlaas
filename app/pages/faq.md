@@ -140,390 +140,92 @@ A venir
 
 ### 4)	Classement des types de services
 
-#### _1. Démocratie et services publics_
+Par soucis de simplicité, le dernier niveau de détail a été retiré. 
 
-#####	1. Démocratie et services publics / _a. Efficacité des services publics_ 
+#### 1. Démocratie et services publics
+
+#####	a. Efficacité des services publics 
     
-######    	1. Démocratie et services publics / a. Efficacité des services publics / _1. Accès des citoyens aux ser-vices publics, droits et démarches_
+######    	1. Accès des citoyens aux ser-vices publics, droits et démarches
 
-- Des services ciblés, parcours personnalisés ou sites dédiés par profil d'usagers
+######		2. Formation et implication des élus et des agents
 
-- Des statistiques de fréquentation des sites, réseaux sociaux, applications
+######		3. Coopération et mutualisation inter-services et inter-administrations 
 
-- Des transactions en ligne (carte de vie quotidienne, paiement...)
+#####	b. Vitalité de la démocratie locale
 
-- L'accès à des démarches en ligne (formulaire, inscription, demande d'aides...)
+######   	1. Transparence de la gouver-nance locale
 
-- Les démarches de qualité de service
+######		2. Participation démocratique des citoyens 
 
-- L'information sur les droits et démarches administratives
+###### 		3. Développement de la vie associative
 
-- Un annuaire des contacts au sein des différents services administratifs
+#####	c. Protection de la vie privée
 
-- Un compte et un suivi personnalisés sur le site de la collectivité (identifiant, mot de passe)
+######    	1. Respect des droits et protection des données personnelles
 
-- Un guichet unique local
+######		2. Protection des mineurs, éducation critique 
 
-- Un guide des aides publiques par thème et par profil d'usagers
+#### 2. Vivre ensemble
 
-######		1. Démocratie et services publics / a. Efficacité des services publics / _2. Formation et implication des élus et des agents_
-
-- La sensibilisation et la formation des élus aux enjeux du numérique
-
-- L'accompagnement des agents aux usages du numérique et le développement de nouveaux métiers
-
-- L'évaluation et la démarche qualité sur les usages internes du numérique
-
-- L'existence d'un schéma directeur des systèmes d'informations de la collectivité
-
-- L'implication des services dans la co-production des contenus (éventuellement intercommunale)
-
-######		1. Démocratie et services publics / a. Efficacité des services publics / _3. Coopération et mutualisation inter-services et inter-administrations_ 
-
-- La coopération décentralisée internationale (jumelages, solidarité)
-
-- La coordination du réseau des lieux d'accès publics à internet
-
-- La mise en réseau et le partage de contenus avec d'autres collectivités
-
-- La mutualisation d'actions numériques à l'échelle intercommunale
-
-- La présence des services de l'Etat sur le site de la collectivité (administration électronique)
-
-- L'animation d'un intranet, extranet ou SIG pour la collaboration entre les services ou en intercommunalité
-
-- Le recours à des plateformes sécurisées pour les échanges entre administrations
-
-- Les partenariats réalisés pour la mise en oeuvre de la politique numérique
-
-- L'utilisation de systèmes interopérables ou de logiciels libres (redistribution des codes)
-
-#####	1. Démocratie et services publics / _b. Vitalité de la démocratie locale_
-
-######   	1. Démocratie et services publics / b. Vitalité de la démocratie locale / _1. Transparence de la gouver-nance locale_
-
-- Des outils pour le conseil municipal et les élus (vidéo, permanence en ligne)
-
-- La mise en place d'un dispositif d'ouverture des données publiques de la collectivité
-
-- La visibilité de la politique numérique de la collectivité
-
-- L'accès à des résultats d'études et d'enquêtes publiques en ligne
-
-- L'actualité de la politique de la collectivité
-
-- Le suivi de la politique publique (budgets, décisions, projets, travaux…)
-
-- Une entité, structure, conseil pour la concertation de la politique numérique
-
-######        1. Démocratie et services publics / b. Vitalité de la démocratie locale / _2. Participation démocratique des citoyens_ 
-
-- Des dispositifs numériques d'animation des instances participatives (comités de quartier)
-
-- Des espaces d'échange et de débat sur des questions de vie quotidienne
-
-- La co-production de nouveaux médias locaux (web radio, tv connectée, médias citoyens,...)
-
-- La participation des citoyens au budget municipal
-
-- L'interaction avec les habitants sur la définition des projets, des actions de démocratie locale (consultation, concertation)
-
-- L'utilisation de techniques de "crowdsourcing" pour la mise en place de services publics
-
-- L'utilisation du numérique par les élus dans la relation aux habitants (mail, blog, débat en ligne)
-
-###### 		1. Démocratie et services publics / b. Vitalité de la démocratie locale / _3. Développement de la vie associative_
-
-- Des aides à l'équipement et au fonctionnement numérique en réseau
-
-- La co-production de services avec les acteurs associatifs du territoire
-
-- La formation des associations à l'utilisation du numérique
-
-- La mise à disposition d'espaces physiques ou virtuels accessibles pour le travail associatif
-
-- L'aide à la production de sites associatifs
-
-- L'organisation en ligne d'échanges inter-associatifs
-
-- Un guide des associations locales
-
-- Une aide en ligne pour les associations (demandes de subvention...)
-
-#####	1. Démocratie et services publics / _c. Protection de la vie privée_
-
-######    	1. Démocratie et services publics / c. Protection de la vie privée / _1. Respect des droits et protection des données personnelles_
-
-- L'existence d'un Correspondant Informatique et Liberté (CIL)
-
-- La communication ou le débat sur la vidéo-surveillance
-
-- La confidentialité, le droit d'accès et de modification des données personnelles
-
-- La publication et la déclaration des fichiers à la CNIL
-
-- L'application du droit de retrait (opt-out)
-
-- Un espace personnel sécurisé d'archivage et de conservation des données (coffre-fort personnel...)
-
-- Une charte d'utilisation d'internet sur le site de la collectivité
-
-######		1. Démocratie et services publics / c. Protection de la vie privée / _2. Protection des mineurs, éducation critique_ 
-
-- La sensibilisation et la protection des mineurs
-
-- L'éducation critique aux média
-
-#### _2. Vivre ensemble_
-
-##### 2. Vivre ensemble / _a. Renforcement de la cohésion sociale_ 
+#####	a. Renforcement de la cohésion sociale 
  
-######		2. Vivre ensemble / a. Renforcement de la cohésion sociale / _1. Mise en réseau des habitants_ 
-
-- Des espaces pour les communautés locales
-			
-- Des informations sur l'animation et les événements de quartiers
-
-- L'accès et l'inscription aux services à la personne (personnes âgées, santé, soutien...)
-
-- L'existence institutionnelle de la ville sur les réseaux sociaux (micro-blogging...)
-
-- Un dispositif de petites annonces et d'échanges de services (co-voiturage...)
-
-- Un guide des structures sociales (centres sociaux) et associatives locales
-
-- Une plate-forme de rencontre et de mise en réseau des habitants (réseau social...)
+######		1. Mise en réseau des habitants 
 		
-######        2. Vivre ensemble / a. Renforcement de la cohésion sociale / _2. Co-production et hébergement de contenus_ 
+######		2. Co-production et hébergement de contenus 
 
-- La co-production avec les habitants d'une chaîne vidéo (web TV) ou radio
+#####	b. Développement des solidarités 
 
-- La production de contenus par les habitants sur un site proposé par la collectivité
+######		1. Aides à l’équipement des publics en difficultés 
 
-- L'hébergement de sites, blogs ou pages personnelles par la collectivité
+######		2. Insertion par le numérique 
 
-#####	2. Vivre ensemble / _b. Développement des solidarités_ 
+#####	c. Qualité de la vie quotidienne 
 
-######		2. Vivre ensemble / b. Développement des solidarités / _1. Aides à l’équipement des publics en difficultés_ 
+######		1. Accès aux informations pratiques 
 
-- Des aides à l'équipement et des tarifs aménagés pour les publics en précarité
+######		2. Accès aux sports et aux loisirs
 
-- L'implication des bailleurs dans l'accès aux usages du numérique dans le logement social
+#### 3. Partage de la connaissance
 
-######		2. Vivre ensemble / b. Développement des solidarités / _2. Insertion par le numérique_ 
+#####	a. Diffusion et partage des ressources éducatives 
 
-- Des actions à destination des publics spécifiques (jeunes, handicapés, seniors...)
+######		1. Soutien et équipement des structures éducatives
 
-- Des actions d'insertion par le numérique dédiées aux publics en difficulté (ateliers d'initiation, alphabétisation, soutien scolaire, écrivains publics, emploi et handicap, etc.)
+######		2. Formation et accompagnement des publics 
 
-- Des points d'accès publics à internet accompagné dans les quartiers populaires (lieu de médiation numérique, médiathèque itinérante...)
+######		3. Organisation de la communauté éducative 
 
-- Des projets de solidarité numérique locale
+#####	b. Développement des pratiques culturelles 
 
-- L'accessibilité des personnes à mobilité réduite aux équipements numériques (RGAA)
+######		1. Accès aux ressources culturelles 
 
-- L'accessibilité pour tous aux sites et aux services en ligne (W3C, lecture vocale)
+######		2. Développement de la création artistique 
 
-#####	2. Vivre ensemble / _c. Qualité de la vie quotidienne_ 
+#####	c. Protection et valorisa-tion du patrimoine 
 
-######			2. Vivre ensemble / c. Qualité de la vie quotidienne / _1. Accès aux informations pratiques_ 
+######		1. Numérisation des ressources patrimoniales 
 
-- Des applications spécifiques pour smartphones
+######		2. Accès aux ressources et mobilité 
 
-- Des contacts avec les services urbains de proximité (eau, déchets, voirie...)
+#### 4. Création de richesses
 
-- Des outils de communication et de diffusion d'informations (applications, lettres d'informations, flux RSS, SMS, flashcodes...)
+#####	a. Création d’emplois et employabilité 
 
-- Des projets liés au numérique urbain (objets connectés, mobilité, affichage interactif, signalétique numerique…)
+######		1. Accès à l’emploi 
 
-- Des services de prévention en matière de santé publique
+######		2. Accès à la formation profes-sionnelle 
 
-- La rationalisation des déplacements et la gestion du temps (bureau des temps, information, co voiturage, pédibus…)
+#####	b. Développement économique et durable 
 
-- Un accès numérique aux guides pratiques (logement, famille, transports)
+######		1. Aides au développement, soutien de l’innovation 
 
-- Un système d'alerte alimenté par la ville et les habitants (risque naturel, voirie...)
+######		2. Partenariats et mise en réseau des acteurs
 
-- Une version du site internet de la collectivité adaptée aux terminaux mobiles
+######		3. Développement durable 
 
-######		2. Vivre ensemble / c. Qualité de la vie quotidienne / _2. Accès aux sports et aux loisirs_
+#####	c. Attractivité du territoire 
 
-- De l'aide aux loisirs et aux vacances proposée par la collectivité
+######		1. Accès aux nouvelles technolo-gies, développement du haut et très haut débit 
 
-- L'accès aux centres de loisirs municipaux (inscription, paiement en ligne)
-
-- L'agenda des activités sportives et de loisirs (en ligne ou sur smartphone)
-
-- Le paiement en ligne d'activités de loisirs
-
-- Un guide des associations sportives et clubs de loisirs
-
-- Une information sur les espaces et sites de loisirs (carte des lieux, horaires, bornes...)
-
-#### _3. Partage de la connaissance_
-
-#####	3. Partage de la connaissance / _a. Diffusion et partage des ressources éducatives_ 
-
-######		3. Partage de la connaissance / a. Diffusion et partage des ressources éducatives / _1. Soutien et équipement des structures éducatives_
-
-- La maintenance technique des équipements numériques dans les écoles
-
-- La présence d'Ecoles Numériques Rurales (ENR) sur le territoire
-
-- La promotion des sites internet des écoles
-
-- L'accès internet haut débit des établissements scolaires
-
-- L'équipement matériel et logiciel des établissements scolaires et/ou des familles
-
-######		3. Partage de la connaissance / a. Diffusion et partage des ressources éducatives / _2. Formation et accompagnement des publics_ 
-
-- Des contenus éducatifs et pédagogiques en ligne proposés par la collectivité
-
-- L'accompagnement des publics scolaires à l'utilisation d'internet (animateur dédié, handicap...)
-
-######		3. Partage de la connaissance / a. Diffusion et partage des ressources éducatives / _3. Organisation de la communauté éducative_ 
-
-- Des informations et des services pratiques en ligne sur la vie scolaire et périscolaire
-
-- La mise en réseau d'une communauté éducative interactive (extranet, espace numérique de travail)
-
-#####	3. Partage de la connaissance / _b. Développement des pratiques culturelles_ 
-
-######		3. Partage de la connaissance / b. Développement des pratiques culturelles / _1. Accès aux ressources culturelles_ 
-
-- Des contenus culturels et artistiques sur les réseaux numériques
-
-- La présentation de la politique culturelle de la collectivité
-
-- L'agenda culturel de la collectivité (théâtre, festivals, concerts, brocantes...)
-
-- Un guide des lieux et des acteurs culturels de la collectivité
-
-######		3. Partage de la connaissance / b. Développement des pratiques culturelles / _2. Développement de la création artistique_ 
-
-- Des aides financières ou logistiques à la création numérique (lieux, concours, événements…)
-
-- Des espaces de création en ligne dédiés aux artistes locaux ou à la création numérique
-
-- Le respect et l'information sur les droits d'auteurs
-
-#####	3. Partage de la connaissance / _c. Protection et valorisa-tion du patrimoine_ 
-
-######		3. Partage de la connaissance / c. Protection et valorisa-tion du patrimoine / _1. Numérisation des ressources patrimoniales_ 
-
-- La production de contenus en ligne par les habitants (wiki territoire, mémoire vivante)
-
-- L'accès à l'archivage numérique (fonds bibliothécaire, archives municipales...)
-
-- Le soutien aux associations locales (généalogie, histoire, monuments...)
-
-- Une politique de numérisation du patrimoine (muséographie, images numérisées...)
-
-######		3. Partage de la connaissance / c. Protection et valorisa-tion du patrimoine / _2. Accès aux ressources et mobilité_ 
-
-- Des outils cartographiques de navigation sur le territoire (SIG)
-
-- Des outils visuels de découverte du territoire (photos, vidéos, jeux, visites virtuelles, flashcodes...)
-
-- Des ressources sur les savoirs locaux (artisanat, traditions, langues...)
-
-- La mise en valeur du patrimoine, de l'histoire et de la géographie du territoire
-
-#### _4. Création de richesses_
-
-#####	4. Création de richesses / _a. Création d’emplois et employabilité_ 
-
-######		4. Création de richesses / a. Création d’emplois et employabilité / _1. Accès à l’emploi_ 
-
-- Des dispositifs de rencontres et d'échanges pour les demandeurs d'emploi (bénévolat, stage...)
-
-- Des espaces numériques de travail pour les entreprises et travailleurs indépendants
-
-- La mise en réseau des structures d'aide à l'emploi (Pôle Emploi, Maisons de l'Emploi...)
-
-- L'accès simplifié et l'accompagnement aux aides et à la recherche d'emploi
-
-- L'accompagnement du télétravail
-
-- L'animation d'ateliers de création de CV et d'aide à la recherche d'emploi sur internet
-
-- Le soutien à la création d'emplois d'avenir dans le secteur du numérique
-
-- L'information numérique sur l'emploi public et les offres d'emploi de la collectivité
-
-- L'information sur les aides à la création d'emplois pour les entreprises
-
-- Un accès numérique aux services locaux de l’emploi
-
-- Une Bourse à l'Emploi local en ligne
-
-######		4. Création de richesses / a. Création d’emplois et employabilité / _2. Accès à la formation profes-sionnelle_ 
-
-- Des dispositifs d'initiation et de formation aux outils numériques (ateliers thématiques)
-
--  L'accès facilité à la formation professionnelle, la télé-présence, la formation en ligne
-
-#####	4. Création de richesses / _b. Développement économique et durable_ 
-
-######		4. Création de richesses / b. Développement économique et durable / _1. Aides au développement, soutien de l’innovation_ 
-
-- Des aides à l'équipement pour les PME
-
-- Des aides et appels à projets aux entrepreneurs du secteur du numérique
-
-- La formation des acteurs économiques aux usages numériques
-
-- L'accès aux marchés publics et appels d'offres
-
-- Un annuaire des services publics du développement économique (CCI, chambres des métiers...)
-
-- Une plateforme de services aux entreprises (hébergements des sites, visio-conférence...)
-
-- Une présentation de l'économie locale et des aides au développement
-
-######		4. Création de richesses / b. Développement économique et durable / _2. Partenariats et mise en réseau des acteurs_
-
-- Des échanges économiques internationaux
-
-- Des partenariats, la co-production de services avec les acteurs privés du territoire
-
-- La mise en réseau des acteurs (entreprises, commerçants, associations, pépinières, pôles de compétitivité...)
-
-- La présence d'espaces et de services spécifiques dédiés aux acteurs économiques (espaces de co-working, fablabs, rencontres interprofessionnelles…)
-
-######		4. Création de richesses / b. Développement économique et durable / _3. Développement durable_ 
-
-- Des actions de sensibilisation et de participation au développement durable (Agenda 21)
-
-- Des services numériques liés aux économies d'énergie
-
-- La contribution à des projets d'économie circulaire et collaborative (monnaies alternatives, échange de temps…)
-
-- Un dispositif de recyclage et/ou de don du matériel informatique (DEEE, Ordi 2.0...)
-
-#####	4. Création de richesses / _c. Attractivité du territoire_ 
-
-######		4. Création de richesses / c. Attractivité du territoire / _1. Accès aux nouvelles technolo-gies, développement du haut et très haut débit_ 
-
-- De l'information sur les dispositifs d'accès à internet (site web, signalétique, bornes)
-
-- Des services télécom très haut débit pour les entreprises
-
-- Le développement d'espaces publics numériques soutenus par la collectivité
-
-- L'équipement, l'information, la formation aux systèmes et aux logiciels libres
-
-######		4. Création de richesses / c. Attractivité du territoire / _2. Marketing territorial_ 
-
-- Des services en ligne d'accueil des nouveaux arrivants (habitants, entreprises...)
-
-- Des services numériques liés au tourisme (annuaires, cartes, applications, …)
-
-- La gestion de la e-réputation (protection nom de domaine du territoire, image de marque)
-
-- La mise en valeur des qualités économiques du territoire et de sa culture numérique
-
-- La promotion du site du territoire sur internet (sites partenaires, moteurs de recherche...)
-
-- La publication du site en une ou plusieurs langues étrangères
+######		2. Marketing territorial 
