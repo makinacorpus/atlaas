@@ -129,69 +129,133 @@ A venir
 ######    	1. Accès des citoyens aux ser-vices publics, droits et démarches
         
 #######        	- Des services ciblés, parcours personnalisés ou sites dédiés par profil d'usagers
+
 #######			- Des statistiques de fréquentation des sites, réseaux sociaux, applications
+
 #######			- Des transactions en ligne (carte de vie quotidienne, paiement...)
+
 #######			- L'accès à des démarches en ligne (formulaire, inscription, demande d'aides...)
+
 #######			- Les démarches de qualité de service
+
 #######			- L'information sur les droits et démarches administratives
+
 #######			- Un annuaire des contacts au sein des différents services administratifs
+
 #######			- Un compte et un suivi personnalisés sur le site de la collectivité (identifiant, mot de passe)
+
 #######			- Un guichet unique local
+
 #######			- Un guide des aides publiques par thème et par profil d'usagers
+
 ######		2. Formation et implication des élus et des agents
+
 #######        	- La sensibilisation et la formation des élus aux enjeux du numérique
+
 #######			- L'accompagnement des agents aux usages du numérique et le développement de nouveaux métiers
+
 #######			- L'évaluation et la démarche qualité sur les usages internes du numérique
+
 #######			- L'existence d'un schéma directeur des systèmes d'informations de la collectivité
+
 #######			- L'implication des services dans la co-production des contenus (éventuellement intercommunale)
+
 ######		3. Coopération et mutualisation inter-services et inter-administrations 
+
 #######        	- La coopération décentralisée internationale (jumelages, solidarité)
+
 #######			- La coordination du réseau des lieux d'accès publics à internet
+
 #######			- La mise en réseau et le partage de contenus avec d'autres collectivités
+
 #######			- La mutualisation d'actions numériques à l'échelle intercommunale
+
 #######			- La présence des services de l'Etat sur le site de la collectivité (administration électronique)
+
 #######			- L'animation d'un intranet, extranet ou SIG pour la collaboration entre les services ou en intercommunalité
+
 #######			- Le recours à des plateformes sécurisées pour les échanges entre administrations
+
 #######			- Les partenariats réalisés pour la mise en oeuvre de la politique numérique
+
 #######			- L'utilisation de systèmes interopérables ou de logiciels libres (redistribution des codes)
+
 #####	b. Vitalité de la démocratie locale
-######   	1. Transparence de la gouver-nance locale 
+
+######   	1. Transparence de la gouver-nance locale
+
 #######        	- Des outils pour le conseil municipal et les élus (vidéo, permanence en ligne)
+
 #######			- La mise en place d'un dispositif d'ouverture des données publiques de la collectivité
+
 #######			- La visibilité de la politique numérique de la collectivité
+
 #######			- L'accès à des résultats d'études et d'enquêtes publiques en ligne
+
 #######			- L'actualité de la politique de la collectivité
+
 #######			- Le suivi de la politique publique (budgets, décisions, projets, travaux…)
+
 #######			- Une entité, structure, conseil pour la concertation de la politique numérique
+
 ######        2. Participation démocratique des citoyens 
+
 #######        	- Des dispositifs numériques d'animation des instances participatives (comités de quartier)
+
 #######			- Des espaces d'échange et de débat sur des questions de vie quotidienne
+
 #######			- La co-production de nouveaux médias locaux (web radio, tv connectée, médias citoyens,...)
+
 #######			- La participation des citoyens au budget municipal
+
 #######			- L'interaction avec les habitants sur la définition des projets, des actions de démocratie locale (consultation, concertation)
+
 #######			- L'utilisation de techniques de "crowdsourcing" pour la mise en place de services publics
+
 #######			- L'utilisation du numérique par les élus dans la relation aux habitants (mail, blog, débat en ligne)
+
 ###### 		3. Développement de la vie associative
+
 #######        	- Des aides à l'équipement et au fonctionnement numérique en réseau
+
 #######			- La co-production de services avec les acteurs associatifs du territoire
+
 #######			- La formation des associations à l'utilisation du numérique
+
 #######			- La mise à disposition d'espaces physiques ou virtuels accessibles pour le travail associatif
+
 #######			- L'aide à la production de sites associatifs
+
 #######			- L'organisation en ligne d'échanges inter-associatifs
+
 #######			- Un guide des associations locales
+
 #######			- Une aide en ligne pour les associations (demandes de subvention...)
+
 #####	c. Protection de la vie privée
-######    	1. Respect des droits et protection des données personnelles 
+
+######    	1. Respect des droits et protection des données personnelles
+
 #######        	- L’existence d'un Correspondant Informatique et Liberté (CIL)
+
 #######			- La communication ou le débat sur la vidéosurveillance
+
 #######			- La confidentialité, le droit d'accès et de modification des données personnelles
+
 #######			- La publication et la déclaration des fichiers à la CNIL
+
 #######			- L'application du droit de retrait (opt-out)
+
 #######			- Un espace personnel sécurisé d'archivage et de conservation des données (coffre-fort personnel...)
+
 #######			- Une charte d'utilisation d'internet sur le site de la collectivité
+
 ######		2. Protection des mineurs, éducation critique 
+
 #######        	- La sensibilisation et la protection des mineurs
+
 #######			- L'éducation critique aux média
+
 2. Vivre ensemble
 	a. Renforcement de la cohésion sociale 
     	1. Mise en réseau des habitants 
