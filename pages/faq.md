@@ -33,38 +33,38 @@ Pour trouver toutes les actions par thèmes :
 
 3. sélectionnez le thème et les sous-thèmes souhaités
 
-Toutes les actions associées au sous-thème s’afficheront sur la carte. 
-Pour annuler la recherche, cliquez sur la croix à droite du texte dans l‘encadré rouge qui indique le sous-thème sélectionné.
+Toutes les actions associées au sous-thème s'afficheront sur la carte. 
+Pour annuler la recherche, cliquez sur la croix à droite du texte dans l'encadré rouge qui indique le sous-thème sélectionné.
 
 #### 1.3)	Parcourir la carte
 
 Les actions suivantes sont possibles sur la carte :
 
-- zoomer (boutons ‘‘+“ et ‘‘-‘‘ en haut à gauche)
+- zoomer (boutons ''+'' et ''-'' en haut à gauche)
 
-- géolocalisation de l’utilisateur (flèches sou les boutons de zoom)
+- géolocalisation de l'utilisateur (flèches sous les boutons de zoom)
 
 - défilement de la carte (maintenir le clic et déplacer le curseur de la souris dans la direction souhaitée)
 
 #### 1.4)	Consulter une action
 
-Après avoir recherché des actions, il est possible d‘en consulter les fiches
+Après avoir recherché des actions, il est possible d'en consulter les fiches
 
 -	soit via la carte :
 
-1. cliquez sur le nombre cerclé de rouge indiquant le nombre d’actions associées à la zone
+1. cliquez sur le nombre cerclé de rouge indiquant le nombre d'actions associées à la zone
 
-2. cliquez sur le pointeur de géo-localisation associé à l’action
+2. cliquez sur le pointeur de géo-localisation associé à l'action
 
-3. cliquez sur le lien ‘‘en savoir plus‘‘
+3. cliquez sur le lien ''en savoir plus''
 
-- soit via la liste d’actions :
+- soit via la liste d'actions :
 
 1. faites défiler les actions
 
-2. sélectionnez l’action souaitée 
+2. sélectionnez l'action souaitée 
 
-3. cliquez sur le bouton ‘‘en savoir plus‘‘
+3. cliquez sur le bouton ''en savoir plus''
 
 ### 2) Edition
 
@@ -74,46 +74,46 @@ Les utilisateurs peuvent aussi créer (proposer) une fiche et proposer une modif
 
 1. rendez-vous sur le panneau latéral (à droite)
 
-2. cliquez soit sur ‘‘+Proposer une action‘‘ soit sur ‘‘Menu‘‘ puis ‘‘Contribuez !‘‘
+2. cliquez soit sur ''+Proposer une action'' soit sur ''Menu'' puis ''Contribuez !''
 
-3. une page ‘‘Nouvelle fiche‘‘ apparaît
+3. une page ''Nouvelle fiche'' apparaît
 
 4. renseignez un maximum de champs possibles :
 
-a. ‘‘Titre‘‘ de l’action
+a. ''Titre'' de l’action
 
-b. ‘‘Sous-titre‘‘ : mini description. Veuillez éviter de dépasser deux lignes.
+b. ''Sous-titre'' : courte description. Veuillez éviter de dépasser deux lignes.
 
-c. ‘‘Date‘‘ : par défaut, il s’agit de la date actuelle
+c. ''Date'' : par défaut, il s'agit de la date actuelle
 
-d. ‘‘Actions‘‘ : renseignez de la façon la plus factuelle possible ce qui a été réalisé
+d. ''Actions'' : renseignez de la façon la plus factuelle possible ce qui a été réalisé
 
-e. ‘‘Synthèse‘‘ : une description plus détaillée peut être entrée ici
+e. ''Synthèse'' : une description plus détaillée peut être entrée ici
 
-f. ‘‘Outils‘‘ : si un matériel/logiciel spécifique a été créé ou utilisé
+f. ''Outils'' : si un matériel/logiciel spécifique a été créé ou utilisé
 
-g. ‘‘Prestataire‘‘ : les structures impliquées dans l’action
+g. ''Prestataire'' : les structures impliquées dans l'action
 
-h. ‘‘Recommandations‘‘ : conseils d’utilisation
+h. ''Recommandations'' : conseils d'utilisation
 
-i. ‘‘Résultats‘‘ : si des résultats (statistiques, …) sont déjà visibles
+i. ''Résultats'' : si des résultats (statistiques, …) sont déjà visibles
 
-j. ‘‘liens‘‘ : précisez la ou les adresse(s) internet associée(s) à l’action
+j. ''Liens'' : précisez la ou les adresse(s) internet associée(s) à l'action
 
-k. ‘‘Personnes‘‘ : indiquez un contact responsable de l’action (‘‘nom‘‘, ‘‘titre‘‘ (fonction), ‘‘courriel‘‘)
+k. ''Personnes'' : indiquez un contact responsable de l'action (''nom'', ''titre'' (fonction), ''courriel'')
 
-l. ‘‘lieu‘‘ : pour géo-localiser (obligatoire !) : 
-- ‘‘Nom‘‘, 
-- ‘‘Adresse‘‘, 
-- ‘‘Département‘‘ (code numérique, deux premiers chiffres du code postal), 
-- ‘‘Région‘‘ (code INSEE, consultez la page suivante pour la liste : [http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp](http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp)), 
-- ‘‘Ville‘‘, 
-- ‘‘Code postal‘‘, 
-- ‘‘Téléphone‘‘ (numéro sans espace ni caractères spéciaux), 
-- ‘‘Localisation‘‘ (latitude et longitude), 
-- ‘‘Type‘‘ (‘‘Ville / village‘‘ ou ‘‘Autre‘‘)
+l. ''Lieu'' : pour géo-localiser (obligatoire !) : 
+- ''Nom'', 
+- ''Adresse'', 
+- ''Département'' (code numérique, deux premiers chiffres du code postal), 
+- ''Région'' (code INSEE, consultez la page suivante pour la liste : [http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp](http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp)), 
+- ''Ville'', 
+- ''Code postal'', 
+- ''Téléphone'' (numéro sans espace ni caractères spéciaux), 
+- ''Localisation'' (latitude et longitude), 
+- ''Type'' (''Ville / village'' ou ''Autre'')
 
-m. ‘‘Services‘‘: pour associer un ou plusieur thèmes de l’Atlaas à l’action cf. ‘‘Classement des types de services‘‘ (obligatoire)
+m. ''Services'' : pour associer un ou plusieur thèmes de l'Atlaas à l’action cf. ''Classement des types de services'' (obligatoire)
 
 #### 2.2) Modifier une action
 
@@ -123,11 +123,11 @@ A venir
 
 - La création et la modification de fiche sont soumises à validation.
 
-- Si vous avez besoin d’informations ou d’aide, veuillez consulter le menu. 
+- Si vous avez besoin d'informations ou d'aide, veuillez consulter le menu. 
 
-- Si vous ne trouvez pas la réponse à vos questions, vous pouvez nous contacter à l’adresse [atlaas.admin@villes-internet.net](atlaas.admin@villes-internet.net).
+- Si vous ne trouvez pas la réponse à vos questions, vous pouvez nous contacter à l'adresse [atlaas.admin@villes-internet.net](atlaas.admin@villes-internet.net).
 
-- Charte d’utilisation : [http://atlaas.fr/#a-propos](http://atlaas.fr/#a-propos)
+- Charte d'utilisation : [http://atlaas.fr/#a-propos](http://atlaas.fr/#a-propos)
 
 ### 4)	Classement des types de services
 
@@ -245,9 +245,9 @@ A venir
 
 ######    	1. Démocratie et services publics / c. Protection de la vie privée / _1. Respect des droits et protection des données personnelles_
 
-- L’existence d'un Correspondant Informatique et Liberté (CIL)
+- L'existence d'un Correspondant Informatique et Liberté (CIL)
 
-- La communication ou le débat sur la vidéosurveillance
+- La communication ou le débat sur la vidéo-surveillance
 
 - La confidentialité, le droit d'accès et de modification des données personnelles
 
@@ -518,26 +518,3 @@ A venir
 - La promotion du site du territoire sur internet (sites partenaires, moteurs de recherche...)
 
 - La publication du site en une ou plusieurs langues étrangères
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-	
-	
-
-
-
-
-
-
