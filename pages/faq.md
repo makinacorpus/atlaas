@@ -260,7 +260,7 @@ A venir
 
 #### a. Renforcement de la cohésion sociale 
  
-######		1. Mise en réseau des habitants 
+#####		1. Mise en réseau des habitants 
 
 - Des espaces pour les communautés locales
 			
@@ -276,7 +276,7 @@ A venir
 
 - Une plate-forme de rencontre et de mise en réseau des habitants (réseau social...)
 		
-######        2. Co-production et hébergement de contenus 
+#####        2. Co-production et hébergement de contenus 
 
 - La co-production avec les habitants d'une chaîne vidéo (web TV) ou radio
 
