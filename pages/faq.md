@@ -130,7 +130,7 @@ A venir
 
 ### 3)	Modération du site
 
-- La création et la modification de fiche sont soumises à validation.
+- La création et la modification de fiches sont soumises à validation.
 
 - Si vous avez besoin d'informations ou d'aide, veuillez consulter le menu. 
 
