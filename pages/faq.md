@@ -100,7 +100,7 @@ i. ‘‘Résultats‘‘ : si des résultats (statistiques, …) sont déjà vi
 
 j. ‘‘liens‘‘ : précisez la ou les adresse(s) internet associée(s) à l’action
 
-k. ‘‘Personnes‘‘ : indiquer un contact responsable de l’action (‘‘nom‘‘, ‘‘titre‘‘ (fonction), ‘‘courriel‘‘)
+k. ‘‘Personnes‘‘ : indiquez un contact responsable de l’action (‘‘nom‘‘, ‘‘titre‘‘ (fonction), ‘‘courriel‘‘)
 
 l. ‘‘lieu‘‘ : pour géo-localiser (obligatoire !) : 
 - ‘‘Nom‘‘, 
