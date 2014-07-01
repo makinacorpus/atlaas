@@ -414,9 +414,9 @@ A venir
 
 #### 4. Création de richesses
 
-####	a. Création d’emplois et employabilité 
+#####	a. Création d’emplois et employabilité 
 
-#####		1. Accès à l’emploi 
+######		1. Accès à l’emploi 
 
 - Des dispositifs de rencontres et d'échanges pour les demandeurs d'emploi (bénévolat, stage...)
 
