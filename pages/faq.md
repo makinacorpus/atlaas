@@ -127,26 +127,26 @@ A venir
 #####	a. Efficacité des services publics 
     
 ######    	1. Accès des citoyens aux ser-vices publics, droits et démarches
-        
-#######        	- Des services ciblés, parcours personnalisés ou sites dédiés par profil d'usagers
 
-#######			- Des statistiques de fréquentation des sites, réseaux sociaux, applications
+- Des services ciblés, parcours personnalisés ou sites dédiés par profil d'usagers
 
-#######			- Des transactions en ligne (carte de vie quotidienne, paiement...)
+- Des statistiques de fréquentation des sites, réseaux sociaux, applications
 
-#######			- L'accès à des démarches en ligne (formulaire, inscription, demande d'aides...)
+- Des transactions en ligne (carte de vie quotidienne, paiement...)
 
-#######			- Les démarches de qualité de service
+- L'accès à des démarches en ligne (formulaire, inscription, demande d'aides...)
 
-#######			- L'information sur les droits et démarches administratives
+- Les démarches de qualité de service
 
-#######			- Un annuaire des contacts au sein des différents services administratifs
+- L'information sur les droits et démarches administratives
 
-#######			- Un compte et un suivi personnalisés sur le site de la collectivité (identifiant, mot de passe)
+- Un annuaire des contacts au sein des différents services administratifs
 
-#######			- Un guichet unique local
+- Un compte et un suivi personnalisés sur le site de la collectivité (identifiant, mot de passe)
 
-#######			- Un guide des aides publiques par thème et par profil d'usagers
+- Un guichet unique local
+
+- Un guide des aides publiques par thème et par profil d'usagers
 
 ######		2. Formation et implication des élus et des agents
 
