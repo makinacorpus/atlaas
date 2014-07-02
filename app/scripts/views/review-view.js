@@ -27,7 +27,7 @@ atlaas.Views = atlaas.Views || {};
 
     var parseValue = function(value){
             var html = "";
-            if(typeof(value) == "object"){
+            if(value != null && typeof(value) == "object"){
                     for (var i = 0; i < value.length; i++) {
                         html += "<ul>";
                         var item = value[i];
