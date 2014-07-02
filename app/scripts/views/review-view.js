@@ -83,23 +83,34 @@ atlaas.Views = atlaas.Views || {};
         },
 
         doAjaxSync: function(type, key_id, elements) {
-            if (elements.length > 0) {
-                var element = elements.shift(); 
-                $.ajax({
-                    // /type/id/_update allows partial update
-                    url: atlaas.CONFIG.secure_elasticsearch + '/' + type + '/' + element[key_id] + '/_update',
-                    data: JSON.stringify({doc: element}),
-                    type: "POST",
-                    dataType: "json",
-                    headers: {
-                     'Authorization': "Basic " + btoa(atlaas.CONFIG.login + ":" + atlaas.CONFIG.password)
-                    }
-                    }).done(function(){
-                        if (element.length > 0) {
-                            this.doAjaxSync(type, key_id, elements);
+            if (elements && elements.length > 0) {
+                var element = elements[0];
+
+                var url = atlaas.CONFIG.secure_elasticsearch + '/' + type + '/' + element[key_id];
+                var data = element;
+                var method = "PUT";
+                var el = this;
+                $.getJSON(atlaas.CONFIG.elasticsearch + '/' + type + '/_search?q=_id:' + element[key_id] + '&fields=_id')
+                    .done(function(data_response){
+                        if(data_response && data_response > 0) {
+                            url = atlaas.CONFIG.secure_elasticsearch + '/' + type + '/' + element[key_id] + '/_update';
+                            method = "POST";
+                            data = {doc : element};
                         }
-                    })
-            }
+                        $.ajax({
+                            // /type/id/_update allows partial update
+                            url: url,
+                            data: JSON.stringify(data),
+                            type: method,
+                            dataType: "json",
+                            headers: {
+                             'Authorization': "Basic " + btoa(atlaas.CONFIG.login + ":" + atlaas.CONFIG.password)
+                            }
+                            }).done(function(){
+                                el.doAjaxSync(type, key_id, elements.slice(1));
+                            }) 
+                    });
+            }   
         },
 
         validate: function(e) {
@@ -109,21 +120,23 @@ atlaas.Views = atlaas.Views || {};
                 username: atlaas.CONFIG.login,
                 password: atlaas.CONFIG.password
             };
+
             // We update lieux / personnes index
             this.doAjaxSync("lieux", "id_lieu", model.attributes.lieux)
             this.doAjaxSync("personnes", "id_personne", model.attributes.personnes);
 
             // we use low-level Backbone.sync method to avoid messing up
             // permanently with id and id_action
+
             Backbone.sync('update', model, {
                 url: atlaas.CONFIG.secure_elasticsearch + '/actions/' + model.id,
                 success: function () {
-
                     model.destroy({
                         url: atlaas.CONFIG.elasticsearch + '/review/' + model.id
                     });
                 },
             })
+
         },
 
         reject: function(e) {
