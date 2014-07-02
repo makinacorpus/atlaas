@@ -50,14 +50,16 @@ atlaas.Views = atlaas.Views || {};
 
             var $result = $(e.currentTarget);
 
+            var poiId = $result.attr('href');
+            this.focusOnSpecificResult($result)
+            this.trigger('panToPoi', poiId);
+        },
+
+        focusOnSpecificResult: function($result){
             this.$activeResult.removeClass('active');
             this.$activeResult = $result;
 
             $result.addClass('active');
-            
-            var poiId = $result.attr('href');
-
-            this.trigger('panToPoi', poiId);
         },
 
         clickOpenResultHandler: function (e) {

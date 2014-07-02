@@ -202,11 +202,11 @@ atlaas.Views.Map = atlaas.Views.Map || {};
                 var poiId = e.layer.options.id;
 
                 if (typeof this.poiResultsView.viewCollection[poiId] === "undefined") {
-                    this.poiResultsView.collection.add(this.poisView.collection.get(poiId));
+                    this.poiResultsView.collection.add(this.poisView.collection.get(poiId), {at: 0});
                 }
 
                 var poi = this.poiResultsView.viewCollection[poiId];
-
+                this.poiResultsView.focusOnSpecificResult(poi.$el.find(".results__item"));
                 this.$resultsContainer.scrollTop(this.$resultsContainer.scrollTop() + poi.$el.position().top);
             }, this));
         },
