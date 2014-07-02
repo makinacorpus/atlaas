@@ -214,7 +214,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
         renderPoisResults: function () {
             if (this.poiResultsView.syncResults) {
                 // never display more than the 30 first results in the list (user must zoom/search to acurate)
-                this.poiResultsView.collection.set(this.poisView.collection.models.slice(0, 30));
+                this.poiResultsView.collection.set(this.poisView.collection.models.slice(0, 300));
                 return;
             };
 
