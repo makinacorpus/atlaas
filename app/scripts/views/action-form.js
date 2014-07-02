@@ -267,8 +267,15 @@ Backbone.Form.validators.errMessages.number = "Doit être un entier.";
                             /** Notify admin by email **/
                             $.post(atlaas.CONFIG.backend+ "/notify?id=" + id);
                         },
-                     }
+                    }
                 );
+            }
+            else{
+                    var modal = new Backbone.BootstrapModal({
+                    content: 'Des erreurs ont été trouvées lors de la validation du formulaire.',
+                    animate: false,
+                    allowCancel: false,
+                    cancelText: 'Annuler' }).open();
             }
         }
 
