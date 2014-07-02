@@ -52,6 +52,13 @@ atlaas.Models = atlaas.Models || {};
         },
 
         validate: function(attrs, options) {
+            var errs = {};
+
+            if (attrs.lieux.length > 1) errs.lieux = 'Restreint à un lieux précis';
+            if (attrs.lieux.length == 0) errs.lieux = 'Requis';
+            if (attrs.personnes.length == 0) errs.personnes = 'Requis';
+
+            if (!_.isEmpty(errs)) return errs;
         },
 
         parse: function(response, options) {
