@@ -110,7 +110,34 @@ Backbone.Form.validators.errMessages.number = "Doit être un entier.";
 
             this.form = new Backbone.Form({
                 model: this.model,
-                schema: _.extend(this.model.schema, categoriesSchema)
+                schema: _.extend(this.model.schema, categoriesSchema),
+            });
+
+            this.form.fields.lieux.editor.on('item:change', function(listEditor, itemEditor) {
+                var values = itemEditor.getValue();
+
+                // generate random id
+                if(_.isUndefined(itemEditor.value.id_lieu ) || itemEditor.value.id_lieu === ""){
+                    values.id_lieu = md5(itemEditor + new Date())
+                }
+
+                // make lat a float
+                values.location.lat = +values.location.lat;
+                values.lat = values.location.lat;
+                // make lon a float
+                values.location.lon = +values.location.lon;
+                values.lon = values.location.lon;
+
+                itemEditor.setValue(values);
+            });
+
+            this.form.fields.personnes.editor.on('item:change', function(listEditor, itemEditor) {
+                //generate random id
+                if(_.isUndefined(itemEditor.value.id_personne ) || itemEditor.value.id_personne === ""){
+                    var values = itemEditor.getValue();
+                    values.id_personne = md5(itemEditor + new Date())
+                    itemEditor.setValue(values);
+                }
             });
 
             this.form.fields.services.editor.on('item:open add', function(listEditor, itemEditor) {
@@ -212,8 +239,14 @@ Backbone.Form.validators.errMessages.number = "Doit être un entier.";
 
             /** If there is no error **/
             if (!errors) {
+                if (_.isUndefined(this.model.id)){
+                    this.model.id = md5(this.model + new Date())
+                    this.model.set("manuallyCreated",true);
+                }
+
                 var id = this.model.id;
                 /** Modal **/
+
                 var modal = new Backbone.BootstrapModal({ 
                     content: 'Vos modifications ont bien été soumises à nos administrateurs. Elles seront ajoutés très bientôt.<br/> Merci.', 
                     animate: true, 
