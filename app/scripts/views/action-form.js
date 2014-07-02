@@ -2,6 +2,11 @@
 
 atlaas.Views = atlaas.Views || {};
 
+Backbone.Form.validators.errMessages.required = 'Requis.';
+Backbone.Form.validators.errMessages.match = 'This value must match the value of {{field}}';
+Backbone.Form.validators.errMessages.email = "Doit être une adresse email valide.";
+Backbone.Form.validators.errMessages.number = "Doit être un entier.";
+
 (function () {
     'use strict';
 
