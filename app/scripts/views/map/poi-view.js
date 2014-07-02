@@ -17,7 +17,9 @@ atlaas.Views = atlaas.Views || {};
             this.markers = [],
 
             _.each(this.model.get('lieux'), function (location, index) {
-                this.markers[index] = new CustomMarker([location.lat, location.lon], {icon: this.customIcon, id: this.model.id});
+                if (!(_.isUndefined(location.lat) || _.isUndefined(location.lon))){
+                    this.markers[index] = new CustomMarker([location.lat, location.lon], {icon: this.customIcon, id: this.model.id});
+                }
             }, this);
 
             this.listenTo(this.model, 'remove', function (model) {
