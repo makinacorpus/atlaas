@@ -29,22 +29,22 @@ atlaas.Models = atlaas.Models || {};
             resultats:  { type: 'TextArea', title: 'Résultats' },
             liens:      'Text',
             personnes:  { type: 'List', itemType: 'Object', subSchema: {
-                nom: 'Text',
-                titre: 'Text',
-                courriel: 'Text',
+                nom: { validators: ['required', 'required'] },
+                titre: { validators: ['required'] },
+                courriel: { validators: ['required', 'email'] },
                 id_personne: { type: 'Hidden'}   
             } },
             lieux: { type: 'List', itemType: 'Object', validators: ['required'], subSchema: {
                 nom: 'Text',
                 adresse: { type: 'Text', validators: ['required'] },
-                departement: { type: 'Number', title: 'Département' },
-                region: { type: 'Number', title: 'Région' },
-                ville: 'Text',
-                code_postal: { type: 'Number', title: 'Code postal' },
+                departement: { title: 'Département', validators: ['required', { type: 'regexp', regexp: /^[0-9]+$/, message: 'Doit être un entier.'}]},
+                region: { title: 'Région', validators: ['required', { type: 'regexp', regexp: /^[0-9]+$/, message: 'Doit être un entier.'}]},
+                ville: { validators: ['required']},
+                code_postal: { title: 'Code postal', validators: ['required', { type: 'regexp', regexp: /^[0-9]+$/, message: 'Doit être un entier.'}]},
                 telephone: { type: 'Text', title: 'Téléphone' },
                 location: { type: 'Object', title: 'Localisation', validators: ['required'], subSchema: {
-                    lat: 'Number',
-                    lon: 'Number'
+                    lat: { validators: ['required',  { type: 'regexp', regexp: /^[-+]?[0-9]*\.?[0-9]+$/, message: 'Doit être un nombre à virgule.'}]} ,
+                    lon: { validators: ['required',  { type: 'regexp', regexp: /^[-+]?[0-9]*\.?[0-9]+$/, message: 'Doit être un nombre à virgule.'}]} 
                 }},
                 type: { type: 'Select', options: ['Ville / Village', 'autre'] },
                 id_lieu: { type: 'Hidden'}
