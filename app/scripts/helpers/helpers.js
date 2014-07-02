@@ -35,9 +35,12 @@ L.POILayer = L.LayerGroup.extend({
     initialize: function () {
         L.LayerGroup.prototype.initialize.apply(this, arguments);
         this._onMap = [];
+        this._onClusteredMap = []
+        this._onUnClusteredMap = []
         this._clustered = true;
         this.clusterLayer = new L.LayerGroup();
-        this.clusterDetailLayer = L.markerClusterGroup({ showCoverageOnHover: false });
+        this.clusterDetailLayer = L.markerClusterGroup({ showCoverageOnHover: false})
+        //, removeOutsideVisibleBounds: true, maxClusterRadius: 100 });
     },
 
     onAdd: function (map) {
@@ -56,8 +59,8 @@ L.POILayer = L.LayerGroup.extend({
     updatePois: function (markers) {
         var oldMarkers = [];
         var newMarkers = [];
-
         // Removing no longer visible markers
+        this._onMap = this.clustered ? this._onClusteredMap : this._onUnClusteredMap;
         for (var onmap in this._onMap) {
             if (markers[onmap] === undefined) {
                 var layer = this._onMap[onmap];
@@ -74,7 +77,6 @@ L.POILayer = L.LayerGroup.extend({
                 newMarkers.push(layer);
             }
         }
-
         this.clusterDetailLayer.removeLayers(oldMarkers);
         this.clusterDetailLayer.addLayers(newMarkers);
     },
@@ -99,6 +101,7 @@ L.POILayer = L.LayerGroup.extend({
     __cluster: function () {
         this.addLayer(this.clusterLayer);
         this.removeLayer(this.clusterDetailLayer);
+        this._onMap = this._onUnClusteredMap;
         this.clusterDetailLayer.clearLayers();
         this._onMap = [];
     },
@@ -106,6 +109,7 @@ L.POILayer = L.LayerGroup.extend({
     __uncluster: function () {
         this.removeLayer(this.clusterLayer);
         this.addLayer(this.clusterDetailLayer);
+        this._onMap = this._onClusteredMap;
     },
 });
 
