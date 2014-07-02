@@ -208,7 +208,7 @@ Backbone.Form.validators.errMessages.number = "Doit être un entier.";
             e.preventDefault();
 
             /** Apply changes from form on model **/
-            var errors = this.form.commit();
+            var errors = this.form.commit({ validate: true });
 
             /** If there is no error **/
             if (!errors) {
