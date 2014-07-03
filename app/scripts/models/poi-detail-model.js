@@ -67,10 +67,13 @@ atlaas.Models = atlaas.Models || {};
             response.id = response.id_action||source._id;
 
             // TODO : clean it server side
+
             _.each(response.services, function (service) {
-                service.axe = service.axe.substring(3);
-                service.enjeu = service.enjeu.substring(3);
-                service.usage = service.usage.substring(3);
+                if(!(_.isNaN(service.axe.substring(1)))){
+                    service.axe = service.axe.substring(3);
+                    service.enjeu = service.enjeu.substring(3);
+                    service.usage = service.usage.substring(3);
+                }
             });
 
             delete response.id_action;

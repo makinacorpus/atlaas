@@ -27,14 +27,15 @@ atlaas.Models = atlaas.Models || {};
         },
 
         getEnjeu: function(enjeuName) {
+            console.log(this.attributes.enjeux);
             return _.find(this.attributes.enjeux, function(_enjeu) {
-                return _enjeu.enjeu == enjeuName;
+                return _enjeu.enjeu.trim() == enjeuName.trim();
             });
         },
 
         getUsage: function(enjeuName, usageName) {
             return _.find(this.getEnjeu(enjeuName).usages, function(_usage) {
-                return _usage.usage == usageName;
+                return _usage.usage.trim() == usageName.trim();
             });
         },
 
