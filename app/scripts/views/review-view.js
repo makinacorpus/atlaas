@@ -7,18 +7,19 @@ atlaas.Views = atlaas.Views || {};
 
     atlaas.Views.ReviewListView = Backbone.View.extend({
 
-        tagName: 'ul',
-
+        tagName: 'div',
+        className: 'container',
+        id: 'static',
         render: function () {
             var self = this;
-            this.$el.html("");
+            this.$el.html("<ul></ul>");
             self.collection.each(function(review_item){
                 var reviewItemView = new atlaas.Views.ReviewItemView({ model: review_item });
                 review_item.on('destroy', function() {
                     self.collection.remove(review_item);
                     self.render();
                 }, self);
-                this.$el.append(reviewItemView.render().el);
+                this.$el.children("ul").append(reviewItemView.render().el);
             }, this);
 
             return this;
@@ -43,8 +44,6 @@ atlaas.Views = atlaas.Views || {};
     }
 
     atlaas.Views.ReviewItemView = Backbone.View.extend({
-
-        tagName: 'li',
 
         template: JST['app/scripts/templates/reviewitem-view.ejs'],
 
