@@ -144,6 +144,8 @@ A venir
 
 - Charte d'utilisation : [http://atlaas.fr/#a-propos](http://atlaas.fr/#a-propos)
 
+***
+
 ### <span style="color:e94f35">4)	Classement des types de services</span>
 
 Par soucis de simplicité, le dernier niveau de détail a été retiré. 
