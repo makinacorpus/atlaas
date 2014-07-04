@@ -4,13 +4,13 @@ title: Comment ça marche
 published: true
 ---
 
-## <span style="color:red;">Mode d’emploi de l’ATLAAS</span>
+## <span style="color:e94f35;">Mode d’emploi de l’ATLAAS</span>
 
-### <span style="color:red;">1)	Navigation & utilisation de base</span>
+### <span style="color:e94f35;">1)	Navigation & utilisation de base</span>
 
 Les deux utilisations de base et libres pour les utilisateurs de l’Atlaas sont la recherche d’une action et la consultation de sa fiche.
 
-#### <span style="color:red;">1.1)	Rechercher des actions par mots clés</span>
+#### <span style="color:e94f35;">1.1)	Rechercher des actions par mots clés</span>
 
 Pour trouver et afficher sur la carte l’ensemble des actions concernant un mot-clé (par exemple un thème personnel où un lieu) :
 
@@ -23,7 +23,7 @@ Pour trouver et afficher sur la carte l’ensemble des actions concernant un mot
 Toutes les actions contenant au moins un des mots-clés s'afficheront sur la carte. 
 Pour annuler l’affichage, cliquer sur la croix à côté du champ de recherche.
 
-#### <span style="color:red;">1.2)	Rechercher les actions associés à un thème de l’Atlaas</span>
+#### <span style="color:e94f35;">1.2)	Rechercher les actions associés à un thème de l’Atlaas</span>
 
 Pour trouver toutes les actions par thèmes :
 
@@ -36,7 +36,7 @@ Pour trouver toutes les actions par thèmes :
 Toutes les actions associées au sous-thème s'afficheront sur la carte. 
 Pour annuler la recherche, cliquez sur la croix à droite du texte dans l'encadré rouge qui indique le sous-thème sélectionné.
 
-#### <span style="color:red;">1.3)	Parcourir la carte</span>
+#### <span style="color:e94f35;">1.3)	Parcourir la carte</span>
 
 Les actions suivantes sont possibles sur la carte :
 
@@ -46,7 +46,7 @@ Les actions suivantes sont possibles sur la carte :
 
 - défilement de la carte (maintenir le clic et déplacer le curseur de la souris dans la direction souhaitée)
 
-#### <span style="color:red;">1.4)	Consulter une action</span>
+#### <span style="color:e94f35;">1.4)	Consulter une action</span>
 
 Après avoir recherché des actions, il est possible d'en consulter les fiches
 
@@ -66,11 +66,11 @@ Après avoir recherché des actions, il est possible d'en consulter les fiches
 
 3. cliquez sur le bouton ''en savoir plus''
 
-### <span style="color:red;">2) Edition</span>
+### <span style="color:e94f35;">2) Edition</span>
 
 Les utilisateurs peuvent aussi créer (proposer) une fiche et proposer une modification.
 
-#### <span style="color:red;">2.1) Créer une action</span>
+#### <span style="color:e94f35;">2.1) Créer une action</span>
 
 1. rendez-vous sur le panneau latéral (à droite)
 
@@ -124,11 +124,11 @@ l. ''Lieu'' : pour géo-localiser (obligatoire !) :
 
 m. ''Services'' : pour associer un ou plusieurs thèmes de l'Atlaas à l'action cf. ''Classement des types de services'' (obligatoire)
 
-#### <span style="color:red;">2.2) Modifier une action</span>
+#### <span style="color:e94f35;">2.2) Modifier une action</span>
 
 A venir
 
-### <span style="color:red;">3)	Modération du site</span>
+### <span style="color:e94f35;">3)	Modération du site</span>
 
 - La création et la modification de fiches sont soumises à validation.
 
@@ -138,7 +138,7 @@ A venir
 
 - Charte d'utilisation : [http://atlaas.fr/#a-propos](http://atlaas.fr/#a-propos)
 
-### <span style="color:red;">4)	Classement des types de services</span>
+### <span style="color:e94f35;">4)	Classement des types de services</span>
 
 Par soucis de simplicité, le dernier niveau de détail a été retiré. 
 
