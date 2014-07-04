@@ -16,11 +16,11 @@ Les deux utilisations de base et libres pour les utilisateurs de l’Atlaas sont
 
 Pour trouver et afficher sur la carte l’ensemble des actions concernant un mot-clé (par exemple un thème personnel où un lieu) :
 
-1. rendez-vous sur le panneau latéral (à droite)
+>1. rendez-vous sur le panneau latéral (à droite)
 
-2. cliquez sur le champ de recherche (''Recherche'')
+>2. cliquez sur le champ de recherche (''Recherche'')
 
-3. entrez les mots-clés séparés des espaces
+>3. entrez les mots-clés séparés des espaces
 
 Toutes les actions contenant au moins un des mots-clés s'afficheront sur la carte. 
 Pour annuler l’affichage, cliquer sur la croix à côté du champ de recherche.
@@ -29,11 +29,11 @@ Pour annuler l’affichage, cliquer sur la croix à côté du champ de recherche
 
 Pour trouver toutes les actions par thèmes :
 
-1. rendez-vous sur le panneau latéral (à droite)
+>1. rendez-vous sur le panneau latéral (à droite)
 
-2. cliquez sur ''Thèmes''
+>2. cliquez sur ''Thèmes''
 
-3. sélectionnez le thème et les sous-thèmes souhaités
+>3. sélectionnez le thème et les sous-thèmes souhaités
 
 Toutes les actions associées au sous-thème s'afficheront sur la carte. 
 Pour annuler la recherche, cliquez sur la croix à droite du texte dans l'encadré rouge qui indique le sous-thème sélectionné.
@@ -42,31 +42,31 @@ Pour annuler la recherche, cliquez sur la croix à droite du texte dans l'encadr
 
 Les actions suivantes sont possibles sur la carte :
 
-- zoomer (boutons ''+'' et ''-'' en haut à gauche)
+>- zoomer (boutons ''+'' et ''-'' en haut à gauche)
 
-- géolocalisation de l'utilisateur (flèches sous les boutons de zoom)
+>- géolocalisation de l'utilisateur (flèches sous les boutons de zoom)
 
-- défilement de la carte (maintenir le clic et déplacer le curseur de la souris dans la direction souhaitée)
+>- défilement de la carte (maintenir le clic et déplacer le curseur de la souris dans la direction souhaitée)
 
 #### <span style="color:e94f35">1.4)	Consulter une action</span>
 
 Après avoir recherché des actions, il est possible d'en consulter les fiches
 
--	soit via la carte :
+>-	soit via la carte :
 
-1. cliquez sur le nombre cerclé de rouge indiquant le nombre d'actions associées à la zone
+>1. cliquez sur le nombre cerclé de rouge indiquant le nombre d'actions associées à la zone
 
-2. cliquez sur le pointeur de géo-localisation associé à l'action
+>2. cliquez sur le pointeur de géo-localisation associé à l'action
 
-3. cliquez sur le lien ''en savoir plus''
+>3. cliquez sur le lien ''en savoir plus''
 
-- soit via la liste d'actions :
+>- soit via la liste d'actions :
 
-1. faites défiler les actions
+>1. faites défiler les actions
 
-2. sélectionnez l'action souaitée 
+>2. sélectionnez l'action souaitée 
 
-3. cliquez sur le bouton ''en savoir plus''
+>3. cliquez sur le bouton ''en savoir plus''
 
 ***
 
@@ -76,57 +76,57 @@ Les utilisateurs peuvent aussi créer (proposer) une fiche et proposer une modif
 
 #### <span style="color:e94f35">2.1) Créer une action</span>
 
-1. rendez-vous sur le panneau latéral (à droite)
+>1. rendez-vous sur le panneau latéral (à droite)
 
-2. cliquez soit sur ''+Proposer une action'' soit sur ''Menu'' puis ''Contribuez !''
+>2. cliquez soit sur ''+Proposer une action'' soit sur ''Menu'' puis ''Contribuez !''
 
-3. une page ''Nouvelle fiche'' apparaît
+>3. une page ''Nouvelle fiche'' apparaît
 
-4. renseignez un maximum de champs possibles :
+>4. renseignez un maximum de champs possibles :
 
-a. ''Titre'' de l’action
+>>a. ''Titre'' de l’action
 
-b. ''Sous-titre'' : courte description. Veuillez éviter de dépasser deux lignes.
+>>b. ''Sous-titre'' : courte description. Veuillez éviter de dépasser deux lignes.
 
-c. ''Date'' : par défaut, il s'agit de la date actuelle
+>>c. ''Date'' : par défaut, il s'agit de la date actuelle
 
-d. ''Actions'' : renseignez de la façon la plus factuelle possible ce qui a été réalisé
+>>d. ''Actions'' : renseignez de la façon la plus factuelle possible ce qui a été réalisé
 
-e. ''Synthèse'' : une description plus détaillée peut être entrée ici
+>>e. ''Synthèse'' : une description plus détaillée peut être entrée ici
 
-f. ''Outils'' : si un matériel/logiciel spécifique a été créé ou utilisé
+>>f. ''Outils'' : si un matériel/logiciel spécifique a été créé ou utilisé
 
-g. ''Prestataire'' : les structures impliquées dans l'action
+>>g. ''Prestataire'' : les structures impliquées dans l'action
 
-h. ''Recommandations'' : conseils d'utilisation
+>>h. ''Recommandations'' : conseils d'utilisation
 
-i. ''Résultats'' : si des résultats (statistiques, …) sont déjà visibles
+>>i. ''Résultats'' : si des résultats (statistiques, …) sont déjà visibles
 
-j. ''Liens'' : précisez la ou les adresse(s) internet associée(s) à l'action
+>>j. ''Liens'' : précisez la ou les adresse(s) internet associée(s) à l'action
 
-k. ''Personnes'' : indiquez un contact responsable de l'action (''nom'', ''titre'' (fonction), ''courriel'')
+>>k. ''Personnes'' : indiquez un contact responsable de l'action (''nom'', ''titre'' (fonction), ''courriel'')
 
-l. ''Lieu'' : pour géo-localiser (obligatoire !) : 
+>>l. ''Lieu'' : pour géo-localiser (obligatoire !) : 
 
-- ''Nom'', 
+>>>- ''Nom'', 
 
-- ''Adresse'', 
+>>>- ''Adresse'', 
 
-- ''Département'' (code numérique, deux premiers chiffres du code postal), 
+>>>- ''Département'' (code numérique, deux premiers chiffres du code postal), 
 
-- ''Région'' (code INSEE, consultez la page suivante pour la liste : [http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp](http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp)), 
+>>>- ''Région'' (code INSEE, consultez la page suivante pour la liste : [http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp](http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp)), 
 
-- ''Ville'', 
+>>>- ''Ville'', 
 
-- ''Code postal'', 
+>>>- ''Code postal'', 
 
-- ''Téléphone'' (numéro sans espace ni caractères spéciaux), 
+>>>- ''Téléphone'' (numéro sans espace ni caractères spéciaux), 
 
-- ''Localisation'' (latitude et longitude), 
+>>>- ''Localisation'' (latitude et longitude), 
 
-- ''Type'' (''Ville / village'' ou ''Autre'')
+>>>- ''Type'' (''Ville / village'' ou ''Autre'')
 
-m. ''Services'' : pour associer un ou plusieurs thèmes de l'Atlaas à l'action cf. ''Classement des types de services'' (obligatoire)
+>>m. ''Services'' : pour associer un ou plusieurs thèmes de l'Atlaas à l'action cf. ''Classement des types de services'' (obligatoire)
 
 #### <span style="color:e94f35">2.2) Modifier une action</span>
 
@@ -136,13 +136,13 @@ A venir
 
 ### <span style="color:e94f35">3)	Modération du site</span>
 
-- La création et la modification de fiches sont soumises à validation.
+>- La création et la modification de fiches sont soumises à validation.
 
-- Si vous avez besoin d'informations ou d'aide, veuillez consulter le menu. 
+>- Si vous avez besoin d'informations ou d'aide, veuillez consulter le menu. 
 
-- Si vous ne trouvez pas la réponse à vos questions, vous pouvez nous contacter à l'adresse [atlaas.admin@villes-internet.net](atlaas.admin@villes-internet.net).
+>- Si vous ne trouvez pas la réponse à vos questions, vous pouvez nous contacter à l'adresse [atlaas.admin@villes-internet.net](atlaas.admin@villes-internet.net).
 
-- Charte d'utilisation : [http://atlaas.fr/#a-propos](http://atlaas.fr/#a-propos)
+>- Charte d'utilisation : [http://atlaas.fr/#a-propos](http://atlaas.fr/#a-propos)
 
 ***
 
