@@ -6,6 +6,8 @@ published: true
 
 ## <span style="color:e94f35">Mode d’emploi de l’ATLAAS</span>
 
+***
+
 ### <span style="color:e94f35">1)	Navigation & utilisation de base</span>
 
 Les deux utilisations de base et libres pour les utilisateurs de l’Atlaas sont la recherche d’une action et la consultation de sa fiche.
@@ -65,6 +67,8 @@ Après avoir recherché des actions, il est possible d'en consulter les fiches
 2. sélectionnez l'action souaitée 
 
 3. cliquez sur le bouton ''en savoir plus''
+
+***
 
 ### <span style="color:e94f35">2) Edition</span>
 
@@ -127,6 +131,8 @@ m. ''Services'' : pour associer un ou plusieurs thèmes de l'Atlaas à l'action 
 #### <span style="color:e94f35">2.2) Modifier une action</span>
 
 A venir
+
+***
 
 ### <span style="color:e94f35">3)	Modération du site</span>
 
