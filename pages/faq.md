@@ -4,7 +4,7 @@ title: Comment ça marche
 published: true
 ---
 
-## <span style="color:e94f35">Mode d’emploi de l’ATLAAS</span>
+## <span class="titre1">Mode d’emploi de l’ATLAAS</span>
 
 ***
 
