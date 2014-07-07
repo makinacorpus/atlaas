@@ -75,7 +75,7 @@ Les utilisateurs peuvent aussi créer (proposer) une fiche et proposer une modif
 #### <span class="titre3">2.1) Créer une action</span>
 
 >1. rendez-vous sur le panneau latéral (à droite)
-
+<img name="menu" src="http://www.villes-internet.net/fileadmin/Images/IMG_Atlaas/Atlaas_-_Menu.jpg" style="float:right;" hspace="10" vspace="10"//>
 >2. cliquez soit sur ''+Proposer une action'' soit sur ''Menu'' puis ''Contribuez !''
 
 >3. une page ''Nouvelle fiche'' apparaît
