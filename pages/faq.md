@@ -31,9 +31,7 @@ Pour annuler l’affichage, cliquer sur la croix à côté du champ de recherche
 Pour trouver toutes les actions par thèmes :
 
 >1. rendez-vous sur le panneau latéral (à droite)
-
 >2. cliquez sur ''Thèmes''
-
 >3. sélectionnez le thème et les sous-thèmes souhaités
 
 Toutes les actions associées au sous-thème s'afficheront sur la carte. 
