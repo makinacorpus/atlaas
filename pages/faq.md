@@ -66,7 +66,7 @@ Après avoir recherché des actions, il est possible d'en consulter les fiches
 >2. sélectionnez l'action souaitée 
 
 >3. cliquez sur le bouton ''en savoir plus''
-<img name="lecture_fiche" src="http://www.villes-internet.net/fileadmin/Images/IMG_Atlaas/Atlaas_-_Lecture_fiche.jpg" align="right" hspace="50" vspace="10"/></BR>
+</BR><img name="lecture_fiche" src="http://www.villes-internet.net/fileadmin/Images/IMG_Atlaas/Atlaas_-_Lecture_fiche.jpg" align="center" hspace="50" vspace="10"/></BR>
 
 </BR>
 ### <span class="titre2">2) Edition</span>
