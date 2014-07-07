@@ -16,9 +16,9 @@ Les deux utilisations de base et libres pour les utilisateurs de l’Atlaas sont
 
 Pour trouver et afficher sur la carte l’ensemble des actions concernant un mot-clé (par exemple un thème personnel où un lieu) :
 
-><p>1. rendez-vous sur le panneau latéral (à droite)
+><p>1. rendez-vous sur le panneau latéral (à droite)</BR>
 <img name="panneauLateral" src="http://www.villes-internet.net/fileadmin/Images/IMG_Atlaas/Atlaas_-_Panneau_lateral.jpg" align="right" style="float:right;" hspace="10" vspace="10"/>
-2. cliquez sur le champ de recherche (''Recherche'')
+2. cliquez sur le champ de recherche (''Recherche'')</BR>
 3. entrez les mots-clés séparés des espaces</p>
 
 Toutes les actions contenant au moins un des mots-clés s'afficheront sur la carte. 
