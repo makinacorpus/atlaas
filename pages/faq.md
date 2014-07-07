@@ -54,7 +54,7 @@ Après avoir recherché des actions, il est possible d'en consulter les fiches
 >-	soit via la carte :
 
 >1. cliquez sur le nombre cerclé de rouge indiquant le nombre d'actions associées à la zone
-
+<img name="zoom_carte" src="http://www.villes-internet.net/fileadmin/Images/IMG_Atlaas/Atlaas_-_carte.jpg" align="right" style="float:right;" hspace="10" vspace="10"/>
 >2. cliquez sur le pointeur de géo-localisation associé à l'action
 
 >3. cliquez sur le lien ''en savoir plus''
