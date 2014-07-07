@@ -45,6 +45,8 @@ Les actions suivantes sont possibles sur la carte :
 
 >- zoomer (boutons ''+'' et ''-'' en haut à gauche)
 
+<img name="zoom_geoloc" src="http://www.villes-internet.net/fileadmin/Images/IMG_Atlaas/Atlaas_-_zoom_geolocalisation.jpg" align="right" style="float:right;" hspace="10" vspace="10"/>
+
 >- géolocalisation de l'utilisateur (flèches sous les boutons de zoom)
 
 >- défilement de la carte (maintenir le clic et déplacer le curseur de la souris dans la direction souhaitée)
