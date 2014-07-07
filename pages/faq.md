@@ -154,7 +154,7 @@ Par soucis de simplicité, le dernier niveau de détail a été retiré.
 
 #####	a. Efficacité des services publics 
     
-######    	1. Accès des citoyens aux ser-vices publics, droits et démarches
+######    	1. Accès des citoyens aux services publics, droits et démarches
 
 ######		2. Formation et implication des élus et des agents
 
@@ -234,6 +234,6 @@ Par soucis de simplicité, le dernier niveau de détail a été retiré.
 
 #####	c. Attractivité du territoire 
 
-######		1. Accès aux nouvelles technolo-gies, développement du haut et très haut débit 
+######		1. Accès aux nouvelles technologies, développement du haut et très haut débit 
 
 ######		2. Marketing territorial
