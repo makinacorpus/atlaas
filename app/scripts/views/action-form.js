@@ -127,6 +127,10 @@ Backbone.Form.validators.errMessages.number = "Doit être un entier.";
                 // make lon a float
                 values.location.lon = +values.location.lon;
                 values.lon = values.location.lon;
+                //guess region
+                var region = atlaas.mapping_region[values.departement];
+                if (region)
+                    values.region = region;
 
                 itemEditor.setValue(values);
             });

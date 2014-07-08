@@ -38,7 +38,6 @@ atlaas.Models = atlaas.Models || {};
                 nom: 'Text',
                 adresse: { type: 'Text', validators: ['required'] },
                 departement: { title: 'Département', validators: ['required', { type: 'regexp', regexp: /^[0-9]+$/, message: 'Doit être un entier.'}]},
-                region: { title: 'Région', validators: ['required', { type: 'regexp', regexp: /^[0-9]+$/, message: 'Doit être un entier.'}]},
                 ville: { validators: ['required']},
                 code_postal: { title: 'Code postal', validators: ['required', { type: 'regexp', regexp: /^[0-9]+$/, message: 'Doit être un entier.'}]},
                 telephone: { type: 'Text', title: 'Téléphone' },
