@@ -6,10 +6,10 @@ published: true
 
 [Charte d'utilisation](media/Charte%20d’utilisation%20du%20portail%20ATLAAS.pdf)
 
-## CHARTE D’UTILISATION DU PORTAIL ATLAAS
+## <span class="titre1">CHARTE D’UTILISATION DU PORTAIL ATLAAS</span>
 À LIRE ET ACCEPTER PAR TOUT UTILISATEUR
 
-### PRÉAMBULE
+### <span class="titre2">PRÉAMBULE</span>
 
 L'ATLAAS est un portail contributif, de type Web 2.0, ci‐après le Portail, qui organise une visibilité de l’Internet public et citoyen sur la France. Il présente et publie des informations concernant les actions et les acteurs territoriaux (structures et personnes). Il est évolutif selon  son  appropriation  par  les acteurs notamment pour présenter leurs projets en matière de services, ainsi que les technologies qu’ils utilisent et, le cas échéant, la description des compétences à mobiliser pour mettre en œuvre sur un territoire les différentes catégories de projets.
 C’est ainsi que l’ATLAAS propose de partager de l’information sur les outils, faire connaitre les projets et les pratiques professionnelles dans la perspective d’un partage des coûts et d’une mutualisation des bonnes pratiques. Il permet de qualifier la contribution des acteurs au développement des territoires suivant les enjeux :
@@ -28,7 +28,7 @@ La présente charte définit les conditions générales d’utilisation du porta
 
 L’Éditeur se réserve le droit de modifier tout ou partie et à tout moment la présente charte.  Il appartient en conséquence à  l’Utilisateur  de  se  référer  régulièrement  à  sa  dernière  version disponible en permanence sur le Portail.
 
-### IL EST TOUT D’ABORD RAPPELÉ LA NÉCESSITE DE RESPECTER LA LÉGISLATION
+### <span class="titre2">IL EST TOUT D’ABORD RAPPELÉ LA NÉCESSITE DE RESPECTER LA LÉGISLATION</span>
 
 La quantité et la facilité de circulation des informations et des contenus sur Internet ne doivent pas faire oublier la nécessité de respecter la législation. Internet, les réseaux et les services de communication numérique ne sont pas des zones de non‐droit. Le rappel non exhaustif des règles de droit principalement concernées par l’utilisation d’Internet et du Portail proposé vise  le  double objectif de sensibiliser le visiteur du présent site à leur existence et à leur respect  et  ainsi  de renforcer ainsi la prévention d’actes illicites.
 
@@ -54,11 +54,11 @@ Il est donc, ici, tout d’abord rappelé (mais pas exclusivement) les usages qu
 
 - la négation de crimes contre l'humanité.
 
-### IL EST ENSUITE CONVENU CE QUI SUIT
+### <span class="titre2">IL EST ENSUITE CONVENU CE QUI SUIT</span>
 
 En sa qualité d’éditeur du portail ATLAAS et de « fabriquant » de son contenu, l'Association Villes Internet, s’engage à faire bénéficier, à l’Utilisateur du site, d’un accès aux ressources et à la base de données qu’il propose, ainsi que la possibilité pour celui‐ci d’enrichir cette plateforme par des contributions spécifiques, avec, éventuellement des restrictions, selon les modalités précisées à la présente Charte.
 
-#### I. DESCRIPTION JURIDIQUE DU PORTAIL
+#### <span class="titre3">I. DESCRIPTION JURIDIQUE DU PORTAIL</span>
 
 ATLAAS est une œuvre de l'esprit s'exprimant par une réunion de données et de propriétés intellectuelles de genres différents : sons, textes, images fixes ou animées, une base de données et un ou plusieurs programmes informatiques, intégrée sur un même support numérique de communication en réseau et qui est conçue pour avoir une identité propre différente de  celle résultant de la simple addition des éléments qui la composent, et dont la structuration et les accès sont régis par un logiciel permettant l’interactivité. Elle est une  création  se  manifestant  avec  ces mêmes diversités et conditions lors d'une consultation.
 
@@ -74,9 +74,9 @@ Outre les contributions spécifiques des Utilisateurs, cette base de données es
 
 De nouvelles bases de données pourront être proposées pour intégration dans le portail.
 
-#### II. ENGAGEMENT DE L’ÉDITEUR
+#### <span class="titre3">II. ENGAGEMENT DE L’ÉDITEUR</span>
 
-##### 1. Respect de la loi
+##### <span color="tomato">1. Respect de la loi</span>
 
 L’Éditeur du Portail s’oblige à respecter toutes les règles protectrices  des  intérêts  des  tiers  et  de l'ordre public et notamment  à informer  promptement les  autorités publiques  des activités  illicites qu’il pourrait constater à l’occasion de l’utilisation du Portail.
 
@@ -88,10 +88,10 @@ L’Éditeur s’oblige également à donner, à communiquer sur le pagne consac
 
 Il s’engage à détenir et conserver les données permettant l'identification de toute personne ayant contribué à la communication au public d'un contenu dans le cadre du Portail, conformément aux dispositions de l’article 6‐II de la loi du 21 juin 2004 pour la confiance dans l’économie numérique. Ces informations conservées pendant le temps limité de cette communication et pendant au moins un an sont strictement destinées aux éventuels besoins des autorités judiciaires.
 
-##### 2. Disponibilité du Service
+##### <span color="tomato">2. Disponibilité du Service</span>
 
 L’Éditeur s'efforce dans la mesure du  possible  de maintenir accessible le service qu'il propose, de manière permanente, mais n'est tenu à aucune obligation d'y parvenir.  Il  peut  donc  interrompre l'accès, notamment pour des raisons de maintenance et de mise à niveau, ou  pour  toutes  autres raisons, notamment techniques, sans que celui‐ci puisse être tenu pour responsable des conséquences de ces interruptions aussi bien pour l'Utilisateur que pour tous tiers.
-3. Protection des données à caractère personnel de l’Utilisateur
+##### <span color="tomato">3. Protection des données à caractère personnel de l’Utilisateur</span>
 
 En application des dispositions de la loi Informatique et Libertés n° 78‐17 du 6 janvier 1978 et de la directive européenne 95/46/CE relative à la protection des données personnelles et à la libre circulation de ces données du 24 octobre 1995, l’Éditeur s’engage à respecter les règles légales de protection de ce type de données. Il garantit notamment à l’Utilisateur :
 
@@ -101,11 +101,11 @@ En application des dispositions de la loi Informatique et Libertés n° 78‐17 
 
 - de lui garantir un droit d'accès et de rectification aux données le concernant.
 
-##### 4. Contrôle des pages Web
+##### <span color="tomato">4. Contrôle des pages Web</span>
 
 L’Éditeur se réserve le droit de contrôler le contenu de toute page Web hébergée sur ses serveurs en vue de s’assurer du respect des conditions d’utilisation des services énoncées par la présente Charte. Il se réserve, également le droit de suspendre l’usage du service d’hébergement des pages Web par un Utilisateur en cas de non‐respect de la Charte et notamment dans l’hypothèse où  l’Utilisateur aurait diffusé sur ses pages Web un contenu manifestement illicite.
 
-#### III. ENGAGEMENTS DE L’UTILISATEUR
+#### <span class="titre3">III. ENGAGEMENTS DE L’UTILISATEUR</span>
 
 L’Utilisateur s’engage à respecter la législation en vigueur, évoquée à titre non exhaustif ci‐dessous, et notamment il s’engage à utiliser les Services :
 
@@ -134,7 +134,7 @@ L’Utilisateur s’engage à ne pas effectuer, de manière volontaire, des opé
 
 L’Utilisateur donne expressément son consentement pour que les données à caractère personnel le concernant et dans le cadre de la mise en œuvre du service, objet des présentes, ne soient traitées que pour les finalités de l’utilisation des services.
 
-#### IV. CONDITIONS DE REUTILISATION DES CONTENUS DU PORTAIL
+#### <span class="titre3">IV. CONDITIONS DE REUTILISATION DES CONTENUS DU PORTAIL</span>
 
 Le Portail est constitué d'un ensemble d'éléments (textes, graphismes, logiciels, photographies, images, sons, plans, noms, logos, marques, créations et œuvres protégeables diverses et une base de données), qui relèvent des législations françaises et internationales  sur  les  droits  d'auteurs  et  les droits voisins du droit d'auteur. L’Éditeur a la propriété exclusive de ces éléments, hormis  les éléments réalisés par des intervenants extérieurs au Portail n'ayant pas cédé leurs droits d'auteur ou leurs droits voisins. L’article L 122‐4 du Code de la Propriété Intellectuelle : toute représentation ou reproduction intégrale ou partielle faite sans le consentement de l'auteur ou de ses ayants droit ou ayants cause est illicite. Il en est de même pour la traduction, l'adaptation ou la transformation, l'arrangement ou la reproduction par un art ou un procédé quelconque.
 
@@ -151,7 +151,7 @@ L’Éditeur se réserve le droit de vérifier par tous moyens que les données 
 
 En cas  d'utilisation, reproduction,  représentation ou adaptation non autorisée  d'une page ou d'un élément de forme original du Portail, l’Éditeur poursuivra pour contrefaçon engageant la responsabilité civile et pénale de son auteur. Elle peut aussi entraîner une  violation  des  droits  à l'image, droits des personnes ou de tous autres droits et règlementations en vigueur. L’Éditeur se réserve la possibilité d'exercer toutes voies de droit à l'encontre des personnes qui n'auraient pas respecté les interdictions contenues dans le présent article.
 
-#### V. CONDITIONS D’ENRICHISSEMENT DE LA BASE DE DONNEES
+#### <span class="titre3">V. CONDITIONS D’ENRICHISSEMENT DE LA BASE DE DONNEES</span>
 
 Lors de toute intégration de données par l’Utilisateur, en vue d’enrichir la base de données, et ce pour permettre à l’Éditeur de respecter ses obligations de détention et de conservation des données permettant l'identification de toute personne ayant contribué à la communication au public d'un contenu, conformément aux dispositions de l’article 6‐II de la loi du 21 juin 2004, l’Utilisateur sera tenu de s’inscrire auprès de l'éditeur directement ou  via  le  Portail,  en  communiquant  les informations personnelles le concernant.
 
@@ -159,7 +159,7 @@ Dès lors que l’Utilisateur rend accessible, à titre gratuit, un contenu à d
 
 Par ailleurs, au regard de la possibilité d’export  des  contenus intégrés  dans la base de données  , l’Utilisateur s’engage à ne pas ajouter dans les éléments qu’il intègre à la base des contenus constituant ou comprenant des éléments constituant une violation des droits  de  propriété intellectuelle de tiers, ni une atteinte aux personnes (notamment diffamation, insultes, injures, etc.) et au respect de la vie privée, ni une incitation à la violence ou à la haine contre tout individu ou groupe, ni une atteinte à l'ordre public et aux bonnes mœurs ni, plus généralement une atteinte à la règlementation applicable en vigueur.
 
-#### VI. PROTECTION DES DONNEES PERSONNELLES
+#### <span class="titre3">VI. PROTECTION DES DONNEES PERSONNELLES</span>
 
 L’Éditeur recueille des informations concernant l’Utilisateur :
 
@@ -172,7 +172,7 @@ Association Villes Internet, 9 rue Soyer, 92200 Neuilly‐sur‐Seine
 
 Ce traitement de données a bien entendu fait l’objet d’une déclaration à la CNIL conformément aux dispositions des articles 22 et suivants de la loi n° 78‐17 du 6 janvier 1978.
 
-#### VII. GARANTIES
+#### <span class="titre3">VII. GARANTIES</span>
 
 La base de données ATLAAS est fournie, sans aucune  garantie  d'aucune  sorte,  tant  expresse  que tacite, relative notamment à la titularité des droits sur la Base de données, aux droits d'exploitations détenus par l’Éditeur sur la Base, à l'absence de contrefaçon de la Base de données ou des données qu'elle contient ou à l'aptitude à des fins particulières de la Base de données.
 
@@ -180,7 +180,7 @@ L’Utilisateur est seul responsable de la détermination de l'opportunité d'ut
 
 L’Éditeur ne pourra en aucun cas être tenu pour responsable envers quiconque de tout dommage direct, indirect, incident, spécial ou consécutif, incluant, sans limitation, les interruptions de travail, les interruptions de téléchargement, les virus, les  défauts  ou  dysfonctionnements  d'ordinateur,  la perte de clientèle ou de profits, que le dommage soit causé de quelque façon que ce soit à l’occasion de l'Utilisation de la Base de données ou de l'exercice  d'un  des  droits  concédés  par  la  présente charte. Lorsque des liens hypertextes sont mis en place vers des sites de tiers, depuis le Portail. L’Utilisateur est seul responsable de la détermination de ses besoins et des données auxquelles il souhaite avoir accès. L’Éditeur ne garantit pas que les informations contenues dans la  Base  de données sont exemptes d’erreurs et ne garantit, entre autres, ni la pertinence, ni l’exhaustivité, ni l’exactitude des informations ou des résultats  en  découlant.  Les  données  présentées  ne  se substituent en aucun cas à une analyse approfondie avant la mise en œuvre d’un projet. En conséquence, l’Utilisateur reconnaît qu’il utilise la Base de données à ses risques et périls et l’Éditeur ne saurait être tenue responsable d’évènements pouvant  résulter  de  l’interprétation  et  de l’utilisation par l’Utilisateur des données fournies dans le cadre de la présente Charte.
 
-#### VIII. RESOLUTION DES LITIGES
+#### <span class="titre3">VIII. RESOLUTION DES LITIGES</span>
 
 La présente charte est régie par le droit Français. Tout litige relatif à sa validité, son interprétation, ou exécution sera soumis au Tribunal compétent.
 
