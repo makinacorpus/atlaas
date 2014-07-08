@@ -165,10 +165,12 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             });
 
             this.listenTo(this.searchView, 'search', function (query) {
-                this.options.state.search = query;
-
-                this.updateUrl();
-                this.updatePoisState();
+                var isEmpty = (this.options.state.search.length === 0 );
+                this.options.state.search = (query.length > 2) ? query : "";
+                if (!(isEmpty && this.options.state.search == "")){
+                   this.updateUrl();
+                   this.updatePoisState();                 
+                }
             });
         },
 
