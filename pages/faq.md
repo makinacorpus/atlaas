@@ -146,6 +146,8 @@ A venir
 
 ### <span class="titre2">4)	Classement des types de services</span>
 
+<img name="organisation" src="http://www.villes-internet.net/fileadmin/Images/IMG_Atlaas/Atlaas_-_Organisation.jpg" style="float:right;" hspace="10" vspace="10"/>
+
 Par soucis de simplicité, le dernier niveau de détail a été retiré. 
 
 #### 1. Démocratie et services publics
