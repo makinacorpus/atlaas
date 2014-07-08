@@ -44,7 +44,12 @@ window.atlaas = {
         });
 
         this.router.on('route:reviewlist', function () {
-            appView.renderReviewList();
+            if(_.isUndefined(atlaas.CONFIG.login) || _.isUndefined(atlaas.CONFIG.password)){
+                atlaas.router.navigate('login', {trigger: true});
+            }
+            else{
+                appView.renderReviewList();
+            }
         });
 
         this.router.on('route:login', function () {

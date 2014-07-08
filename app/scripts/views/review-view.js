@@ -91,7 +91,7 @@ atlaas.Views = atlaas.Views || {};
                 var el = this;
                 $.getJSON(atlaas.CONFIG.elasticsearch + '/' + type + '/_search?q=_id:' + element[key_id] + '&fields=_id')
                     .done(function(data_response){
-                        if(data_response && data_response > 0) {
+                        if(data_response && data_response.hits.total > 0) {
                             url = atlaas.CONFIG.secure_elasticsearch + '/' + type + '/' + element[key_id] + '/_update';
                             method = "POST";
                             data = {doc : element};
