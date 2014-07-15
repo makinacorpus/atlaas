@@ -8,6 +8,7 @@ import sys
 import requests
 import time
 from app import app
+import logging
 
 E_SEARCH = app.config['ELASTICSEARCH']
 
@@ -111,7 +112,7 @@ def export():
     services_list = sorted(services_list, key=lambda k: int(k['id_service'][1:]))
     i = 1
     for service in services_list:
-        ws_Services.write(i, 0, service["id_service"])
+        ws_Services.write(i, 0, service.get("id_service", ""))
         ws_Services.write(i, 1, service["axe_name"])
         ws_Services.write(i, 2, service["enjeu_name"])
         ws_Services.write(i, 3, service["usage_name"])
@@ -142,8 +143,8 @@ def export():
         action_dict["liens"] = source["liens"]
         action_dict["outils"] = source["outils"]
         action_dict["prestataires"] = source["prestataires"]
-        action_dict["videos"] = source["videos"]
-        action_dict["photos"] = source["photos"]
+        action_dict["videos"] = source.get("videos", "")
+        action_dict["photos"] = source.get("photos", "")
         actions_list.append(action_dict)
 
         if "personnes" in source:
@@ -161,10 +162,10 @@ def export():
         if "services" in source:
             for liaison_services in source["services"]:
                 ws_Liaison_Services.write(i_lservice, 0, source["id_action"])
-                ws_Liaison_Services.write(i_lservice, 1, liaison_services["id_service"])
+                ws_Liaison_Services.write(i_lservice, 1, liaison_services.get("id_service", ""))
                 i_lservice += 1
 
-    actions_list = sorted(actions_list, key=lambda k: int(k['id_action']))
+    actions_list = sorted(actions_list, key=lambda k: k['id_action'])
     i = 1
     for action in actions_list:
         ws_Actions.write(i, 0, action["id_action"])
@@ -181,7 +182,6 @@ def export():
         ws_Actions.write(i, 11, action["videos"])
         ws_Actions.write(i, 12, action["photos"])
         i +=1
-
     # Lieux
 
     r = requests.get(E_SEARCH + "/lieux/_search?size=100000")
@@ -189,23 +189,27 @@ def export():
     lieux_list = []
     for lieu in hits:
         source = lieu["_source"]
-        lieu_dict ={}
-        lieu_dict["id_lieu"] = source["id_lieu"]
-        lieu_dict["type"] = source["type"]
-        lieu_dict["nom"] = source["nom"]
-        lieu_dict["description"] = source["description"]
-        lieu_dict["lat"] = source["lat"]
-        lieu_dict["lon"] = source["lon"]
-        lieu_dict["adresse_web"] = source["adresse_web"]
-        lieu_dict["adresse"] = source["adresse"]
-        lieu_dict["code_postal"] = source["code_postal"]
-        lieu_dict["ville"] = source["ville"]
-        lieu_dict["telephone"] = source["telephone"]
-        lieu_dict["fax"] = source["fax"]
-        lieu_dict["courriel"] = source["courriel"]
-        lieu_dict["population"] = source["population"]
-        lieu_dict["id_insee"] = source["id_insee"]
-        lieux_list.append(lieu_dict)
+        try:
+            lieu_dict ={}
+            lieu_dict["id_lieu"] = source["id_lieu"]
+            lieu_dict["type"] = source["type"]
+            lieu_dict["nom"] = source["nom"]
+            lieu_dict["description"] = source.get("description", "")
+            lieu_dict["lat"] = source.get("lat", "")
+            lieu_dict["lon"] = source.get("lon", "")
+            lieu_dict["adresse_web"] = source.get("adresse_web", "")
+            lieu_dict["adresse"] = source.get("adresse", "")
+            lieu_dict["code_postal"] = source.get("code_postal", "")
+            lieu_dict["ville"] = source.get("ville", "")
+            lieu_dict["telephone"] = source.get("telephone", "")
+            lieu_dict["fax"] = source.get("fax", "")
+            lieu_dict["courriel"] = source.get("courriel", "")
+            lieu_dict["population"] = source.get("population", "")
+            lieu_dict["id_insee"] = source.get("id_insee", "")
+            lieux_list.append(lieu_dict)
+        except Exception as e:
+            pass
+
     lieux_list = sorted(lieux_list, key=lambda k: k['id_lieu'])
     i = 1
     for lieu in lieux_list:
@@ -232,19 +236,23 @@ def export():
     hits = json.loads(r.content)["hits"]["hits"]
     personnes_list = []
     for personne in hits:
-        source = personne["_source"]
-        personne_dict ={}
-        personne_dict["id_personne"] = source["id_personne"]
-        personne_dict["nom"] = source["nom"]
-        personne_dict["titre"] = source["titre"]
-        personne_dict["elu"] = source["elu"]
-        personne_dict["adresse"] = source["adresse"]
-        personne_dict["code_postal"] = source["code_postal"]
-        personne_dict["ville"] = source["ville"]
-        personne_dict["telephone"] = source["telephone"]
-        personne_dict["telephone_mobile"] = source["telephone_mobile"]
-        personne_dict["courriel"] = source["courriel"]
-        personnes_list.append(personne_dict)
+        try:
+            source = personne["_source"]
+            personne_dict ={}
+            personne_dict["id_personne"] = source["id_personne"]
+            personne_dict["nom"] = source["nom"]
+            personne_dict["titre"] = source["titre"]
+            personne_dict["elu"] = source["elu"]
+            personne_dict["adresse"] = source["adresse"]
+            personne_dict["code_postal"] = source["code_postal"]
+            personne_dict["ville"] = source["ville"]
+            personne_dict["telephone"] = source["telephone"]
+            personne_dict["telephone_mobile"] = source["telephone_mobile"]
+            personne_dict["courriel"] = source["courriel"]
+            personnes_list.append(personne_dict)
+        except Exception as e:
+            pass
+
     personnes_list = sorted(personnes_list, key=lambda k: k['id_personne'])
     i = 1
     for personne in personnes_list:
