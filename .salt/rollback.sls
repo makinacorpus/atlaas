@@ -21,7 +21,7 @@
 
 {{cfg.name}}-rolldb:
   cmd.run:
-    - name: cp "{{cfg.cucurrent_archive_dir}}/{{cfg.data.DATABASE_FILE}}" "{{cfg.data.DATABASE_FILE}}"
+    - name: cp "{{cfg.current_archive_dir}}/{{cfg.data.DATABASE_FILE}}" "{{cfg.data.DATABASE_FILE}}"
     - user: {{cfg.user}}
     - watch:
       - cmd: {{cfg.name}}-rollback-project-dir
