@@ -11,7 +11,7 @@
 
 {{cfg.name}}-backup-db:
   cmd.run:
-    - name: rsync -Aa "{{cfg.data.DATABASE_FILE}}" "{{cfg.current_archive_dir}}/{{cfg.data.DATABASE_FILE}}"
+    - name: rsync -Aa "{{cfg.data_root}}/" "{{dest}}/data/" 
     - user: root
     - watch:
       - cmd: {{cfg.name}}-sav-project-dir
