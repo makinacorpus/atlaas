@@ -20,7 +20,7 @@
       - cmd:  {{cfg.name}}-rollback-faileproject-dir
 
 {{cfg.name}}-rolldb:
-    - name: rsync -Aa "{{dest}}/data/" "{{cfg.data_root}}/"
+    - name: rsync -Aa "{{cfg.current_archive_dir}}/data/" "{{cfg.data_root}}/"
     - user: root
     - watch:
       - cmd: {{cfg.name}}-rollback-project-dir
