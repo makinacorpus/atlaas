@@ -21,7 +21,7 @@
 
 {{cfg.name}}-rolldb:
   cmd.run:
-    - name: cp "{{cfg.current_archive_dir}}/{{cfg.data.DATABASE_FILE}}" "{{cfg.data.DATABASE_FILE}}"
-    - user: {{cfg.user}}
+    - name: rsync -Aa "{{dest}}/{{cfg.data.DATABASE_FILE}}" "{{cfg.data.DATABASE_FILE}}"
+    - user: root
     - watch:
       - cmd: {{cfg.name}}-rollback-project-dir
