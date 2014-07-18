@@ -57,18 +57,11 @@ def build_sample_db():
     """
     Populate a small db with some example entries.
     """
-    try:
-        db.drop_all()
-    except sqlalchemy.exc.OperationalError, exc:
-        if 'unable to open database file' in exc.message:
-            pass
-        else:
-            raise
     db.create_all()
-    admin_user = User(login=app.config['ADMIN'],
-                      password=app.config['PASSWORD'])
-    db.session.add(admin_user)
-
+    if not User.query.filter(User.login == app.config['ADMIN']).all():
+        admin_user = User(login=app.config['ADMIN'],
+                          password=app.config['PASSWORD'])
+        db.session.add(admin_user)
     db.session.commit()
     return
 
