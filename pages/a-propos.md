@@ -91,6 +91,7 @@ Il s’engage à détenir et conserver les données permettant l'identification 
 ##### <span color="tomato">2. Disponibilité du Service</span>
 
 L’Éditeur s'efforce dans la mesure du  possible  de maintenir accessible le service qu'il propose, de manière permanente, mais n'est tenu à aucune obligation d'y parvenir.  Il  peut  donc  interrompre l'accès, notamment pour des raisons de maintenance et de mise à niveau, ou  pour  toutes  autres raisons, notamment techniques, sans que celui‐ci puisse être tenu pour responsable des conséquences de ces interruptions aussi bien pour l'Utilisateur que pour tous tiers.
+
 ##### <span color="tomato">3. Protection des données à caractère personnel de l’Utilisateur</span>
 
 En application des dispositions de la loi Informatique et Libertés n° 78‐17 du 6 janvier 1978 et de la directive européenne 95/46/CE relative à la protection des données personnelles et à la libre circulation de ces données du 24 octobre 1995, l’Éditeur s’engage à respecter les règles légales de protection de ce type de données. Il garantit notamment à l’Utilisateur :
