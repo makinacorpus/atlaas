@@ -10,11 +10,11 @@ title:  "Site Atlaas en ligne !"
 Le site ATLAAS.fr est en cours d'inscription à la CNIL sous le n° de dossier [à venir]. Vous disposez d’un droit d’accès, de modification, de rectification et de suppression des données qui vous concernent (art. 34 de la loi "Informatique et Libertés" du 6 janvier 1978).
 
 Vous pouvez exercer ce droit :
-- Directement en vous connectant sur votre espace accessible à gauche de l'écran de toutes les pages.
+> - Directement en vous connectant sur votre espace accessible à gauche de l'écran de toutes les pages.
 Vous obtiendrez votre Identifiant et votre Mot de Passe sur demande :
-- En nous contactant par mail à atlaas.admin@villes-internet.net
-- par courrier à Villes Internet, 9 rue Soyer, 92200 Neuilly sur Seine
-- par téléphone : 01 47 68 53 76
+> - En nous contactant par mail à atlaas.admin@villes-internet.net
+> - par courrier à Villes Internet, 9 rue Soyer, 92200 Neuilly sur Seine
+> - par téléphone : 01 47 68 53 76
 
 ### <span class="titre2">Responsable de publication</span>
 
@@ -25,7 +25,8 @@ Fondatrice et déléguée : Florence Durand-Tornare
 
 ### <span class="titre2">Hébergeur</span>
 
-SAS OVH - http://www.ovh.com 2 rue Kellermann BP 80157 59100 Roubaix
+SAS OVH 
+- http://www.ovh.com 2 rue Kellermann BP 80157 59100 Roubaix
 
 ### <span class="titre2">Copyright et Propriété intellectuelle</span>
 
