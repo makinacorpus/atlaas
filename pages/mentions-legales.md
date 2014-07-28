@@ -11,9 +11,12 @@ Le site ATLAAS.fr est en cours d'inscription à la CNIL sous le n° de dossier [
 
 Vous pouvez exercer ce droit :
 Vous obtiendrez votre Identifiant et votre Mot de Passe sur demande :
-> - En nous contactant par mail à atlaas.admin@villes-internet.net ;
-> - par courrier à Villes Internet, 9 rue Soyer, 92200 Neuilly sur Seine ;
-> - par téléphone : 01 47 68 53 76 ;
+
+- En nous contactant par mail à atlaas.admin@villes-internet.net ;
+
+- par courrier à Villes Internet, 9 rue Soyer, 92200 Neuilly sur Seine ;
+
+- par téléphone : 01 47 68 53 76 ;
 
 ### <span class="titre2">Responsable de publication</span>
 
