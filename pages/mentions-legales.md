@@ -26,8 +26,11 @@ Fondatrice et déléguée : Florence Durand-Tornare
 
 SAS OVH 
  http://www.ovh.com
+
  2 rue Kellermann
+
  BP 80157 
+
  59100 Roubaix
 
 ### <span class="titre2">Copyright et Propriété intellectuelle</span>
