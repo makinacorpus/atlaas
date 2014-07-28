@@ -1,6 +1,6 @@
 ---
 layout: static
-title:  "Site Atlaas en ligne !"
+title:  "Mentions légales"
 ---
 
 ## <span class="titre1">Mentions légales</span>
