@@ -6,7 +6,7 @@ published: true
 
 [Charte d'utilisation](media/Charte%20d’utilisation%20du%20portail%20ATLAAS.pdf)
 
-## <span class="titre1">CHARTE D’UTILISATION DU PORTAIL ATLAAS</span>
+## <span class="titre1">CHARTE D’USAGE</span>
 À LIRE ET ACCEPTER PAR TOUT UTILISATEUR
 
 ### <span class="titre2">PRÉAMBULE</span>
