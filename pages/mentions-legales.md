@@ -3,8 +3,6 @@ layout: static
 title:  "Mentions légales"
 ---
 
-## <span class="titre1">Mentions légales</span>
-
 ### <span class="titre2">Droit d'accès à vos informations personnelles
 
 Le site ATLAAS.fr est en cours d'inscription à la CNIL sous le n° de dossier [à venir]. Vous disposez d’un droit d’accès, de modification, de rectification et de suppression des données qui vous concernent (art. 34 de la loi "Informatique et Libertés" du 6 janvier 1978).
