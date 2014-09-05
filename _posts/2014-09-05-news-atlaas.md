@@ -1,6 +1,6 @@
 ---
 layout: static
-published: false
+published: true
 ---
 
 Depuis le printemps 2014 cette cartographie sociale de l'internet public et citoyen vous permet de découvrir comment internet modifie la vie quotidienne dans les territoires en mettant à disposition des services innovants ou des services classiques amplifiés grâce aux outils numériques en réseaux.
