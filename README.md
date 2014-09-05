@@ -4,7 +4,8 @@ atlaas
 Annuaire Territorial de Liaison des Acteurs, Actions et Services numériques
 
 ### Pour ajouter une actualité
-- Se rendre sur : http://prose.io/#makinacorpus/atlaas/tree/gh-pages/_posts
+- Se rendre sur : http://prose.io
+- Autoriser la connection avec github et ensuite se rendre sur : http://prose.io/#makinacorpus/atlaas/tree/gh-pages/_posts
 - Créer un fichier avec la nomenclature suivante :
 `ANNÉE-MOIS-JOUR-nom-de-l-article.md`
 
