@@ -1,6 +1,6 @@
 ---
 layout: static
-title: À propos
+title: Charte
 published: true
 ---
 
