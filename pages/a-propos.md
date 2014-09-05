@@ -1,6 +1,5 @@
 ---
 layout: static
-title: Charte
 published: true
 ---
 
