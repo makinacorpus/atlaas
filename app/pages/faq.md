@@ -16,10 +16,10 @@ Les deux utilisations de base et libres pour les utilisateurs de l’Atlaas sont
 
 Pour trouver et afficher sur la carte l’ensemble des actions concernant un mot-clé (par exemple un thème personnel où un lieu) :
 
->1. rendez-vous sur le panneau latéral (à droite)
+> - Rendez-vous sur le panneau latéral (à droite)
 <img name="panneauLateral" src="http://www.villes-internet.net/fileadmin/Images/IMG_Atlaas/Atlaas_-_Panneau_lateral.jpg" align="right" style="float:right;" hspace="10" vspace="10"/>
->2. cliquez sur le champ de recherche (''Recherche'')
->3. entrez les mots-clés séparés des espaces
+> - Cliquez sur le champ de recherche (''Recherche'')
+> - Entrez les mots-clés séparés des espaces
 
 Toutes les actions contenant au moins un des mots-clés s'afficheront sur la carte. 
 Pour annuler l’affichage, cliquer sur la croix à côté du champ de recherche.
@@ -28,9 +28,9 @@ Pour annuler l’affichage, cliquer sur la croix à côté du champ de recherche
 
 Pour trouver toutes les actions par thèmes :
 
->1. rendez-vous sur le panneau latéral (à droite)
->2. cliquez sur ''Thèmes''
->3. sélectionnez le thème et les sous-thèmes souhaités
+> - Rendez-vous sur le panneau latéral (à droite)
+> - Cliquez sur ''Thèmes''
+> - Sélectionnez le thème et les sous-thèmes souhaités
 
 Toutes les actions associées au sous-thème s'afficheront sur la carte. 
 Pour annuler la recherche, cliquez sur la croix à droite du texte dans l'encadré rouge qui indique le sous-thème sélectionné.
@@ -39,33 +39,33 @@ Pour annuler la recherche, cliquez sur la croix à droite du texte dans l'encadr
 
 Les actions suivantes sont possibles sur la carte :
 
->- zoomer (boutons ''+'' et ''-'' en haut à gauche)
+> - Zoomer (boutons ''+'' et ''-'' en haut à gauche)
 
 <img name="zoom_geoloc" src="http://www.villes-internet.net/fileadmin/Images/IMG_Atlaas/Atlaas_-_zoom_geolocalisation.jpg" align="right" style="float:right;" hspace="10" vspace="10"/>
 
->- géolocalisation de l'utilisateur (flèches sous les boutons de zoom)
+> - Géolocalisation de l'utilisateur (flèches sous les boutons de zoom)
 
->- défilement de la carte (maintenir le clic et déplacer le curseur de la souris dans la direction souhaitée)
+> - Défilement de la carte (maintenir le clic et déplacer le curseur de la souris dans la direction souhaitée)
 
 #### <span class="titre3">1.4)	Consulter une action</span>
 
 Après avoir recherché des actions, il est possible d'en consulter les fiches
 
->-	soit via la carte :
+> -	Soit via la carte :
 
->1. cliquez sur le nombre cerclé de rouge indiquant le nombre d'actions associées à la zone
+>> - Cliquez sur le nombre cerclé de rouge indiquant le nombre d'actions associées à la zone
 <img name="zoom_carte" src="http://www.villes-internet.net/fileadmin/Images/IMG_Atlaas/Atlaas_-_carte.jpg" align="right" style="float:right;" hspace="10" vspace="10"/>
->2. cliquez sur le pointeur de géo-localisation associé à l'action
+>> - Cliquez sur le pointeur de géo-localisation associé à l'action
 
->3. cliquez sur le lien ''en savoir plus''
+>> - Cliquez sur le lien ''en savoir plus''
 
->- soit via la liste d'actions :
+> - Soit via la liste d'actions :
 
->1. faites défiler les actions
+>> - Faites défiler les actions
 
->2. sélectionnez l'action souaitée 
+>> - Sélectionnez l'action souaitée 
 
->3. cliquez sur le bouton ''en savoir plus''
+>> - Cliquez sur le bouton ''en savoir plus''
 <img name="lecture_fiche" src="http://www.villes-internet.net/fileadmin/Images/IMG_Atlaas/Atlaas_-_Lecture_fiche.jpg" align="center" hspace="50" vspace="10"/>
 
 ### <span class="titre2">2) Edition</span>
@@ -74,57 +74,57 @@ Les utilisateurs peuvent aussi créer (proposer) une fiche et proposer une modif
 
 #### <span class="titre3">2.1) Créer une action</span>
 
->1. rendez-vous sur le panneau latéral (à droite)
+> - Rendez-vous sur le panneau latéral (à droite)
 <img name="menu" src="http://www.villes-internet.net/fileadmin/Images/IMG_Atlaas/Atlaas_-_Menu.jpg" style="float:right;" hspace="10" vspace="10"/>
->2. cliquez soit sur ''+Proposer une action'' soit sur ''Menu'' puis ''Contribuez !''
+> - Cliquez soit sur ''+Proposer une action'' soit sur ''Menu'' puis ''Contribuez !''
 
->3. une page ''Nouvelle fiche'' apparaît
+> - Une page ''Nouvelle fiche'' apparaît
 <img name="nouvelle_fiche" src="http://www.villes-internet.net/fileadmin/Images/IMG_Atlaas/Atlaas_-_Nouvelle_fiche.jpg" style="float:right;" hspace="10" vspace="10"/>
->4. renseignez un maximum de champs possibles :
+> - Renseignez un maximum de champs possibles :
 
->>a. ''Titre'' de l’action
+>> - ''Titre'' de l’action
 
->>b. ''Sous-titre'' : courte description. Veuillez éviter de dépasser deux lignes.
+>> - ''Sous-titre'' : courte description. Veuillez éviter de dépasser deux lignes.
 
->>c. ''Date'' : par défaut, il s'agit de la date actuelle
+>> - ''Date'' : par défaut, il s'agit de la date actuelle
 
->>d. ''Actions'' : renseignez de la façon la plus factuelle possible ce qui a été réalisé
+>> - ''Actions'' : renseignez de la façon la plus factuelle possible ce qui a été réalisé
 
->>e. ''Synthèse'' : une description plus détaillée peut être entrée ici
+>> - ''Synthèse'' : une description plus détaillée peut être entrée ici
 
->>f. ''Outils'' : si un matériel/logiciel spécifique a été créé ou utilisé
+>> - ''Outils'' : si un matériel/logiciel spécifique a été créé ou utilisé
 
->>g. ''Prestataire'' : les structures impliquées dans l'action
+>> - ''Prestataire'' : les structures impliquées dans l'action
 
->>h. ''Recommandations'' : conseils d'utilisation
+>> - ''Recommandations'' : conseils d'utilisation
 
->>i. ''Résultats'' : si des résultats (statistiques, …) sont déjà visibles
+>> - ''Résultats'' : si des résultats (statistiques, …) sont déjà visibles
 
->>j. ''Liens'' : précisez la ou les adresse(s) internet associée(s) à l'action
+>> - ''Liens'' : précisez la ou les adresse(s) internet associée(s) à l'action
 
->>k. ''Personnes'' : indiquez un contact responsable de l'action (''nom'', ''titre'' (fonction), ''courriel'')
+>> - ''Personnes'' : indiquez un contact responsable de l'action (''nom'', ''titre'' (fonction), ''courriel'')
 
->>l. ''Lieu'' : pour géo-localiser (obligatoire !) : 
+>> - ''Lieu'' : pour géo-localiser (obligatoire !) : 
 
->>>- ''Nom'', 
+>>> - ''Nom'', 
 
->>>- ''Adresse'', 
+>>> - ''Adresse'', 
 
->>>- ''Département'' (code numérique, deux premiers chiffres du code postal), 
+>>> - ''Département'' (code numérique, deux premiers chiffres du code postal), 
 
->>>- ''Région'' (code INSEE, consultez la page suivante pour la liste : [http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp](http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp)), 
+>>> - ''Région'' (code INSEE, consultez la page suivante pour la liste : [http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp](http://www.insee.fr/fr/methodes/nomenclatures/cog/region.asp)), 
 
->>>- ''Ville'', 
+>>> - ''Ville'', 
 
->>>- ''Code postal'', 
+>>> - ''Code postal'', 
 
->>>- ''Téléphone'' (numéro sans espace ni caractères spéciaux), 
+>>> - ''Téléphone'' (numéro sans espace ni caractères spéciaux), 
 
->>>- ''Localisation'' (latitude et longitude), 
+>>> - ''Localisation'' (latitude et longitude), 
 
->>>- ''Type'' (''Ville / village'' ou ''Autre'')
+>>> - ''Type'' (''Ville / village'' ou ''Autre'')
 
->>m. ''Services'' : pour associer un ou plusieurs thèmes de l'Atlaas à l'action cf. ''Classement des types de services'' (obligatoire)
+>> - ''Services'' : pour associer un ou plusieurs thèmes de l'Atlaas à l'action cf. ''Classement des types de services'' (obligatoire)
 
 #### <span class="titre3">2.2) Modifier une action</span>
 
@@ -134,17 +134,19 @@ A venir
 
 ### <span class="titre2">3)	Modération du site</span>
 
->- La création et la modification de fiches sont soumises à validation.
+> - La création et la modification de fiches sont soumises à validation.
 
->- Si vous avez besoin d'informations ou d'aide, veuillez consulter le menu. 
+> - Si vous avez besoin d'informations ou d'aide, veuillez consulter le menu. 
 
->- Si vous ne trouvez pas la réponse à vos questions, vous pouvez nous contacter à l'adresse [atlaas.admin@villes-internet.net](atlaas.admin@villes-internet.net).
+> - Si vous ne trouvez pas la réponse à vos questions, vous pouvez nous contacter à l'adresse [atlaas.admin@villes-internet.net](atlaas.admin@villes-internet.net).
 
->- Charte d'utilisation : [http://atlaas.fr/#a-propos](http://atlaas.fr/#a-propos)
+> - Charte d'utilisation : [http://atlaas.fr/#a-propos](http://atlaas.fr/#a-propos)
 
 ***
 
 ### <span class="titre2">4)	Classement des types de services</span>
+
+<img name="organisation" src="http://www.villes-internet.net/fileadmin/Images/IMG_Atlaas/Atlaas_-_Organisation.jpg" style="float:right;" hspace="10" vspace="10"/>
 
 Par soucis de simplicité, le dernier niveau de détail a été retiré. 
 
