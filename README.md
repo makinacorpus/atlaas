@@ -3,7 +3,8 @@ atlaas
 
 Annuaire Territorial de Liaison des Acteurs, Actions et Services numériques
 
-Pour modifier les contenus statiques : 
+Pour modifier les contenus statiques:
+
 -Se rendre sur : http://prose.io , autoriser la connexion avec github
 
 ### Pour ajouter une actualité
