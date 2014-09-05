@@ -1,5 +1,6 @@
 ---
 layout: static
+title:  "PARTAGEZ ET PRESENTEZ VOS SERVICES NUMERIQUES LOCAUX AVEC L'ATLAAS"
 published: true
 ---
 
