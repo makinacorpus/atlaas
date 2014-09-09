@@ -39,11 +39,11 @@ Au sein de l'Atlaas et de l'Observatoire de Villes Internet, seuls les observato
 
 #### 4.1. Exemples de listes d'initiatives
 Une liste relatvement complète avec une centaine d'initiatives, mais indifférenciée du point de vue informatique : 	
-> * http://www.naturefrance.fr/sciences-participatives
+> * [Nature France](http://www.naturefrance.fr/sciences-participatives)
 
 Regroupement d'initiatives :
-> * Coordonnées par le Muséum national d'Histoire naturelle : Vigie-Nature : http://vigienature.mnhn.fr/, projet "65 millions d'observateurs" (à venir)
-> * Coordonnées par la LPO : VisioNature (faune-[région].org et autres) : http://www.ornitho.fr/index.php?m_id=1
+> * Coordonnées par le Muséum national d'Histoire naturelle : [Vigie-Nature](http://vigienature.mnhn.fr/), projet "65 millions d'observateurs" (à venir)
+> * Coordonnées par la LPO : [VisioNature (faune-"région".org et autres)](http://www.ornitho.fr/index.php?m_id=1)
 
 #### 4.2. Le cas des ABC
 Les Atlas de la Biodiversité Communale sont des inventaires naturalsites du territoire d'une commune (faune, flore, habitats). L'initiative nationale d'encadrement a débuté en 2010 en phase teste pour 8 communes (Combs-la-Ville (Seine-et-Marne), Pommeuse (Seine-et-Marne), Féricy (Seine-et-Marne), Haubourdin (Nord), Bavent (Calvados), Douvres-la-Délivrande (Calvados), La-Plaine-des-Palmistes (La Réunion), Bouillante (Guadeloupe)). Mais, entre 2010 et 2012, 206 communes ont débuté leurs inventaires.
