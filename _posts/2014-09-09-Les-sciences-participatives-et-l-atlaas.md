@@ -39,6 +39,7 @@ Au sein de l'Atlaas et de l'Observatoire de Villes Internet, seuls les observato
 
 #### 4.1. Exemples de listes d'initiatives
 Une liste relatvement complète avec une centaine d'initiatives, mais indifférenciée du point de vue informatique : 	
+
 > * [Nature France](http://www.naturefrance.fr/sciences-participatives)
 
 Regroupement d'initiatives :
