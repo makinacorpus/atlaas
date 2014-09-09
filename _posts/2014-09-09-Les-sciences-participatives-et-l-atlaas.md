@@ -55,7 +55,7 @@ Ces inventaires peuvent donc être réalisés soit via du personnel de la commun
 
 
 
->> **Les porteurs de projets sont invités à prendre contact avec nous pour intégrer leurs projets dans l'atlaas, soit directement en créant une nouvelle fiche d'initiative géolocalisée et en nous la soumettant (onglet "[Proposer une action+](http://atlaas.fr/#new)" ou, dans le menu, "[Contribuer](http://atlaas.fr/#new)").**
+>> **Les porteurs de projets souhaitant intégrer leurs projets dans l'atlaas. Pour ce faire, ils sont invités soit à prendre contact avec nous, soit à créer directement  une nouvelle fiche d'initiative géolocalisée et à nous la soumettre (onglet "[Proposer une action+](http://atlaas.fr/#new)" ou, dans le menu, "[Contribuer](http://atlaas.fr/#new)").**
 
 >> **Afin de faciliter la création, veuiller consulter l'aide en ligne (menu : "[Comment ça marche ?](http://atlaas.fr/#faq)").**
 
