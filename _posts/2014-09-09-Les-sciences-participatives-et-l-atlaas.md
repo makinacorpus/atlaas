@@ -33,7 +33,7 @@ Enfin, il ne faut pas oublier les citoyens, scientifiques de formation ou non, q
 
 ### 4. L'Atlaas et les sciences participatives
 
-Les sciences participatives (ou citoyennes) sont donc un moyen pour les habitants de participer à la connaissance du patrimoine local, mais aussi à sa prise en compte dans les décisions publiques locales.
+Les sciences participatives (ou citoyennes) sont donc un moyen pour les habitants de participer à la connaissance du patrimoine local, mais aussi à sa prise en compte dans les décisions publiques locales. Elles sont également souvent un lieu de rencontre physique ou à distance entre personnes présentant les mêmes intérêts et/ou passions.
 
 Au sein de l'Atlaas et de l'Observatoire de Villes Internet, seuls les observatoires disposant d'un outil informatisé relativement automatique seront être intégrés. Ce n'est pas toujours le cas, certains nécessitent l'envoie de fiches par courrier (mail ou postal).
 
@@ -49,7 +49,7 @@ Regroupement d'initiatives :
 > * Coordonnées par la LPO : [VisioNature (faune-"région".org et autres)](http://www.ornitho.fr/index.php?m_id=1)
 
 #### 4.2. Le cas des ABC
-Les Atlas de la Biodiversité Communale sont des inventaires naturalsites du territoire d'une commune (faune, flore, habitats). L'initiative nationale d'encadrement a débuté en 2010 en phase teste pour 8 communes (Combs-la-Ville (Seine-et-Marne), Pommeuse (Seine-et-Marne), Féricy (Seine-et-Marne), Haubourdin (Nord), Bavent (Calvados), Douvres-la-Délivrande (Calvados), La-Plaine-des-Palmistes (La Réunion), Bouillante (Guadeloupe)). Mais, entre 2010 et 2012, 206 communes ont débuté leurs inventaires.
+Les Atlas de la Biodiversité Communale sont des inventaires naturalistes du territoire d'une commune (faune, flore, habitats). L'initiative nationale d'encadrement a débuté en 2010 en phase teste pour 8 communes (Combs-la-Ville (Seine-et-Marne), Pommeuse (Seine-et-Marne), Féricy (Seine-et-Marne), Haubourdin (Nord), Bavent (Calvados), Douvres-la-Délivrande (Calvados), La-Plaine-des-Palmistes (La Réunion), Bouillante (Guadeloupe)). Mais, entre 2010 et 2012, 206 communes ont débuté leurs inventaires.
 Les communes peuvent engager des personnes en service civique pour participer et des outils sont mis à leur disposition (Vigie-Nature, outils de sensibilisation/mobilisation, cahier des charges, modèles, protocole, ...) sur biodiversite2010.fr (pour l'année de la biodiversité et le concours Capitale française de la biodiversité) puis sur le site du ministère en charge de l'environnment. Le Fonds de Dotations pour la Biodiversité (FDB) apporte des soutients financiers, techniques et pédagogiques.
 
 Ces inventaires peuvent donc être réalisés soit via du personnel de la commune et les services civiques, soit (ou "et") via les sciences participatives, soit (ou "et") avec l'aide d'association, de professionnels privés et publics.
