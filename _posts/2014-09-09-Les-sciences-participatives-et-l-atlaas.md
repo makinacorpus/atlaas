@@ -42,7 +42,9 @@ Une liste relatvement complète avec une centaine d'initiatives, mais indiffére
 > * [Nature France](http://www.naturefrance.fr/sciences-participatives)
 
 Regroupement d'initiatives :
+
 > * Coordonnées par le Muséum national d'Histoire naturelle : [Vigie-Nature](http://vigienature.mnhn.fr/), projet "65 millions d'observateurs" (à venir)
+
 > * Coordonnées par la LPO : [VisioNature (faune-"région".org et autres)](http://www.ornitho.fr/index.php?m_id=1)
 
 #### 4.2. Le cas des ABC
