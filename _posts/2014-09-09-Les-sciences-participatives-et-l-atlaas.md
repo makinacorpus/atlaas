@@ -1,6 +1,6 @@
 ---
 layout: static
-published: false
+published: true
 ---
 
 # Inclusion des sciences participatives à l'Atlas de l'internet public et citoyen (Atlaas)
