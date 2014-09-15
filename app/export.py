@@ -189,26 +189,23 @@ def export():
     lieux_list = []
     for lieu in hits:
         source = lieu["_source"]
-        try:
-            lieu_dict ={}
-            lieu_dict["id_lieu"] = source["id_lieu"]
-            lieu_dict["type"] = source["type"]
-            lieu_dict["nom"] = source["nom"]
-            lieu_dict["description"] = source.get("description", "")
-            lieu_dict["lat"] = source.get("lat", "")
-            lieu_dict["lon"] = source.get("lon", "")
-            lieu_dict["adresse_web"] = source.get("adresse_web", "")
-            lieu_dict["adresse"] = source.get("adresse", "")
-            lieu_dict["code_postal"] = source.get("code_postal", "")
-            lieu_dict["ville"] = source.get("ville", "")
-            lieu_dict["telephone"] = source.get("telephone", "")
-            lieu_dict["fax"] = source.get("fax", "")
-            lieu_dict["courriel"] = source.get("courriel", "")
-            lieu_dict["population"] = source.get("population", "")
-            lieu_dict["id_insee"] = source.get("id_insee", "")
-            lieux_list.append(lieu_dict)
-        except Exception as e:
-            pass
+        lieu_dict ={}
+        lieu_dict["id_lieu"] = source["id_lieu"]
+        lieu_dict["type"] = source["type"]
+        lieu_dict["nom"] = source["nom"]
+        lieu_dict["description"] = source.get("description", "")
+        lieu_dict["lat"] = source.get("lat", "")
+        lieu_dict["lon"] = source.get("lon", "")
+        lieu_dict["adresse_web"] = source.get("adresse_web", "")
+        lieu_dict["adresse"] = source.get("adresse", "")
+        lieu_dict["code_postal"] = source.get("code_postal", "")
+        lieu_dict["ville"] = source.get("ville", "")
+        lieu_dict["telephone"] = source.get("telephone", "")
+        lieu_dict["fax"] = source.get("fax", "")
+        lieu_dict["courriel"] = source.get("courriel", "")
+        lieu_dict["population"] = source.get("population", "")
+        lieu_dict["id_insee"] = source.get("id_insee", "")
+        lieux_list.append(lieu_dict)
 
     lieux_list = sorted(lieux_list, key=lambda k: k['id_lieu'])
     i = 1
@@ -236,22 +233,19 @@ def export():
     hits = json.loads(r.content)["hits"]["hits"]
     personnes_list = []
     for personne in hits:
-        try:
-            source = personne["_source"]
-            personne_dict ={}
-            personne_dict["id_personne"] = source["id_personne"]
-            personne_dict["nom"] = source["nom"]
-            personne_dict["titre"] = source["titre"]
-            personne_dict["elu"] = source["elu"]
-            personne_dict["adresse"] = source["adresse"]
-            personne_dict["code_postal"] = source["code_postal"]
-            personne_dict["ville"] = source["ville"]
-            personne_dict["telephone"] = source["telephone"]
-            personne_dict["telephone_mobile"] = source["telephone_mobile"]
-            personne_dict["courriel"] = source["courriel"]
-            personnes_list.append(personne_dict)
-        except Exception as e:
-            pass
+        source = personne["_source"]
+        personne_dict = {}
+        personne_dict["id_personne"] = source.get("id_personne", '')
+        personne_dict["nom"] = source.get("nom", '')
+        personne_dict["titre"] = source.get("titre", '')
+        personne_dict["elu"] = source.get("elu", '')
+        personne_dict["adresse"] = source["adresse"]
+        personne_dict["code_postal"] = source["code_postal"]
+        personne_dict["ville"] = source["ville"]
+        personne_dict["telephone"] = source["telephone"]
+        personne_dict["telephone_mobile"] = source["telephone_mobile"]
+        personne_dict["courriel"] = source["courriel"]
+        personnes_list.append(personne_dict)
 
     personnes_list = sorted(personnes_list, key=lambda k: k['id_personne'])
     i = 1
