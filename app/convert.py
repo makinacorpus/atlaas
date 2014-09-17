@@ -148,22 +148,23 @@ def convert(file):
         '974': '4',
     }
     lieux = {}
-    lieux_errors = 0
+    lieux_without_dpt = 0
+    lieux_without_gps = 0
     sh = wb.sheet_by_name(u'Lieux')
     for rownum in range(1, sh.nrows):
         row = sh.row_values(rownum)
         if (type(row[4]) is str) or (type(row[5]) is str):
-            lieux_errors += 1
-            lat = ''
-            lon = ''
+            lieux_without_gps += 1
+            lat = lon = '0'
         else:
             lat = float(row[4])
             lon = float(row[5])
         guess_departement = str(row[14])
-        if not guess_departement:
+        if not guess_departement or len(guess_departement) < 4:
             guess_departement = str(row[8])
         if len(guess_departement) < 4:
-            lieux_errors += 1
+            lieux_without_dpt += 1
+            #print row
             continue
         if len(guess_departement) == 4:
             guess_departement = "0" + guess_departement
@@ -171,10 +172,11 @@ def convert(file):
             departement = guess_departement[:3]
         else:
             departement = guess_departement[:2]
+
         id = format_int(row[0])
         infos = {
             'nom': row[2],
-            'fax': row[11],
+            'fax': str(row[11]),
             'code_postal': format_int(row[8]),
             'description': cleanup_text(row[3]),
             'ville': row[9],
@@ -196,7 +198,8 @@ def convert(file):
             'region': mapping_region.get(departement, ''),
         }
         lieux[id] = infos
-    print("Erreur lieux: %d" % lieux_errors)
+    print("Erreur lieux gps: %d" % lieux_without_gps)
+    print("Erreur lieux dpt: %d" % lieux_without_dpt)
 
     # Personnes
     sh = wb.sheet_by_name(u'Personnes')
@@ -255,8 +258,10 @@ def convert(file):
             'photos': cleanup_text(row[12]),
         }
         actions[id] = infos
+    print "Actions %s" % len(actions.keys())
 
     # bind lieux
+    liaison_lieux_errors = 0
     sh = wb.sheet_by_name(u'Liaison Lieux')
     for rownum in range(1, sh.nrows):
         row = sh.row_values(rownum)
@@ -264,10 +269,12 @@ def convert(file):
         action = actions.get(action_id)
         lieu = lieux.get(lieu_id)
         if not(action and lieu):
+            liaison_lieux_errors += 1
             continue
         action_lieux = action.get('lieux', [])
         action_lieux.append(lieux[lieu_id])
         actions[action_id]['lieux'] = action_lieux
+    print "Erreurs liaison lieux %d" % liaison_lieux_errors
 
     # bind personnes
     sh = wb.sheet_by_name(u'Liaison Personnes')
@@ -404,6 +411,9 @@ def convert(file):
     for i in range (1, index_l+1):
         lieux_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "lieux-%d.json" % i), "rb")
         r = requests.post(E_SEARCH_SECURED + "/_bulk", data=lieux_json, auth=auth)
+        for element in r.json()["items"]:
+            if "error" in element["index"].keys():
+                print element
         lieux_json.close()
 
     axes_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "axes.json"), "rb")
@@ -413,9 +423,17 @@ def convert(file):
     for i in range (1, index_p+1):
         personnes_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "personnes-%d.json" % i), "rb")
         r = requests.post(E_SEARCH_SECURED + "/_bulk", data=personnes_json, auth=auth)
+        for element in r.json()["items"]:
+            if "error" in element["index"].keys():
+                print element
         personnes_json.close()
 
+    errors = 0
     for i in range (1, index_a+1):
+        print(os.path.join(app.config['CONVERSION_FOLDER'], "actions-%d.json" % i))
         actions_json = open(os.path.join(app.config['CONVERSION_FOLDER'], "actions-%d.json" % i), "rb")
         r = requests.post(E_SEARCH_SECURED + "/_bulk", data=actions_json, auth=auth)
+        for element in r.json()["items"]:
+            if "error" in element["index"].keys():
+                print element
         actions_json.close()
