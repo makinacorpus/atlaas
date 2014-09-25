@@ -20,12 +20,9 @@ atlaas.Models = atlaas.Models || {};
         },
 
         parse: function(response, options) {
-            response = response.fields.partial;
-            response.id = response.id_action;
-
-            delete response.id_action;
-
-            return response;
+            var partial = response.fields.partial[0];
+            partial.id = partial.id_action;
+            return partial;
         },
 
         toCSV: function() {
