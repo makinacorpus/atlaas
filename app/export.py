@@ -181,7 +181,7 @@ def export():
         ws_Actions.write(i, 10, action["prestataires"])
         ws_Actions.write(i, 11, action["videos"])
         ws_Actions.write(i, 12, action["photos"])
-        i +=1
+        i += 1
     # Lieux
 
     r = requests.get(E_SEARCH + "/lieux/_search?size=100000")
@@ -239,11 +239,11 @@ def export():
         personne_dict["nom"] = source.get("nom", '')
         personne_dict["titre"] = source.get("titre", '')
         personne_dict["elu"] = source.get("elu", '')
-        personne_dict["adresse"] = source["adresse"]
-        personne_dict["code_postal"] = source["code_postal"]
-        personne_dict["ville"] = source["ville"]
-        personne_dict["telephone"] = source["telephone"]
-        personne_dict["telephone_mobile"] = source["telephone_mobile"]
+        personne_dict["adresse"] = source.get("adresse", "")
+        personne_dict["code_postal"] = source.get("code_postal", '')
+        personne_dict["ville"] = source.get("ville", '')
+        personne_dict["telephone"] = source.get("telephone", '')
+        personne_dict["telephone_mobile"] = source.get("telephone_mobile", '')
         personne_dict["courriel"] = source["courriel"]
         personnes_list.append(personne_dict)
 
