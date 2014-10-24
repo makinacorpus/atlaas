@@ -13,20 +13,16 @@
         <meta name="apple-mobile-web-app-title" content="Atlaas">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link href="favicon.ico" rel="icon">
-        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
-        <Link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css' rel='stylesheet' />
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css">
+        <link href="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css" rel="stylesheet">
         <!--[if lt IE 9]>
           <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.21.0/L.Control.Locate.ie.css' rel='stylesheet' />
         <![endif]-->
-        <!-- build:css({.tmp, app}) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
-        <!-- endbuild -->
 
-        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,300italic,400italic' rel='stylesheet' type='text/css'>
+        <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,300italic,400italic" rel="stylesheet" type="text/css">
 
-        <!-- build:js scripts/vendor/modernizr.js -->
-        <script src="bower_components/modernizr/modernizr.js"></script>
-        <!-- endbuild -->
+        <script src="scripts/vendor/modernizr.js"></script>
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -39,26 +35,29 @@
                     <li><a class="main-nav__item news" href="#news">Actualité</a></li>
                     <li><a class="main-nav__item icon-target-blank" href="#new">Contribuez !</a></li>
                     <li><a class="main-nav__item" href="#faq">Comment ça marche</a></li>
-                    <li><a class="main-nav__item" href="#a-propos">À propos</a></li>
+                    <li><a class="main-nav__item" href="#a-propos">Charte</a></li>
                     <li><a class="main-nav__item" href="#mentions-legales">Mentions légales</a></li>
                 </ul>
             </nav>
             <div class="logos">
                 <p>Une production</p>
-                <a href="http://villes-internet.net" target="_blank" class="internet-logo"><img src="images/logo-villesinternet.png"/></a>
-                <a href="http://www.datar.gouv.fr" target="_blank" class="atar-logo"><img src="images/logo-cget.jpg"/></a>
+                <a href="http://villes-internet.net" target="_blank" class="internet-logo"><img src="images/logo-villesinternet.png"></a>
+                <a href="http://www.cget.gouv.fr" target="_blank" class="atar-logo"><img src="images/logo-cget.jpg"></a>
+               
                 <p>En partenariat avec</p>
-                <a href="http://www.delegation.internet.gouv.fr/" target="_blank" class="internet-logo"><img src="images/logo-internet.jpg"/></a>
-                <a href="http://www.laposte.net/" target="_blank" class="internet-logo"><img src="images/logo-laposte.jpg"/></a>
+                <a href="http://www.delegation.internet.gouv.fr/" target="_blank" class="internet-logo"><img src="images/logo-internet.jpg"></a>
+                <a href="http://www.laposte.net/" target="_blank" class="internet-logo"><img src="images/logo-laposte.jpg"></a>
+                <a href="http://www.economie.gouv.fr/" target="_blank" class="internet-logo"><img src="http://www.villes-internet.net/uploads/RTEmagicC_ministere-economie_02.png.png"></a>
+                
                 <p>Développé par</p>
-                <a href="http://makina-corpus.com" target="_blank" class="makina-logo"><img src="images/logo.png"/></a>
+                <a href="http://makina-corpus.com" target="_blank" class="makina-logo"><img src="images/logo.png"></a>
             </div>
         </aside>
         
         <div id="main-container" class="container" data-visible="visible">
             <header>
                 <div class="logo">
-                    <a href="#map"><img src="images/logo.svg" alt="Atlaas" width="167" height="50" /></a>
+                    <a href="#map"><img src="images/logo.svg" alt="Atlaas" width="167" height="50"></a>
                 </div>
                 <span class="baseline">Atlas de l'Internet Public et Citoyen</span>
                 <a href="#menu" id="toggle-sidebar" class="btn-menu">
@@ -88,57 +87,8 @@
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.4/easing/EasePack.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.4/TweenLite.min.js"></script>
         
-        <!-- build:js scripts/vendor.js -->
-        <script src="bower_components/jquery/dist/jquery.js"></script>
-        <script src="bower_components/underscore/underscore.js"></script>
-        <script src="bower_components/backbone/backbone.js"></script>
-        <script src="scripts/vendor/simplebar.min.js"></script>
-        <script src="scripts/vendor/backbone.basicauth.js"></script>
-        <script src="scripts/vendor/backbone-forms/distribution/backbone-forms.js"></script>
-        <script src="scripts/vendor/backbone-forms/distribution/editors/list.js"></script>
-        <script src="scripts/vendor/backbone-forms/distribution/adapters/backbone.bootstrap-modal.js"></script>
-        <script src="scripts/vendor/backbone-form-template.js"></script>
-        <script src="scripts/vendor/bootstrap/transition.js"></script>
-        <script src="scripts/vendor/bootstrap/modal.js"></script>
-        <script src="scripts/vendor/leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
-        <script src="scripts/vendor/json-csv.js"></script>
-        <script src="scripts/vendor/spin.min.js"></script>   
-        <script src="scripts/vendor/md5.min.js"></script>     
-        <script src="scripts/vendor/Leaflet.Spin/leaflet.spin.js"></script>        
-        <script src="bower_components/backbone-query-parameters/backbone.queryparams.js"></script>
-        <!-- endbuild -->
+        <script src="scripts/vendor.js"></script>
 
-        <!-- build:js({.tmp,app}) scripts/main.js -->
         <script src="scripts/main.js"></script>
-        <script src="scripts/router.js"></script>
-        <script src="scripts/helpers/helpers.js"></script>
-        <script src="scripts/helpers/regions.js"></script>
-        <script src="scripts/templates.js"></script>
-        
-        <script src="scripts/views/app-view.js"></script>
-        <script src="scripts/views/news-view.js"></script>
-        <script src="scripts/views/static-page-view.js"></script>
-        <script src="scripts/views/action-form.js"></script>
-        <script src="scripts/views/login-view.js"></script>
-        <script src="scripts/views/review-view.js"></script>
-        <script src="scripts/views/sidebar-view.js"></script>
-        <script src="scripts/views/map/map-view.js"></script>
-        <script src="scripts/views/map/categories-view.js"></script>
-        <script src="scripts/views/map/pois-view.js"></script>
-        <script src="scripts/views/map/poi-view.js"></script>
-        <script src="scripts/views/map/poi-detail-view.js"></script>
-        <script src="scripts/views/map/search-view.js"></script>
-        <script src="scripts/views/map/poi-results-view.js"></script>
-        <script src="scripts/views/map/active-filter-view.js"></script>
-        
-        <script src="scripts/models/poi-model.js"></script>
-        <script src="scripts/models/poi-detail-model.js"></script>
-        <script src="scripts/models/category-model.js"></script>
-        
-        <script src="scripts/collections/pois-collection.js"></script>
-        <script src="scripts/collections/categories-collection.js"></script>
-        <script src="scripts/collections/results-collection.js"></script>
-        <script src="scripts/collections/review-collection.js"></script>
-        <!-- endbuild -->
 </body>
 </html>
