@@ -55,7 +55,7 @@ atlaas.Views.Map = atlaas.Views.Map || {};
             L.control.attribution({position: 'bottomleft'}).addTo(this.map);
             L.control.locate().addTo(this.map);
 
-            L.tileLayer('http://{s}.livembtiles.makina-corpus.net/makina/osmlight-france/{z}/{x}/{y}.png', {
+            L.tileLayer('http://{s}.tilestream.makina-corpus.net/v2/osmlight-france/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(this.map);
 
