@@ -47,8 +47,6 @@ prepreqs-{{cfg.name}}:
       - file: {{cfg.name}}-buildout
       - pkg: prepreqs-{{cfg.name}}
       - user: {{cfg.name}}-www-data
-    - user: {{cfg.user}}
-    - group: {{cfg.group}}
 
 {{cfg.name}}-dirs:
   file.directory:
