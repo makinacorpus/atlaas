@@ -144,12 +144,9 @@ module.exports = function (grunt) {
                 }
             }
         },
-        // not enabled since usemin task does concat and uglify
-        // check index.html to edit your build targets
-        // enable this task if you prefer defining your build targets here
-        /*uglify: {
-            dist: {}
-        },*/
+         // By default, your `index.html`'s <!-- Usemin block --> will take care
+        // of minification. These next options are pre-configured if you do not
+        // wish to use the Usemin blocks.
         useminPrepare: {
             html: '<%= yeoman.app %>/index.html',
             options: {
@@ -327,7 +324,7 @@ module.exports = function (grunt) {
         'useminPrepare',
         'imagemin',
         'htmlmin',
-        'concat',
+        'concat:generated',
         'cssmin',
         'uglify',
         'copy',
@@ -337,6 +334,7 @@ module.exports = function (grunt) {
     grunt.registerTask('push', [
         'gh-pages'
     ]);
+
 
     grunt.registerTask('default', [
         'jshint',
