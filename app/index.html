@@ -18,12 +18,15 @@
         <!--[if lt IE 9]>
           <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.21.0/L.Control.Locate.ie.css' rel='stylesheet' />
         <![endif]-->
+        <!-- build:css({.tmp, app}) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
 
         <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,300italic,400italic" rel="stylesheet" type="text/css">
 
-        <script src="scripts/vendor/modernizr.js"></script>
-    </head>
+         <!-- build:js scripts/vendor/modernizr.js -->
+         <script src="bower_components/modernizr/modernizr.js"></script>
+         <!-- endbuild -->    </head>
     <body>
         <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -87,8 +90,59 @@
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.4/easing/EasePack.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.4/TweenLite.min.js"></script>
         
-        <script src="scripts/vendor.js"></script>
 
-        <script src="scripts/main.js"></script>
+       <!-- build:js scripts/vendor.js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/underscore/underscore.js"></script>
+        <script src="bower_components/backbone/backbone.js"></script>
+        <script src="scripts/vendor/simplebar.min.js"></script>
+        <script src="scripts/vendor/backbone.basicauth.js"></script>
+        <script src="scripts/vendor/backbone-forms/distribution/backbone-forms.js"></script>
+        <script src="scripts/vendor/backbone-forms/distribution/editors/list.js"></script>
+        <script src="scripts/vendor/backbone-forms/distribution/adapters/backbone.bootstrap-modal.js"></script>
+        <script src="scripts/vendor/backbone-form-template.js"></script>
+        <script src="scripts/vendor/bootstrap/transition.js"></script>
+        <script src="scripts/vendor/bootstrap/modal.js"></script>
+        <script src="scripts/vendor/leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
+        <script src="scripts/vendor/json-csv.js"></script>
+        <script src="scripts/vendor/spin.min.js"></script>   
+        <script src="scripts/vendor/md5.min.js"></script>     
+        <script src="scripts/vendor/Leaflet.Spin/leaflet.spin.js"></script>        
+        <script src="bower_components/backbone-query-parameters/backbone.queryparams.js"></script>
+        <!-- endbuild -->
+
+ 
+         <!-- build:js({.tmp,app}) scripts/main.js -->
+         <script src="scripts/main.js"></script>
+         <script src="scripts/router.js"></script>
+         <script src="scripts/helpers/helpers.js"></script>
+         <script src="scripts/helpers/regions.js"></script>
+         <script src="scripts/templates.js"></script>
+        
+         <script src="scripts/views/app-view.js"></script>
+         <script src="scripts/views/news-view.js"></script>
+         <script src="scripts/views/static-page-view.js"></script>
+         <script src="scripts/views/action-form.js"></script>
+         <script src="scripts/views/login-view.js"></script>
+         <script src="scripts/views/review-view.js"></script>
+         <script src="scripts/views/sidebar-view.js"></script>
+         <script src="scripts/views/map/map-view.js"></script>
+         <script src="scripts/views/map/categories-view.js"></script>
+         <script src="scripts/views/map/pois-view.js"></script>
+         <script src="scripts/views/map/poi-view.js"></script>
+         <script src="scripts/views/map/poi-detail-view.js"></script>
+         <script src="scripts/views/map/search-view.js"></script>
+         <script src="scripts/views/map/poi-results-view.js"></script>
+         <script src="scripts/views/map/active-filter-view.js"></script>
+         
+         <script src="scripts/models/poi-model.js"></script>
+         <script src="scripts/models/poi-detail-model.js"></script>
+         <script src="scripts/models/category-model.js"></script>
+         
+         <script src="scripts/collections/pois-collection.js"></script>
+         <script src="scripts/collections/categories-collection.js"></script>
+         <script src="scripts/collections/results-collection.js"></script>
+         <script src="scripts/collections/review-collection.js"></script>
+         <!-- endbuild -->
 </body>
 </html>
