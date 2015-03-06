@@ -1,6 +1,5 @@
 ---
 layout: static
-title: À propos
 published: true
 ---
 
