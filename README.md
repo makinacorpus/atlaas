@@ -14,3 +14,7 @@ Pour modifier les contenus statiques:
 
 ### Pour modifier une page statique (FAQ, Mentions légales, etc.)
 - Se rendre sur : http://prose.io/#makinacorpus/atlaas/tree/gh-pages/pages
+- 
+
+PS: Les IDs 25291 - 29946 ont été incrémentés de 10 000 pour éviter les conflits ( IDS d'origine  15291-19946)
+
